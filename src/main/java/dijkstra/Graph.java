@@ -18,7 +18,4 @@ public class Graph {
     public List<Edge> getEdges() {
         return edges;
     }
-
-
-
 }

@@ -10,12 +10,13 @@ import java.util.Map;
 import java.util.Set;
 
 public class BestPath {
+
     private final List<Vertex> nodes;
     private final List<Edge> edges;
     private Set<Vertex> settledNodes;
     private Set<Vertex> unSettledNodes;
     private Map<Vertex, Vertex> predecessors;
-    private Map<Vertex, Integer> distance;
+    private Map<Vertex, Double> distance;
 
     public BestPath(Graph graph) {
         // create a copy of the array so that we can operate on this array
@@ -23,32 +24,29 @@ public class BestPath {
         this.edges = new ArrayList<>(graph.getEdges());
     }
 
-    public void printDist(Vertex key){
-        System.out.println(distance.get(key));
-    }
 
-    public void execute(Vertex source) {
+    public void execute(Vertex source, boolean key) {
+        boolean switcher = key;
         settledNodes = new HashSet<>();
         unSettledNodes = new HashSet<>();
         distance = new HashMap<>();
         predecessors = new HashMap<>();
-        distance.put(source, 0);
+        distance.put(source, 0.0);
         unSettledNodes.add(source);
 
         while (unSettledNodes.size() > 0) {
             Vertex node = getMinimum(unSettledNodes); //return minimal node
             settledNodes.add(node);
             unSettledNodes.remove(node);
-            findMinimalDistances(node);
+            findMinimalDistances(node, switcher);
         }
     }
     // find node that have minimal distance  from source(and near our previous node)
-    private void findMinimalDistances(Vertex node) {
+    private void findMinimalDistances(Vertex node, boolean key) {
         List<Vertex> adjacentNodes = getNeighbors(node);
         for (Vertex target : adjacentNodes) {
-            if (getShortestDistance(target) > getShortestDistance(node) + getDistance(node, target)) {
-                distance.put(target, getShortestDistance(node)
-                        + getDistance(node, target));
+            if (getShortestDistance(target) > getShortestDistance(node) + getDistance(node, target, key)) {
+                distance.put(target, getShortestDistance(node) + getDistance(node, target, key));
                 predecessors.put(target, node);
                 unSettledNodes.add(target);
             }
@@ -56,11 +54,14 @@ public class BestPath {
 
     }
 
-    private int getDistance(Vertex node, Vertex target) {
+    private double getDistance(Vertex node, Vertex target, boolean key) {
         for (Edge edge : edges) {
             if (edge.getSource().equals(node)
                     && edge.getDestination().equals(target)) {
-                return edge.getWeight();  //---------------------------------------------------------------------
+                if(key)
+                    return edge.getWeight();
+                else
+                    return edge.getCost();
             }
         }
         throw new RuntimeException("Should not happen");
@@ -95,10 +96,10 @@ public class BestPath {
         return settledNodes.contains(vertex);
     }
 
-    private int getShortestDistance(Vertex destination) {
-        Integer d = distance.get(destination);
+    private double getShortestDistance(Vertex destination) {
+        Double d = distance.get(destination);
         if (d == null) {
-            return Integer.MAX_VALUE;
+            return Double.MAX_VALUE;
         } else {
             return d;
         }
@@ -124,4 +125,30 @@ public class BestPath {
         Collections.reverse(path);
         return path;
     }
+
+    public Edge getEdge(Vertex node, Vertex target){
+        for (Edge edge : edges) {
+            if (edge.getSource().equals(node)
+                    && edge.getDestination().equals(target)) {
+                return edge;
+            }
+        }
+        return null;
+    }
+
+    public void getAdditional(LinkedList Path){
+        double[] result = {0.0, 0.0};
+        List<Integer> transport = new ArrayList<>();
+        int limit = Path.size()-1;
+        for(int i = 0; i<limit; i++){
+            Vertex node1 = (Vertex) Path.get(i);
+            Vertex node2 = (Vertex) Path.get(i+1);
+            Edge someEdge = getEdge(node1, node2);
+            result[0] += someEdge.getAdditionalC();
+            result[1] += someEdge.getAdditionalW();
+            transport.add(someEdge.getTransport());
+        }
+        System.out.println("Cost:" + result[0] + " |Time: " + result[1] + " sequence of transports: " + transport);
+    }
+
 }
