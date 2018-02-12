@@ -5,7 +5,6 @@ import javax.xml.crypto.Data;
 public class Rate {
     private int id;
     private String name;
-    private boolean urgency;
     private double costShipping;
     private Data startAction;
     private Data endAction;
@@ -15,9 +14,6 @@ public class Rate {
     }
     public String getName(){
         return name;
-    }
-    public boolean isUrgency(){
-        return urgency;
     }
     public double getCostShipping(){
         return costShipping;
@@ -34,9 +30,6 @@ public class Rate {
     }
     public void setName(String name){
         this.name = name;
-    }
-    public void isUrgency(boolean urgency){
-        this.urgency = urgency;
     }
     public void setCostShipping (double costShipping)
     {

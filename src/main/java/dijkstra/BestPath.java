@@ -137,18 +137,18 @@ public class BestPath {
     }
 
     public void getAdditional(LinkedList Path){
-        double[] result = {0.0, 0.0};
+        double[] costAndTime = {0.0, 0.0};
         List<Integer> transport = new ArrayList<>();
         int limit = Path.size()-1;
         for(int i = 0; i<limit; i++){
             Vertex node1 = (Vertex) Path.get(i);
             Vertex node2 = (Vertex) Path.get(i+1);
             Edge someEdge = getEdge(node1, node2);
-            result[0] += someEdge.getAdditionalC();
-            result[1] += someEdge.getAdditionalW();
+            costAndTime[0] += someEdge.getAdditionalC();
+            costAndTime[1] += someEdge.getAdditionalW();
             transport.add(someEdge.getTransport());
         }
-        System.out.println("Cost:" + result[0] + " |Time: " + result[1] + " sequence of transports: " + transport);
+        System.out.println("Cost:" + costAndTime[0] + " |Time: " + costAndTime[1] + " sequence of transports: " + transport);
     }
 
 }

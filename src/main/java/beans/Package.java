@@ -3,9 +3,12 @@ package beans;
 public class Package {
     private int id;
     private String name;
-    private String size;
-    private String weight;
-    private double sum;
+    private double weight;
+    private int quantity;
+    private double width;
+    private double length;
+    private double height;
+    private boolean envelope;
 
     public int getId(){
         return id;
@@ -13,29 +16,19 @@ public class Package {
     public String getName(){
         return name;
     }
-    public String getSize(){
-        return size;
-    }
-    public String getWeight() {
-        return weight;
-    }
-    public double getSum(){
-        return sum;
-    }
+    public double getWeight() { return weight; }
+    public int getQuantity(){ return quantity; }
+    public double getHeight() { return height; }
+    public double getLength() { return length; }
+    public double getWidth() { return width; }
+    public boolean isEnvelope() { return envelope; }
 
-    public void setId(int id){
-        this.id = id;
-    }
-    public void setName(String name){
-        this.name = name;
-    }
-    public void setSize(String size){
-        this.size = size;
-    }
-    public void setWeight(String weight){
-        this.weight = weight;
-    }
-    public void setSum(double sum){
-        this.sum = sum;
-    }
+    public void setEnvelope(boolean envelope) { this.envelope = envelope; }
+    public void setHeight(double height) { this.height = height; }
+    public void setLength(double length) { this.length = length; }
+    public void setWidth(double width) { this.width = width; }
+    public void setId(int id) { this.id = id; }
+    public void setName(String name) { this.name = name; }
+    public void setWeight(double weight) { this.weight = weight; }
+    public void setQuantity(int quantity) { this.quantity = quantity; }
 }
