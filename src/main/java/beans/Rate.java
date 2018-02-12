@@ -12,33 +12,41 @@ public class Rate {
     public int getId(){
         return id;
     }
-    public String getName(){
-        return name;
-    }
-    public double getCostShipping(){
-        return costShipping;
-    }
-    public Data getEndAction() {
-        return endAction;
-    }
-    public Data getStartAction() {
-        return startAction;
-    }
 
     public void setId(int id){
         this.id = id;
     }
+
+    public String getName(){
+        return name;
+    }
+
     public void setName(String name){
         this.name = name;
     }
-    public void setCostShipping (double costShipping)
-    {
+
+    public double getCostShipping(){
+        return costShipping;
+    }
+
+    public void setCostShipping (double costShipping) {
         this.costShipping = costShipping;
     }
-    public void setStartAction(Data startAction){
-        this.startAction = startAction;
+
+    public Data getEndAction() {
+        return endAction;
     }
+
     public void setEndAction(Data endAction){
         this.endAction = endAction;
     }
+
+    public Data getStartAction() {
+        return startAction;
+    }
+
+    public void setStartAction(Data startAction){
+        this.startAction = startAction;
+    }
+
 }

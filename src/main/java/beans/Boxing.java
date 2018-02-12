@@ -13,19 +13,19 @@ public class Boxing {
         this.variety = variety;
     }
 
-    public int getId(){
+    public int getId() {
         return id;
     }
 
-    public void setId(int id){
+    public void setId(int id) {
         this.id = id;
     }
 
-    public double getCost(){
+    public double getCost() {
         return cost;
     }
 
-    public void setCost(double cost){
+    public void setCost(double cost) {
         this.cost = cost;
     }
 }

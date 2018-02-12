@@ -8,9 +8,19 @@ public class Order {
     public int getId(){
         return id;
     }
+
+    public void setId(int id){
+        this.id = id;
+    }
+
     public int getName(){
         return name;
     }
+
+    public void setName(int name){
+        this.name = name;
+    }
+
     public boolean isUrgency(){
         return urgency;
     }
@@ -18,10 +28,5 @@ public class Order {
     public void isUrgency(boolean urgency){
         this.urgency = urgency;
     }
-    public void setId(int id){
-        this.id = id;
-    }
-    public void setName(int name){
-        this.name = name;
-    }
+
 }

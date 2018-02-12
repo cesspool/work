@@ -12,44 +12,57 @@ public class Node {
     public int getId(){
         return id;
     }
-    public String getName(){
-        return name;
-    }
-    public String getAddress(){
-        return address;
-    }
-    public double getCoordinateX(){
-        return coordinateX;
-    }
-    public double getCoordinateY(){
-        return coordinateY;
-    }
-    public char getLatitude(){
-        return latitude;
-    }
-    public char getLongitude(){
-        return longitude;
-    }
 
     public void setId(int id){
         this.id = id;
     }
+
+    public String getName(){
+        return name;
+    }
+
     public void setName(String name){
         this.name = name;
     }
+
+    public String getAddress(){
+        return address;
+    }
+
     public void setAddress(String address){
         this.address = address;
     }
+
+    public double getCoordinateX(){
+        return coordinateX;
+    }
+
     public void setCoordinateX(double coordinateX){
         this.coordinateX = coordinateX;
     }
+
+    public double getCoordinateY(){
+        return coordinateY;
+    }
+
     public void setCoordinateY(double coordinateY){
         this.coordinateY = coordinateY;
     }
+
+    public char getLatitude(){
+        return latitude;
+    }
+
     public void setLatitude(char latitude){
         this.latitude = latitude;
     }
+
+    public char getLongitude(){
+        return longitude;
+    }
+
     public void setLongitude(char longitude){
         this.longitude = longitude;
     }
+
 }

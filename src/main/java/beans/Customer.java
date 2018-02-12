@@ -8,41 +8,51 @@ public class Customer {
     private String address;
     private String telephone;
 
-    public int getId(){
+    public int getId() {
         return id;
     }
-    public String getFirstName(){
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
         return firstName;
     }
-    public String getLastName(){
+
+    public void setFirstName(String firstname) {
+        this.firstName = firstname;
+    }
+
+    public String getLastName() {
         return lastName;
     }
-    public String getPatronymic(){
+
+    public void setLastName(String lastname) {
+        this.lastName = lastname;
+    }
+
+    public String getPatronymic() {
         return patronymic;
     }
-    public String getAddress(){
+
+    public void setPatronymic(String patronymic) {
+        this.patronymic = patronymic;
+    }
+
+    public String getAddress() {
         return address;
     }
-    public String getTelephone(){
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getTelephone() {
         return telephone;
     }
 
-    public void setId(int id){
-        this.id = id;
-    }
-    public void setFirstName(String firstname){
-        this.firstName = firstname;
-    }
-    public void setLastName(String lastname){
-        this.lastName = lastname;
-    }
-    public void setPatronymic(String patronymic){
-        this.patronymic = patronymic;
-    }
-    public void setAddress(String address){
-        this.address = address;
-    }
-    public void setTelephone(String telephone){
+    public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
 
