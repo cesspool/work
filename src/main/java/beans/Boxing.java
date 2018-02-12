@@ -5,18 +5,26 @@ public class Boxing {
     private String variety;
     private double cost;
 
-    public String getVariety() { return variety; }
+    public String getVariety() {
+        return variety;
+    }
+
+    public void setVariety(String variety) {
+        this.variety = variety;
+    }
+
     public int getId(){
         return id;
     }
+
+    public void setId(int id){
+        this.id = id;
+    }
+
     public double getCost(){
         return cost;
     }
 
-    public void setVariety(String variety) { this.variety = variety; }
-    public void setId(int id){
-        this.id = id;
-    }
     public void setCost(double cost){
         this.cost = cost;
     }
