@@ -6,8 +6,6 @@ public class Node {
     private String address;
     private double coordinateX;
     private double coordinateY;
-    private char latitude;
-    private char longitude;
 
     public int getId(){
         return id;
@@ -47,22 +45,6 @@ public class Node {
 
     public void setCoordinateY(double coordinateY){
         this.coordinateY = coordinateY;
-    }
-
-    public char getLatitude(){
-        return latitude;
-    }
-
-    public void setLatitude(char latitude){
-        this.latitude = latitude;
-    }
-
-    public char getLongitude(){
-        return longitude;
-    }
-
-    public void setLongitude(char longitude){
-        this.longitude = longitude;
     }
 
 }
