@@ -1,4 +1,4 @@
-package form;
+package form.request;
 
 public class OrderingForm {
     private String firstName;

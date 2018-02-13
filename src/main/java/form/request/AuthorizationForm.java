@@ -1,4 +1,4 @@
-package form;
+package form.request;
 
 public class AuthorizationForm {
     private String login;

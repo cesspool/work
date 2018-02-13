@@ -1,4 +1,4 @@
-package form;
+package form.request;
 
 import java.util.List;
 
