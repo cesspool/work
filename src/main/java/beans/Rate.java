@@ -1,13 +1,13 @@
 package beans;
 
-import javax.xml.crypto.Data;
+import java.util.Date;
 
 public class Rate {
     private int id;
     private String name;
     private double costShipping;
-    private Data startAction;
-    private Data endAction;
+    private Date startAction;
+    private Date endAction;
 
     public int getId(){
         return id;
@@ -33,19 +33,19 @@ public class Rate {
         this.costShipping = costShipping;
     }
 
-    public Data getEndAction() {
+    public Date getEndAction() {
         return endAction;
     }
 
-    public void setEndAction(Data endAction){
+    public void setEndAction(Date endAction){
         this.endAction = endAction;
     }
 
-    public Data getStartAction() {
+    public Date getStartAction() {
         return startAction;
     }
 
-    public void setStartAction(Data startAction){
+    public void setStartAction(Date startAction){
         this.startAction = startAction;
     }
 

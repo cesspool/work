@@ -9,6 +9,15 @@ public class Package {
     private double length;
     private double height;
     private boolean envelope;
+    private double size;
+
+    public double getSize() {
+        return size;
+    }
+
+    public void setSize(double size) {
+        this.size = size;
+    }
 
     public int getId(){
         return id;
