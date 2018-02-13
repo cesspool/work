@@ -1,6 +1,6 @@
 package logic;
 
-//transformate coordinate from (longitude, latitude) into decart(x,y)
+//evaluate distance btw 2 nodes by their coordinate
 
 public class TransCoordinate {
 
