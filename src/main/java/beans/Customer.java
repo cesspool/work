@@ -7,6 +7,8 @@ public class Customer {
     private String patronymic;
     private String address;
     private String telephone;
+    private String md5;
+    private boolean admin;
 
     public int getId() {
         return id;
@@ -56,4 +58,19 @@ public class Customer {
         this.telephone = telephone;
     }
 
+    public String getMd5() {
+        return md5;
+    }
+
+    public void setMd5(String md5) {
+        this.md5 = md5;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
 }
