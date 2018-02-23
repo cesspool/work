@@ -1,20 +1,20 @@
 package beans;
 
 public class Customer {
-    private int id;
+    private Long id;
     private String firstName;
     private String lastName;
     private String patronymic;
     private String address;
     private String telephone;
     private String md5;
-    private boolean admin;
+    private Boolean admin;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -66,11 +66,11 @@ public class Customer {
         this.md5 = md5;
     }
 
-    public boolean isAdmin() {
+    public Boolean isAdmin() {
         return admin;
     }
 
-    public void setAdmin(boolean admin) {
+    public void setAdmin(Boolean admin) {
         this.admin = admin;
     }
 }
