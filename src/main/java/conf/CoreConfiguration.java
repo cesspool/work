@@ -7,6 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 
@@ -17,6 +18,7 @@ public class CoreConfiguration {
 
     @Autowired
     private Environment env;
+//    private DataSource ds;
 
     @Bean(destroyMethod="close")
     public DataSource dataSource() {
@@ -30,4 +32,12 @@ public class CoreConfiguration {
         //ds.setAutoCommit(isAutoCommit);
         return ds;
     }
+  
+    @Bean
+    @Autowired
+    public JdbcTemplate jdbcTemplate(DataSource ds){
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(ds);
+        return jdbcTemplate;
+    }
+  
 }

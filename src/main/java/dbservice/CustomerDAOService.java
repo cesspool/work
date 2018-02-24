@@ -2,7 +2,7 @@ package dbservice;
 
 import beans.Customer;
 
-public interface CustomerService {
+public interface CustomerDAOService {
     
     Customer getByID(Long ID);
     
