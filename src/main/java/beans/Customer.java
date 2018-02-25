@@ -7,7 +7,7 @@ public class Customer {
     private String patronymic;
     private String address;
     private String telephone;
-    private String md5;
+    private String hashcode;
     private Boolean admin;
 
     public Long getId() {
@@ -59,11 +59,11 @@ public class Customer {
     }
 
     public String getMd5() {
-        return md5;
+        return hashcode;
     }
 
-    public void setMd5(String md5) {
-        this.md5 = md5;
+    public void setMd5(String hashcode) {
+        this.hashcode = hashcode;
     }
 
     public Boolean isAdmin() {

@@ -65,8 +65,6 @@ name integer,
 urgency boolean,
 recipient_id integer REFERENCES logistics.customer (id),
 sender_id integer REFERENCES logistics.customer (id),
-node_id_start integer REFERENCES logistics.node (id),
-node_id_end integer REFERENCES logistics.node (id),
 rate_id integer REFERENCES logistics.rate (id),
 package_id integer REFERENCES logistics.package (id),
 boxing_id integer REFERENCES logistics.boxing (id)

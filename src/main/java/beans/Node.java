@@ -6,6 +6,7 @@ public class Node {
     private String address;
     private double coordinateX;
     private double coordinateY;
+    private String code;
 
     public int getId(){
         return id;
@@ -47,4 +48,11 @@ public class Node {
         this.coordinateY = coordinateY;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
 }

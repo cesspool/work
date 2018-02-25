@@ -1,6 +1,6 @@
 package beans;
 
-public class TypeTransport {
+public class Transport {
     private int id;
     private String variety;
     private double avSpeed;
@@ -82,5 +82,4 @@ public class TypeTransport {
     public void setAvSpeed(double avSpeed) {
         this.avSpeed = avSpeed;
     }
-
 }
