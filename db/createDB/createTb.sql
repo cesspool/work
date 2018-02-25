@@ -6,11 +6,6 @@ variety varchar(80),
 cost real
 );
 
-CREATE TABLE logistics.type_node(
-id SERIAL PRIMARY KEY NOT NULL,
-variety varchar(50)
-);
-
 CREATE TABLE logistics.transport(
 id SERIAL PRIMARY KEY NOT NULL,
 variety varchar(50),
@@ -42,7 +37,7 @@ lastName varchar(40),
 patronymic varchar(40),
 address varchar(100),
 telephone varchar(15),
-md5 CHAR(32),
+hashcode CHAR(32),
 admin boolean
 );
 
@@ -52,7 +47,7 @@ name varchar(50),
 address varchar(100),
 coordinateX real, 
 coordinateY real,
-type_node_id integer REFERENCES logistics.type_node(id)
+code VARCHAR(20)
 );
 
 CREATE TABLE logistics.rate(
@@ -68,7 +63,8 @@ CREATE TABLE logistics.order(
 id SERIAL PRIMARY KEY NOT NULL,
 name integer,
 urgency boolean,
-customer_id integer REFERENCES logistics.customer (id),
+recipient_id integer REFERENCES logistics.customer (id),
+sender_id integer REFERENCES logistics.customer (id),
 node_id_start integer REFERENCES logistics.node (id),
 node_id_end integer REFERENCES logistics.node (id),
 rate_id integer REFERENCES logistics.rate (id),
@@ -79,20 +75,18 @@ boxing_id integer REFERENCES logistics.boxing (id)
 CREATE TABLE logistics.distance(
 id SERIAL PRIMARY KEY NOT NULL,
 length real,
-transport_id integer REFERENCES logistics.transport(id),
 node_id_start integer REFERENCES logistics.node (id),
 node_id_end integer REFERENCES logistics.node (id)
 );
 
-CREATE TABLE logistics.order_distance(
-id SERIAL PRIMARY KEY NOT NULL,
-number integer,
-distance_id integer REFERENCES logistics.distance(id),
-order_id integer REFERENCES logistics.order(id)
+CREATE TABLE logistics.transport_node(
+  node_id integer REFERENCES logistics.node(id),
+  transport_id INTEGER REFERENCES logistics.transport(id)
 );
 
-CREATE TABLE logistics.order_customer(
-id SERIAL PRIMARY KEY NOT NULL,
-customer_id integer REFERENCES logistics.customer(id),
-order_id integer REFERENCES logistics.order(id)
+CREATE TABLE logistics.route(
+  order_id INTEGER REFERENCES logistics.order(id),
+  node_id INTEGER REFERENCES logistics.node(id),
+  number_node INTEGER,
+  PRIMARY KEY(order_id, number_node)
 );
