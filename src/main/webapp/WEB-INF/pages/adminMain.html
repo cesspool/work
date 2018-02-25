@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<!--
+	Spatial by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+<head>
+    <title>Кабинет администратора</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="stylesheet" href="../CSS/personal.css" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400;300" rel="stylesheet" type="text/css">
+    <link href="../CSS/style.css" rel="stylesheet">
+</head>
+<body>
+
+
+<!-- Header -->
+<header id="header">
+    <h1><strong>АИС "Транспортная логистика"</strong></h1>
+    <nav id="nav">
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="rate.html">Тарифы</a></li>
+            <li><a href="login.html">Авторизация</a></li>
+            <li>
+                <div>
+                    <div style="color: brown" class="icon-menu">
+                        <img class="contact" src="../images/contact.png">Профиль
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<div class="menu">
+
+    <!-- Иконка меню -->
+    <div class="icon-close">
+        <img src="../images/close-btn.png">
+    </div>
+
+    <!-- Меню -->
+    <ul>
+        <li><a href="personal.html">Заказы в процессе выполнения</a></li>
+        <li><a href="adminMain.html">Добавить филиал</a></li>
+        <li><a href="newRate.html">Добавить тарифный план</a></li>
+        <li><a href="index.html">ВЫХОД</a></li>
+    </ul>
+</div>
+
+<!-- Main body -->
+<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+
+<section id="main" class="wrapper">
+    <div class="container">
+
+        <header class="major special">
+            <h2>Добавление филиала</h2>
+            <p>Заполните следующие поля</p>
+        </header>
+        <form class="registration">
+            <div class="container limiter">
+                <table width="100%" cellspacing="0" cellpadding="5">
+                    <tr>
+                        <label for="email"><b>Название филиала</b></label>
+                        <td width="200" valign="top">
+                            <input type="text" placeholder="paulkapay@gmail.com" name="email" required>
+                        </td>
+
+                        <td>
+                            <input type="checkbox" id="airport" name="airport" value="air">
+                            <label for="airport">Наличие аэропорта</label>
+                        </td>
+                        <td>
+                            <input type="checkbox" id="railway" name="railway" value="rail">
+                            <label for="railway">Наличие ЖД вокзала</label>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td width="200" valign="top">
+                            <label for="lastName"><b>Широта</b></label>
+                            <input type="text" placeholder="Иванов" name="email" required>
+                        </td>
+                        <td>
+                            <label for="firstName"><b>Долгота</b></label>
+                            <input type="text" placeholder="Иван" name="email" required>
+                        </td>
+                        <td>
+                            <label for="phone"><b>Адрес</b></label>
+                            <input type="text" placeholder="+7(926)723-16-50" name="email" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="200" valign="top">
+                            <div class="input_fields_wrap">
+                                <button class="add_field_button">Добавить связь с филиалами</button>
+                                <div> <select name="field_sity_tid" class="form-select">
+                                    <option value="103">Москва</option>
+                                    <option value="104">Уфа</option>
+                                    <option value="105">Долгопрудный</option>
+                                </select></div>
+                            </div>
+                        </td>
+                    </tr>
+
+                </table>
+
+                <div class="clearfix">
+                    <button type="button" class="cancelbtn">Отмена</button>
+                    <button type="submit" class="signupbtn">Отправить</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+
+<!-- Main -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+
+
+<!-- Scripts -->
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/skel.min.js"></script>
+<script src="../assets/js/util.js"></script>
+<script src="../assets/js/main.js"></script>
+
+<script src="../jsFiles/jquery.js"></script>
+<script src="../jsFiles/menu.js"></script>
+
+<script src="../jsFiles/link.js"></script>
+
+</body>
+</html>
