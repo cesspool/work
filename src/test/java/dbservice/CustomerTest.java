@@ -26,10 +26,11 @@ public class CustomerTest {
         Connection connection = null;
         try {
             connection = ds.getConnection();
-            PreparedStatement statement = connection.prepareStatement("SELECT 1");
+            PreparedStatement statement = connection.prepareStatement("SELECT * from logistics.Customer");
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 int mockVal = resultSet.getInt(1);
+                System.out.println("ID: " + mockVal);
                 //assertTrue(mockVal== 1);
             }
             statement.close();
