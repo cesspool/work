@@ -8,7 +8,7 @@ public class Customer {
     private String address;
     private String telephone;
     private String hashcode;
-    private Boolean admin;
+    private Boolean admin = Boolean.FALSE;
 
     public Long getId() {
         return id;
