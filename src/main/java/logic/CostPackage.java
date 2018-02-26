@@ -12,12 +12,13 @@ public class CostPackage {
     private double costShipping;
     private double additionalCost;
 
-    public int filter(double high, double length, double width, double weight, int quantity){
+    public boolean filter(double high, double length, double width, double weight, int quantity){
         if((this.maxWeight < weight) || (this.maxQuantity < quantity) ||
                 (this.maxWidth < width) || (this.maxLength < length) ||
                 (this.maxHigh < high)) {
-            return 0; // you shall not pass
+            return false; // you shall not pass
         }
+        return true;
     }
 
     public double getCost(double high, double length, double width, double weight, int quantity) {
