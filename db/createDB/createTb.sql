@@ -37,6 +37,7 @@ lastName varchar(40),
 patronymic varchar(40),
 address varchar(100),
 telephone varchar(15),
+email VARCHAR(50),
 hashcode CHAR(32),
 admin boolean
 );
@@ -54,6 +55,7 @@ CREATE TABLE logistics.rate(
 id SERIAL PRIMARY KEY NOT NULL,
 name varchar(40), 
 costShipping real,
+additionalCost real,
 startActionDate date,
 endActionDate date,
 transport_id integer REFERENCES logistics.transport(id)

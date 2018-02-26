@@ -6,6 +6,7 @@ public class Rate {
     private int id;
     private String name;
     private double costShipping;
+    private double additionalCost;
     private Date startAction;
     private Date endAction;
 
@@ -31,6 +32,14 @@ public class Rate {
 
     public void setCostShipping (double costShipping) {
         this.costShipping = costShipping;
+    }
+
+    public double getAdditionalCost() {
+        return additionalCost;
+    }
+
+    public void setAdditionalCost(double additionalCost) {
+        this.additionalCost = additionalCost;
     }
 
     public Date getEndAction() {

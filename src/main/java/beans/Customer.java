@@ -7,6 +7,7 @@ public class Customer {
     private String patronymic;
     private String address;
     private String telephone;
+    private String email;
     private String hashcode;
     private Boolean admin = Boolean.FALSE;
 
@@ -56,6 +57,14 @@ public class Customer {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getMd5() {
