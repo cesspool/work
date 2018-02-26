@@ -1,18 +1,18 @@
 package beans;
 
 public class Node {
-    private int id;
+    private Integer id;
     private String name;
     private String address;
-    private double coordinateX;
-    private double coordinateY;
+    private Double coordinateX;
+    private Double coordinateY;
     private String code;
 
-    public int getId(){
+    public Integer getId(){
         return id;
     }
 
-    public void setId(int id){
+    public void setId(Integer id){
         this.id = id;
     }
 
@@ -32,19 +32,19 @@ public class Node {
         this.address = address;
     }
 
-    public double getCoordinateX(){
+    public Double getCoordinateX(){
         return coordinateX;
     }
 
-    public void setCoordinateX(double coordinateX){
+    public void setCoordinateX(Double coordinateX){
         this.coordinateX = coordinateX;
     }
 
-    public double getCoordinateY(){
+    public Double getCoordinateY(){
         return coordinateY;
     }
 
-    public void setCoordinateY(double coordinateY){
+    public void setCoordinateY(Double coordinateY){
         this.coordinateY = coordinateY;
     }
 

@@ -1,20 +1,21 @@
 package beans;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Date;
 
 public class Rate {
-    private int id;
+    private Integer id;
     private String name;
-    private double costShipping;
-    private double additionalCost;
+    private Double costShipping;
+    private Double additionalCost;
     private Date startAction;
     private Date endAction;
 
-    public int getId(){
+    public Integer getId(){
         return id;
     }
 
-    public void setId(int id){
+    public void setId(Integer id){
         this.id = id;
     }
 
@@ -26,19 +27,19 @@ public class Rate {
         this.name = name;
     }
 
-    public double getCostShipping(){
+    public Double getCostShipping(){
         return costShipping;
     }
 
-    public void setCostShipping (double costShipping) {
+    public void setCostShipping (Double costShipping) {
         this.costShipping = costShipping;
     }
 
-    public double getAdditionalCost() {
+    public Double getAdditionalCost() {
         return additionalCost;
     }
 
-    public void setAdditionalCost(double additionalCost) {
+    public void setAdditionalCost(Double additionalCost) {
         this.additionalCost = additionalCost;
     }
 

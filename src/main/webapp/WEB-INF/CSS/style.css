@@ -69,7 +69,7 @@ body {
 }
 
 .someTable {
-  background: #000080; /* Цвет фона строки заголовка */
+  background-color: rgba(255,0,0,0.5);
   color: #ffe; /* Цвет текста */
   text-align: left; /* Выравнивание по левому краю */
   font-family: Arial, Helvetica, sans-serif; /* Выбор гарнитуры */

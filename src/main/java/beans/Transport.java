@@ -1,69 +1,71 @@
 package beans;
 
-public class Transport {
-    private int id;
-    private String variety;
-    private double avSpeed;
-    private double maxHeight;
-    private double maxWidth;
-    private double maxLength;
-    private double totalWeight;
-    private double totalCapacity;
-    private double costKm;
+import javax.persistence.criteria.CriteriaBuilder;
 
-    public int getId() {
+public class Transport {
+    private Integer id;
+    private String variety;
+    private Double avSpeed;
+    private Double maxHeight;
+    private Double maxWidth;
+    private Double maxLength;
+    private Double totalWeight;
+    private Double totalCapacity;
+    private Double costKm;
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public double getCostKm() {
+    public Double getCostKm() {
         return costKm;
     }
 
-    public void setCostKm(double costKm) {
+    public void setCostKm(Double costKm) {
         this.costKm = costKm;
     }
 
-    public double getTotalCapacity() {
+    public Double getTotalCapacity() {
         return totalCapacity;
     }
 
-    public void setTotalCapacity(double totalCapacity) {
+    public void setTotalCapacity(Double totalCapacity) {
         this.totalCapacity = totalCapacity;
     }
 
-    public double getTotalWeight() {
+    public Double getTotalWeight() {
         return totalWeight;
     }
 
-    public void setTotalWeight(double totalWeight) {
+    public void setTotalWeight(Double totalWeight) {
         this.totalWeight = totalWeight;
     }
 
-    public double getMaxHeight() {
+    public Double getMaxHeight() {
         return maxHeight;
     }
 
-    public void setMaxHeight(double maxHeight) {
+    public void setMaxHeight(Double maxHeight) {
         this.maxHeight = maxHeight;
     }
 
-    public double getMaxLength() {
+    public Double getMaxLength() {
         return maxLength;
     }
 
-    public void setMaxLength(double maxLength) {
+    public void setMaxLength(Double maxLength) {
         this.maxLength = maxLength;
     }
 
-    public double getMaxWidth() {
+    public Double getMaxWidth() {
         return maxWidth;
     }
 
-    public void setMaxWidth(double maxWidth) {
+    public void setMaxWidth(Double maxWidth) {
         this.maxWidth = maxWidth;
     }
 
@@ -75,11 +77,11 @@ public class Transport {
         this.variety = variety;
     }
 
-    public double getAvSpeed() {
+    public Double getAvSpeed() {
         return avSpeed;
     }
 
-    public void setAvSpeed(double avSpeed) {
+    public void setAvSpeed(Double avSpeed) {
         this.avSpeed = avSpeed;
     }
 }

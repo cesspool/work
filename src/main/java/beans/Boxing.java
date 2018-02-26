@@ -1,9 +1,9 @@
 package beans;
 
 public class Boxing {
-    private int id;
+    private Integer id;
     private String variety;
-    private double cost;
+    private Double cost;
 
     public String getVariety() {
         return variety;
@@ -13,19 +13,19 @@ public class Boxing {
         this.variety = variety;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public double getCost() {
+    public Double getCost() {
         return cost;
     }
 
-    public void setCost(double cost) {
+    public void setCost(Double cost) {
         this.cost = cost;
     }
 }

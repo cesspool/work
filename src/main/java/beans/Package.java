@@ -1,29 +1,31 @@
 package beans;
 
-public class Package {
-    private int id;
-    private String name;
-    private double weight;
-    private int quantity;
-    private double width;
-    private double length;
-    private double height;
-    private boolean envelope;
-    private double size;
+import javax.persistence.criteria.CriteriaBuilder;
 
-    public double getSize() {
+public class Package {
+    private Integer id;
+    private String name;
+    private Double weight;
+    private Integer quantity;
+    private Double width;
+    private Double length;
+    private Double height;
+    private Boolean envelope;
+    private Double size;
+
+    public Double getSize() {
         return size;
     }
 
-    public void setSize(double size) {
+    public void setSize(Double size) {
         this.size = size;
     }
 
-    public int getId(){
+    public Integer getId(){
         return id;
     }
 
-    public void setId(int id) { this.id = id; }
+    public void setId(Integer id) { this.id = id; }
 
     public String getName(){
         return name;
@@ -33,51 +35,51 @@ public class Package {
         this.name = name;
     }
 
-    public double getWeight() {
+    public Double getWeight() {
         return weight;
     }
 
-    public void setWeight(double weight) {
+    public void setWeight(Double weight) {
         this.weight = weight;
     }
 
-    public int getQuantity(){
+    public Integer getQuantity(){
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
-    public double getHeight() {
+    public Double getHeight() {
         return height;
     }
 
-    public void setHeight(double height) {
+    public void setHeight(Double height) {
         this.height = height;
     }
 
-    public double getLength() {
+    public Double getLength() {
         return length;
     }
 
-    public void setLength(double length) {
+    public void setLength(Double length) {
         this.length = length;
     }
 
-    public double getWidth() {
+    public Double getWidth() {
         return width;
     }
 
-    public void setWidth(double width) {
+    public void setWidth(Double width) {
         this.width = width;
     }
 
-    public boolean isEnvelope() {
+    public Boolean isEnvelope() {
         return envelope;
     }
 
-    public void isEnvelope(boolean envelope) {
+    public void isEnvelope(Boolean envelope) {
         this.envelope = envelope;
     }
 

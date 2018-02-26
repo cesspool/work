@@ -1,22 +1,22 @@
 package beans;
 
 public class Distance {
-    private int id;
-    private double length;
+    private Integer id;
+    private Double length;
 
-    public int getId(){
+    public Integer getId(){
         return id;
     }
 
-    public void setId(int id){
+    public void setId(Integer id){
         this.id = id;
     }
 
-    public double getLength(){
+    public Double getLength(){
         return length;
     }
 
-    public void setLength(double length){
+    public void setLength(Double length){
         this.length = length;
     }
 }
