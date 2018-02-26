@@ -3,10 +3,10 @@ package beans;
 import javax.persistence.criteria.CriteriaBuilder;
 
 public class Package {
-    private Integer id;
+    private int id;
     private String name;
     private Double weight;
-    private Integer quantity;
+    private int quantity;
     private Double width;
     private Double length;
     private Double height;
@@ -21,11 +21,11 @@ public class Package {
         this.size = size;
     }
 
-    public Integer getId(){
+    public int getId(){
         return id;
     }
 
-    public void setId(Integer id) { this.id = id; }
+    public void setId(int id) { this.id = id; }
 
     public String getName(){
         return name;
@@ -43,11 +43,11 @@ public class Package {
         this.weight = weight;
     }
 
-    public Integer getQuantity(){
+    public int getQuantity(){
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 

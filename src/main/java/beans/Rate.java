@@ -4,18 +4,18 @@ import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Date;
 
 public class Rate {
-    private Integer id;
+    private int id;
     private String name;
-    private Double costShipping;
-    private Double additionalCost;
+    private double costShipping;
+    private double additionalCost;
     private Date startAction;
     private Date endAction;
 
-    public Integer getId(){
+    public int getId(){
         return id;
     }
 
-    public void setId(Integer id){
+    public void setId(int id){
         this.id = id;
     }
 
@@ -27,19 +27,19 @@ public class Rate {
         this.name = name;
     }
 
-    public Double getCostShipping(){
+    public double getCostShipping(){
         return costShipping;
     }
 
-    public void setCostShipping (Double costShipping) {
+    public void setCostShipping (double costShipping) {
         this.costShipping = costShipping;
     }
 
-    public Double getAdditionalCost() {
+    public double getAdditionalCost() {
         return additionalCost;
     }
 
-    public void setAdditionalCost(Double additionalCost) {
+    public void setAdditionalCost(double additionalCost) {
         this.additionalCost = additionalCost;
     }
 

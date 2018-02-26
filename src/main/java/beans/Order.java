@@ -1,23 +1,23 @@
 package beans;
 
 public class Order {
-    private Integer id;
-    private Integer name;
+    private int id;
+    private int name;
     private Boolean urgency;
 
-    public Integer getId(){
+    public int getId(){
         return id;
     }
 
-    public void setId(Integer id){
+    public void setId(int id){
         this.id = id;
     }
 
-    public Integer getName(){
+    public int getName(){
         return name;
     }
 
-    public void setName(Integer name){
+    public void setName(int name){
         this.name = name;
     }
 
