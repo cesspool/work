@@ -17,7 +17,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @PropertySource("classpath:db.properties")
-@ComponentScan({"dbservice"})
+@ComponentScan({"dbservice", "service"})
 @EnableTransactionManagement
 public class CoreConfiguration {
 

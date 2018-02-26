@@ -6,13 +6,17 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import service.CustomerService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {TestConfiguration.class})
 public class CustomerTest {
     @Autowired
-    private CustomerDAOService customerService;
-    
+    private CustomerDAOService customerDAOService;
+
+    @Autowired
+    private CustomerService customerService;
+
     @Test
     public void testDataSource() {
         Customer cmr = new Customer();
@@ -22,8 +26,17 @@ public class CustomerTest {
         cmr.setTelephone("223-322");
         cmr.setAddress("За углом");
         
-        customerService.insertCustomer(cmr);
+        customerDAOService.insertCustomer(cmr);
         Long ID = cmr.getId();
-        ID.toString();
+
+        customerService.setPassword(cmr, "StrongPass");
+        String md5 = cmr.getMd5();
+        md5.toString();
+    }
+    
+    @Test
+    public void testPassword(){
+        Customer crm = customerDAOService.getByID(2l);
+        crm.toString();
     }
 }

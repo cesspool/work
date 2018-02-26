@@ -13,4 +13,6 @@ public interface CustomerDAOService {
     void updateCustomer(Customer customer);
     
     void deleteCustomer(Customer customer);
+    
+    void updatePassword(Customer customer, String password);
 }
