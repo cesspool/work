@@ -65,6 +65,7 @@ CREATE TABLE logistics.order(
 id SERIAL PRIMARY KEY NOT NULL,
 name integer,
 urgency boolean,
+ready BOOLEAN,
 recipient_id integer REFERENCES logistics.customer (id),
 sender_id integer REFERENCES logistics.customer (id),
 rate_id integer REFERENCES logistics.rate (id),

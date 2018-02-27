@@ -12,10 +12,14 @@ public class BoxingServiceImpl implements BoxingService {
 
     private BoxingDAOService boxingDAOService;
 
-    public void createBoxing(Boxing box) {
-        if (box != null) {
+    public void createBoxing(Boxing boxing) {
+        if (boxing != null) {
             // validate the bean's fileds
-            boxingDAOService.insertBoxing(box);
+            boxingDAOService.insertBoxing(boxing);
         }
+    }
+
+    public void deleteBoxing(Boxing boxing){
+        boxingDAOService.deleteBoxing(boxing);
     }
 }

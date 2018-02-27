@@ -56,6 +56,8 @@
 
 <!-- Main body -->
 <!-- Main -->
+<!--div id="test3" class="hideable"> GREEN COLOR DIV </div-->
+
 <section id="main" class="wrapper">
     <div class="container">
 
@@ -63,38 +65,93 @@
             <h2>Контактная информация</h2>
             <p>Здесь отображены ваши данные</p>
         </header>
-        <form class="registration">
-            <div class="container limiter">
 
-                <table width="100%" cellspacing="0" cellpadding="5">
-                    <tr >
-                        <td colspan="2" width="200" valign="top">
-                            ФИО: Фамилия Имя Отчество
-                        </td>
-                        <td colspan="2" width="200" valign="top">
-                            Права администратора: есть
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" width="200" valign="top">
-                            Адрес: Москва, улица новая, д.6
+        <select id="selColor">
+            <option selected>Просмотр информации</option>
+            <option>Изменение данных</option>
+            <!--option>Изменение пароля</option-->
+        </select>
+
+        <div id="test1" class="hideable">
+
+            <form class="registration">
+                <div class="container limiter">
+
+                    <table width="100%" cellspacing="0" cellpadding="5">
+                        <tr >
+                            <td colspan="2" width="200" valign="top">
+                                ФИО: Фамилия Имя Отчество
+                            </td>
+                            <td colspan="2" width="200" valign="top">
+                                Права администратора: есть
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" width="200" valign="top">
+                                Адрес: Москва, улица новая, д.6
+                            </td>
+                            <td width="200" valign="top">
+                                телефон:8(926)723-16-50
+                            </td>
+                            <td width="300" valign="top">
+                                email: paulkapay@gmail.com
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </form>
+
+        </div>
+
+        <div id="test2" class="hideable">
+
+            <form class="registration">
+                <div class="container limiter">
+            <span class="login100-form-title p-b-26">
+                Изменение данных
+            </span>
+                    <span class="p-b-26">Пожалуйста, измените необходимые поля:</span>
+                    <table width="100%" cellspacing="0" cellpadding="5">
+                        <td width="200" valign="top">
+                            <label for="email"><b>Email</b></label>
+                            <input type="text" placeholder="paulkapay@gmail.com" name="email" required>
+
+                            <label for="phone"><b>Телефон</b></label>
+                            <input type="text" placeholder="+7(926)723-16-50" name="email" required>
+
+                            <label for="city"><b>Город</b></label>
+                            <input type="text" placeholder="Москва" name="email" required>
                         </td>
                         <td width="200" valign="top">
-                            телефон:8(926)723-16-50
-                        </td>
-                        <td width="300" valign="top">
-                            email: paulkapay@gmail.com
-                        </td>
-                    </tr>
-                </table>
+                            <label for="lastName"><b>Фамилия</b></label>
+                            <input type="text" placeholder="Иванов" name="email" required>
 
-            </div>
-        </form>
+                            <label for="firstName"><b>Имя</b></label>
+                            <input type="text" placeholder="Иван" name="email" required>
+
+                            <label for="patronymic"><b>Отчество</b></label>
+                            <input type="text" placeholder="Иванович" name="email" required>
+                        </td>
+
+                        <td width="200" valign="top">
+                            <label for="psw"><b>Пароль</b></label>
+                            <input type="password" placeholder="Введите пароль" name="psw" required>
+
+                            <label for="psw-repeat"><b>Повторный пароль</b></label>
+                            <input type="password" placeholder="Введите пароль еще раз" name="psw-repeat" required>
+                        </td>
+
+                    </table>
+                    <div class="clearfix">
+                        <button type="button" class="cancelbtn">Отмена</button>
+                        <button type="submit" class="signupbtn">Сохранить</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
     </div>
-
-
-    <hr>
-
 
 </section>
 
@@ -105,5 +162,7 @@
 
 <script src="../jsFiles/jquery.js"></script>
 <script src="../jsFiles/menu.js"></script>
+
+<script src="../jsFiles/contact.js"></script>
 </body>
 </html>

@@ -40,4 +40,10 @@ public class BoxingDAOServiceImpl extends DataService implements BoxingDAOServic
             ex.toString();
         }
     }
+
+    @Override
+    @Transactional
+    public void deleteBoxing(final Boxing boxing) {
+        getJdbcTemplate().update(SQL_DELETE, boxing.getVariety());
+    };
 }
