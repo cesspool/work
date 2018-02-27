@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.PreparedStatement;
+import java.util.Optional;
 
 
 @Service
@@ -33,10 +34,10 @@ public class CustomerDAOServiceImpl extends DataService implements CustomerDAOSe
         " FROM logistics.customer WHERE id=?";
     
     @Override
-    public Customer getByID(Long ID) {
-        Customer c = new Customer();
-        c.setId(ID);
-        getJdbcTemplate().query(SQL_SEL_BY_ID, new Object[]{ID}, (rs) -> {
+    public Optional<Customer> getByID(Long ID) {
+        Customer res = getJdbcTemplate().query(SQL_SEL_BY_ID, new Object[]{ID}, (rs) -> {
+            Customer c = new Customer();
+            c.setId(ID);
             int idx = 1;
             c.setFirstName(rs.getString(idx++));
             c.setLastName(rs.getString(idx++));
@@ -46,8 +47,9 @@ public class CustomerDAOServiceImpl extends DataService implements CustomerDAOSe
             c.setEmail(rs.getString(idx++));
             c.setMd5(rs.getString(idx++));
             c.setAdmin(rs.getBoolean(idx++));
+            return c;
         });
-        return c;
+        return Optional.ofNullable(res);
     }
 
     @Override

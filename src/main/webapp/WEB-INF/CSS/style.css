@@ -76,10 +76,6 @@ body {
   font-size: 0.9em; /* Размер текста */
 }
 
-
-
-
-
 .dependent {
   margin: 20px;
   padding: 7px;
@@ -87,3 +83,5 @@ body {
 .hide {
   display: none;
 }
+
+.hideable { display:none }

@@ -20,3 +20,23 @@ $(document).ready(function() {
         e.preventDefault(); $(this).parent('div').remove(); x--;
     })
 });
+
+
+$(function() {
+    $("#selColor").on("change",function() {
+        var selectedColor = $(this).children("option").filter(":selected").text();
+        $(".hideable").hide();
+        if(selectedColor=="Добавление упаковки")
+        {
+            $("#test1").show();
+        }
+        else if(selectedColor=="Удаление упаковки")
+        {
+            $("#test2").show();
+        }
+        else if(selectedColor=="Green")
+        {
+            $("#test3").show();
+        }
+    }).change();
+});

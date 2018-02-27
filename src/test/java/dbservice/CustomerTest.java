@@ -8,6 +8,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import service.CustomerService;
 
+import java.util.Optional;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {TestConfiguration.class})
 public class CustomerTest {
@@ -21,7 +23,7 @@ public class CustomerTest {
     public void testDataSource() {
         Customer cmr = new Customer();
         cmr.setFirstName("Иван");
-        cmr.setLastName("Иванов");
+        cmr.setLastName("Петров");
         cmr.setPatronymic("Иваныч");
         cmr.setTelephone("223-322");
         cmr.setAddress("За углом");
@@ -36,7 +38,8 @@ public class CustomerTest {
     
     @Test
     public void testPassword(){
-        Customer crm = customerDAOService.getByID(2l);
-        crm.toString();
+        Optional<Customer> crm = customerDAOService.getByID(2l);
+        crm.ifPresent((c) -> c.toString());
+
     }
 }

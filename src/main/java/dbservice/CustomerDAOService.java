@@ -2,9 +2,11 @@ package dbservice;
 
 import beans.Customer;
 
+import java.util.Optional;
+
 public interface CustomerDAOService {
     
-    Customer getByID(Long ID);
+    Optional<Customer> getByID(Long ID);
     
     Customer getByEmail(String email);
     
