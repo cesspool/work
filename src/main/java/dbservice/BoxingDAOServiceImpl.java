@@ -26,19 +26,21 @@ public class BoxingDAOServiceImpl extends DataService implements BoxingDAOServic
     public void insertBoxing(final Boxing boxing) {
         try {
             KeyHolder keyHolder = new GeneratedKeyHolder();
-            getJdbcTemplate().update((con) -> {
+            getJdbcTemplate().update((con) ->  {
                 PreparedStatement pst = con.prepareStatement(SQL_INSERT, new String[] {"id"}); // Statement.RETURN_GENERATED_KEYS
                 int idx = 1;
                 pst.setString(idx++, boxing.getVariety());
                 pst.setDouble(idx++, boxing.getCost());
                 return pst;
             }, keyHolder);
-            int ID = keyHolder.getKey().intValue();
+            Long ID = keyHolder.getKey().longValue();
             boxing.setId(ID);
+
         } catch (DataAccessException dEx) {
             Throwable ex = dEx.getCause();
             ex.toString();
         }
+
     }
 
     @Override

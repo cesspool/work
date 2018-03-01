@@ -1,21 +1,21 @@
 package beans;
 
 import javax.persistence.criteria.CriteriaBuilder;
-import java.util.Date;
+import java.sql.Date;
 
 public class Rate {
-    private int id;
+    private Long id;
     private String name;
     private double costShipping;
     private double additionalCost;
     private Date startAction;
     private Date endAction;
 
-    public int getId(){
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id){
+    public void setId(Long id) {
         this.id = id;
     }
 

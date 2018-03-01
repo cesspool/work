@@ -103,7 +103,6 @@ public class CustomerDAOServiceImpl extends DataService implements CustomerDAOSe
 
     @Override
     public void deleteCustomer(Customer customer) {
-
     }
 
     @Override

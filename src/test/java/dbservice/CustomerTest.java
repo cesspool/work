@@ -1,6 +1,7 @@
 package dbservice;
 
 import beans.Customer;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,11 @@ public class CustomerTest {
         cmr.setPatronymic("Иваныч");
         cmr.setTelephone("223-322");
         cmr.setAddress("За углом");
+        cmr.setEmail("paulkapay@gmail.com");
+        cmr.setMd5("1421424142124");
         
         customerDAOService.insertCustomer(cmr);
+        //Assert.assertTrue("Newly created Customer ID is empty", cmr.getId() != null);
         Long ID = cmr.getId();
 
         customerService.setPassword(cmr, "StrongPass");

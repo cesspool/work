@@ -3,7 +3,7 @@ package beans;
 import javax.persistence.criteria.CriteriaBuilder;
 
 public class Transport {
-    private int id;
+    private Long id;
     private String variety;
     private double avSpeed;
     private double maxHeight;
@@ -13,11 +13,11 @@ public class Transport {
     private double totalCapacity;
     private double costKm;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

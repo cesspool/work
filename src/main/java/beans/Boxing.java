@@ -1,9 +1,17 @@
 package beans;
 
 public class Boxing {
-    private int id;
+    private Long id;
     private String variety;
     private double cost;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getVariety() {
         return variety;
@@ -11,14 +19,6 @@ public class Boxing {
 
     public void setVariety(String variety) {
         this.variety = variety;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public double getCost() {

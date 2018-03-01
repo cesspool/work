@@ -22,6 +22,6 @@ public class BoxingTest {
         box.setCost(182);
 
         boxingDAOService.insertBoxing(box);
-        int ID = box.getId();
+        Long ID = box.getId();
     }
 }
