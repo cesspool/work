@@ -45,6 +45,7 @@ admin boolean
 CREATE TABLE logistics.node(
 id SERIAL PRIMARY KEY NOT NULL,
 name varchar(50) NOT NULL,
+city VARCHAR(50) NOT NULL,
 address varchar(100) NOT NULL,
 coordinateX real NOT NULL,
 coordinateY real NOT NULL,

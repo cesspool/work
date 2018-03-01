@@ -23,8 +23,8 @@ public class NodeDistanceDAOServiceImpl extends DataService implements NodeDista
     private static final Logger logger = LoggerFactory.getLogger(NodeDistanceDAOServiceImpl.class);
 
     private final static String SQL_INSERT_NODE = "INSERT INTO logistics.node" +
-            "(name, address, coordinatex, coordinatey, code)" +
-            "VALUES (?,?,?,?,?)";
+            "(name, city, address, coordinatex, coordinatey, code)" +
+            "VALUES (?,?,?,?,?,?)";
 
     private final static String SQL_INSERT_TRANSPORT_NODE = "INSERT INTO logistics.transport_node" +
             "(node_id, transport_id) VALUES (?,?)";
@@ -41,6 +41,7 @@ public class NodeDistanceDAOServiceImpl extends DataService implements NodeDista
                 PreparedStatement pst = con.prepareStatement(SQL_INSERT_NODE, new String[] {"id"}); // Statement.RETURN_GENERATED_KEYS
                 int idx = 1;
                 pst.setString(idx++, node.getName());
+                pst.setString(idx++, node.getCity());
                 pst.setString(idx++, node.getAddress());
                 pst.setDouble(idx++, node.getCoordinateX());
                 pst.setDouble(idx++, node.getCoordinateY());
@@ -73,6 +74,7 @@ public class NodeDistanceDAOServiceImpl extends DataService implements NodeDista
             getJdbcTemplate().batchUpdate(SQL_INSERT_DISTANCE, dist, new int[]{Types.REAL, Types.INTEGER, Types.INTEGER});
         } catch (DataAccessException dEx) {
             Throwable ex = dEx.getCause();
+            ex.toString();
 
         }
 

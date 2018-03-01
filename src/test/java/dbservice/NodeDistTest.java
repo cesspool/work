@@ -24,16 +24,22 @@ public class NodeDistTest {
 
     @Test
     public void testDataSource(){
-        Integer i1=10;
-        Integer i2=12;
+        Integer i1=2;
+        Integer i2=3;
+        Integer i3=1;
+        Integer i4=2;
         Long k1 = Long.valueOf(i1.longValue());
         Long k2 = Long.valueOf(i2.longValue());
+
+        Long k3 = Long.valueOf(i3.longValue());
+        Long k4 = Long.valueOf(i4.longValue());
 
         Node node = new Node();
         node.setName("Московский филиал");
         node.setAddress("г. Москва, ул. Новая");
         node.setCoordinateX(15362.135);
         node.setCoordinateY(63261.1847);
+        node.setCity("Москва");
         node.setCode("Node_1");
 
         Node city1 = new Node();
@@ -43,7 +49,7 @@ public class NodeDistTest {
         city2.setId(k2);
 
         Transport transport1 = new Transport();
-        transport1.setId(k1);
+        transport1.setId(k3);
 //        transport1.setVariety("ЖД перевозки");
 //        transport1.setAvSpeed(50);
 //        transport1.setCostKm(10);
@@ -54,7 +60,7 @@ public class NodeDistTest {
 //        transport1.setTotalWeight(10);
 
         Transport transport2 = new Transport();
-        transport2.setId(k2);
+        transport2.setId(k4);
 //        transport2.setVariety("ЖД перевозки");
 //        transport2.setAvSpeed(50);
 //        transport2.setCostKm(10);

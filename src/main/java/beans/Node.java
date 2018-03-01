@@ -4,6 +4,7 @@ public class Node {
     private Long id;
     private String name;
     private String address;
+    private String city;
     private double coordinateX;
     private double coordinateY;
     private String code;
@@ -30,6 +31,14 @@ public class Node {
 
     public void setAddress(String address){
         this.address = address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public double getCoordinateX(){
