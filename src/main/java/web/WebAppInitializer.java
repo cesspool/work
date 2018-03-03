@@ -1,7 +1,7 @@
 package web;
 
-import conf.FormConfiguration;
-import conf.RestConfiguration;
+import conf.CoreConfiguration;
+import conf.WebConfiguration;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 
@@ -10,12 +10,12 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[]{conf.CoreConfiguration.class};
+        return new Class<?>[]{CoreConfiguration.class};
     }
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class<?>[]{FormConfiguration.class, RestConfiguration.class};
+        return new Class<?>[]{WebConfiguration.class};
     }
 
     @Override

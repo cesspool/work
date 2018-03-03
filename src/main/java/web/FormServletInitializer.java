@@ -1,6 +1,6 @@
 package web;
 
-import conf.FormConfiguration;
+import conf.WebConfiguration;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
@@ -17,7 +17,7 @@ public class FormServletInitializer implements ServletContainerInitializer{
     @Override
     public void onStartup(Set<Class<?>> cls, ServletContext ctx) throws ServletException {
         AnnotationConfigWebApplicationContext appContext = new AnnotationConfigWebApplicationContext();
-        appContext.register(FormConfiguration.class);
+        appContext.register(WebConfiguration.class);
         
         DispatcherServlet dispServlet = new DispatcherServlet(appContext);
         
