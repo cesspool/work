@@ -9,8 +9,12 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import utils.Pair;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.time.LocalDate;
+import java.time.ZoneOffset;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -81,5 +85,12 @@ public class TranspRateDAOServiceImpl extends DataService implements TranspRateD
         return Collections.emptyList();
     }
 
+    @Override
+    public Pair<Rate, Transport> getByDate(LocalDate date) {
 
+
+        Date param = new Date(date.atStartOfDay(ZoneOffset.systemDefault()).toInstant().toEpochMilli());
+        return null;
+
+    }
 }
