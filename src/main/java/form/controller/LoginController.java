@@ -11,6 +11,6 @@ public class LoginController {
     @RequestMapping(value="/welcome", method=RequestMethod.GET)
     public String setupForm(Model model) {
         model.addAttribute("phrase", "W E L C O M !");
-        return "login";
+        return "rate";
     }
 }

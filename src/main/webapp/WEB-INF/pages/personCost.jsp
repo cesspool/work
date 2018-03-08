@@ -1,35 +1,64 @@
 <!DOCTYPE HTML>
-<!--
-	Spatial by TEMPLATED
-	templated.co @templatedco
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
--->
+
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+<spring:message code="personCost.head.title" var="lbTitle"/>
+<spring:message code="newRate.li.div" var="lbLiDiv"/>
+<spring:message code="index.section.main" var="lbSectMain"/>
+
+<spring:message code="contact.div.ul.liA" var="lbUlLiA"/>
+<spring:message code="contact.div.ul.liB" var="lbUlLiB"/>
+<spring:message code="contact.div.ul.liC" var="lbUlLiC"/>
+<spring:message code="contact.div.ul.liD" var="lbUlLiD"/>
+<spring:message code="contact.div.ul.liE" var="lbUlLiE"/>
+<spring:message code="index.nav.main" var="lbNavMain"/>
+<spring:message code="index.nav.rates" var="lbNavRates"/>
+<spring:message code="index.nav.auth" var="lbNavAuth"/>
+<spring:message code="contact.tableA.trB.tdA" var="lbTableABA"/>
+<spring:message code="history.table.trB.tdC" var="lbTableBC"/>
+<spring:message code="history.table.trD.tdC" var="lbTableDC"/>
+<spring:message code="history.table.trD.tdD" var="lbTableDD"/>
+<spring:message code="history.table.trE.tdB" var="lbTableEB"/>
+<spring:message code="history.table.trE.tdC" var="lbTableEC"/>
+<spring:message code="personCost.table.trC.tdA" var="lbTableCA"/>
+<spring:message code="contact.cancel" var="lbCancel"/>
+<spring:message code="personCost.send" var="lbSend"/>
+<spring:message code="personCost.section.h" var="lbSectionH"/>
+<spring:message code="personCost.section.p" var="lbSectionP"/>
+<spring:message code="personCost.table.trA.tdA" var="lbTableAA"/>
+<spring:message code="personCost.table.trA.tdB" var="lbTableAB"/>
+<spring:message code="personCost.table.trB.tdA" var="lbTableBA"/>
+<spring:message code="history.table.trC.tdD" var="lbTableCD"/>
+
 <html>
 <head>
-    <title>Новый заказ</title>
+    <title>${lbTitle}</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="../assets/css/main.css" />
-    <link rel="stylesheet" href="../CSS/personal.css" />
+  	<link rel="stylesheet" href="<c:url value="/resources/assets/css/main.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/resources/css/personal.css"/>"/>
 
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400;300" rel="stylesheet" type="text/css">
-    <link href="../CSS/style.css" rel="stylesheet">
+    <link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet"/>
 </head>
 <body>
 
 
 <!-- Header -->
 <header id="header">
-    <h1><strong>АИС "Транспортная логистика"</strong></h1>
+    <h1><strong>${lbSectMain}</strong></h1>
     <nav id="nav">
         <ul>
-            <li><a href="index.html">Главная</a></li>
-            <li><a href="rate.html">Тарифы</a></li>
-            <li><a href="login.html">Авторизация</a></li>
+                <li><a href="index.html">${lbNavMain}</a></li>
+			<li><a href="rate.html">${lbNavRates}</a></li>
+			<li><a href="login.html">${lbNavAuth}</a></li>
             <li>
                 <div>
                     <div style="color: brown" class="icon-menu">
-                        <img class="contact" src="../images/contact.png">Профиль
+                        <img class="contact" src="<c:url value="/resources/images/contact.png"/>"/>${lbLiDiv}
                     </div>
                 </div>
             </li>
@@ -39,18 +68,18 @@
 
 <div class="menu">
 
-    <!-- Иконка меню -->
+    <!-- ÐÐºÐ¾Ð½ÐºÐ° Ð¼ÐµÐ½Ñ -->
     <div class="icon-close">
-        <img src="../images/close-btn.png">
+        <img src="<c:url value="/resources/images/close-btn.png"/>"/>
     </div>
 
-    <!-- Меню -->
+    <!-- ÐÐµÐ½Ñ -->
     <ul>
-        <li><a href="personal.html">Заказы в процессе выполнения</a></li>
-        <li><a href="history.html">Выполненные заказы</a></li>
-        <li><a href="personOrder.html">Добавить новый заказ</a></li>
-        <li><a href="contact.html">Информация о пользователе</a></li>
-        <li><a href="index.html">ВЫХОД</a></li>
+        <li><a href="personal.html">${lbUlLiA}</a></li>
+        <li><a href="history.html">${lbUlLiB}</a></li>
+        <li><a href="personCost.html">${lbUlLiC}</a></li>
+        <li><a href="contact.html">${lbUlLiD}</a></li>
+        <li><a href="index.html">${lbUlLiE}</a></li>
     </ul>
 </div>
 
@@ -61,57 +90,65 @@
     <div class="container">
 
         <header class="major special">
-            <h2>Рассчет стоимости</h2>
-            <p>Заполните следующие формы</p>
+            <h2>${lbSectionH}</h2>
+            <p>${lbSectionP}</p>
         </header>
         <form class="registration">
             <div class="container limiter">
 
                 <table width="100%" cellspacing="0" cellpadding="5">
                     <tr ><td width="200" valign="top">
-                        <label for="psw-repeat"><b>Город отправки</b></label>
+                        <label for="psw-repeat"><b>${lbTableAA}</b></label>
                         <select name="field_sity_tid" class="form-select">
-                            <option value="103">Москва</option>
-                            <option value="104">Уфа</option>
-                            <option value="105">Долгопрудный</option>
+                        <data>
+								<option value="106">Москва</option>
+                                <option value="107">Уфа</option>
+                                <option value="108">Долгопрудный</option>
+                        </data>
                         </select>
                         </td>
                         <td width="200" valign="top">
-                            <label for="psw-repeat"><b>Город назначения</b></label>
+                            <label for="psw-repeat"><b>${lbTableAB}</b></label>
                             <select name="field_sity_tid" class="form-select">
-                                <option value="106">Москва</option>
-                                <option value="107">Уфа</option>
-                                <option value="108">Долгопрудный</option>
+                                <data>
+									<option value="106">Москва</option>
+	                                <option value="107">Уфа</option>
+	                                <option value="108">Долгопрудный</option>
+                        		</data>
                             </select>
                         </td>
                         <td width="200" valign="top">
-                            <label for="lastName"><b>Тариф</b></label>
+                            <label for="lastName"><b>${lbTableBC }</b></label>
                             <select name="field_sity_tid" class="form-select">
+                            <data>
                                 <option value="109">Эконом</option>
                                 <option value="110">Экспресс</option>
+                            </data>
                             </select>
                         </td>
                     </tr>
                     <tr>
                         <td width="200" valign="top">
-                            Адрес:
+                            ${lbTableABA}
                         </td>
                         <td colspan="3" width="200" valign="top">
-                            Адрес:
+                            ${lbTableABA}
                         </td>
                     </tr>
                     <tr>
                         <td width="200" valign="top">
-                            <label for="lastName"><b>Груз</b></label>
+                            <label for="lastName"><b>${lbTableBA}</b></label>
                             <select id="edit-field-sity-tid" name="field_sity_tid" class="form-select">
-                                <option value="708">Конверт</option>
+                            <data>
+								<option value="708">Конверт</option>
                                 <option value="710">Посылка</option>
+                            </data>
                             </select>
                         </td>
 
                         <td width="200" valign="top">
-                            <label for="lastName"><b>Количество мест</b></label>
-                            <input type="text" placeholder="шт." name="email" required>
+                            <label for="lastName"><b>${lbTableCD}</b></label>
+                            <input type="text" placeholder="ÑÑ." name="email" required>
                         </td>
                     </tr>
                 </table>
@@ -120,28 +157,30 @@
                     <table>
                         <tr>
                             <td width="200" valign="top">
-                                <label for="lastName"><b>Длина (в метрах)</b></label>
-                                <input type="text" placeholder="Иванов" name="email" required>
+                                <label for="lastName"><b>${lbTableEB}</b></label>
+                                <input type="text" placeholder="ÐÐ²Ð°Ð½Ð¾Ð²" name="email" required>
                             </td>
                             <td width="200" valign="top">
-                                <label for="lastName"><b>Ширина (в метрах)</b></label>
-                                <input type="text" placeholder="Иванов" name="email" required>
+                                <label for="lastName"><b>${lbTableDD }</b></label>
+                                <input type="text" placeholder="ÐÐ²Ð°Ð½Ð¾Ð²" name="email" required>
                             </td>
                             <td width="200" valign="top">
-                                <label for="lastName"><b>Высота (в метрах)</b></label>
-                                <input type="text" placeholder="Иванов" name="email" required>
+                                <label for="lastName"><b>${lbTableDC }</b></label>
+                                <input type="text" placeholder="ÐÐ²Ð°Ð½Ð¾Ð²" name="email" required>
                             </td>
                         </tr>
                         <tr>
                             <td width="200" valign="top">
-                                <label for="lastName"><b>Вес (в килограммах)</b></label>
-                                <input type="text" placeholder="Иванов" name="email" required>
+                                <label for="lastName"><b>${lbTableEC }</b></label>
+                                <input type="text" placeholder="ÐÐ²Ð°Ð½Ð¾Ð²" name="email" required>
                             </td>
                             <td width="230" valign="top">
-                                <label for="lastName"><b>Для хрупких грузов рекомендуется изменить</b></label>
+                                <label for="lastName"><b>${lbTableCA }</b></label>
                                 <select name="field_sity_tid" class="form-select">
+                                <data>
                                     <option value="111">Стандартная</option>
                                     <option value="112">Дополнительная</option>
+                                </data>
                                 </select>
                             </td>
                         </tr>
@@ -149,8 +188,8 @@
                 </div>
 
                 <div class="clearfix">
-                    <button type="button" class="cancelbtn">Отмена</button>
-                    <button type="submit" class="signupbtn"><a href="resultCost.html">Отправить</a></button>
+                    <button type="button" class="cancelbtn">${lbCancel }</button>
+                    <button type="submit" class="signupbtn"><a href="resultCost.html">${lbSend}</a></button>
                 </div>
 
             </div>
@@ -165,13 +204,13 @@
 
 
 <!-- Scripts -->
-<script src="../assets/js/jquery.min.js"></script>
-<script src="../assets/js/skel.min.js"></script>
-<script src="../assets/js/util.js"></script>
-<script src="../assets/js/main.js"></script>
+<script src="<c:url value="/resources/assets/js/jquery.min.js"/>"></script>
+<script src="<c:url value="/resources/assets/js/skel.min.js"/>"></script>
+<script src="<c:url value="/resources/assets/js/util.js"/>"></script>
+<script src="<c:url value="/resources/assets/js/main.js"/>"></script>
 
-<script src="../jsFiles/jquery.js"></script>
-<script src="../jsFiles/menu.js"></script>
+<script src="<c:url value="/resources/js/jquery.js"/>"></script>
+<script src="<c:url value="/resources/js/menu.js"/>"></script>
 
 </body>
 </html>

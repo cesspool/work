@@ -8,6 +8,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import service.NodeDistanceService;
 import service.TranspRateService;
 
 import java.text.SimpleDateFormat;
@@ -22,10 +24,12 @@ public class NodeDistTest {
     @Autowired
     private NodeDistanceDAOService nodeDistanceDAOService;
 
+//    @Autowired
+//    private NodeDistanceService nodeDistanceService; 
     @Test
     public void testDataSource(){
-        Integer i1=2;
-        Integer i2=3;
+        Integer i1=10;
+        Integer i2=11;
         Integer i3=1;
         Integer i4=2;
         Long k1 = Long.valueOf(i1.longValue());
@@ -40,7 +44,7 @@ public class NodeDistTest {
         node.setCoordinateX(15362.135);
         node.setCoordinateY(63261.1847);
         node.setCity("Москва");
-        node.setCode("Node_1");
+        node.setCode("Node_4");
 
         Node city1 = new Node();
         city1.setId(k1);
@@ -50,25 +54,9 @@ public class NodeDistTest {
 
         Transport transport1 = new Transport();
         transport1.setId(k3);
-//        transport1.setVariety("ЖД перевозки");
-//        transport1.setAvSpeed(50);
-//        transport1.setCostKm(10);
-//        transport1.setMaxLength(2);
-//        transport1.setMaxHeight(3);
-//        transport1.setMaxWidth(4);
-//        transport1.setTotalCapacity(5);
-//        transport1.setTotalWeight(10);
 
         Transport transport2 = new Transport();
         transport2.setId(k4);
-//        transport2.setVariety("ЖД перевозки");
-//        transport2.setAvSpeed(50);
-//        transport2.setCostKm(10);
-//        transport2.setMaxLength(1);
-//        transport2.setMaxHeight(5);
-//        transport2.setMaxWidth(2);
-//        transport2.setTotalCapacity(5);
-//        transport2.setTotalWeight(10);
 
         List<Transport> transports = new ArrayList<>();
         transports.add(transport1);

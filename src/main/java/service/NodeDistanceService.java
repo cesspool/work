@@ -8,4 +8,5 @@ import java.util.Collection;
 
 public interface NodeDistanceService {
     void createNode(Node node, Collection<Transport> transports, Collection<Distance> distances);
+    //Node getFormNode(Node node);
 }

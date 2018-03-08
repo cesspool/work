@@ -1,34 +1,70 @@
 <!DOCTYPE HTML>
-<!--
-	Spatial by TEMPLATED
-	templated.co @templatedco
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
--->
+
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+<spring:message code="newRate.li.div" var="lbLiDiv"/>
+<spring:message code="index.section.main" var="lbSectMain"/>
+<spring:message code="contact.head.title" var="lbHeadTitle"/>
+<spring:message code="contact.div.ul.liA" var="lbUlLiA"/>
+<spring:message code="contact.div.ul.liB" var="lbUlLiB"/>
+<spring:message code="contact.div.ul.liC" var="lbUlLiC"/>
+<spring:message code="contact.div.ul.liD" var="lbUlLiD"/>
+<spring:message code="contact.div.ul.liE" var="lbUlLiE"/>
+<spring:message code="contact.div.ul.liA" var="lbUlLiA"/>
+<spring:message code="contact.div.ul.liB" var="lbUlLiB"/>
+<spring:message code="personal.section.p" var="lbSectionP"/>
+<spring:message code="index.nav.main" var="lbNavMain"/>
+<spring:message code="index.nav.rates" var="lbNavRates"/>
+<spring:message code="index.nav.auth" var="lbNavAuth"/>
+
+<spring:message code="history.table.trA.tdA" var="lbTableAA"/>
+<spring:message code="history.table.trA.tdB" var="lbTableAB"/>
+<spring:message code="history.table.trB.tdA" var="lbTableBA"/>
+<spring:message code="history.table.trB.tdB" var="lbTableBB"/>
+<spring:message code="history.table.trB.tdC" var="lbTableBC"/>
+<spring:message code="history.table.trB.tdD" var="lbTableBD"/>
+<spring:message code="history.table.trC.tdA" var="lbTableCA"/>
+<spring:message code="history.table.trC.tdB" var="lbTableCB"/>
+<spring:message code="history.table.trC.tdC" var="lbTableCC"/>
+<spring:message code="history.table.trC.tdD" var="lbTableCD"/>
+<spring:message code="history.table.trD.tdA" var="lbTableDA"/>
+<spring:message code="history.table.trD.tdB" var="lbTableDB"/>
+<spring:message code="history.table.trD.tdC" var="lbTableDC"/>
+<spring:message code="history.table.trD.tdD" var="lbTableDD"/>
+<spring:message code="history.table.trE.tdA" var="lbTableEA"/>
+<spring:message code="history.table.trE.tdB" var="lbTableEB"/>
+<spring:message code="history.table.trE.tdC" var="lbTableEC"/>
+
 <html>
 <head>
-    <title>Выполненные заказы</title>
+    <title>${lbUlLiB}</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="../assets/css/main.css" />
-    <link rel="stylesheet" href="../CSS/personal.css" />
+  	<link rel="stylesheet" href="<c:url value="/resources/assets/css/main.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/resources/css/personal.css"/>"/>
 
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400;300" rel="stylesheet" type="text/css">
-    <link href="../CSS/style.css" rel="stylesheet">
+    <link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet"/>
 </head>
 <body>
 
 
 <!-- Header -->
 <header id="header">
-    <h1><strong>АИС "Транспортная логистика"</strong></h1>
+    <h1><strong>${lbSectMain}</strong></h1>
     <nav id="nav">
         <ul>
-            <li><a href="index.html">Главная</a></li>
-            <li><a href="rate.html">Тарифы</a></li>
-            <li><a href="login.html">Авторизация</a></li>
+                <li><a href="index.html">${lbNavMain}</a></li>
+			<li><a href="rate.html">${lbNavRates}</a></li>
+			<li><a href="login.html">${lbNavAuth}</a></li>
             <li>
-                <div style="color: brown" class="icon-menu">
-                    <img class="contact" src="../images/contact.png">Профиль
+                <div>
+                    <div style="color: brown" class="icon-menu">
+                        <img class="contact" src="<c:url value="/resources/images/contact.png"/>"/>${lbLiDiv}
+                    </div>
                 </div>
             </li>
         </ul>
@@ -38,18 +74,18 @@
 
 <div class="menu">
 
-    <!-- Иконка меню -->
-    <div class="icon-close">
-        <img src="../images/close-btn.png">
+    <!-- ÐÐºÐ¾Ð½ÐºÐ° Ð¼ÐµÐ½Ñ -->
+     <div class="icon-close">
+        <img src="<c:url value="/resources/images/close-btn.png"/>"/>
     </div>
 
-    <!-- Меню -->
+    <!-- ÐÐµÐ½Ñ -->
     <ul>
-        <li><a href="personal.html">Заказы в процессе выполнения</a></li>
-        <li><a href="history.html">Выполненные заказы</a></li>
-        <li><a href="personCost.html">Добавить новый заказ</a></li>
-        <li><a href="contact.html">Информация о пользователе</a></li>
-        <li><a href="index.html">ВЫХОД</a></li>
+        <li><a href="personal.html">${lbUlLiA}</a></li>
+        <li><a href="history.html">${lbUlLiB}</a></li>
+        <li><a href="personCost.html">${lbUlLiC}</a></li>
+        <li><a href="contact.html">${lbUlLiD}</a></li>
+        <li><a href="index.html">${lbUlLiE}</a></li>
     </ul>
 </div>
 
@@ -59,72 +95,72 @@
     <div class="container">
 
         <header class="major special">
-            <h2>Действующие заказы</h2>
-            <p>Здесь отображены все действующие в данный момент заказы</p>
+            <h2>${lbUlLiA}</h2>
+            <p>${lbSectionP}</p>
         </header>
         <form class="registration">
             <div class="container limiter">
 
                 <table width="100%" cellspacing="0" cellpadding="5">
                     <tr ><td class="someTable" colspan="2" width="200" valign="top">
-                        № заказа: 14251
-                    </td>
+                            ${lbTableAA} <data>14251</data>
+                        </td>
                         <td class="someTable" colspan="2" width="200" valign="top">
-                            Общая стоимость перевозки: 1561 руб.
+                            ${lbTableAB} <data>1561 руб</data>
                         </td>
                     </tr>
                     <tr>
                         <td width="200" valign="top">
-                            Тип доставки: экспресс
+                            ${lbTableBA} <data>экспресс</data>
                         </td>
                         <td width="200" valign="top">
-                            Тип упаковки: стандартная
+                            ${lbTableBB} <data>стандартная</data>
                         </td>
                         <td width="200" valign="top">
-                            Тариф: название
+                            ${lbTableBC} <data>название</data>
                         </td>
                         <td width="200" valign="top">
-                            Ставка тарифа: 1.5
-                        </td>
-                    </tr>
-                    <tr>
-                        <td width="200" valign="top">
-                            Откуда: Москва
-                        </td>
-                        <td width="200" valign="top">
-                            Куда: Уфа
-                        </td>
-                        <td width="200" valign="top">
-                            Тип груза: Конверт
-                        </td>
-                        <td width="200" valign="top">
-                            Количество: 1
+                            ${lbTableBD} <data>1.5</data>
                         </td>
                     </tr>
                     <tr>
                         <td width="200" valign="top">
-                            Дата отправки: 10.10.2017
+                            ${lbTableCA} <data>Москва</data>
                         </td>
                         <td width="200" valign="top">
-                            Ориентировочная дата доставки: 12.12.2017
+                            ${lbTableCB} <data>Уфа</data>
                         </td>
                         <td width="200" valign="top">
-                            Высота: 1м
+                            ${lbTableCC} <data>Конверт </data>
                         </td>
                         <td width="200" valign="top">
-                            Ширина: 1м
+                            ${lbTableCD} <data>1</data>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="200" valign="top">
+                            ${lbTableDA} <data>10.10.2017</data>
+                        </td>
+                        <td width="200" valign="top">
+                            ${lbTableDB} <data>12.12.2017</data>
+                        </td>
+                        <td width="200" valign="top">
+                            ${lbTableDC} <data>1</data>
+                        </td>
+                        <td width="200" valign="top">
+                            ${lbTableDD} <data>1</data>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2" width="200" valign="top">
-                            Посылку заберет (получатель): Иван Иванов Иванович
+                            ${lbTableEA} <data>Иван Иванов Иванович</data>
                         </td>
 
                         <td width="200" valign="top">
-                            Длина: 1м
+                            ${lbTableEB} <data>1</data>
                         </td>
                         <td width="200" valign="top">
-                            Вес: 1м
+                            ${lbTableEC} <data>1</data>
                         </td>
                     </tr>
                 </table>
@@ -137,12 +173,12 @@
 </section>
 
 
-<script src="../assets/js/jquery.min.js"></script>
-<script src="../assets/js/skel.min.js"></script>
-<script src="../assets/js/util.js"></script>
-<script src="../assets/js/main.js"></script>
+<script src="<c:url value="/resources/assets/js/jquery.min.js"/>"></script>
+<script src="<c:url value="/resources/assets/js/skel.min.js"/>"></script>
+<script src="<c:url value="/resources/assets/js/util.js"/>"></script>
+<script src="<c:url value="/resources/assets/js/main.js"/>"></script>
 
-<script src="../jsFiles/jquery.js"></script>
-<script src="../jsFiles/menu.js"></script>
+<script src="<c:url value="/resources/js/jquery.js"/>"></script>
+<script src="<c:url value="/resources/js/menu.js"/>"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 #! /bin/bash
 
-WAR_HOME=/home/igor/JProjects/diplom/work/target
+WAR_HOME=/home/paul/IdeaProjects/work/target
 WAR_NAME=webApp-1.0-SNAPSHOT.war
 APP_NAME=webApp
 

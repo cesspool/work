@@ -7,6 +7,14 @@
 <spring:message code="index.nav.main" var="lbNavMain"/>
 <spring:message code="index.nav.rates" var="lbNavRates"/>
 <spring:message code="index.nav.auth" var="lbNavAuth"/>
+<spring:message code="index.section.main" var="lbSectMain"/>
+<spring:message code="index.section.descrA" var="lbSectDescrA"/>
+<spring:message code="index.section.descrB" var="lbSectDescrB"/>
+<spring:message code="index.section.descrC" var="lbSectDescrC"/>
+<spring:message code="index.header.main" var="lbHeader"/>
+<spring:message code="index.divA" var="lbDivA"/>
+<spring:message code="index.divB" var="lbDivB"/>
+<spring:message code="index.ul.li" var="lbUlLi"/>
 
 <html>
 	<head>
@@ -32,10 +40,10 @@
 
 		<!-- Banner -->
 			<section id="banner">
-				<h2>АИС "Транспортная логистика"</h2>
-				<p>Данная система позволяет рассчитывать стоимость<br />перевозок грузов между филиалами данной компании.<br /><br />Чтобы воспользоваться программой, пройдите авторизацию</p>
+				<h2>${lbSectMain}</h2>
+				<p>${lbSectDescrA}<br />${lbSectDescrB}<br /><br />${lbSectDescrC}</p>
 				<ul class="actions">
-					<li><a href="login.html" class="button special big">Узнать стоимость</a></li>
+					<li><a href="login.html" class="button special big">${lbUlLi}</a></li>
 				</ul>
 			</section>
 
@@ -45,12 +53,12 @@
 						<div class="row 200%">
 							<div class="6u 12u$(medium)">
 								<header class="major">
-									<h2>Информация о компании</h2>
+									<h2>${lbHeader}</h2>
 								</header>
 							</div>
 							<div class="6u$ 12u$(medium)">
-								<p>Система определяет стоимость перевозки грузов (посылок и конвертов) между филиалами данной компании. Используются грузовые виды транспорта, ЖД перевозки и авиоперевозки, что в совокупности дает вам возможность выбора между наиболее быстрой и минимально дорогой перевозкой посылки</p>
-								<p>Стоимость определяется действующим тарифом и дальностью перевозки. Подробнее о тарифах можете узнать во вкладке "Тарифы"</p>
+								<p>${lbDivA}</p>
+								<p>${lbDivB}</p>
 							</div>
 						</div>
 					</div>
