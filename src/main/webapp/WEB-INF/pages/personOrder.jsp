@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+
+
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+<spring:message code="index.nav.main" var="lbNavMain"/>
+<spring:message code="index.nav.rates" var="lbNavRates"/>
+<spring:message code="index.nav.auth" var="lbNavAuth"/>
+<spring:message code="index.section.main" var="lbSectMain"/>
+<spring:message code="newRate.li.div" var="lbLiDiv"/>
+<spring:message code="contact.div.ul.liA" var="lbUlLiA"/>
+<spring:message code="contact.div.ul.liB" var="lbUlLiB"/> 
+<spring:message code="contact.div.ul.liC" var="lbUlLiC"/>
+<spring:message code="contact.div.ul.liD" var="lbUlLiD"/>
+<spring:message code="contact.div.ul.liE" var="lbUlLiE"/>
+<spring:message code="personCost.head.title" var="lbTitle"/>
+<spring:message code="contact.cancel" var="lbCancel"/>
+<spring:message code="personCost.send" var="lbSend"/>
+
+<spring:message code="personOrder.headerA" var="lbHeaderA"/>
+<spring:message code="personOrder.headerB" var="lbHeaderB"/>
+<spring:message code="personOrder.table.tdAA" var="lbTableAA"/>
+<spring:message code="personOrder.table.tdAB" var="lbTableAB"/>
+<spring:message code="personOrder.table.tdBA" var="lbTableBA"/>
+<spring:message code="personOrder.table.tdBB" var="lbTableBB"/>
+
+
+<html>
+<head>
+    <title>${lbTitle}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  	<link rel="stylesheet" href="<c:url value="/resources/assets/css/main.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/resources/css/personal.css"/>"/>
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400;300" rel="stylesheet" type="text/css">
+    <link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet"/>
+</head>
+<body>
+
+
+
+<!-- Header -->
+<header id="header">
+    <h1><strong>${lbSectMain}</strong></h1>
+    <nav id="nav">
+        <ul>
+                <li><a href="index.html">${lbNavMain}</a></li>
+			<li><a href="rate.html">${lbNavRates}</a></li>
+			<li><a href="login.html">${lbNavAuth}</a></li>
+            <li>
+                <div>
+                    <div style="color: brown" class="icon-menu">
+                        <img class="contact" src="<c:url value="/resources/images/contact.png"/>"/>${lbLiDiv}
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+
+<div class="menu">
+
+    <!-- Иконка меню -->
+    <div class="icon-close">
+        <img src="<c:url value="/resources/images/close-btn.png"/>"/>
+    </div>
+
+    <!-- Меню -->
+    <ul>
+        <li><a href="personal.html">${lbUlLiA}</a></li>
+        <li><a href="history.html">${lbUlLiB}</a></li>
+        <li><a href="personCost.html">${lbUlLiC}</a></li>
+        <li><a href="contact.html">${lbUlLiD}</a></li>
+        <li><a href="index.html">${lbUlLiE}</a></li>
+    </ul>
+</div>
+
+<!-- Main body -->
+<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+
+
+<section id="main" class="wrapper">
+    <div class="container">
+
+        <header class="major special">
+            <h2>${lbHeaderA}</h2>
+            <p>${lbHeaderB}</p>
+        </header>
+        <form class="registration">
+            <div class="container limiter">
+
+                <table width="100%" cellspacing="0" cellpadding="5">
+                    <td width="200" valign="top">
+                        <label for="lastName"><b>${lbTableAA}</b></label>
+                        <input type="text" placeholder="Иванов" name="email" required>
+
+                        <label for="firstName"><b>${lbTableAB}</b></label>
+                        <input type="text" placeholder="Иван" name="email" required>
+                    </td>
+
+                    <td width="200" valign="top">
+                        <label for="patronymic"><b>${lbTableBA}</b></label>
+                        <input type="text" placeholder="Иванович" name="email" required>
+
+                        <label for="phone"><b>${lbTableBB}</b></label>
+                        <input type="text" placeholder="+7(926)723-16-50" name="email" required>
+                    </td>
+
+                </table>
+                <div class="clearfix">
+                    <button type="button" class="cancelbtn">${lbCancel }</button>
+                    <button type="submit" class="signupbtn"><a href="resultCost.html">${lbSend}</a></button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</section>
+
+
+<!-- Main -->
+
+
+
+<!-- Scripts -->
+<script src="<c:url value="/resources/assets/js/jquery.min.js"/>"></script>
+<script src="<c:url value="/resources/assets/js/skel.min.js"/>"></script>
+<script src="<c:url value="/resources/assets/js/util.js"/>"></script>
+<script src="<c:url value="/resources/assets/js/main.js"/>"></script>
+
+<script src="<c:url value="/resources/js/jquery.js"/>"></script>
+<script src="<c:url value="/resources/js/menu.js"/>"></script>
+
+</body>
+</html>
