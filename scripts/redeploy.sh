@@ -1,6 +1,7 @@
 #! /bin/bash
 
-WAR_HOME=/home/paul/IdeaProjects/work/target
+. ./env.sh
+WAR_HOME=$PRJ_HOME/target
 WAR_NAME=webApp-1.0-SNAPSHOT.war
 APP_NAME=webApp
 

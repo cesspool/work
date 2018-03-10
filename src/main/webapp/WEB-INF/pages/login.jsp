@@ -42,6 +42,7 @@
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/Login_v2/css/main.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/main.css" />"/>
 <!--===============================================================================================-->
+    <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 </head>
 <body >
 	<!-- Header -->
@@ -49,9 +50,9 @@
         <h1><strong>${lbSectMain}"</strong></h1>
         <nav id="nav">
             <ul>
-                <li><a href="index.html">${lbNavMain}</a></li>
-                <li><a href="rate.html">${lbNavRates}</a></li>
-                <li><a href="login.html">${lbNavAuth}</a></li>
+                <li><a href="${contextPath}/index">${lbNavMain}</a></li>
+                <li><a href="${contextPath}/rate">${lbNavRates}</a></li>
+                <li><a href="${contextPath}/login">${lbNavAuth}</a></li>
             </ul>
         </nav>
     </header>
@@ -61,7 +62,7 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" method="post" id="loginForm" action="${contextPath}/login">
 					<span class="login100-form-title p-b-26">
 						${lbDivA}
 					</span>
@@ -70,7 +71,7 @@
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
-						<input class="input100" type="text" name="email">
+						<input class="input100" type="text" name="email" id="email">
 						<span class="focus-input100" data-placeholder="Email"></span>
 					</div>
 
@@ -78,19 +79,24 @@
 						<span class="btn-show-pass">
 							<i class="zmdi zmdi-eye"></i>
 						</span>
-						<input class="input100" type="password" name="pass">
+						<input class="input100" type="password" name="pass" id="pass">
 						<span class="focus-input100" data-placeholder="Password"></span>
 					</div>
 
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn" >
-								<a href="personal.html">${lbDivB} </a>
+							<button class="login100-form-btn" type="submit">
+								<a href="personal">${lbDivB} </a>
 							</button>
 						</div>
 					</div>
-
+                    <c:if test="${not empty message}">    
+                      <div> <!-- ERROR MESSAGE BOX -->
+                          ${message.msg}
+                      </div>
+                    </c:if>
+                    
 					<div class="text-center p-t-115">
 						<span class="txt1">
 							${lbDivC}

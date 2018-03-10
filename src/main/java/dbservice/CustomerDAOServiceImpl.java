@@ -23,19 +23,26 @@ public class CustomerDAOServiceImpl extends DataService implements CustomerDAOSe
     private final static String SQL_INSERT = "INSERT INTO logistics.customer " +
         " (firstName, lastName, patronymic, address, telephone, email, hashcode, admin) " +
         " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-    
+
     private final static String SQL_UPDATE = "UPDATE logistics.customer " +
         " SET firstName=?, lastName=?, patronymic=?, address=?, telephone=?, email=?, hashcode=?, admin=? " +
         " WHERE id=?";
-    
+
     private final static String SQL_UPDATE_PASSWORD = "UPDATE logistics.customer SET hashcode=? WHERE id=?";
-    
+
     private final static String SQL_SEL_BY_ID = "SELECT firstName, lastName, patronymic, address, telephone, email, hashcode, admin " +
         " FROM logistics.customer WHERE id=?";
-    
+
+    private final static String SQL_SEL_BY_EMAIL = "SELECT id, firstName, lastName, patronymic, address, telephone, hashcode, admin " +
+        " FROM logistics.customer WHERE email=?";
+
     @Override
+    @Transactional(readOnly = true)
     public Optional<Customer> getByID(Long ID) {
-        Customer res = getJdbcTemplate().query(SQL_SEL_BY_ID, new Object[]{ID}, (rs) -> {
+        Customer res = getJdbcTemplate().query(SQL_SEL_BY_ID, new Object[] {ID}, (rs) -> {
+            if (!rs.next()) {
+                return null;
+            }
             Customer c = new Customer();
             c.setId(ID);
             int idx = 1;
@@ -53,8 +60,27 @@ public class CustomerDAOServiceImpl extends DataService implements CustomerDAOSe
     }
 
     @Override
-    public Customer getByEmail(String email) {
-        return null;
+    @Transactional(readOnly = true)
+    public Optional<Customer> getByEmail(String email) {
+        Customer res = getJdbcTemplate().query(SQL_SEL_BY_EMAIL, new Object[] {email}, (rs) -> {
+            if (!rs.next()) {
+                return null;
+            }
+            Customer c = new Customer();
+            c.setEmail(email);
+            int idx = 1;
+            c.setId(rs.getLong(idx++));
+            c.setFirstName(rs.getString(idx++));
+            c.setFirstName(rs.getString(idx++));
+            c.setLastName(rs.getString(idx++));
+            c.setPatronymic(rs.getString(idx++));
+            c.setAddress(rs.getString(idx++));
+            c.setTelephone(rs.getString(idx++));
+            c.setMd5(rs.getString(idx++));
+            c.setAdmin(rs.getBoolean(idx++));
+            return c;
+        });
+        return Optional.ofNullable(res);
     }
 
     @Override
@@ -102,12 +128,12 @@ public class CustomerDAOServiceImpl extends DataService implements CustomerDAOSe
     }
 
     @Override
-    public void deleteCustomer(Customer customer) {
-    }
+    public void deleteCustomer(Customer customer) {}
 
     @Override
     @Transactional
-    public void updatePassword(Customer customer, String password) {
+    public void updatePassword(Customer customer,
+                               String password) {
         getJdbcTemplate().update(SQL_UPDATE_PASSWORD, password, customer.getId());
     }
 }

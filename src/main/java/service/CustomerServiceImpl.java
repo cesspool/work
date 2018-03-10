@@ -7,16 +7,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import utils.Tools;
+import web.Message;
+import web.Message.Type;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Optional;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
     private static final Logger logger = LoggerFactory.getLogger(CustomerServiceImpl.class);
 
     private CustomerDAOService customerDAOService;
+
 
     @Override
     public void createCustomer(Customer customer) {
@@ -32,11 +37,12 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void setPassword(Customer customer, String pass) {
-        if ((pass == null)||(pass.length() == 0)){
+    public void setPassword(Customer customer,
+                            String pass) {
+        if ((pass == null) || (pass.length() == 0)) {
             return;
         }
-        String md5 = str2MD5(pass);
+        String md5 = Tools.stringToMD5(pass);
         customerDAOService.updatePassword(customer, md5);
         customer.setMd5(md5);
     }
@@ -46,19 +52,36 @@ public class CustomerServiceImpl implements CustomerService {
         this.customerDAOService = customerDAOService;
     }
 
-    
-    private String str2MD5(String str){
-        try {
-            MessageDigest msgDigst = MessageDigest.getInstance("MD5");
-            byte[] md5 = msgDigst.digest(str.getBytes("UTF-8"));
-            return new String(md5);
-        } catch (NoSuchAlgorithmException algEx) {
-            logger.error("Set password failed", algEx);
-            throw new RuntimeException("Set password failed", algEx);
-        } catch (UnsupportedEncodingException encEx) {
-            logger.error("Set password failed", encEx);
-            throw new RuntimeException("Set password failed", encEx);
-        }
-        
+    @Override
+    public Optional<Customer> getByEmail(String email) {
+        return customerDAOService.getByEmail(email);
     }
+
+    @Override
+    public Optional<Customer> getByID(Long ID) {
+        return customerDAOService.getByID(ID);
+    }
+
+    @Override
+    public Customer authenticate(String email,
+                                 String pass,
+                                 Message msg) {
+
+        String passMD5 = Tools.stringToMD5(pass);
+        Customer cmr = getByEmail(email).orElse(null);
+        if (cmr == null) {
+            msg.setType(Type.ERROR);
+            msg.setKey("login.user_not_found");
+            return null;
+        }
+        if (!passMD5.equals(cmr.getMd5())) {
+            msg.setType(Type.ERROR);
+            msg.setKey("login.wrong_pass");
+            return null;
+        }
+        return cmr;
+    }
+
+
+
 }

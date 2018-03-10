@@ -71,4 +71,13 @@ public class Pages {
      */
     public static final String STATUS = "statusOrder";
 
+    
+    //=============== Page's attributes ====================================================================
+    /** Customer instance */
+    public static final String ATR_CUSTOMER = "customer";
+    /** Message to show at the target page  */
+    public static final String ATR_MESSAGE = "message";
+    
+    
+    
 }

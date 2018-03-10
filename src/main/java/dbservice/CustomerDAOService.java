@@ -8,7 +8,7 @@ public interface CustomerDAOService {
     
     Optional<Customer> getByID(Long ID);
     
-    Customer getByEmail(String email);
+    Optional<Customer> getByEmail(String email);
     
     void insertCustomer(Customer customer);
     

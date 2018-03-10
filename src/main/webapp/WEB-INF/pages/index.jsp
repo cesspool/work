@@ -16,6 +16,7 @@
 <spring:message code="index.divB" var="lbDivB"/>
 <spring:message code="index.ul.li" var="lbUlLi"/>
 
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <html>
 	<head>
 		<title>${lbTitle}</title>
@@ -31,7 +32,7 @@
 					<ul>
 						<li><a href="index.html">${lbNavMain}</a></li>
 						<li><a href="rate.html">${lbNavRates}</a></li>
-						<li><a href="login.html">${lbNavAuth}</a></li>
+						<li><a href="${contextPath}/loginform">${lbNavAuth}</a></li>
 					</ul>
 				</nav>
 			</header>

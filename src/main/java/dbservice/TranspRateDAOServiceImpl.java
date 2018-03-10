@@ -80,12 +80,14 @@ public class TranspRateDAOServiceImpl extends DataService implements TranspRateD
     }
 
     @Override
+    @Transactional(readOnly=true)
     public Collection<Transport> getTransports() {
 
         return Collections.emptyList();
     }
 
     @Override
+    @Transactional(readOnly=true)
     public Pair<Rate, Transport> getByDate(LocalDate date) {
 
 
