@@ -42,6 +42,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/main.css"/>"/>
+    
+    <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 </head>
 <body>
 
@@ -65,14 +67,14 @@
 
         <header class="major special">
             <h2>${lbHeaderA} <data>название</data></h2>
-            <p>${lbHeaderB } <data>10.10.2010 - 10.10.2011</data></p>
+            <p>${lbHeaderB} <data>10.10.2010 - 10.10.2011</data></p>
         </header>
         <form class="registration">
             <div class="container limiter">
 
                 <table width="100%" cellspacing="0" cellpadding="5">
                     <tr ><td class="someTable" colspan="2" width="200" valign="top">
-                        ${lbTableTR }
+                        ${lbTableTR}
                     </td>
                     </tr>
                     <tr>
@@ -98,7 +100,7 @@
                             ${lbSectionCA}
                         </td>
                         <td width="200" valign="top">
-                            <label for="lastName"><b>${${lbSectionCB}</b></label>
+                            <label for="lastName"><b>${lbSectionCB}</b></label>
                             <data>20%</data>
                         </td>
                         <td width="200" valign="top">
@@ -115,7 +117,7 @@
                             ${lbSectionDA}
                         </td>
                         <td width="200" valign="top">
-                            <label for="lastName"><b>${${lbSectionCB}</b></label>
+                            <label for="lastName"><b>${lbSectionCB}</b></label>
                             <data>20%</data>
                         </td>
                         <td width="200" valign="top">
@@ -132,7 +134,7 @@
                             ${lbSectionEA}
                         </td>
                         <td width="200" valign="top">
-                            <label for="lastName"><b>${${lbSectionCB}</b></label>
+                            <label for="lastName"><b>${lbSectionCB}</b></label>
                             <data>20%</data>
                         </td>
                         <td width="200" valign="top">
@@ -191,7 +193,7 @@
                             ${lbSectionCA}
                         </td>
                         <td width="200" valign="top">
-                            <label for="lastName"><b>${${lbSectionCB}</b></label>
+                            <label for="lastName"><b>${lbSectionCB}</b></label>
                             <data>20%</data>
                         </td>
                         <td width="200" valign="top">
@@ -208,7 +210,7 @@
                             ${lbSectionDA}
                         </td>
                         <td width="200" valign="top">
-                            <label for="lastName"><b>${${lbSectionCB}</b></label>
+                            <label for="lastName"><b>${lbSectionCB}</b></label>
                             <data>20%</data>
                         </td>
                         <td width="200" valign="top">
@@ -225,7 +227,7 @@
                             ${lbSectionEA}
                         </td>
                         <td width="200" valign="top">
-                            <label for="lastName"><b>${${lbSectionCB}</b></label>
+                            <label for="lastName"><b>${lbSectionCB}</b></label>
                             <data>20%</data>
                         </td>
                         <td width="200" valign="top">

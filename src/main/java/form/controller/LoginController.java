@@ -27,6 +27,21 @@ public class LoginController {
         return Pages.LOGIN;
     }
 
+    @RequestMapping(value = "/registrationform", method = RequestMethod.GET)
+    public String showRegistrationForm(Model model) {
+        return Pages.REGISTRATION;
+    }
+
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    public String showMainPage(Model model) {
+        return Pages.MAIN;
+    }
+
+    @RequestMapping(value = "/rateform", method = RequestMethod.GET)
+    public String showRatesForm(Model model) {
+        return Pages.RATE;
+    }
+
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String doLogin(@RequestParam(value = "email") String email,
                           @RequestParam(value = "pass") String pass,

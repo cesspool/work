@@ -51,8 +51,8 @@
         <nav id="nav">
             <ul>
                 <li><a href="${contextPath}/index">${lbNavMain}</a></li>
-                <li><a href="${contextPath}/rate">${lbNavRates}</a></li>
-                <li><a href="${contextPath}/login">${lbNavAuth}</a></li>
+                <li><a href="${contextPath}/rateform">${lbNavRates}</a></li>
+                <li><a href="${contextPath}/loginform">${lbNavAuth}</a></li>
             </ul>
         </nav>
     </header>
@@ -102,7 +102,7 @@
 							${lbDivC}
 						</span>
 
-						<a class="txt2" href="registration.html">
+						<a class="txt2" href="${contextPath}/registrationform">
 							${lbDivD}
 						</a>
 					</div>
