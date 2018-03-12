@@ -31,7 +31,7 @@ public class LoginController {
     public String showRegistrationForm(Model model) {
         return Pages.REGISTRATION;
     }
-
+    
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String showMainPage(Model model) {
         return Pages.MAIN;
@@ -73,4 +73,6 @@ public class LoginController {
     protected void setMessageSource(MessageSource messageSource) {
         this.messageSource = messageSource;
     }
+    
+    
 }

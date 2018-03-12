@@ -8,11 +8,11 @@
 <spring:message code="newRate.li.div" var="lbLiDiv"/>
 <spring:message code="index.section.main" var="lbSectMain"/>
 <spring:message code="contact.head.title" var="lbHeadTitle"/>
-<spring:message code="contact.div.ul.liA" var="lbUlLiA"/>
-<spring:message code="contact.div.ul.liB" var="lbUlLiB"/>
-<spring:message code="contact.div.ul.liC" var="lbUlLiC"/>
-<spring:message code="contact.div.ul.liD" var="lbUlLiD"/>
-<spring:message code="contact.div.ul.liE" var="lbUlLiE"/>
+<spring:message code="newRate.ulA" var="lbUlA"/>
+<spring:message code="newRate.ulB" var="lbUlB"/>
+<spring:message code="newRate.ulC" var="lbUlC"/>
+<spring:message code="newRate.ulD" var="lbUlD"/>
+<spring:message code="newRate.ulE" var="lbUlE"/>
 <spring:message code="personal.section.p" var="lbSectionP"/>
 <spring:message code="index.nav.main" var="lbNavMain"/>
 <spring:message code="index.nav.rates" var="lbNavRates"/>
@@ -79,11 +79,11 @@
 
     <!-- ÐÐµÐ½Ñ -->
     <ul>
-        <li><a href="personal.html">${lbUlLiA}</a></li>
-        <li><a href="history.html">${lbUlLiB}</a></li>
-        <li><a href="personCost.html">${lbUlLiC}</a></li>
-        <li><a href="contact.html">${lbUlLiD}</a></li>
-        <li><a href="index.html">${lbUlLiE}</a></li>
+        <li><a href="statusOrder.html">${lbUlA}</a></li>
+        <li><a href="adminMain.html">${lbUlB}</a></li>
+        <li><a href="newRate.html">${lbUlC}</a></li>
+        <li><a href="newBoxing.html">${lbUlD}</a></li>
+        <li><a href="index.html">${lbUlE}</a></li>
     </ul>
 </div>
 
