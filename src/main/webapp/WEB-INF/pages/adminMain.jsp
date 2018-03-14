@@ -74,7 +74,7 @@
     <!-- Меню -->
     <ul>
         <li><a href="statusOrder.html">${lbUlA}</a></li>
-        <li><a href="adminMain.html">${lbUlB}</a></li>
+        <li><a href="adminMain.html">${lbHeader}</a></li>
         <li><a href="newRate.html">${lbUlC}</a></li>
         <li><a href="newBoxing.html">${lbUlD}</a></li>
         <li><a href="index.html">${lbUlE}</a></li>

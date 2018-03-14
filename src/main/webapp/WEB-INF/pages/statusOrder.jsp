@@ -17,6 +17,9 @@
 <spring:message code="index.nav.main" var="lbNavMain"/>
 <spring:message code="index.nav.rates" var="lbNavRates"/>
 <spring:message code="index.nav.auth" var="lbNavAuth"/>
+<spring:message code="contact.div.ul.liA" var="lbUlLiA"/>
+<spring:message code="contact.save" var="lbSave"/>
+<spring:message code="contact.cancel" var="lbCancel"/>
 
 <spring:message code="history.table.trA.tdA" var="lbTableAA"/>
 <spring:message code="history.table.trA.tdB" var="lbTableAB"/>
@@ -35,6 +38,8 @@
 <spring:message code="history.table.trE.tdA" var="lbTableEA"/>
 <spring:message code="history.table.trE.tdB" var="lbTableEB"/>
 <spring:message code="history.table.trE.tdC" var="lbTableEC"/>
+<spring:message code="statusOrder.ready" var="lbReady"/>
+
 
 <html>
 <head>
@@ -94,17 +99,21 @@
 
         <header class="major special">
             <h2>${lbUlLiA}</h2>
-            <p>${lbSectionP}</p>
+            <input type="text" placeholder = "Иванов Иван">
         </header>
         <form class="registration">
             <div class="container limiter">
 
                 <table width="100%" cellspacing="0" cellpadding="5">
-                    <tr ><td class="someTable" colspan="2" width="200" valign="top">
+                    <tr ><td class="someTable" width="200" valign="top">
                             ${lbTableAA} <data>14251</data>
                         </td>
                         <td class="someTable" colspan="2" width="200" valign="top">
                             ${lbTableAB} <data>1561 руб</data>
+                        </td>
+                        <td width="200" valign="top">
+							 <input type="checkbox" id="airport" name="airport" value="air">
+                            <label for="airport">${lbReady}</label>
                         </td>
                     </tr>
                     <tr>
@@ -162,10 +171,15 @@
                         </td>
                     </tr>
                 </table>
+                <div class="clearfix">
+                	<button type="button" class="cancelbtn">${lbCancel }</button>
+                	<button type="submit" class="signupbtn">${lbSave }</button>
+            	</div>
 
             </div>
         </form>
     </div>
+
 
     <hr>
 </section>

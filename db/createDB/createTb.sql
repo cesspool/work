@@ -39,7 +39,8 @@ address varchar(100) NOT NULL,
 telephone varchar(15) NOT NULL,
 email VARCHAR(50) NOT NULL,
 hashcode CHAR(32) NOT NULL,
-admin boolean
+admin boolean,
+manager boolean
 );
 
 CREATE TABLE logistics.node(

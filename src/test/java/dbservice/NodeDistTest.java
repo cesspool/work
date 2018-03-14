@@ -24,8 +24,8 @@ public class NodeDistTest {
     @Autowired
     private NodeDistanceDAOService nodeDistanceDAOService;
 
-//    @Autowired
-//    private NodeDistanceService nodeDistanceService; 
+    @Autowired
+    private NodeDistanceService nodeDistanceService; 
     @Test
     public void testDataSource(){
         Integer i1=10;
@@ -44,7 +44,7 @@ public class NodeDistTest {
         node.setCoordinateX(15362.135);
         node.setCoordinateY(63261.1847);
         node.setCity("Москва");
-        node.setCode("Node_4");
+        //node.setCode("Node_5");
 
         Node city1 = new Node();
         city1.setId(k1);
@@ -76,7 +76,7 @@ public class NodeDistTest {
         distances.add(dist1);
         distances.add(dist2);
 
-        nodeDistanceDAOService.insertNode(node, transports, distances);
+        nodeDistanceService.createNode(node, transports, distances);
 
     }
 }
