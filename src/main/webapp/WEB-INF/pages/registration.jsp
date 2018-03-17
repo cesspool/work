@@ -28,7 +28,6 @@
 <spring:message code="contact.place.Fname" var="lbPlaceFname"/>
 <spring:message code="input.warning.massages" var="lbInputMsg"/>
 
-
 <html>
 <head>
     <title>${lbMain}</title>
@@ -52,39 +51,35 @@
     <table width="100%" cellspacing="0" cellpadding="5">
             <td width="200" valign="top">
                 <label for="email"><b>${lbTableBAA}</b></label>
-                <input type="text" placeholder="paulkapay@gmail.com" name="email" id="email" required
-                 oninvalid="this.setCustomValidity('${lbInputMsg}')">
+                <input type="text" placeholder="paulkapay@gmail.com" name="email" id="email" required>
 
                 <label for="telephone"><b>${lbTableBAB}</b></label>
-                <input type="text" placeholder="+7(926)723-16-50" name="telephone" id="telephone" required
-                 oninvalid="this.setCustomValidity('${lbInputMsg}')">
+                <input type="text" placeholder="+7(926)723-16-50" name="telephone" id="telephone" required>
 
                 <label for="city"><b>${lbTableBAC}</b></label>
-                <input type="text" placeholder="${lbPlaceCity}" name="city" id="city" required
-                oninvalid="this.setCustomValidity('${lbInputMsg}')">
+                <input type="text" placeholder="${lbPlaceCity}" name="city" id="city" required>
             </td>
             <td width="200" valign="top">
                 <label for="firstName"><b>${lbTableBBA}</b></label>
-                <input type="text" placeholder="${lbPlaceFname }" name="firstName" id="firstName" required
-                oninvalid="this.setCustomValidity('${lbInputMsg}')">
+                <input type="text" placeholder="${lbPlaceFname }" name="firstName" id="firstName" required>
 
                 <label for="lastName"><b>${lbTableBBB }</b></label>
                 <input type="text" placeholder="${lbPlaceLname }" name="lastName" id="lastName" required
-                oninvalid="this.setCustomValidity('${lbInputMsg}')">
+                oninvalid="this.setCustomValidity('')">
 
                 <label for="patronymic"><b>${lbTableBBC}</b></label>
                 <input type="text" placeholder="${lbPlaceMname}" name="patronymic" id="patronymic" required
-                oninvalid="this.setCustomValidity('${lbInputMsg}')">
+                oninvalid="this.setCustomValidity('')">
             </td>
             
             <td width="200" valign="top">
                 <label for="psw"><b>${lbTableBCA}</b></label>
                 <input type="password" placeholder="${lbPlacePsw}" name="psw" id="psw" required
-                oninvalid="this.setCustomValidity('${lbInputMsg}')">
+                oninvalid="this.setCustomValidity('')">
 
                 <label for="pswRepeat"><b>${lbTableBCB}</b></label>
                 <input type="password" placeholder="${lbPlacePswRepeat}" name="pswRepeat" id="pswRepeat" required
-                oninvalid="this.setCustomValidity('${lbInputMsg}')">
+                oninvalid="this.setCustomValidity('')">
             </td>
 
     </table>
