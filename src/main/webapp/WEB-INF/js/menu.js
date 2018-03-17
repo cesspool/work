@@ -28,7 +28,7 @@ $(document).ready(main); //как только страница полность
 
 
 var $dependerItem = $('.dependent');
-$('#edit-field-sity-tid').change(function() {
+$('#envelope').change(function() {
     var curentSelectedVal = $(this).find('option:selected').val();
     if (curentSelectedVal == 710) {
         $dependerItem.removeClass('hide');

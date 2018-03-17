@@ -7,9 +7,19 @@ public class NewNodeForm {
     boolean railway;
     private String name;
     private String address;
+    private String city;
     private double coordinateX;
     private double coordinateY;
     private List<String> linkNodes;
+    
+
+    public void setCity(String city) {
+    	this.city=city;
+    }
+    
+    public String getCity() {
+    	return city;
+    }
 
     public List<String> getNodes() {
         return linkNodes;

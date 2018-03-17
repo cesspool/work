@@ -20,6 +20,9 @@
 <spring:message code="contact.div.ul.liA" var="lbUlLiA"/>
 <spring:message code="contact.save" var="lbSave"/>
 <spring:message code="contact.cancel" var="lbCancel"/>
+<spring:message code="statusOrder.searching" var="lbSearch"/>
+<spring:message code="statusOrder.place.recipient" var="lbPlaceRecipient"/>
+
 
 <spring:message code="history.table.trA.tdA" var="lbTableAA"/>
 <spring:message code="history.table.trA.tdB" var="lbTableAB"/>
@@ -99,7 +102,9 @@
 
         <header class="major special">
             <h2>${lbUlLiA}</h2>
-            <input type="text" placeholder = "Иванов Иван">
+            <input type="text" placeholder = "${lbPlaceRecipient}" id="name" name="name">
+            <br>
+            <button type="submit" class="signupbtn">${lbSearch}</button>
         </header>
         <form class="registration">
             <div class="container limiter">
@@ -112,19 +117,19 @@
                             ${lbTableAB} <data>1561 руб</data>
                         </td>
                         <td width="200" valign="top">
-							 <input type="checkbox" id="airport" name="airport" value="air">
-                            <label for="airport">${lbReady}</label>
+							 <input type="checkbox" id="ready" name="ready" value="air">
+                            <label for="ready">${lbReady}</label>
                         </td>
                     </tr>
                     <tr>
                         <td width="200" valign="top">
-                            ${lbTableBA} <data>экспресс</data>
+                            ${lbTableBA} <data>express</data>
                         </td>
                         <td width="200" valign="top">
-                            ${lbTableBB} <data>стандартная</data>
+                            ${lbTableBB} <data>standart</data>
                         </td>
                         <td width="200" valign="top">
-                            ${lbTableBC} <data>название</data>
+                            ${lbTableBC} <data>name</data>
                         </td>
                         <td width="200" valign="top">
                             ${lbTableBD} <data>1.5</data>
@@ -132,13 +137,13 @@
                     </tr>
                     <tr>
                         <td width="200" valign="top">
-                            ${lbTableCA} <data>Москва</data>
+                            ${lbTableCA} <data>Moscow</data>
                         </td>
                         <td width="200" valign="top">
-                            ${lbTableCB} <data>Уфа</data>
+                            ${lbTableCB} <data>Ufa</data>
                         </td>
                         <td width="200" valign="top">
-                            ${lbTableCC} <data>Конверт </data>
+                            ${lbTableCC} <data>Envelop </data>
                         </td>
                         <td width="200" valign="top">
                             ${lbTableCD} <data>1</data>
@@ -160,7 +165,7 @@
                     </tr>
                     <tr>
                         <td colspan="2" width="200" valign="top">
-                            ${lbTableEA} <data>Иван Иванов Иванович</data>
+                            ${lbTableEA} <data>Ivanov Ivan Ivanovich</data>
                         </td>
 
                         <td width="200" valign="top">

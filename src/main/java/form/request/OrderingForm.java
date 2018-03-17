@@ -5,7 +5,6 @@ public class OrderingForm {
     private String lastName;
     private String patronymic;
     private String telephone;
-    private String email;
 
     public String getFirstName() {
         return firstName;
@@ -37,13 +36,5 @@ public class OrderingForm {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 }

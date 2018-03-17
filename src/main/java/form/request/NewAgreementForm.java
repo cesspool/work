@@ -6,7 +6,12 @@ import java.util.List;
 //// !!!!!!!!!! DATA TYPE @DATE@ MAY BE WRONG!!!!!!!!!!!!!!!!!!!!!
 public class NewAgreementForm {
     private String name;
-    private double costShipping;
+    private double costShippingRail;
+    private double costShippingAir;
+    private double costShippingCargo;
+    private double addCostShippingRail;
+    private double addCostShippingAir;
+    private double addCostShippingCargo;
     private Date startAction;
     private Date endAction;
     private double maxHeight;
@@ -14,8 +19,9 @@ public class NewAgreementForm {
     private double maxLength;
     private double totalWeight;
     private double totalCapacity;
-    private List<Double> costKm;
-    private List<Double> avSpeed;
+    private double costKmCargo;
+    private double costKmAir;
+    private double costKmRail;
 
     public String getName(){
         return name;
@@ -26,11 +32,11 @@ public class NewAgreementForm {
     }
 
     public double getCostShipping(){
-        return costShipping;
+        return costShippingAir;
     }
 
-    public void setCostShipping (double costShipping) {
-        this.costShipping = costShipping;
+    public void setCostShipping (double costShippingAir) {
+        this.costShippingAir = costShippingAir;
     }
 
     public Date getEndAction() {
@@ -89,19 +95,67 @@ public class NewAgreementForm {
         this.maxWidth = maxWidth;
     }
 
-    public List<Double> getAvSpeed() {
-        return avSpeed;
-    }
+	public double getCostShippingCargo() {
+		return costShippingCargo;
+	}
 
-    public void setAvSpeed(List<Double> avSpeed) {
-        this.avSpeed = avSpeed;
-    }
+	public void setCostShippingCargo(double costShippingCargo) {
+		this.costShippingCargo = costShippingCargo;
+	}
 
-    public List<Double> getCostKm() {
-        return costKm;
-    }
+	public double getCostShippingRail() {
+		return costShippingRail;
+	}
 
-    public void setCostKm(List<Double> costKm) {
-        this.costKm = costKm;
-    }
+	public void setCostShippingRail(double costShippingRail) {
+		this.costShippingRail = costShippingRail;
+	}
+
+	public double getAddCostShippingRail() {
+		return addCostShippingRail;
+	}
+
+	public void setAddCostShippingRail(double addCostShippingRail) {
+		this.addCostShippingRail = addCostShippingRail;
+	}
+
+	public double getAddCostShippingAir() {
+		return addCostShippingAir;
+	}
+
+	public void setAddCostShippingAir(double addCostShippingAir) {
+		this.addCostShippingAir = addCostShippingAir;
+	}
+
+	public double getAddCostShippingCargo() {
+		return addCostShippingCargo;
+	}
+
+	public void setAddCostShippingCargo(double addCostShippingCargo) {
+		this.addCostShippingCargo = addCostShippingCargo;
+	}
+
+	public double getCostKmCargo() {
+		return costKmCargo;
+	}
+
+	public void setCostKmCargo(double costKmCargo) {
+		this.costKmCargo = costKmCargo;
+	}
+
+	public double getCostKmAir() {
+		return costKmAir;
+	}
+
+	public void setCostKmAir(double costKmAir) {
+		this.costKmAir = costKmAir;
+	}
+
+	public double getCostKmRail() {
+		return costKmRail;
+	}
+
+	public void setCostKmRail(double costKmRail) {
+		this.costKmRail = costKmRail;
+	}
 }

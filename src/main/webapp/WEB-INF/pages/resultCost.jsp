@@ -18,7 +18,7 @@
 <spring:message code="index.nav.rates" var="lbNavRates"/>
 <spring:message code="index.nav.auth" var="lbNavAuth"/>
 <spring:message code="contact.cancel" var="lbCancel"/>
-<spring:message code="personCost.send" var="lbSend"/>
+<spring:message code="resultCost.issue" var="lbIssue"/>
 
 <spring:message code="resultCost.header.H" var="lbHeaderH"/>
 <spring:message code="resultCost.header.P" var="lbHEaderP"/>
@@ -120,7 +120,7 @@
 
                 <div class="clearfix">
                     <button type="button" class="cancelbtn">${lbCancel }</button>
-                    <button type="submit" class="signupbtn"><a href="resultCost.html">${lbSend}</a></button>
+                    <button type="submit" class="signupbtn"><a href="personOrder.html">${lbIssue}</a></button>
                 </div>
 
             </div>
