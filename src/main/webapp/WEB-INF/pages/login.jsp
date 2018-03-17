@@ -87,7 +87,7 @@
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
 							<button class="login100-form-btn" type="submit">
-								<a href="personal">${lbDivB} </a>
+								${lbDivB}
 							</button>
 						</div>
 					</div>

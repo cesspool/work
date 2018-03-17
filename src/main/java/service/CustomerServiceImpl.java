@@ -2,7 +2,7 @@ package service;
 
 import beans.Customer;
 import dbservice.CustomerDAOService;
-import dbservice.CustomerDAOServiceImpl;
+import form.request.RegistrationForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +11,6 @@ import utils.Tools;
 import web.Message;
 import web.Message.Type;
 
-import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Optional;
 
 @Service
@@ -32,13 +29,20 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public Customer createCustomer(RegistrationForm regForm) {
+        Customer cmr = formDataToCustomer(regForm);
+        createCustomer(cmr);
+        return cmr;
+    }
+
+
+    @Override
     public void updateCustomer(Customer customer) {
 
     }
 
     @Override
-    public void setPassword(Customer customer,
-                            String pass) {
+    public void setPassword(Customer customer, String pass) {
         if ((pass == null) || (pass.length() == 0)) {
             return;
         }
@@ -63,9 +67,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer authenticate(String email,
-                                 String pass,
-                                 Message msg) {
+    public Customer authenticate(String email, String pass, Message msg) {
 
         String passMD5 = Tools.stringToMD5(pass);
         Customer cmr = getByEmail(email).orElse(null);
@@ -82,6 +84,18 @@ public class CustomerServiceImpl implements CustomerService {
         return cmr;
     }
 
-
-
+    private Customer formDataToCustomer(RegistrationForm form) {
+        Customer cmr = new Customer();
+        cmr.setFirstName(form.getFirstName());
+        cmr.setLastName(form.getLastName());
+        cmr.setPatronymic(form.getPatronymic());
+        cmr.setAddress(form.getCity());
+        cmr.setEmail(form.getEmail());
+        cmr.setTelephone(form.getTelephone());
+        cmr.setMd5(form.getPsw());
+        cmr.setAdmin(form.isAdmin());
+        cmr.setManager(form.isManager());
+        return cmr;
+    }
+    
 }

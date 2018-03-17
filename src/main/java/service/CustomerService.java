@@ -1,6 +1,7 @@
 package service;
 
 import beans.Customer;
+import form.request.RegistrationForm;
 import web.Message;
 
 import java.util.Optional;
@@ -8,6 +9,8 @@ import java.util.Optional;
 public interface CustomerService {
 
     void createCustomer(Customer customer);
+    
+    Customer createCustomer(RegistrationForm regForm);
 
     void updateCustomer(Customer customer);
 

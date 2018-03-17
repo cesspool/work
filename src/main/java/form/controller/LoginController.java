@@ -22,26 +22,6 @@ public class LoginController {
     private CustomerService customerService;
     private MessageSource messageSource;
 
-    @RequestMapping(value = "/loginform", method = RequestMethod.GET)
-    public String showLoginForm(Model model) {
-        return Pages.LOGIN;
-    }
-
-    @RequestMapping(value = "/registrationform", method = RequestMethod.GET)
-    public String showRegistrationForm(Model model) {
-        return Pages.REGISTRATION;
-    }
-    
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public String showMainPage(Model model) {
-        return Pages.MAIN;
-    }
-
-    @RequestMapping(value = "/rateform", method = RequestMethod.GET)
-    public String showRatesForm(Model model) {
-        return Pages.RATE;
-    }
-
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String doLogin(@RequestParam(value = "email") String email,
                           @RequestParam(value = "pass") String pass,
@@ -61,7 +41,6 @@ public class LoginController {
             return Pages.PERSON;    
         }
     }
-
 
     @Autowired
     protected void setCustomerService(CustomerService service) {

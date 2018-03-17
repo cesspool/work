@@ -10,7 +10,8 @@ public class Customer {
     private String email;
     private String hashcode;
     private Boolean admin = Boolean.FALSE;
-
+    private Boolean manager = Boolean.FALSE;
+    
     public Long getId() {
         return id;
     }
@@ -82,4 +83,14 @@ public class Customer {
     public void setAdmin(Boolean admin) {
         this.admin = admin;
     }
+
+    public Boolean getManager() {
+        return manager;
+    }
+
+    public void setManager(Boolean manager) {
+        this.manager = manager;
+    }
+    
+    
 }
