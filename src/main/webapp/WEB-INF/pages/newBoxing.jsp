@@ -17,11 +17,18 @@
 <spring:message code="newRate.ulC" var="lbUlC"/>
 <spring:message code="newRate.ulD" var="lbUlD"/>
 <spring:message code="newRate.ulE" var="lbUlE"/>
-
 <spring:message code="contact.cancel" var="lbCancel"/>
 <spring:message code="personCost.send" var="lbSend"/>
-
 <spring:message code="history.table.trB.tdB" var="lbTableBB"/>
+
+<spring:message code="newBoxing.section.h" var="lbSectionH"/>
+<spring:message code="newBoxing.section.p" var="lbSectionP"/>
+<spring:message code="newBoxing.selectA" var="lbSelectA"/>
+<spring:message code="newBoxing.selectB" var="lbSelectB"/>
+<spring:message code="newBoxing.table.tdA" var="lbTableA"/>
+<spring:message code="newBoxing.table.tdB" var="lbTableB"/>
+<spring:message code="newBoxing.place.name" var="lbPlaceName"/>
+
 
 
 <html>
@@ -85,13 +92,13 @@
     <div class="container">
 
         <header class="major special">
-            <h2>Редактирование упаковок</h2>
-            <p>Выберите необходимое действие</p>
+            <h2>${lbSectionH}</h2>
+            <p>${lbSectionP }</p>
         </header>
 
         <select id="selColor">
-            <option selected>Добавление упаковки</option>
-            <option>Удаление упаковки</option>
+            <option selected>${lbSelectA}</option>
+            <option>${lbSelectB}</option>
             <option>Green</option>
         </select>
 
@@ -104,21 +111,19 @@
 
                     <table width="100%" cellspacing="0" cellpadding="5">
                         <tr ><td width="200" valign="top">
-                            <label for="lastName"><b>Название упаковки</b></label>
-                            <input type="text" placeholder="шт." name="email" required>
+                            <label for="name"><b>${lbTableA }</b></label>
+                            <input type="text" placeholder="${lbPlaceName}" name="name" id="name" required>
                         </td>
                             <td width="200" valign="top">
-                                <label for="lastName"><b>Стоимость упаковки</b></label>
-                                <input type="text" placeholder="шт." name="email" required>
+                                <label for="cost"><b>${lbTableB}</b></label>
+                                <input type="text" placeholder="5000" name="cost" id="cost" required>
                             </td>
                         </tr>
                     </table>
-
-
-                    <div class="clearfix">
-                        <button type="button" class="cancelbtn">Отмена</button>
-                        <button type="submit" class="signupbtn"><a href="resultCost.html">Добавить</a></button>
-                    </div>
+                      <div class="clearfix">
+              			  <button type="button" class="cancelbtn">${lbCancel }</button>
+               			  <button type="submit" class="signupbtn"><a href="resultCost.html">${lbSend}</a></button>
+             		  </div>
 
                 </div>
             </form>
@@ -130,15 +135,19 @@
 
             <table width="100%" cellspacing="0" cellpadding="5">
                 <tr ><td width="200" valign="top">
-                    <label for="lastName"><b>Упаковка</b></label>
+                    <label for="lastName"><b>${lbTableA }</b></label>
                     <select name="field_sity_tid" class="form-select">
-                        <option value="111">Стандартная</option>
-                        <option value="112">Дополнительная</option>
+                    <data>
+                        <option value="111">standart</option>
+                        <option value="112">additional</option>
+                    </data>
                     </select>
                 </td>
                     <td width="200" valign="top">
-                        <label for="lastName"><b>Стоимость упаковки</b></label>
-                        500 руб.
+                        <label for="lastName"><b>${lbTableB}</b></label>
+                        <data>
+                        500 rub.
+                        </data>
                     </td>
                 </tr>
             </table>

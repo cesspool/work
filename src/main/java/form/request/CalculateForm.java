@@ -5,8 +5,8 @@ public class CalculateForm {
     private String targetNode;
     private boolean urgency;
     private boolean envelope;
-    private double weight;
     private int quantity;
+    private double weight;
     private double width;
     private double length;
     private double height;

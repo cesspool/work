@@ -38,6 +38,15 @@
 <spring:message code="contact.cancel" var="lbCancel"/>
 
 
+<spring:message code="contact.place.pswRepeat" var="lbPlacePswRepeat"/>
+<spring:message code="contact.place.psw" var="lbPlacePsw"/>
+<spring:message code="contact.place.Mname" var="lbPlaceMname"/>
+<spring:message code="contact.place.Lname" var="lbPlaceLname"/>
+<spring:message code="contact.place.Fname" var="lbPlaceFname"/>
+<spring:message code="contact.place.city" var="lbPlaceCity"/>
+
+
+
 
 <html>
 <head>
@@ -117,15 +126,15 @@
                     <table width="100%" cellspacing="0" cellpadding="5">
                         <tr >
                             <td colspan="2" width="200" valign="top">
-                                ${lbTableAAA} <data>Фамилия Имя Отчество</data>
+                                ${lbTableAAA} <data>First last middle name</data>
                             </td>
                             <td colspan="2" width="200" valign="top">
-                                ${lbTableAAB} <data> есть </data>
+                                ${lbTableAAB} <data> yes </data>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="2" width="200" valign="top">
-                                ${lbTableABA} <data>Москва, улица новая, д.6</data>
+                                ${lbTableABA} <data>Moscow, Molodeznaya street, 6</data>
                             </td>
                             <td width="200" valign="top">
                                 ${lbTableABB}<data>8(926)723-16-50</data>
@@ -152,31 +161,31 @@
                     <table width="100%" cellspacing="0" cellpadding="5">
                         <td width="200" valign="top">
                             <label for="email"><b>${lbTableBAA}</b></label>
-                            <input type="text" placeholder="paulkapay@gmail.com" name="email" required>
+                            <input type="text" placeholder="paulkapay@gmail.com" name="email" id="email" required>
 
-                            <label for="phone"><b>${lbTableBAB}</b></label>
-                            <input type="text" placeholder="+7(926)723-16-50" name="email" required>
+                            <label for="telephone"><b>${lbTableBAB}</b></label>
+                            <input type="text" placeholder="+7(926)723-16-50" name="telephone" id="telephone" required>
 
                             <label for="city"><b>${lbTableBAC}</b></label>
-                            <input type="text" placeholder="Москва" name="email" required>
+                            <input type="text" placeholder="${lbPlaceCity}" name="city" id="city" required>
                         </td>
                         <td width="200" valign="top">
                             <label for="lastName"><b>${lbTableBBA}</b></label>
-                            <input type="text" placeholder="Иванов" name="email" required>
+                            <input type="text" placeholder="${lbPlaceLname}" name="lastName" id="lastName" required>
 
                             <label for="firstName"><b>${lbTableBBB}</b></label>
-                            <input type="text" placeholder="Иван" name="email" required>
+                            <input type="text" placeholder="${lbPlaceFname}" name="firstName" id="firstName" required>
 
                             <label for="patronymic"><b>${lbTableBBC}</b></label>
-                            <input type="text" placeholder="Иванович" name="email" required>
+                            <input type="text" placeholder="${lbPlaceMname}" name="patronymic" id="patronymic"  required>
                         </td>
 
                         <td width="200" valign="top">
                             <label for="psw"><b>${lbTableBCA}</b></label>
-                            <input type="password" placeholder="Введите пароль" name="psw" required>
+                            <input type="password" placeholder="${lbPlacePsw}" name="psw" id="psw" required>
 
-                            <label for="psw-repeat"><b>${lbTableBCB}</b></label>
-                            <input type="password" placeholder="Введите пароль еще раз" name="psw-repeat" required>
+                            <label for="pswRepeat"><b>${lbTableBCB}</b></label>
+                            <input type="password" placeholder="${lbPlacePswRepeat}" name="pswRepeat" id="pswRepeat" required>
                         </td>
 
                     </table>

@@ -27,6 +27,10 @@
 <spring:message code="personOrder.table.tdBA" var="lbTableBA"/>
 <spring:message code="personOrder.table.tdBB" var="lbTableBB"/>
 
+<spring:message code="contact.place.Mname" var="lbPlaceMname"/>
+<spring:message code="contact.place.Lname" var="lbPlaceLname"/>
+<spring:message code="contact.place.Fname" var="lbPlaceFname"/>
+
 
 <html>
 <head>
@@ -98,18 +102,18 @@
                 <table width="100%" cellspacing="0" cellpadding="5">
                     <td width="200" valign="top">
                         <label for="lastName"><b>${lbTableAA}</b></label>
-                        <input type="text" placeholder="Иванов" name="email" required>
+                        <input type="text" placeholder="${lbPlaceLname }" name="lastName" id="lastName" required>
 
                         <label for="firstName"><b>${lbTableAB}</b></label>
-                        <input type="text" placeholder="Иван" name="email" required>
+                        <input type="text" placeholder="${lbPlaceFname }" name="firstName" id="firstName" required>
                     </td>
 
                     <td width="200" valign="top">
                         <label for="patronymic"><b>${lbTableBA}</b></label>
-                        <input type="text" placeholder="Иванович" name="email" required>
+                        <input type="text" placeholder="${lbPlaceMname }" name="patronymic" id="patronymic" required>
 
-                        <label for="phone"><b>${lbTableBB}</b></label>
-                        <input type="text" placeholder="+7(926)723-16-50" name="email" required>
+                        <label for="telephone"><b>${lbTableBB}</b></label>
+                        <input type="text" placeholder="+7(926)723-16-50" name="telephone" id="telephone" required>
                     </td>
 
                 </table>

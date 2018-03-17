@@ -74,5 +74,12 @@ public class LoginController {
         this.messageSource = messageSource;
     }
     
+
+    @RequestMapping(value = "/status", method = RequestMethod.GET)
+    public String showAdminForm(Model model) {
+        return Pages.STATUS;
+    }
+
+    
     
 }

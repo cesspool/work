@@ -103,34 +103,34 @@
                 <table width="100%" cellspacing="0" cellpadding="5">
                     <tr >
                         <td width="200" valign="top">
-                            <label for="lastName"><b>${lbSectionAA}</b></label>
-                            <input type="date" placeholder="paulkapay@gmail.com" name="email" required>
+                            <label for="startAction"><b>${lbSectionAA}</b></label>
+                            <input type="date" name="startAction" id="startAction" required>
                         </td>
                         <td width="200" valign="top">
-                            <label for="lastName"><b>${lbSectionAB}</b></label>
-                            <input type="date" placeholder="paulkapay@gmail.com" name="email" required>
+                            <label for="endAction"><b>${lbSectionAB}</b></label>
+                            <input type="date" name="endAction" id="endAction" required>
                         </td>
                         <td colspan="2" width="200" valign="top">
-                            <label for="lastName"><b>${lbSectionAC}</b></label>
-                            <input type="text" placeholder="paulkapay@gmail.com" name="email" required>
+                            <label for="name"><b>${lbSectionAC}</b></label>
+                            <input type="text" placeholder="Экономный" name="name" id="name" required>
                         </td>
                     </tr>
                     <tr>
                         <td width="200" valign="top">
-                            <label for="lastName"><b>${lbSectionBA}</b></label>
-                            <input type="text" placeholder="paulkapay@gmail.com" name="email" required>
+                            <label for="totalWeight"><b>${lbSectionBA}</b></label>
+                            <input type="text" placeholder="10" name="totalWeight" id="totalWeight" required>
                         </td>
                         <td width="200" valign="top">
-                            <label for="lastName"><b>${lbSectionBB}</b></label>
-                            <input type="text" placeholder="paulkapay@gmail.com" name="email" required>
+                            <label for="maxLength"><b>${lbSectionBB}</b></label>
+                            <input type="text" placeholder="0.6" name="maxLength" id="maxLength" required>
                         </td>
                         <td width="200" valign="top">
-                            <label for="lastName"><b>${lbSectionBC}</b></label>
-                            <input type="text" placeholder="paulkapay@gmail.com" name="email" required>
+                            <label for="maxWidth"><b>${lbSectionBC}</b></label>
+                            <input type="text" placeholder="0.3" name="maxWidth" id="maxWidth" required>
                         </td>
                         <td width="200" valign="top">
-                            <label for="lastName"><b>${lbSectionBD}</b></label>
-                            <input type="text" placeholder="paulkapay@gmail.com" name="email" required>
+                            <label for="maxHeight"><b>${lbSectionBD}</b></label>
+                            <input type="text" placeholder="0.2" name="maxHeight" id="maxHeight" required>
                         </td>
                     </tr>
                     <tr>
@@ -138,16 +138,16 @@
                             ${lbSectionCA}
                         </td>
                         <td width="200" valign="top">
-                            <label for="lastName"><b>${lbSectionCB}</b></label>
-                            <input type="text" placeholder="paulkapay@gmail.com" name="email" required>
+                            <label for="costShippingCargo"><b>${lbSectionCB}</b></label>
+                            <input type="text" placeholder="15" name="costShippingCargo" id="costShippingCargo" required>
                         </td>
                         <td width="200" valign="top">
-                            <label for="lastName"><b>${lbSectionCC}</b></label>
-                            <input type="text" placeholder="paulkapay@gmail.com" name="email" required>
+                            <label for="costShippingAir"><b>${lbSectionCC}</b></label>
+                            <input type="text" placeholder="16" name="costShippingAir" id="costShippingAir" required>
                         </td>
                         <td width="200" valign="top">
-                            <label for="lastName"><b>${lbSectionCD}</b></label>
-                            <input type="text" placeholder="paulkapay@gmail.com" name="email" required>
+                            <label for="costShippingRail"><b>${lbSectionCD}</b></label>
+                            <input type="text" placeholder="10" name="costShippingRail" id="costShippingRail" required>
                         </td>
                     </tr>
                     <tr>
@@ -155,16 +155,16 @@
                             ${lbSectionDA}
                         </td>
                         <td width="200" valign="top">
-                            <label for="lastName"><b>${lbSectionCB}</b></label>
-                            <input type="text" placeholder="paulkapay@gmail.com" name="email" required>
+                            <label for="addCostShippingCargo"><b>${lbSectionCB}</b></label>
+                            <input type="text" placeholder="10" name="addCostShippingCargo" id="addCostShippingCargo" required>
                         </td>
                         <td width="200" valign="top">
-                            <label for="lastName"><b>${lbSectionCC}</b></label>
-                            <input type="text" placeholder="paulkapay@gmail.com" name="email" required>
+                            <label for="addCostShippingAir"><b>${lbSectionCC}</b></label>
+                            <input type="text" placeholder="10" name="addCostShippingAir" id="addCostShippingAir" required>
                         </td>
                         <td width="200" valign="top">
-                            <label for="lastName"><b>${lbSectionCD}</b></label>
-                            <input type="text" placeholder="paulkapay@gmail.com" name="email" required>
+                            <label for="addCostShippingCargo"><b>${lbSectionCD}</b></label>
+                            <input type="text" placeholder="10" name="addCostShippingCargo" id="addCostShippingCargo" required>
                         </td>
                     </tr>
                     <tr>
@@ -172,16 +172,16 @@
                             ${lbSectionEA}
                         </td>
                         <td width="200" valign="top">
-                            <label for="lastName"><b>${lbSectionCB}</b></label>
-                            <input type="text" placeholder="paulkapay@gmail.com" name="email" required>
+                            <label for="costKmCargo"><b>${lbSectionCB}</b></label>
+                            <input type="text" placeholder="15" name="costKmCargo" id="costKmCargo" required>
                         </td>
                         <td width="200" valign="top">
-                            <label for="lastName"><b>${lbSectionCC}</b></label>
-                            <input type="text" placeholder="paulkapay@gmail.com" name="email" required>
+                            <label for="costKmAir"><b>${lbSectionCC}</b></label>
+                            <input type="text" placeholder="15" name="costKmAir" id="costKmAir" required>
                         </td>
                         <td width="200" valign="top">
-                            <label for="lastName"><b>${lbSectionCD}</b></label>
-                            <input type="text" placeholder="paulkapay@gmail.com" name="email" required>
+                            <label for="costKmRail"><b>${lbSectionCD}</b></label>
+                            <input type="text" placeholder="15" name="costKmRail" id="costKmRail" required>
                         </td>
                     </tr>
                 </table>

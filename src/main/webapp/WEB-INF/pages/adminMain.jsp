@@ -29,7 +29,12 @@
 <spring:message code="adminMain.table.trB.tdA" var="lbTableBA"/>
 <spring:message code="adminMain.table.trB.tdB" var="lbTableBB"/>
 <spring:message code="adminMain.table.trB.tdC" var="lbTableBC"/>
+<spring:message code="adminMain.table.trB.tdD" var="lbTableBD"/>
 <spring:message code="adminMain.table.trC.tdA" var="lbTableCA"/>
+
+<spring:message code="adminMain.place.city" var="lbPlaceCity"/>
+<spring:message code="adminMain.place.branch" var="lbPlaceBranch"/>
+<spring:message code="adminMain.place.address" var="lbPlaceAddress"/>
 
 <html>
 <head>
@@ -95,9 +100,9 @@
             <div class="container limiter">
                 <table width="100%" cellspacing="0" cellpadding="5">
                     <tr>
-                        <label for="email"><b>${lbTableAA}</b></label>
+                        <label for="name"><b>${lbTableAA}</b></label>
                         <td width="200" valign="top">
-                            <input type="text" placeholder="paulkapay@gmail.com" name="email" required>
+                            <input type="text" placeholder="${lbPlaceBranch}" name="name" id="name" required>
                         </td>
 
                         <td>
@@ -112,16 +117,20 @@
 
                     <tr>
                         <td width="200" valign="top">
-                            <label for="lastName"><b>${lbTableBA}</b></label>
-                            <input type="text" placeholder="Иванов" name="email" required>
+                            <label for="coordinateX"><b>${lbTableBA}</b></label>
+                            <input type="text" placeholder="1424.1525" name="coordinateX" id="coordinateX" required>
                         </td>
                         <td>
-                            <label for="firstName"><b>${lbTableBB}</b></label>
-                            <input type="text" placeholder="Иван" name="email" required>
+                            <label for="coordinateY"><b>${lbTableBB}</b></label>
+                            <input type="text" placeholder="12515.152" name="coordinateY" id="coordinateY" required>
                         </td>
                         <td>
-                            <label for="phone"><b>${lbTableBC}</b></label>
-                            <input type="text" placeholder="+7(926)723-16-50" name="email" required>
+                            <label for="address"><b>${lbTableBC}</b></label>
+                            <input type="text" placeholder="${lbPlaceAddress}" name="address" id="address" required>
+                        </td>
+                        <td width="200" valign="top">
+                            <label for="city"><b>${lbTableBD}</b></label>
+                            <input type="text" placeholder="${lbPlaceCity}" name="city" id="city" required>
                         </td>
                     </tr>
                     <tr>
@@ -130,9 +139,9 @@
                                 <button class="add_field_button">${lbTableCA}</button>
                                 <div> <select name="field_sity_tid" class="form-select">
                                 	<data>
-                                    	<option value="103">Москва</option>
-                                    	<option value="104">Уфа</option>
-                                    	<option value="105">Долгопрудный</option>
+                                    	<option value="103">Moscow</option>
+                                    	<option value="104">Ufa</option>
+                                    	<option value="105">Dolgoprudny</option>
                                     </data>
                                 </select></div>
                             </div>

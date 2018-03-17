@@ -41,10 +41,12 @@
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/Login_v2/css/util.css"/>">
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/Login_v2/css/main.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/main.css" />"/>
+    <link rel="stylesheet" href="<c:url value="/resources/css/loginMes.css" />"/>
 <!--===============================================================================================-->
     <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 </head>
 <body >
+
 	<!-- Header -->
     <header id="header">
         <h1><strong>${lbSectMain}"</strong></h1>
@@ -93,7 +95,13 @@
 					</div>
                     <c:if test="${not empty message}">    
                       <div> <!-- ERROR MESSAGE BOX -->
-                          ${message.msg}
+                      <div id="boxes">  
+					  	<div id="dialog" class="window"> 
+							<div class="top"><a href="#" class="link close"/>Закрыть</a></div>
+								<div class="content">${message.msg}</div>
+							</div>
+						</div>
+						<div id="mask"></div>
                       </div>
                     </c:if>
                     
@@ -107,6 +115,7 @@
 						</a>
 					</div>
 				</form>
+					<a href="#dialog" name="modal">Вызов модального окна</a>
 			</div>
 		</div>
 	</div>
@@ -115,6 +124,7 @@
 	<div id="dropDownSelect1"></div>
 	
 <!--===============================================================================================-->
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 	<script src="<c:url value="/resources/Login_v2/vendor/jquery/jquery-3.2.1.min.js"/>"></script>
 <!--===============================================================================================-->
 	<script src="<c:url value="/resources/Login_v2/vendor/animsition/js/animsition.min.js"/>"></script>
@@ -135,6 +145,7 @@
 	<script src="<c:url value="/resources/assets/js/skel.min.js"/>"></script>
 	<script src="<c:url value="/resources/assets/js/util.js"/>"></script>
 	<script src="<c:url value="/resources/assets/js/main.js"/>"></script>
+	<script src="<c:url value="/resources/js/message.js"/>"></script>
 
 </body>
 </html>

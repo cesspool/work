@@ -98,31 +98,31 @@
 
                 <table width="100%" cellspacing="0" cellpadding="5">
                     <tr ><td width="200" valign="top">
-                        <label for="psw-repeat"><b>${lbTableAA}</b></label>
-                        <select name="field_sity_tid" class="form-select">
+                        <label for="startNode"><b>${lbTableAA}</b></label>
+                        <select name="startNode" id="startNode" class="form-select">
                         <data>
-								<option value="106">Москва</option>
-                                <option value="107">Уфа</option>
-                                <option value="108">Долгопрудный</option>
+								<option value="106">Moscow</option>
+                                <option value="107">Ufa</option>
+                                <option value="108">Dolgoprudny</option>
                         </data>
                         </select>
                         </td>
                         <td width="200" valign="top">
-                            <label for="psw-repeat"><b>${lbTableAB}</b></label>
-                            <select name="field_sity_tid" class="form-select">
+                            <label for="targetNode"><b>${lbTableAB}</b></label>
+                            <select name="targetNode" id ="targetNode" class="form-select">
                                 <data>
-									<option value="106">Москва</option>
-	                                <option value="107">Уфа</option>
-	                                <option value="108">Долгопрудный</option>
+									<option value="106">Moscow</option>
+	                                <option value="107">Ufa</option>
+	                                <option value="108">Dolgoprudny</option>
                         		</data>
                             </select>
                         </td>
                         <td width="200" valign="top">
-                            <label for="lastName"><b>${lbTableBC }</b></label>
-                            <select name="field_sity_tid" class="form-select">
+                            <label for="urgency"><b>${lbTableBC }</b></label>
+                            <select name="urgency" id="urgency" class="form-select">
                             <data>
-                                <option value="109">Эконом</option>
-                                <option value="110">Экспресс</option>
+                                <option value="109">economy</option>
+                                <option value="110">express</option>
                             </data>
                             </select>
                         </td>
@@ -137,18 +137,18 @@
                     </tr>
                     <tr>
                         <td width="200" valign="top">
-                            <label for="lastName"><b>${lbTableBA}</b></label>
-                            <select id="edit-field-sity-tid" name="field_sity_tid" class="form-select">
+                            <label for="envelope"><b>${lbTableBA}</b></label>
+                            <select id="envelope" name="field_sity_tid" class="form-select">
                             <data>
-								<option value="708">Конверт</option>
-                                <option value="710">Посылка</option>
+								<option value="708">envelop</option>
+                                <option value="710">cargo</option>
                             </data>
                             </select>
                         </td>
 
                         <td width="200" valign="top">
-                            <label for="lastName"><b>${lbTableCD}</b></label>
-                            <input type="text" placeholder="ÑÑ." name="email" required>
+                            <label for="quantity"><b>${lbTableCD}</b></label>
+                            <input type="text" placeholder="1" name="quantity" id="quantity" required>
                         </td>
                     </tr>
                 </table>
@@ -157,29 +157,29 @@
                     <table>
                         <tr>
                             <td width="200" valign="top">
-                                <label for="lastName"><b>${lbTableEB}</b></label>
-                                <input type="text" placeholder="ÐÐ²Ð°Ð½Ð¾Ð²" name="email" required>
+                                <label for="length"><b>${lbTableEB}</b></label>
+                                <input type="text" placeholder="1.5" name="length" id="length" required>
                             </td>
                             <td width="200" valign="top">
-                                <label for="lastName"><b>${lbTableDD }</b></label>
-                                <input type="text" placeholder="ÐÐ²Ð°Ð½Ð¾Ð²" name="email" required>
+                                <label for="width"><b>${lbTableDD }</b></label>
+                                <input type="text" placeholder="2.1" name="width" id="width" required>
                             </td>
                             <td width="200" valign="top">
-                                <label for="lastName"><b>${lbTableDC }</b></label>
-                                <input type="text" placeholder="ÐÐ²Ð°Ð½Ð¾Ð²" name="email" required>
+                                <label for="height"><b>${lbTableDC }</b></label>
+                                <input type="text" placeholder="3.2" name="height" id="height" required>
                             </td>
                         </tr>
                         <tr>
                             <td width="200" valign="top">
-                                <label for="lastName"><b>${lbTableEC }</b></label>
-                                <input type="text" placeholder="ÐÐ²Ð°Ð½Ð¾Ð²" name="email" required>
+                                <label for="weight"><b>${lbTableEC }</b></label>
+                                <input type="text" placeholder="3.1" name="weight" id="weight" required>
                             </td>
                             <td width="230" valign="top">
-                                <label for="lastName"><b>${lbTableCA }</b></label>
-                                <select name="field_sity_tid" class="form-select">
+                                <label for="box"><b>${lbTableCA }</b></label>
+                                <select name="box" id="box" class="form-select">
                                 <data>
-                                    <option value="111">Стандартная</option>
-                                    <option value="112">Дополнительная</option>
+                                    <option value="111">Standart</option>
+                                    <option value="112">Additional</option>
                                 </data>
                                 </select>
                             </td>

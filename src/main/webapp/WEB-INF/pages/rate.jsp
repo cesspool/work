@@ -66,7 +66,7 @@
     <div class="container">
 
         <header class="major special">
-            <h2>${lbHeaderA} <data>название</data></h2>
+            <h2>${lbHeaderA} <data>name</data></h2>
             <p>${lbHeaderB} <data>10.10.2010 - 10.10.2011</data></p>
         </header>
         <form class="registration">
@@ -159,7 +159,7 @@
     <div class="container">
 
         <header class="major special">
-            <h2>${lbAdditional} <data>название</data></h2>
+            <h2>${lbAdditional} <data>name</data></h2>
             <p>${lbHeaderB } <data>10.10.2010 - 10.10.2011</data></p>
         </header>
         <form class="registration">

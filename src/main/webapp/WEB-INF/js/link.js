@@ -9,9 +9,9 @@ $(document).ready(function() {
         if(x < max_fields){ //max input box allowed
             x++; //text box increment
             $(wrapper).append('<div> <select name="field_sity_tid" class="form-select">\n' +
-                '                            <option value="103">Москва</option>\n' +
-                '                            <option value="104">Уфа</option>\n' +
-                '                            <option value="105">Долгопрудный</option>\n' +
+                '                            <option value="103">Moscow</option>\n' +
+                '                            <option value="104">Ufa</option>\n' +
+                '                            <option value="105">Dolgoprudny</option>\n' +
                 '                        </select><a href="#" class="remove_field">Удалить</a></div>'); //add input box
         }
     });
