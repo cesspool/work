@@ -34,7 +34,7 @@
 
 <body>
 
-<form class="registration">
+<form class="registration" method="post" action="${contextPath}/registration">
     <div class="container limiter">
            <header class="major special">
 	            <h2>${lbMain}</h2>
@@ -42,24 +42,24 @@
         </header>
     <table width="100%" cellspacing="0" cellpadding="5">
             <td width="200" valign="top">
-                <label for="email"><b>${lbTableBAA }</b></label>
-                <input type="text" placeholder="paulkapay@gmail.com" name="email" required>
+                <label for="email"><b>${lbTableBAA}</b></label>
+                <input type="text" placeholder="paulkapay@gmail.com" name="email" id="email" required>
 
-                <label for="phone"><b>${lbTableBAB }</b></label>
-                <input type="text" placeholder="+7(926)723-16-50" name="email" required>
+                <label for="phone"><b>${lbTableBAB}</b></label>
+                <input type="text" placeholder="+7(926)723-16-50" name="telephone" required>
 
                 <label for="city"><b>${lbTableBAC}</b></label>
-                <input type="text" placeholder="ÐÐ¾ÑÐºÐ²Ð°" name="email" required>
+                <input type="text" placeholder="ÐÐ¾ÑÐºÐ²Ð°" name="city" required>
             </td>
             <td width="200" valign="top">
                 <label for="lastName"><b>${lbTableBBA}</b></label>
-                <input type="text" placeholder="ÐÐ²Ð°Ð½Ð¾Ð²" name="email" required>
+                <input type="text" placeholder="ÐÐ²Ð°Ð½Ð¾Ð²" name="lastName" required>
 
                 <label for="firstName"><b>${lbTableBBB }</b></label>
-                <input type="text" placeholder="ÐÐ²Ð°Ð½" name="email" required>
+                <input type="text" placeholder="ÐÐ²Ð°Ð½" name="firstName" required>
 
                 <label for="patronymic"><b>${lbTableBBC}</b></label>
-                <input type="text" placeholder="ÐÐ²Ð°Ð½Ð¾Ð²Ð¸Ñ" name="email" required>
+                <input type="text" placeholder="ÐÐ²Ð°Ð½Ð¾Ð²Ð¸Ñ" name="patronymic" required>
             </td>
             
             <td width="200" valign="top">
@@ -67,7 +67,7 @@
                 <input type="password" placeholder="ÐÐ²ÐµÐ´Ð¸ÑÐµ Ð¿Ð°ÑÐ¾Ð»Ñ" name="psw" required>
 
                 <label for="psw-repeat"><b>${lbTableBCB}</b></label>
-                <input type="password" placeholder="ÐÐ²ÐµÐ´Ð¸ÑÐµ Ð¿Ð°ÑÐ¾Ð»Ñ ÐµÑÐµ ÑÐ°Ð·" name="psw-repeat" required>
+                <input type="password" placeholder="ÐÐ²ÐµÐ´Ð¸ÑÐµ Ð¿Ð°ÑÐ¾Ð»Ñ ÐµÑÐµ ÑÐ°Ð·" name="pswRepeat" required>
             </td>
 
     </table>

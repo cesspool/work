@@ -7,6 +7,10 @@ public class RegistrationForm {
     private String telephone;
     private String email;
     private String city;
+    private String psw;
+    private String pswRepeat;
+    private boolean admin;
+    private boolean manager;
 
     public String getFirstName() {
         return firstName;
@@ -55,4 +59,38 @@ public class RegistrationForm {
     public void setCity(String city) {
         this.city = city;
     }
+
+    public String getPsw() {
+        return psw;
+    }
+
+    public void setPsw(String psw) {
+        this.psw = psw;
+    }
+
+    public String getPswRepeat() {
+        return pswRepeat;
+    }
+
+    public void setPswRepeat(String pswRepeat) {
+        this.pswRepeat = pswRepeat;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
+    public boolean isManager() {
+        return manager;
+    }
+
+    public void setManager(boolean manager) {
+        this.manager = manager;
+    }
+    
+    
 }
