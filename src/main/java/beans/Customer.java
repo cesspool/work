@@ -84,7 +84,7 @@ public class Customer {
         this.admin = admin;
     }
 
-    public Boolean getManager() {
+    public Boolean isManager() {
         return manager;
     }
 

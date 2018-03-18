@@ -24,13 +24,15 @@ public class CustomerServiceImpl implements CustomerService {
     public void createCustomer(Customer customer) {
         if (customer != null) {
             // validate the bean's fileds
+            String md5 = Tools.stringToMD5(customer.getMd5());
+            customer.setMd5(md5);
             customerDAOService.insertCustomer(customer);
         }
     }
 
     @Override
     public Customer createCustomer(RegistrationForm regForm) {
-        Customer cmr = formDataToCustomer(regForm);
+        Customer cmr = Tools.registrationFormToCustomer(regForm);
         createCustomer(cmr);
         return cmr;
     }
@@ -84,18 +86,5 @@ public class CustomerServiceImpl implements CustomerService {
         return cmr;
     }
 
-    private Customer formDataToCustomer(RegistrationForm form) {
-        Customer cmr = new Customer();
-        cmr.setFirstName(form.getFirstName());
-        cmr.setLastName(form.getLastName());
-        cmr.setPatronymic(form.getPatronymic());
-        cmr.setAddress(form.getCity());
-        cmr.setEmail(form.getEmail());
-        cmr.setTelephone(form.getTelephone());
-        cmr.setMd5(form.getPsw());
-        cmr.setAdmin(form.isAdmin());
-        cmr.setManager(form.isManager());
-        return cmr;
-    }
-    
+
 }

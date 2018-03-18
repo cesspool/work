@@ -1,5 +1,7 @@
 package utils;
 
+import beans.Customer;
+import form.request.RegistrationForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,4 +34,34 @@ public class Tools {
             return false;
         }
     }
+    
+    
+    public static Customer registrationFormToCustomer(RegistrationForm form) {
+        Customer cmr = new Customer();
+        cmr.setFirstName(form.getFirstName());
+        cmr.setLastName(form.getLastName());
+        cmr.setPatronymic(form.getPatronymic());
+        cmr.setAddress(form.getCity());
+        cmr.setEmail(form.getEmail());
+        cmr.setTelephone(form.getTelephone());
+        cmr.setMd5(form.getPsw());
+        cmr.setAdmin(form.isAdmin());
+        cmr.setManager(form.isManager());
+        return cmr;
+    }
+
+    
+    public static RegistrationForm customerToRegistrationForm(Customer cmr) {
+        RegistrationForm form = new RegistrationForm();
+        form.setFirstName(cmr.getFirstName());
+        form.setLastName(cmr.getLastName());
+        form.setPatronymic(cmr.getPatronymic());
+        form.setCity(cmr.getAddress());
+        form.setEmail(cmr.getEmail());
+        form.setTelephone(cmr.getTelephone());
+        form.setAdmin(cmr.isAdmin());
+        form.setManager(cmr.isManager());
+        return form;
+    }
+
 }
