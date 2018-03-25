@@ -71,7 +71,6 @@ public class CustomerDAOServiceImpl extends DataService implements CustomerDAOSe
             int idx = 1;
             c.setId(rs.getLong(idx++));
             c.setFirstName(rs.getString(idx++));
-            c.setFirstName(rs.getString(idx++));
             c.setLastName(rs.getString(idx++));
             c.setPatronymic(rs.getString(idx++));
             c.setAddress(rs.getString(idx++));

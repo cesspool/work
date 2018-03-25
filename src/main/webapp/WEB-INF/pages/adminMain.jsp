@@ -46,6 +46,8 @@
 
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400;300" rel="stylesheet" type="text/css">
     <link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet"/>
+    
+    <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 </head>
 <body>
 
@@ -78,11 +80,11 @@
 
     <!-- Меню -->
     <ul>
-        <li><a href="statusOrder.html">${lbUlA}</a></li>
-        <li><a href="adminMain.html">${lbHeader}</a></li>
-        <li><a href="newRate.html">${lbUlC}</a></li>
-        <li><a href="newBoxing.html">${lbUlD}</a></li>
-        <li><a href="index.html">${lbUlE}</a></li>
+        <li><a href="${contextPath}/status">${lbUlA}</a></li>
+        <li><a href="${contextPath}/admin">${lbHeader}</a></li>
+        <li><a href="${contextPath}/newrate">${lbUlC}</a></li>
+        <li><a href="${contextPath}/boxing">${lbUlD}</a></li>
+        <li><a href="${contextPath}/index">${lbUlE}</a></li>
     </ul>
 </div>
 

@@ -30,8 +30,8 @@
 			<header id="header" class="alt">
 				<nav id="nav">
 					<ul>
-						<li><a href="index.html">${lbNavMain}</a></li>
-						<li><a href="rate.html">${lbNavRates}</a></li>
+						<li><a href="${contextPath}/index">${lbNavMain}</a></li>
+						<li><a href="${contextPath}/rateform">${lbNavRates}</a></li>
 						<li><a href="${contextPath}/loginform">${lbNavAuth}</a></li>
 					</ul>
 				</nav>
@@ -44,7 +44,7 @@
 				<h2>${lbSectMain}</h2>
 				<p>${lbSectDescrA}<br />${lbSectDescrB}<br /><br />${lbSectDescrC}</p>
 				<ul class="actions">
-					<li><a href="login.html" class="button special big">${lbUlLi}</a></li>
+					<li><a href="${contextPath}/loginform" class="button special big">${lbUlLi}</a></li>
 				</ul>
 			</section>
 

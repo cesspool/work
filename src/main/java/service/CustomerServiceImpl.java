@@ -11,6 +11,7 @@ import utils.Tools;
 import web.Message;
 import web.Message.Type;
 
+import java.security.MessageDigest;
 import java.util.Optional;
 
 @Service
@@ -78,10 +79,14 @@ public class CustomerServiceImpl implements CustomerService {
             msg.setKey("login.user_not_found");
             return null;
         }
-        if (!passMD5.equals(cmr.getMd5())) {
-            msg.setType(Type.ERROR);
-            msg.setKey("login.wrong_pass");
-            return null;
+        try{
+            if (MessageDigest.isEqual(passMD5.getBytes("UTF-8"), cmr.getMd5().getBytes("UTF-8"))) {
+                msg.setType(Type.ERROR);
+                msg.setKey("login.wrong_pass");
+                return null;
+            }
+        }catch(Exception ex) {
+            logger.error("Authentication failed", ex);
         }
         return cmr;
     }

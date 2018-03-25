@@ -43,6 +43,8 @@
 
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400;300" rel="stylesheet" type="text/css">
     <link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet"/>
+    
+    <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 </head>
 <body>
 
@@ -93,7 +95,7 @@
             <h2>${lbSectionH}</h2>
             <p>${lbSectionP}</p>
         </header>
-        <form class="registration">
+        <form class="registration" method="post" action="${contextPath}/costCalculation" name="costCalcForm"  id="costCalcForm">
             <div class="container limiter">
 
                 <table width="100%" cellspacing="0" cellpadding="5">
@@ -189,7 +191,7 @@
 
                 <div class="clearfix">
                     <button type="button" class="cancelbtn">${lbCancel }</button>
-                    <button type="submit" class="signupbtn"><a href="resultCost.html">${lbSend}</a></button>
+                    <button type="submit" class="signupbtn">${lbSend}</button>
                 </div>
 
             </div>

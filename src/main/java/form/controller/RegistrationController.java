@@ -44,7 +44,7 @@ public class RegistrationController {
         } else {
             Customer cmr = customerService.createCustomer(formData);
             redirectAttributes.addFlashAttribute(Pages.ATR_CUSTOMER, formData);
-            return "redirect:registrationform/" + cmr.getId();
+            return "redirect:loginform";
         }
 
     }

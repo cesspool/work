@@ -46,6 +46,8 @@
 
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400;300" rel="stylesheet" type="text/css">
     <link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet"/>
+    
+    <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 </head>
 <body>
 
@@ -55,9 +57,9 @@
     <h1><strong>${lbSectMain}</strong></h1>
     <nav id="nav">
         <ul>
-                <li><a href="index.html">${lbNavMain}</a></li>
-			<li><a href="rate.html">${lbNavRates}</a></li>
-			<li><a href="login.html">${lbNavAuth}</a></li>
+            <li><a href="${contextPath}/index">${lbNavMain}</a></li>
+			<li><a href="${contextPath}/rateform">${lbNavRates}</a></li>
+			<li><a href="${contextPath}/loginform">${lbNavAuth}</a></li>
             <li>
                 <div>
                     <div style="color: brown" class="icon-menu">
@@ -79,11 +81,11 @@
 
     <!-- ÐÐµÐ½Ñ -->
     <ul>
-        <li><a href="personal.html">${lbUlLiA}</a></li>
-        <li><a href="history.html">${lbUlLiB}</a></li>
-        <li><a href="personCost.html">${lbUlLiC}</a></li>
-        <li><a href="contact.html">${lbUlLiD}</a></li>
-        <li><a href="index.html">${lbUlLiE}</a></li>
+        <li><a href="${contextPath}/personal">${lbUlLiA}</a></li>
+        <li><a href="${contextPath}/history">${lbUlLiB}</a></li>
+        <li><a href="${contextPath}/cost">${lbUlLiC}</a></li>
+        <li><a href="${contextPath}/contact">${lbUlLiD}</a></li>
+        <li><a href="${contextPath}/index">${lbUlLiE}</a></li>
     </ul>
 </div>
 
