@@ -94,15 +94,12 @@
 						</div>
 					</div>
                     <c:if test="${not empty message}">    
-                      <div> <!-- ERROR MESSAGE BOX -->
-                      <div id="boxes">  
-					  	<div id="dialog" class="window"> 
-							<div class="top"><a href="#" class="link close"/>Закрыть</a></div>
-								<div class="content">${message.msg}</div>
-							</div>
-						</div>
-						<div id="mask"></div>
-                      </div>
+                    <div>
+	                      <div class="modalDialog"> <!-- ERROR MESSAGE BOX -->
+		                      <h2>Error</h2>
+		                      <p>${message.msg}</p>
+						  </div>
+					  </div>
                     </c:if>
                     
 					<div class="text-center p-t-115">
@@ -115,7 +112,7 @@
 						</a>
 					</div>
 				</form>
-					<a href="#dialog" name="modal">Вызов модального окна</a>
+				
 			</div>
 		</div>
 	</div>
@@ -145,7 +142,7 @@
 	<script src="<c:url value="/resources/assets/js/skel.min.js"/>"></script>
 	<script src="<c:url value="/resources/assets/js/util.js"/>"></script>
 	<script src="<c:url value="/resources/assets/js/main.js"/>"></script>
-	<script src="<c:url value="/resources/js/message.js"/>"></script>
+	<!-- src="<c:url value="/resources/js/message.js"/>"></script-->
 
 </body>
 </html>

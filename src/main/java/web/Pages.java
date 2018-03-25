@@ -67,7 +67,7 @@ public class Pages {
     public static final String REGISTRATION = "registration";
 
     /**
-     * page for changing status of orders (manager can see)
+     * page for changing status of orders (manager and admin can see)
      */
     public static final String STATUS = "statusOrder";
 
