@@ -2926,11 +2926,11 @@
 	.navPanelToggle {
 		text-decoration: none;
 		text-decoration: none;
-		height: 100%;
+		height: 10%;
 		left: 0;
 		position: absolute;
 		top: 0;
-		width: 100%;
+		width: 6%;
 		display: none;
 	}
 
@@ -2984,8 +2984,8 @@
 		background: #222;
 		color: #fff;
 		height: 100%;
-		max-width: 80%;
-		width: 20em;
+		max-width: 20%;
+		width: 15em;
 		padding: 0.5em 1.25em;
 		text-transform: uppercase;
 	}
@@ -3014,7 +3014,7 @@
 				}
 
 		#navPanel .button {
-			width: 100%;
+			width: 10%;
 		}
 
 		#navPanel .close {
