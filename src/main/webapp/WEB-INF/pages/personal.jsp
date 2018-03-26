@@ -52,45 +52,9 @@
 <body>
 
 
-<!-- Header -->
-<header id="header">
-    <h1><strong>${lbSectMain}</strong></h1>
-    <nav id="nav">
-        <ul>
-            <li><a href="${contextPath}/index">${lbNavMain}</a></li>
-			<li><a href="${contextPath}/rateform">${lbNavRates}</a></li>
-			<li><a href="${contextPath}/loginform">${lbNavAuth}</a></li>
-            <li>
-                <div>
-                    <div style="color: brown" class="icon-menu">
-                        <img class="contact" src="<c:url value="/resources/images/contact.png"/>"/>${lbLiDiv}
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </nav>
-</header>
-<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+<%@ include file = "menuGeneral.jsp" %>
+<%@ include file = "menuCustomer.jsp" %>
 
-<div class="menu">
-
-    <!-- ÐÐºÐ¾Ð½ÐºÐ° Ð¼ÐµÐ½Ñ -->
-     <div class="icon-close">
-        <img src="<c:url value="/resources/images/close-btn.png"/>"/>
-    </div>
-
-    <!-- ÐÐµÐ½Ñ -->
-    <ul>
-        <li><a href="${contextPath}/personal">${lbUlLiA}</a></li>
-        <li><a href="${contextPath}/history">${lbUlLiB}</a></li>
-        <li><a href="${contextPath}/cost">${lbUlLiC}</a></li>
-        <li><a href="${contextPath}/contact">${lbUlLiD}</a></li>
-        <li><a href="${contextPath}/index">${lbUlLiE}</a></li>
-    </ul>
-</div>
-
-<!-- Main body -->
-<!-- Main -->
 <section id="main" class="wrapper">
     <div class="container">
 

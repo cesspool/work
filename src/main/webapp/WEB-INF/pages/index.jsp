@@ -15,6 +15,7 @@
 <spring:message code="index.divA" var="lbDivA"/>
 <spring:message code="index.divB" var="lbDivB"/>
 <spring:message code="index.ul.li" var="lbUlLi"/>
+<spring:message code="newRate.li.div" var="lbLiDiv"/>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <html>
@@ -23,21 +24,12 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="<c:url value="/resources/assets/css/main.css"/>"/>
+		<link rel="stylesheet" href="<c:url value="/resources/css/personal.css"/>"/>
+		<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 	</head>
 	<body class="landing">
 
-		<!-- Header -->
-			<header id="header" class="alt">
-				<nav id="nav">
-					<ul>
-						<li><a href="${contextPath}/index">${lbNavMain}</a></li>
-						<li><a href="${contextPath}/rateform">${lbNavRates}</a></li>
-						<li><a href="${contextPath}/loginform">${lbNavAuth}</a></li>
-					</ul>
-				</nav>
-			</header>
-
-			<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+	<%@ include file = "menuGeneral.jsp" %>
 
 		<!-- Banner -->
 			<section id="banner">

@@ -12,6 +12,7 @@
 <spring:message code="login.div.spanC" var="lbDivC"/>
 <spring:message code="login.div.spanD" var="lbDivD"/>
 <spring:message code="index.section.main" var="lbSectMain"/>
+<spring:message code="newRate.li.div" var="lbLiDiv"/>
 
 
 <html lang="en">
@@ -19,6 +20,7 @@
 	<title>${lbSectMain}</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="<c:url value="/resources/css/personal.css"/>"/>
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="<c:url value="/resources/Login_v2/images/icons/favicon.ico"/>"/>
 <!--===============================================================================================-->
@@ -47,19 +49,7 @@
 </head>
 <body >
 
-	<!-- Header -->
-    <header id="header">
-        <h1><strong>${lbSectMain}"</strong></h1>
-        <nav id="nav">
-            <ul>
-                <li><a href="${contextPath}/index">${lbNavMain}</a></li>
-                <li><a href="${contextPath}/rateform">${lbNavRates}</a></li>
-                <li><a href="${contextPath}/loginform">${lbNavAuth}</a></li>
-            </ul>
-        </nav>
-    </header>
-
-	<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+<%@ include file = "menuGeneral.jsp" %>
 
 	<div class="limiter">
 		<div class="container-login100">

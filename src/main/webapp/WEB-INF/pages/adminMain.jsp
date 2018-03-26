@@ -18,7 +18,7 @@
 <spring:message code="newRate.ulD" var="lbUlD"/>
 <spring:message code="newRate.ulE" var="lbUlE"/>
 
-<spring:message code="newRate.section.p" var="lbUlB"/>
+<spring:message code="newRate.section.p" var="lbUlSect"/>
 <spring:message code="contact.cancel" var="lbCancel"/>
 <spring:message code="personCost.send" var="lbSend"/>
 
@@ -51,52 +51,15 @@
 </head>
 <body>
 
-
-<!-- Header -->
-<header id="header">
-    <h1><strong>${lbSectMain}</strong></h1>
-    <nav id="nav">
-        <ul>
-            <li><a href="index.html">${lbNavMain}</a></li>
-			<li><a href="rate.html">${lbNavRates}</a></li>
-			<li><a href="login.html">${lbNavAuth}</a></li>
-            <li>
-                <div>
-                    <div style="color: brown" class="icon-menu">
-                        <img class="contact" src="<c:url value="/resources/images/contact.png"/>"/>${lbLiDiv}
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </nav>
-</header>
-
-<div class="menu">
-
-    <!-- Иконка меню -->
-    <div class="icon-close">
-        <img src="<c:url value="/resources/images/close-btn.png"/>"/>
-    </div>
-
-    <!-- Меню -->
-    <ul>
-        <li><a href="${contextPath}/status">${lbUlA}</a></li>
-        <li><a href="${contextPath}/admin">${lbHeader}</a></li>
-        <li><a href="${contextPath}/newrate">${lbUlC}</a></li>
-        <li><a href="${contextPath}/boxing">${lbUlD}</a></li>
-        <li><a href="${contextPath}/index">${lbUlE}</a></li>
-    </ul>
-</div>
-
-<!-- Main body -->
-<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+<%@ include file = "menuGeneral.jsp" %>
+<%@ include file = "menuAdmin.jsp" %>
 
 <section id="main" class="wrapper">
     <div class="container">
 
         <header class="major special">
             <h2>${lbHeader}</h2>
-            <p>${lbUlB}</p>
+            <p>${lbUlSect}</p>
         </header>
         <form class="registration">
             <div class="container limiter">

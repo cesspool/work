@@ -50,51 +50,13 @@
 
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400;300" rel="stylesheet" type="text/css">
     <link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet"/>
+    <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 </head>
 <body>
 
+<%@ include file = "menuGeneral.jsp" %>
+<%@ include file = "menuCustomer.jsp" %>
 
-<!-- Header -->
-<header id="header">
-    <h1><strong>${lbSectMain}</strong></h1>
-    <nav id="nav">
-        <ul>
-                <li><a href="index.html">${lbNavMain}</a></li>
-			<li><a href="rate.html">${lbNavRates}</a></li>
-			<li><a href="login.html">${lbNavAuth}</a></li>
-            <li>
-                <div>
-                    <div style="color: brown" class="icon-menu">
-                        <img class="contact" src="<c:url value="/resources/images/contact.png"/>"/>${lbLiDiv}
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </nav>
-</header>
-
-<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
-
-<div class="menu">
-
-    <!-- Иконка меню -->
-    <div class="icon-close">
-        <img src="<c:url value="/resources/images/close-btn.png"/>"/>
-    </div>
-
-    <!-- Меню -->
-    <ul>
-        <li><a href="personal.html">${lbUlLiA}</a></li>
-        <li><a href="history.html">${lbUlLiB}</a></li>
-        <li><a href="personCost.html">${lbUlLiC}</a></li>
-        <li><a href="contact.html">${lbUlLiD}</a></li>
-        <li><a href="index.html">${lbUlLiE}</a></li>
-    </ul>
-</div>
-
-
-<!-- Main body -->
-<!-- Main -->
 <section id="main" class="wrapper">
     <div class="container">
 

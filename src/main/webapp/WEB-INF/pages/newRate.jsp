@@ -20,8 +20,8 @@
 <spring:message code="contact.cancel" var="lbCancel"/>
 <spring:message code="personCost.send" var="lbSend"/>
 
-<spring:message code="newRate.section.header" var="lbUlA"/>
-<spring:message code="newRate.section.p" var="lbUlB"/>
+<spring:message code="newRate.section.header" var="lbUlHeader"/>
+<spring:message code="newRate.section.p" var="lbUlSect"/>
 <spring:message code="newRate.section.trA.tdA" var="lbSectionAA"/>
 <spring:message code="newRate.section.trA.tdB" var="lbSectionAB"/>
 <spring:message code="newRate.section.trA.tdC" var="lbSectionAC"/>
@@ -47,55 +47,19 @@
 
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400;300" rel="stylesheet" type="text/css">
     <link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet"/>
+    <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 </head>
 <body>
 
-
-<!-- Header -->
-<header id="header">
-    <h1><strong>${lbSectMain}</strong></h1>
-    <nav id="nav">
-        <ul>
-            <li><a href="index.html">${lbNavMain}</a></li>
-			<li><a href="rate.html">${lbNavRates}</a></li>
-			<li><a href="login.html">${lbNavAuth}</a></li>
-            <li>
-                <div>
-                    <div style="color: brown" class="icon-menu">
-                        <img class="contact" src="<c:url value="/resources/images/contact.png"/>"/>${lbLiDiv}
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </nav>
-</header>
-
-<div class="menu">
-
-    <!-- ÐÐºÐ¾Ð½ÐºÐ° Ð¼ÐµÐ½Ñ -->
-    <div class="icon-close">
-        <img src="<c:url value="/resources/images/close-btn.png"/>"/>
-    </div>
-
-    <!-- ÐÐµÐ½Ñ -->
-    <ul>
-        <li><a href="statusOrder.html">${lbUlA}</a></li>
-        <li><a href="adminMain.html">${lbUlB}</a></li>
-        <li><a href="newRate.html">${lbUlC}</a></li>
-        <li><a href="newBoxing.html">${lbUlD}</a></li>
-        <li><a href="index.html">${lbUlE}</a></li>
-    </ul>
-</div>
-
-<!-- Main body -->
-<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+<%@ include file = "menuGeneral.jsp" %>
+<%@ include file = "menuAdmin.jsp" %>
 
 <section id="main" class="wrapper">
     <div class="container">
 
         <header class="major special">
             <h2>${lbUlA}</h2>
-            <p>${lbUlB}</p>
+            <p>${lbUlSect}</p>
         </header>
         <form class="registration">
             <div class="container limiter">
