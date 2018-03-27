@@ -21,19 +21,19 @@ public class CustomerDAOServiceImpl extends DataService implements CustomerDAOSe
     private static final Logger logger = LoggerFactory.getLogger(CustomerDAOServiceImpl.class);
 
     private final static String SQL_INSERT = "INSERT INTO logistics.customer " +
-        " (firstName, lastName, patronymic, address, telephone, email, hashcode, admin) " +
-        " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        " (firstName, lastName, patronymic, address, telephone, email, hashcode, admin, manager) " +
+        " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     private final static String SQL_UPDATE = "UPDATE logistics.customer " +
-        " SET firstName=?, lastName=?, patronymic=?, address=?, telephone=?, email=?, hashcode=?, admin=? " +
+        " SET firstName=?, lastName=?, patronymic=?, address=?, telephone=?, email=?, hashcode=?, admin=?, manager=?" +
         " WHERE id=?";
 
     private final static String SQL_UPDATE_PASSWORD = "UPDATE logistics.customer SET hashcode=? WHERE id=?";
 
-    private final static String SQL_SEL_BY_ID = "SELECT firstName, lastName, patronymic, address, telephone, email, hashcode, admin " +
+    private final static String SQL_SEL_BY_ID = "SELECT firstName, lastName, patronymic, address, telephone, email, hashcode, admin, manager " +
         " FROM logistics.customer WHERE id=?";
 
-    private final static String SQL_SEL_BY_EMAIL = "SELECT id, firstName, lastName, patronymic, address, telephone, hashcode, admin " +
+    private final static String SQL_SEL_BY_EMAIL = "SELECT id, firstName, lastName, patronymic, address, telephone, hashcode, admin, manager " +
         " FROM logistics.customer WHERE email=?";
 
     @Override
@@ -54,6 +54,7 @@ public class CustomerDAOServiceImpl extends DataService implements CustomerDAOSe
             c.setEmail(rs.getString(idx++));
             c.setMd5(rs.getString(idx++));
             c.setAdmin(rs.getBoolean(idx++));
+            c.setManager(rs.getBoolean(idx++));
             return c;
         });
         return Optional.ofNullable(res);
@@ -77,6 +78,7 @@ public class CustomerDAOServiceImpl extends DataService implements CustomerDAOSe
             c.setTelephone(rs.getString(idx++));
             c.setMd5(rs.getString(idx++));
             c.setAdmin(rs.getBoolean(idx++));
+            c.setManager(rs.getBoolean(idx++));
             return c;
         });
         return Optional.ofNullable(res);
@@ -98,6 +100,7 @@ public class CustomerDAOServiceImpl extends DataService implements CustomerDAOSe
                 pst.setString(idx++, customer.getEmail());
                 pst.setString(idx++, customer.getMd5());
                 pst.setBoolean(idx++, customer.isAdmin());
+                pst.setBoolean(idx++, customer.isManager());
                 return pst;
             }, keyHolder);
             Long ID = keyHolder.getKey().longValue();
@@ -122,6 +125,7 @@ public class CustomerDAOServiceImpl extends DataService implements CustomerDAOSe
             ps.setString(idx++, customer.getEmail());
             ps.setString(idx++, customer.getMd5());
             ps.setBoolean(idx++, customer.isAdmin());
+            ps.setBoolean(idx++, customer.isManager());
             ps.setLong(idx++, customer.getId());
         });
     }

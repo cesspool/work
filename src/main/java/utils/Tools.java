@@ -1,6 +1,8 @@
 package utils;
 
+import beans.Boxing;
 import beans.Customer;
+import form.request.NewBoxingForm;
 import form.request.RegistrationForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -62,6 +64,20 @@ public class Tools {
         form.setAdmin(cmr.isAdmin());
         form.setManager(cmr.isManager());
         return form;
+    }
+    
+    public static Boxing boxingFormToBoxing(NewBoxingForm form) {
+    	Boxing box = new Boxing();
+    	box.setVariety(form.getName());
+    	box.setCost(form.getCost());
+    	return box;
+    }
+    
+    public static NewBoxingForm boxingToNewBoxingForm (Boxing box) {
+    	NewBoxingForm form = new NewBoxingForm();
+    	form.setName(box.getVariety());
+    	form.setCost(form.getCost());
+    	return form;
     }
 
 }
