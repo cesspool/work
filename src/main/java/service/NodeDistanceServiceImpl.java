@@ -1,9 +1,15 @@
 package service;
 
+import beans.Boxing;
 import beans.Distance;
 import beans.Node;
+import beans.NodeDistance;
 import beans.Transport;
 import dbservice.NodeDistanceDAOService;
+import form.request.NewBoxingForm;
+import form.request.NewNodeForm;
+import utils.Tools;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +25,18 @@ public class NodeDistanceServiceImpl implements NodeDistanceService {
     private NodeDistanceDAOService nodeDistanceDAOService;
 
     @Override
-    public void createNode(Node node, Collection<Transport> transports, Collection<Distance> distances){
+    public void createNode(NodeDistance nodeDistance){
     	//node = getFormNode(node);
     	i++;
-    	node.setCode("Node_"+i);
-        nodeDistanceDAOService.insertNode(node, transports, distances);
+    	nodeDistance.getNode().setCode("Node_"+i);
+        nodeDistanceDAOService.insertNode(nodeDistance);
+    }
+    
+    @Override
+    public NodeDistance createNode(NewNodeForm nodeForm) {
+        NodeDistance nodeDistance = Tools.NewNodeFormToNodeDistance(nodeForm);
+        createNode(nodeDistance);
+        return nodeDistance;
     }
     
 //    @Override

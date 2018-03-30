@@ -1,10 +1,17 @@
 package service;
 
+import beans.Boxing;
 import beans.Rate;
 import beans.Transport;
+import beans.TransportRate;
 import dbservice.TranspRateDAOService;
+import form.request.NewAgreementForm;
+import form.request.NewBoxingForm;
+import utils.Tools;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -16,7 +23,8 @@ public class TranspRateServiceImpl implements TranspRateService {
     private static final Logger logger = LoggerFactory.getLogger(TranspRateServiceImpl.class);
 
     private Map<Long, Transport> transportCache = new HashMap<>();
-
+    
+    @Autowired
     private TranspRateDAOService transpRateDAOService;
 
 //    @PostConstruct
@@ -25,12 +33,21 @@ public class TranspRateServiceImpl implements TranspRateService {
 //            transportCache.put(tr.getId(), tr);
 //        });
 //    }
+    
+    @Override
+    public TransportRate createRate(NewAgreementForm rateForm) {
+    	TransportRate transportRate = Tools.newAgreementFormToTransportRate(rateForm);
+        createRate(transportRate);
+        return transportRate;
+    }
 
     @Override
-    public void createRate(Rate rate, Transport transport){
-        if ((rate != null)||(transport!=null)) {
+    public void createRate(TransportRate transportRate){
+        if (transportRate!=null) {
             // validate the bean's fileds
-                transpRateDAOService.insertRate(rate, transport);
+        	transportRate.getTransport().setTotalCapacity(transportRate.getTransport().getMaxHeight() *
+        			transportRate.getTransport().getMaxLength() * transportRate.getTransport().getMaxWidth());
+                transpRateDAOService.insertRate(transportRate);
         }
     }
 

@@ -2,8 +2,11 @@ package service;
 
 import beans.Rate;
 import beans.Transport;
+import beans.TransportRate;
+import form.request.NewAgreementForm;
 
 public interface TranspRateService {
-    void createRate(Rate rate, Transport transport);
+    void createRate(TransportRate transportRate);
+    TransportRate createRate(NewAgreementForm Agrform);
     Transport getByID(Long ID);
 }

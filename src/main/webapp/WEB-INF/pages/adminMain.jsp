@@ -61,7 +61,7 @@
             <h2>${lbHeader}</h2>
             <p>${lbUlSect}</p>
         </header>
-        <form class="registration">
+        <form class="registration" method="post" action="${contextPath}/admin">
             <div class="container limiter">
                 <table width="100%" cellspacing="0" cellpadding="5">
                     <tr>
@@ -117,7 +117,7 @@
 
                 <div class="clearfix">
                     <button type="button" class="cancelbtn">${lbCancel }</button>
-                    <button type="submit" class="signupbtn"><a href="resultCost.html">${lbSend}</a></button>
+                    <button type="submit" class="signupbtn">${lbSend}</button>
                 </div>
             </div>
         </form>

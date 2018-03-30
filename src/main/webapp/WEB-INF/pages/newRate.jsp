@@ -61,7 +61,7 @@
             <h2>${lbUlA}</h2>
             <p>${lbUlSect}</p>
         </header>
-        <form class="registration">
+        <form class="registration" method="post" action="${contextPath}/newrate">
             <div class="container limiter">
 
                 <table width="100%" cellspacing="0" cellpadding="5">
@@ -104,14 +104,17 @@
                         <td width="200" valign="top">
                             <label for="costShippingCargo"><b>${lbSectionCB}</b></label>
                             <input type="text" placeholder="15" name="costShippingCargo" id="costShippingCargo" required>
+                            <input type="hidden" name="cargoID" id="cargoID" value="${cargoID}">
                         </td>
                         <td width="200" valign="top">
                             <label for="costShippingAir"><b>${lbSectionCC}</b></label>
                             <input type="text" placeholder="16" name="costShippingAir" id="costShippingAir" required>
+                            <input type="hidden" name="airID" id="airID" value="${airID}">
                         </td>
                         <td width="200" valign="top">
                             <label for="costShippingRail"><b>${lbSectionCD}</b></label>
                             <input type="text" placeholder="10" name="costShippingRail" id="costShippingRail" required>
+                            <input type="hidden" name="railID" id="railID" value="${railID}">
                         </td>
                     </tr>
                     <tr>
@@ -127,8 +130,8 @@
                             <input type="text" placeholder="10" name="addCostShippingAir" id="addCostShippingAir" required>
                         </td>
                         <td width="200" valign="top">
-                            <label for="addCostShippingCargo"><b>${lbSectionCD}</b></label>
-                            <input type="text" placeholder="10" name="addCostShippingCargo" id="addCostShippingCargo" required>
+                            <label for="addCostShippingRail"><b>${lbSectionCD}</b></label>
+                            <input type="text" placeholder="10" name="addCostShippingRail" id="addCostShippingRail" required>
                         </td>
                     </tr>
                     <tr>
@@ -151,7 +154,7 @@
                 </table>
  					<div class="clearfix">
                     	<button type="button" class="cancelbtn">${lbCancel }</button>
-                    	<button type="submit" class="signupbtn"><a href="resultCost.html">${lbSend}</a></button>
+                    	<button type="submit" class="signupbtn">${lbSend}</button>
                 	</div>
             </div>
         </form>

@@ -1,7 +1,8 @@
 package beans;
 
 import javax.persistence.criteria.CriteriaBuilder;
-import java.sql.Date;
+import java.util.Date;
+//import java.util.Date;
 
 public class Rate {
     private Long id;
@@ -10,8 +11,17 @@ public class Rate {
     private double additionalCost;
     private Date startAction;
     private Date endAction;
+    private long transportID;
 
-    public Long getId() {
+    public long getTransportID() {
+		return transportID;
+	}
+
+	public void setTransportID(long transportID) {
+		this.transportID = transportID;
+	}
+
+	public Long getId() {
         return id;
     }
 

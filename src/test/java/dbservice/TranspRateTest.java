@@ -14,7 +14,7 @@ import java.util.Date;
 import java.text.ParseException;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {TestConfiguration.class})
+//@ContextConfiguration(classes = {TestConfiguration.class})
 public class TranspRateTest {
 
     @Autowired
@@ -64,7 +64,7 @@ public class TranspRateTest {
         rate.setStartAction(dataStart);
         rate.setEndAction(dataEnd);
 
-        transpRateDAOService.insertRate(rate, transport);
+        //transpRateDAOService.insertRate(rate, transport);
 
     }
 }

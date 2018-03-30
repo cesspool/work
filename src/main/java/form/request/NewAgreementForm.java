@@ -3,6 +3,8 @@ package form.request;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 //// !!!!!!!!!! DATA TYPE @DATE@ MAY BE WRONG!!!!!!!!!!!!!!!!!!!!!
 public class NewAgreementForm {
     private String name;
@@ -12,7 +14,9 @@ public class NewAgreementForm {
     private double addCostShippingRail;
     private double addCostShippingAir;
     private double addCostShippingCargo;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date startAction;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date endAction;
     private double maxHeight;
     private double maxWidth;
@@ -21,7 +25,34 @@ public class NewAgreementForm {
     private double totalCapacity;
     private double costKmCargo;
     private double costKmAir;
-    private double costKmRail;
+	private double costKmRail;
+    private long railID;
+    private long airID;
+    private long cargoID;
+    
+    public long getRailID() {
+		return railID;
+	}
+
+	public void setRailID(long railID) {
+		this.railID = railID;
+	}
+
+	public long getAirID() {
+		return airID;
+	}
+
+	public void setAirID(long airID) {
+		this.airID = airID;
+	}
+
+	public long getCargoID() {
+		return cargoID;
+	}
+
+	public void setCargoID(long cargoID) {
+		this.cargoID = cargoID;
+	}
 
     public String getName(){
         return name;
@@ -31,11 +62,11 @@ public class NewAgreementForm {
         this.name = name;
     }
 
-    public double getCostShipping(){
+    public double getCostShippingAir(){
         return costShippingAir;
     }
 
-    public void setCostShipping (double costShippingAir) {
+    public void setCostShippingAir (double costShippingAir) {
         this.costShippingAir = costShippingAir;
     }
 

@@ -1,7 +1,9 @@
 package dbservice;
 
+import beans.Customer;
 import beans.Distance;
 import beans.Node;
+import beans.NodeDistance;
 import beans.Transport;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
@@ -14,7 +16,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.sql.PreparedStatement;
 import java.sql.Types;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -32,9 +37,19 @@ public class NodeDistanceDAOServiceImpl extends DataService implements NodeDista
     private final static String SQL_INSERT_DISTANCE = "INSERT INTO logistics.distance" +
             "(length, node_id_start, node_id_end) VALUES(?,?,?)";
 
+    private final static String SQL_SELECT_ALL = "SELECT id, city FROM logistics.node";
+    
+    private final static String SQL_SELECT_CITIES = "SELECT a.id, a.city FROM logistics.node a " + 
+    		"inner join logistics.distance b on a.id=b.node_id_end where b.node_id_start = 1";
+    		
+    
     @Override
     @Transactional
-    public void insertNode(Node node, Collection<Transport> transports, Collection<Distance> distances){
+    public void insertNode(NodeDistance nodeDistance){
+    	Node node = nodeDistance.getNode();
+    	Collection<Transport> transports = nodeDistance.getTransports();
+    	Collection<Distance> distances = nodeDistance.getDistances();
+    	
         try {
             KeyHolder keyHolder = new GeneratedKeyHolder();
             getJdbcTemplate().update((con) -> {
@@ -79,4 +94,35 @@ public class NodeDistanceDAOServiceImpl extends DataService implements NodeDista
         }
 
     }
+    
+    @Override
+    @Transactional(readOnly = true)
+    public Map<Long, String> getAllCities() {
+           Map<Long, String> allCities = getJdbcTemplate().query(SQL_SELECT_ALL, (rs) -> {
+                if (!rs.next()) {
+                    return null;
+                }
+                Map<Long, String> cities = new HashMap<>();
+                int idx = 1;
+                cities.put(rs.getLong(idx++), rs.getString(idx++));
+                return cities;
+            });
+            return allCities;
+    }
+    
+    @Override
+    @Transactional(readOnly = true)
+    public Map<Long, String> getCities(Long nodeID) {
+    	Map<Long, String> cities = getJdbcTemplate().query(SQL_SELECT_CITIES, new Object[] {nodeID}, (rs) -> {
+                if (!rs.next()) {
+                    return null;
+                }
+               	Map<Long, String> city = new HashMap<>();
+               	int idx = 1;
+                city.put(nodeID, rs.getString(idx++));
+                return city;
+            });
+            return cities;
+        }
+    
 }

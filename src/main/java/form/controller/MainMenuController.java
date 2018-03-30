@@ -51,6 +51,9 @@ public class MainMenuController {
 
     @RequestMapping(value = "/newrate", method = RequestMethod.GET)
     public String showNewRateForm(Model model) {
+    	model.addAttribute("railID", 3);
+    	model.addAttribute("airID", 2);
+    	model.addAttribute("cargoID", 1);
         return Pages.NEWRATE;
     }
 
