@@ -39,11 +39,6 @@ public class MainMenuController {
         return Pages.CONTACT;
     }
     
-    @RequestMapping(value = "/admin", method = RequestMethod.GET)
-    public String showAdminForm(Model model) {
-        return Pages.ADMIN;
-    }
-
     @RequestMapping(value = "/boxing", method = RequestMethod.GET)
     public String showBoxingForm(Model model) {
         return Pages.BOXING;

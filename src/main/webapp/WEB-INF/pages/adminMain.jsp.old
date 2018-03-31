@@ -99,47 +99,24 @@
                         </td>
                     </tr>
                     <tr>
-                        <td valign="top" colspan="4">
-                          <div class="cityBox">
-                            <div class="leftBox">
-                                <div class="leftSel">
-                                    <select size="5" name="allCities" id="allCities">
-                                      <c:forEach var="city" items="${allCities}">
-                                        <option value="${city.key}">${city.value}</option>
-                                      </c:forEach>  
-                                        <!-- 
-                                        <option value="10">Moscow</option>    
-                                        <option value="11">Riga</option>
-                                        <option value="12">Dolgoprudniy</option>
-                                        <option value="13">St.Piter</option>
-                                        <option value="14">Ufa</option>
-                                        <option value="15">Chelabinsk</option>
-                                        <option value="16">Prostokvashino</option>
-                                        <option value="17">Mars</option>
-                                        -->
-                                    </select>
-                                </div>
+                        <td width="200" valign="top">
+                            <div class="input_fields_wrap">
+                                <button class="add_field_button">${lbTableCA}</button>
+                                <div> <select name="field_sity_tid" class="form-select">
+                                	<data>
+                                    	<option value="103">Moscow</option>
+                                    	<option value="104">Ufa</option>
+                                    	<option value="105">Dolgoprudny</option>
+                                    </data>
+                                </select></div>
                             </div>
-                            <div class="cBox">
-                              <div  class="btnBox">
-                                  <button id="btnAdd">Add city</button>
-                                  <button id="btnRemove">Remove city</button>
-                              </div>
-                            </div>
-                            <div class="rightBox">
-                                <div class="rightSel">
-                                  <select size="5" name="chosenCities" id="chosenCities">
-                                  </select>
-                                </div>
-                            </div>
-                          </div>  
                         </td>
                     </tr>
 
                 </table>
 
                 <div class="clearfix">
-                    <button type="button" class="cancelbtn">${lbCancel }</button>>
+                    <button type="button" class="cancelbtn">${lbCancel }</button>
                     <button type="submit" class="signupbtn">${lbSend}</button>
                 </div>
             </div>
@@ -154,7 +131,6 @@
 
 
 <!-- Scripts -->
-<script src="<c:url value="/resources/js/adminMain.js"/>"></script>
 <script src="<c:url value="/resources/assets/js/jquery.min.js"/>"></script>
 <script src="<c:url value="/resources/assets/js/skel.min.js"/>"></script>
 <script src="<c:url value="/resources/assets/js/util.js"/>"></script>

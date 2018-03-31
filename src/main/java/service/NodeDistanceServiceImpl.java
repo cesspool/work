@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Map;
 
 @Service
 public class NodeDistanceServiceImpl implements NodeDistanceService {
@@ -37,6 +38,16 @@ public class NodeDistanceServiceImpl implements NodeDistanceService {
         NodeDistance nodeDistance = Tools.NewNodeFormToNodeDistance(nodeForm);
         createNode(nodeDistance);
         return nodeDistance;
+    }
+
+    @Override
+    public Map<Long, String> getAllCities() {
+        return nodeDistanceDAOService.getAllCities();
+    }
+
+    @Override
+    public Map<Long, String> getCities(Long nodeID) {
+        return nodeDistanceDAOService.getCities(nodeID);
     }
     
 //    @Override

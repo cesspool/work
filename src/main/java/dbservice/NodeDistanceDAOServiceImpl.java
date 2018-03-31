@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 import org.springframework.transaction.annotation.Transactional;
+import utils.Pair;
 
 import java.sql.PreparedStatement;
 import java.sql.Types;
@@ -98,16 +99,11 @@ public class NodeDistanceDAOServiceImpl extends DataService implements NodeDista
     @Override
     @Transactional(readOnly = true)
     public Map<Long, String> getAllCities() {
-           Map<Long, String> allCities = getJdbcTemplate().query(SQL_SELECT_ALL, (rs) -> {
-                if (!rs.next()) {
-                    return null;
-                }
-                Map<Long, String> cities = new HashMap<>();
-                int idx = 1;
-                cities.put(rs.getLong(idx++), rs.getString(idx++));
-                return cities;
-            });
-            return allCities;
+           List<Pair<Long, String>> cities = getJdbcTemplate().query(SQL_SELECT_ALL, (rs, num) -> {
+               return new Pair<>(rs.getLong(1), rs.getString(2));
+           });
+           Map<Long, String> allCities = cities.stream().collect(Collectors.toMap(Pair::getLeft, Pair::getRight));
+           return allCities;
     }
     
     @Override
