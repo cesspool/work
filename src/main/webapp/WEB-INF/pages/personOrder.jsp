@@ -59,7 +59,7 @@
             <h2>${lbHeaderA}</h2>
             <p>${lbHeaderB}</p>
         </header>
-        <form class="registration">
+        <form class="registration" method="post" action="${contextPath}/order">
             <div class="container limiter">
 
                 <table width="100%" cellspacing="0" cellpadding="5">
@@ -82,7 +82,7 @@
                 </table>
                 <div class="clearfix">
                     <button type="button" class="cancelbtn">${lbCancel }</button>
-                    <button type="submit" class="signupbtn"><a href="resultCost.html">${lbSend}</a></button>
+                    <button type="submit" class="signupbtn">${lbSend}</button>
                 </div>
 
             </div>

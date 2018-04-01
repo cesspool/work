@@ -143,7 +143,7 @@ public class Tools {
     	nodeDistance.getNode().setAddress(form.getAddress());
     	nodeDistance.getNode().setCoordinateX(form.getCoordinateX());
     	nodeDistance.getNode().setCoordinateY(form.getCoordinateY());
-    	nodeDistance.setCities(form.getNodes());
+    	//nodeDistance.setAllCities(form.getAllCities());
     	return nodeDistance;
     }
 

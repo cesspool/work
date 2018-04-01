@@ -61,7 +61,7 @@
             <h2>${lbHeader}</h2>
             <p>${lbUlSect}</p>
         </header>
-        <form class="registration" method="post" action="${contextPath}/admin">
+        <form class="registration" method="post" action="${contextPath}/admin" id="newNodeForm" name="newNodeForm">
             <div class="container limiter">
                 <table width="100%" cellspacing="0" cellpadding="5">
                     <tr>
@@ -71,11 +71,11 @@
                         </td>
 
                         <td>
-                            <input type="checkbox" id="airport" name="airport" value="air">
+                            <input type="checkbox" id="airport" name="airport" value="true">
                             <label for="airport">${lbTableAB}</label>
                         </td>
                         <td>
-                            <input type="checkbox" id="railway" name="railway" value="rail">
+                            <input type="checkbox" id="railway" name="railway" value="true">
                             <label for="railway">${lbTableAC}</label>
                         </td>
                     </tr>
@@ -122,14 +122,15 @@
                             </div>
                             <div class="cBox">
                               <div  class="btnBox">
-                                  <button id="btnAdd">Add city</button>
-                                  <button id="btnRemove">Remove city</button>
+                                  <button type="button" id="btnAdd">Add city</button>
+                                  <button type="button" id="btnRemove">Remove city</button>
                               </div>
                             </div>
                             <div class="rightBox">
                                 <div class="rightSel">
                                   <select size="5" name="chosenCities" id="chosenCities">
                                   </select>
+                                  <input type="hidden" id="selectedCities" name="selectedCities"/>
                                 </div>
                             </div>
                           </div>  

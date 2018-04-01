@@ -2,10 +2,12 @@ package beans;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 public class NodeDistance {
 	private Node node;
-	private List<String> cities;
+	//private List<String> cities;
+	Map<Long, String> allCities;
 	private Collection<Transport> transports;
 	private Collection<Distance> distances;
 	
@@ -27,10 +29,17 @@ public class NodeDistance {
 	public void setNode(Node node) {
 		this.node = node;
 	}
-	public List<String> getCities() {
-		return cities;
+	public Map<Long, String> getAllCities() {
+		return allCities;
 	}
-	public void setCities(List<String> cities) {
-		this.cities = cities;
+	public void setAllCities(Map<Long, String> allCities) {
+		this.allCities = allCities;
 	}
+	
+//	public List<String> getCities() {
+//		return cities;
+//	}
+//	public void setCities(List<String> cities) {
+//		this.cities = cities;
+//	}
 }

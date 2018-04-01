@@ -68,11 +68,16 @@ id SERIAL PRIMARY KEY NOT NULL,
 name integer NOT NULL,
 urgency boolean,
 ready BOOLEAN,
+plan_date date,
+real_date date,
+cost real,
+contact_information VARCHAR(256),
 recipient_id integer REFERENCES logistics.customer (id),
-sender_id integer REFERENCES logistics.customer (id),
 rate_id INTEGER REFERENCES logistics.rate (id),
 package_id integer REFERENCES logistics.package (id),
-boxing_id INTEGER REFERENCES logistics.boxing (id)
+boxing_id INTEGER REFERENCES logistics.boxing (id),
+node_start_id integer REFERENCES logistics.node (id),
+node_target_id INTEGER REFERENCES logistics.node (id)
 );
 
 CREATE TABLE logistics.distance(

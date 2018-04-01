@@ -1,10 +1,7 @@
 package form.controller;
 
 import beans.Boxing;
-import beans.NodeDistance;
 import form.request.NewBoxingForm;
-import form.request.NewNodeForm;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -18,7 +15,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import service.BoxingService;
-import service.NodeDistanceService;
 import utils.Tools;
 import web.Message;
 import web.Pages;
@@ -30,12 +26,13 @@ import web.Message.Type;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class BranchController {
-	    private NodeDistanceService nodeDistanceService;
+public class OrderController {
+
+	 private BoxingService boxingService;
 	    private MessageSource messageSource;
 
-	    @RequestMapping(value = "/admin", method = RequestMethod.POST)
-	    public String boxing(@ModelAttribute("admin") NewNodeForm formData,
+	    @RequestMapping(value = "/order", method = RequestMethod.POST)
+	    public String boxing(@ModelAttribute("order") NewBoxingForm formData,
 	                               BindingResult bundingResult,
 	                               Model uiModel,
 	                               HttpServletRequest httpServletRequest,
@@ -45,11 +42,11 @@ public class BranchController {
 	        if (message != null) {
 	            message.setMsg(messageSource.getMessage(message.getKey(), null, locale));
 	            redirectAttributes.addFlashAttribute(Pages.ATR_MESSAGE, message);
-	            return "redirect:admin";
+	            return "redirect:boxing";
 	        } else {
-	            NodeDistance nodeDistance = nodeDistanceService.createNode(formData); // mistake is here, don't go to DAO service
-	            redirectAttributes.addFlashAttribute(Pages.ADMIN, formData);
-	            return "redirect:admin";
+	            Boxing box = boxingService.createBoxing(formData); // mistake is here, don't go to DAO service
+	            redirectAttributes.addFlashAttribute(Pages.BOXING, formData);
+	            return "redirect:boxing";
 	        }
 
 	    }
@@ -72,8 +69,8 @@ public class BranchController {
 
 
 	    @Autowired
-	    private void setNodeService(NodeDistanceService service) {
-	        this.nodeDistanceService = service;
+	    private void setBoxingService(BoxingService service) {
+	        this.boxingService = service;
 	    }
 
 	    @Autowired
@@ -81,7 +78,7 @@ public class BranchController {
 	        this.messageSource = messageSource;
 	    }
 
-	    private Message validateForm(NewNodeForm formData) {
+	    private Message validateForm(NewBoxingForm formData) {
 //	        if (Tools.isBlank(formData.getPsw())) {
 //	            Message msg = new Message(Type.ERROR, "registration.no-pass");
 //	            return msg;

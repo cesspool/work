@@ -28,11 +28,26 @@
 		return document.getElementById('chosenCities');
 	},
 	
+	doSubmit: function() {
+		var ids = '';
+		var form = document.getElementById('newNodeForm');
+		var hdnFld = document.getElementById('selectedCities');
+		var selr = document.getElementById('chosenCities');
+		for(i = 0; i < selr.options.lenght; i++) {
+			ids = ids + ',' + selr.options[i].value;
+		}
+		hdnFld.value = ids;
+		form.submit();
+	},
+	
+	
 	init: function() {
 		var btnAdd = document.getElementById('btnAdd');
 		var btnRemove = document.getElementById('btnRemove');
+		var form = document.getElementById('newNodeForm');
 		btnAdd.onclick = this.addCity;
 		btnRemove.onclick = this.removeCity;
+		form.onsubmit = this.doSubmit;
 	}
  };
  
