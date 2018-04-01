@@ -33,7 +33,7 @@
 		var form = document.getElementById('newNodeForm');
 		var hdnFld = document.getElementById('selectedCities');
 		var selr = document.getElementById('chosenCities');
-		for(i = 0; i < selr.options.lenght; i++) {
+		for(i = 0; i < selr.options.length; i++) {
 			ids = ids + ',' + selr.options[i].value;
 		}
 		hdnFld.value = ids;
