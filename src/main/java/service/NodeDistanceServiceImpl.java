@@ -45,10 +45,10 @@ public class NodeDistanceServiceImpl implements NodeDistanceService {
         return nodeDistanceDAOService.getAllCities();
     }
 
-    @Override
-    public Map<Long, String> getCities(Long nodeID) {
-        return nodeDistanceDAOService.getCities(nodeID);
-    }
+//    @Override   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//    public Map<Long, String> getCities(Long nodeID) {
+//        return nodeDistanceDAOService.getCities(nodeID);
+//    }
     
 //    @Override
 //    public Node getFormNode(Node node) {

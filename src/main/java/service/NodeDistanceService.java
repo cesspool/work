@@ -15,6 +15,6 @@ public interface NodeDistanceService {
     //Node getFormNode(Node node);
     
     Map<Long, String> getAllCities();
-    Map<Long, String> getCities(Long nodeID); // searching cities linked with that node
+    //Map<Long, String> getCities(Long nodeID); // searching cities linked with that node
 
 }

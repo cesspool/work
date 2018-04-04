@@ -35,6 +35,8 @@
 <spring:message code="adminMain.place.city" var="lbPlaceCity"/>
 <spring:message code="adminMain.place.branch" var="lbPlaceBranch"/>
 <spring:message code="adminMain.place.address" var="lbPlaceAddress"/>
+<spring:message code="adminMain.button.add" var="lbBtnAdd"/>
+<spring:message code="adminMain.button.remove" var="lbBtnRemove"/>
 
 <html>
 <head>
@@ -71,11 +73,11 @@
                         </td>
 
                         <td>
-                            <input type="checkbox" id="airport" name="airport" value="true">
+                            <input type="checkbox" id="airport" name="airport" value="2">
                             <label for="airport">${lbTableAB}</label>
                         </td>
                         <td>
-                            <input type="checkbox" id="railway" name="railway" value="true">
+                            <input type="checkbox" id="railway" name="railway" value="3">
                             <label for="railway">${lbTableAC}</label>
                         </td>
                     </tr>
@@ -122,8 +124,8 @@
                             </div>
                             <div class="cBox">
                               <div  class="btnBox">
-                                  <button type="button" id="btnAdd">Add city</button>
-                                  <button type="button" id="btnRemove">Remove city</button>
+                                  <button type="button" id="btnAdd">${lbBtnAdd}</button>
+                                  <button type="button" id="btnRemove">${lbBtnRemove}</button>
                               </div>
                             </div>
                             <div class="rightBox">

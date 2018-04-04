@@ -1,8 +1,10 @@
 package form.request;
 
+import java.util.Map;
+
 public class CalculateForm {
-    private String startNode;
-    private String targetNode;
+    private String cityStart;
+    private String cityTarget;
     private boolean urgency;
     private boolean envelope;
     private int quantity;
@@ -11,25 +13,43 @@ public class CalculateForm {
     private double length;
     private double height;
     private double size;
-    private String box;
+    private String boxesList;
 
-    public String getStartNode() {
-        return startNode;
-    }
+    
+//    public String getStartNode() {
+//        return startNode;
+//    }
+//
+//    public void setStartNode(String startNode) {
+//        this.startNode = startNode;
+//    }
+//
+//    public String getTargetNode() {
+//        return targetNode;
+//    }
+//
+//    public void setTargetNode(String targetNode) {
+//        this.targetNode = targetNode;
+//    }
 
-    public void setStartNode(String startNode) {
-        this.startNode = startNode;
-    }
+    public String getCityStart() {
+		return cityStart;
+	}
 
-    public String getTargetNode() {
-        return targetNode;
-    }
+	public void setCityStart(String cityStart) {
+		this.cityStart = cityStart;
+	}
 
-    public void setTargetNode(String targetNode) {
-        this.targetNode = targetNode;
-    }
+	public String getCityTarget() {
+		return cityTarget;
+	}
 
-    public boolean isUrgency() {
+	public void setCityTarget(String cityTarget) {
+		this.cityTarget = cityTarget;
+	}
+
+
+	public boolean isUrgency() {
         return urgency;
     }
 
@@ -93,12 +113,12 @@ public class CalculateForm {
         this.size = size;
     }
 
-    public String getBox() {
-        return box;
+    public String getBoxesList() {
+        return boxesList;
     }
 
-    public void setBox(String box) {
-        this.box = box;
+    public void setBoxesList(String boxesList) {
+        this.boxesList = boxesList;
     }
 
 }

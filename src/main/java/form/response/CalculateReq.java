@@ -1,5 +1,7 @@
 package form.response;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -71,16 +73,20 @@ public class CalculateReq {
         this.totalCost = totalCost;
     }
 
-    public Date getDateCurrent() {
-        return dateCurrent;
+    public String getDateCurrent() {  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Date
+    	DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    	dateCurrent = new Date();
+        return dateFormat.format(dateCurrent);
     }
 
     public void setDateCurrent(Date dateCurrent) {
         this.dateCurrent = dateCurrent;
     }
 
-    public Date getDateDelivery() {
-        return dateDelivery;
+    public String getDateDelivery() { //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Date
+    	DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    	dateDelivery = new Date();
+        return dateFormat.format(dateDelivery);
     }
 
     public void setDateDelivery(Date dateDelivery) {

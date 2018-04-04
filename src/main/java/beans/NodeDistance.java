@@ -7,16 +7,40 @@ import java.util.Map;
 public class NodeDistance {
 	private Node node;
 	//private List<String> cities;
-	Map<Long, String> allCities;
-	private Collection<Transport> transports;
+	//Map<Long, String> allCities;
 	private Collection<Distance> distances;
+	private String[] cities;
+	List<Integer> transport;
 	
-	public Collection<Transport> getTransports() {
-		return transports;
+	
+	public List<Integer> getTransport() {
+		return transport;
 	}
-	public void setTransports(Collection<Transport> transports) {
-		this.transports = transports;
+
+	public void setTransport(List<Integer> transport) {
+		this.transport = transport;
 	}
+
+	public NodeDistance () {
+		node = new Node();
+	}
+	
+	public String[] getCities() {
+		return cities;
+	}
+
+	public void setCities(String[] cities) {
+		this.cities = cities;
+	}
+
+
+
+//	public Collection<Transport> getTransports() {
+//		return transports;
+//	}
+//	public void setTransports(Collection<Transport> transports) {
+//		this.transports = transports;
+//	}
 	public Collection<Distance> getDistances() {
 		return distances;
 	}
@@ -29,12 +53,12 @@ public class NodeDistance {
 	public void setNode(Node node) {
 		this.node = node;
 	}
-	public Map<Long, String> getAllCities() {
-		return allCities;
-	}
-	public void setAllCities(Map<Long, String> allCities) {
-		this.allCities = allCities;
-	}
+//	public Map<Long, String> getAllCities() {
+//		return allCities;
+//	}
+//	public void setAllCities(Map<Long, String> allCities) {
+//		this.allCities = allCities;
+//	}
 	
 //	public List<String> getCities() {
 //		return cities;

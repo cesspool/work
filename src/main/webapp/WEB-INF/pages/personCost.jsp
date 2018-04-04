@@ -33,6 +33,11 @@
 <spring:message code="personCost.table.trB.tdA" var="lbTableBA"/>
 <spring:message code="history.table.trC.tdD" var="lbTableCD"/>
 
+<spring:message code="personCost.option.cargo" var="lbOptCargo"/>
+<spring:message code="personCost.option.envelop" var="lbOptEnvelop"/>
+<spring:message code="personCost.option.economy" var="lbOptEconomy"/>
+<spring:message code="personCost.option.express" var="lbOptExpress"/>
+
 <html>
 <head>
     <title>${lbTitle}</title>
@@ -43,6 +48,7 @@
 
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400;300" rel="stylesheet" type="text/css">
     <link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet"/>
+    <link href="<c:url value="/resources/css/personCost.css"/>" rel="stylesheet"/>
     
     <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 </head>
@@ -66,30 +72,34 @@
                 <table width="100%" cellspacing="0" cellpadding="5">
                     <tr ><td width="200" valign="top">
                         <label for="startNode"><b>${lbTableAA}</b></label>
-                        <select name="startNode" id="startNode" class="form-select">
-                        <data>
-								<option value="106">Moscow</option>
-                                <option value="107">Ufa</option>
-                                <option value="108">Dolgoprudny</option>
-                        </data>
-                        </select>
+                        
+                        <div class="dropdown">
+                        <input list="cityList" id="cityStart" name="cityStart"> 
+						<datalist id="cityList">
+							<c:forEach var="city" items="${allCities}">
+		                         <option value="${city.value}"/>
+		                    </c:forEach>
+						</datalist>
+						</div>
+                        
                         </td>
                         <td width="200" valign="top">
                             <label for="targetNode"><b>${lbTableAB}</b></label>
-                            <select name="targetNode" id ="targetNode" class="form-select">
-                                <data>
-									<option value="106">Moscow</option>
-	                                <option value="107">Ufa</option>
-	                                <option value="108">Dolgoprudny</option>
-                        		</data>
-                            </select>
+                            <div class="dropdown">
+                        		<input list="cityList" id="cityTarget" name="cityTarget">
+								<datalist id="cityList">
+									<c:forEach var="city" items="${allCities}">
+		                         		<option value="${city.value}"/>
+		                    		</c:forEach>
+								</datalist>
+							</div>
                         </td>
                         <td width="200" valign="top">
                             <label for="urgency"><b>${lbTableBC }</b></label>
                             <select name="urgency" id="urgency" class="form-select">
                             <data>
-                                <option value="109">economy</option>
-                                <option value="110">express</option>
+                                <option name = "economy" id = "economy" value = "${economyVal}">${lbOptEconomy}</option>
+                                <option name = "express" id = "express" value = "${expressVal}">${lbOptExpress }</option>
                             </data>
                             </select>
                         </td>
@@ -107,8 +117,8 @@
                             <label for="envelope"><b>${lbTableBA}</b></label>
                             <select id="envelope" name="field_sity_tid" class="form-select">
                             <data>
-								<option value="708">envelop</option>
-                                <option value="710">cargo</option>
+								<option name = "envelop" id = "envelop" value = "${envelopVal }">${lbOptEnvelop }</option>
+                                <option name = "cargo" id = "cargo" value = "${cargoVal }">${lbOptCargo }</option>
                             </data>
                             </select>
                         </td>
@@ -125,29 +135,28 @@
                         <tr>
                             <td width="200" valign="top">
                                 <label for="length"><b>${lbTableEB}</b></label>
-                                <input type="text" placeholder="1.5" name="length" id="length" required>
+                                <input type="text" placeholder="1.5" name="length" id="length">
                             </td>
                             <td width="200" valign="top">
                                 <label for="width"><b>${lbTableDD }</b></label>
-                                <input type="text" placeholder="2.1" name="width" id="width" required>
+                                <input type="text" placeholder="2.1" name="width" id="width">
                             </td>
                             <td width="200" valign="top">
                                 <label for="height"><b>${lbTableDC }</b></label>
-                                <input type="text" placeholder="3.2" name="height" id="height" required>
+                                <input type="text" placeholder="3.2" name="height" id="height">
                             </td>
                         </tr>
                         <tr>
                             <td width="200" valign="top">
                                 <label for="weight"><b>${lbTableEC }</b></label>
-                                <input type="text" placeholder="3.1" name="weight" id="weight" required>
+                                <input type="text" placeholder="3.1" name="weight" id="weight">
                             </td>
                             <td width="230" valign="top">
                                 <label for="box"><b>${lbTableCA }</b></label>
-                                <select name="box" id="box" class="form-select">
-                                <data>
-                                    <option value="111">Standart</option>
-                                    <option value="112">Additional</option>
-                                </data>
+                                <select id="boxesList" name="boxesList" class="form-select">
+                                    <c:forEach var="box" items="${allBoxes}">
+		                         		<option value="${box.key}">${box.value}</option>
+		                    		</c:forEach>
                                 </select>
                             </td>
                         </tr>
@@ -176,6 +185,7 @@
 <script src="<c:url value="/resources/assets/js/util.js"/>"></script>
 <script src="<c:url value="/resources/assets/js/main.js"/>"></script>
 
+<!-- script src="<c:url value="/resources/js/personCost.js"/>"></script-->
 <script src="<c:url value="/resources/js/jquery.js"/>"></script>
 <script src="<c:url value="/resources/js/menu.js"/>"></script>
 

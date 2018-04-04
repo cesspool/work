@@ -29,10 +29,10 @@ public class MainMenuController {
         return Pages.HISTORY;
     }
 
-    @RequestMapping(value = "/cost", method = RequestMethod.GET)
-    public String showPersonCostForm(Model model) {
-        return Pages.COST;
-    }
+//    @RequestMapping(value = "/cost", method = RequestMethod.GET)
+//    public String showPersonCostForm(Model model) {
+//        return Pages.COST;
+//    }
 
     @RequestMapping(value = "/contact", method = RequestMethod.GET)
     public String showPersonContactForm(Model model) {
@@ -50,11 +50,6 @@ public class MainMenuController {
     	model.addAttribute("airID", 2);
     	model.addAttribute("cargoID", 1);
         return Pages.NEWRATE;
-    }
-
-    @RequestMapping(value = "/result", method = RequestMethod.GET)
-    public String showResultForm(Model model) {
-        return Pages.RESULT;
     }
     
     @RequestMapping(value = "/order", method = RequestMethod.GET)

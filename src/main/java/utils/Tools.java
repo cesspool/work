@@ -3,6 +3,7 @@ package utils;
 import beans.Boxing;
 import beans.Customer;
 import beans.NodeDistance;
+import beans.OrderCalculate;
 import beans.Rate;
 import beans.Transport;
 import beans.TransportRate;
@@ -143,8 +144,26 @@ public class Tools {
     	nodeDistance.getNode().setAddress(form.getAddress());
     	nodeDistance.getNode().setCoordinateX(form.getCoordinateX());
     	nodeDistance.getNode().setCoordinateY(form.getCoordinateY());
+    	if (form.getAirport() != 0) {
+    		nodeDistance.getTransport().add(form.getAirport());
+    	}
+    	if (form.getRailway() !=0) {
+    		nodeDistance.getTransport().add(form.getRailway());
+    	}
+    	
+    	String selCities = form.getSelectedCities();
+    	if ((selCities.length() > 0) && (selCities.contains(","))) {
+    		String[] cityIDs = selCities.split(",");
+    		int ln = cityIDs.length;
+    		nodeDistance.setCities(cityIDs);
+    	}
     	//nodeDistance.setAllCities(form.getAllCities());
     	return nodeDistance;
+    }
+    
+    public static OrderCalculate CalculateFormToCalculateOrder() {
+    	OrderCalculate calculateOrder = new OrderCalculate();
+    	return calculateOrder;
     }
 
 }

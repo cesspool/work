@@ -1,6 +1,8 @@
 package dbservice;
 
 import beans.Boxing;
+import utils.Pair;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
@@ -10,6 +12,9 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Service;
 
 import java.sql.PreparedStatement;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class BoxingDAOServiceImpl extends DataService implements BoxingDAOService{
@@ -20,7 +25,20 @@ public class BoxingDAOServiceImpl extends DataService implements BoxingDAOServic
 
     private final static String SQL_DELETE = "DELETE FROM logistics.boxing " +
             " WHERE variety=?";
+    
+    private final static String SQL_SELECT_ALL = "SELECT id, variety FROM logistics.boxing";
 
+    @Override
+    @Transactional(readOnly = true)
+    public Map<Long, String> getAllBoxes() {
+           List<Pair<Long, String>> boxes = getJdbcTemplate().query(SQL_SELECT_ALL, (rs, num) -> {
+               return new Pair<>(rs.getLong(1), rs.getString(2));
+           });
+           Map<Long, String> allBoxes = boxes.stream().collect(Collectors.toMap(Pair::getLeft, Pair::getRight));
+           return allBoxes;
+    }
+    
+    
     @Override
     @Transactional
     public void insertBoxing(final Boxing boxing) {

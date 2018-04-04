@@ -55,35 +55,35 @@
             <h2>${lbHeaderH }</h2>
             <p>${lbHEaderP}</p>
         </header>
-        <form class="registration">
+        <form class="registration" method="get" action="${contextPath}/result" name="result"  id="result">
             <div class="container limiter">
 
                 <table width="100%" cellspacing="0" cellpadding="5">
                     <tr ><td colspan="4" width="200" valign="top">
-                       ${lbTableAA} авто/жд/грузо/смешанная
+                       ${lbTableAA} ${typeDelivery}
                     </td>
                         <td colspan="2" width="200" valign="top">
-                            ${lbTableAB} 1561 руб.
+                            ${lbTableAB} ${totalCost}
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2" width="200" valign="top">
-                            ${lbTableBA} 21.01.2017
+                            ${lbTableBA} ${dateSending}
                         </td>
                         <td colspan="2" width="200" valign="top">
-                            ${lbTableBB} 30.01.2017
+                            ${lbTableBB} ${dateDelivery }
                         </td>
                     </tr>
                     <tr>
                         <td colspan="5" width="200" valign="top">
-                            ${lbTableCA} Москва-поезд-Уфа-самолет-Самара
+                            ${lbTableCA} ${fullPath}
                         </td>
                     </tr>
                 </table>
 
                 <div class="clearfix">
                     <button type="button" class="cancelbtn">${lbCancel }</button>
-                    <button type="submit" class="signupbtn"><a href="personOrder.html">${lbIssue}</a></button>
+                    <button type="submit" class="signupbtn">${lbIssue}</button>
                 </div>
 
             </div>

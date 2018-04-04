@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 public class NewNodeForm {
-    boolean airport;
-    boolean railway;
+    int airport;
+    int railway;
     private String name;
     private String address;
     private String city;
@@ -40,6 +40,22 @@ public class NewNodeForm {
 		return selectedCities;
 	}
 
+	public int getAirport() {
+		return airport;
+	}
+
+	public void setAirport(int airport) {
+		this.airport = airport;
+	}
+
+	public int getRailway() {
+		return railway;
+	}
+
+	public void setRailway(int railway) {
+		this.railway = railway;
+	}
+
 	public void setSelectedCities(String selectedCities) {
 		this.selectedCities = selectedCities;
 	}
@@ -65,21 +81,6 @@ public class NewNodeForm {
 //        this.linkNodes = linkNodes;
 //    }
 
-    public boolean isAirport() {
-        return airport;
-    }
-
-    public void setAirport(boolean airport) {
-        this.airport = airport;
-    }
-
-    public boolean isRailway() {
-        return railway;
-    }
-
-    public void setRailway(boolean railway) {
-        this.railway = railway;
-    }
 
     public String getName(){
         return name;

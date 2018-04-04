@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import beans.CharacteristicsPath;
+
 public class BestPath {
 
     private final List<Vertex> nodes;
@@ -136,7 +138,7 @@ public class BestPath {
         return null;
     }
 
-    public void getAdditional(LinkedList Path){
+    public CharacteristicsPath getAdditional(LinkedList Path){
         double[] costAndTime = {0.0, 0.0};
         List<Integer> transport = new ArrayList<>();
         int limit = Path.size()-1;
@@ -148,7 +150,11 @@ public class BestPath {
             costAndTime[1] += someEdge.getAdditionalW();
             transport.add(someEdge.getTransport());
         }
-        System.out.println("Cost:" + costAndTime[0] + " |Time: " + costAndTime[1] + " sequence of transports: " + transport);
+        CharacteristicsPath charPath = new CharacteristicsPath();
+        charPath.setCost(costAndTime[0]);
+        charPath.setTime(costAndTime[1]);
+        charPath.setTransport(transport);
+        return charPath;
     }
 
 }

@@ -21,6 +21,9 @@ import java.time.LocalDate;
 import java.time.ZoneOffset;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class TranspRateDAOServiceImpl extends DataService implements TranspRateDAOService {
@@ -37,8 +40,31 @@ public class TranspRateDAOServiceImpl extends DataService implements TranspRateD
     
     private final static String SQL_UPDATE_TRANSPORT = "UPDATE logistics.transport " +
             " SET maxheight=?, maxwidth=?, maxlength=?, totalweight=?, totalcapacity=?";
+    
+    private final static String SQL_SELECT_TRANSPORT = "SELECT variety, avspeed, costkm, " + 
+    		"maxheight, maxwidth, maxlength, totalweight, totalcapacity from logistics.transport";
 
 
+    @Override
+    @Transactional(readOnly = true)
+    public List<Transport> getAllTransports() {
+           List<Transport> transports = getJdbcTemplate().query(SQL_SELECT_TRANSPORT, (rs, num) -> {
+        	   Transport transport = new Transport();
+        	   int idx=1;
+        	   transport.setVariety(rs.getString(idx++));
+        	   transport.setAvSpeed(rs.getDouble(idx++));
+        	   transport.setCostKm(rs.getDouble(idx++));
+        	   transport.setMaxHeight(rs.getDouble(idx++));
+        	   transport.setMaxWidth(rs.getDouble(idx++));
+        	   transport.setMaxLength(rs.getDouble(idx++));
+        	   transport.setTotalWeight(rs.getDouble(idx++));
+        	   transport.setTotalCapacity(rs.getDouble(idx++));
+               return transport;
+           });
+           return transports;
+    }
+    
+    
     @Override
     @Transactional
     public void insertRate(TransportRate transportRate) {

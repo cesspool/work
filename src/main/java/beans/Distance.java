@@ -4,8 +4,27 @@ public class Distance {
     private double length;
     private Node nodeStart;
     private Node nodeTarget;
+    private Long nodeFrom;
+    private Long nodeTo;
+    
 
-    public double getLength(){
+    public Long getNodeFrom() {
+		return nodeFrom;
+	}
+
+	public void setNodeFrom(Long nodeFrom) {
+		this.nodeFrom = nodeFrom;
+	}
+
+	public Long getNodeTo() {
+		return nodeTo;
+	}
+
+	public void setNodeTo(Long nodeTo) {
+		this.nodeTo = nodeTo;
+	}
+
+	public double getLength(){
         return length;
     }
 

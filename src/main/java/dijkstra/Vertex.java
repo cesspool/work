@@ -1,15 +1,15 @@
 package dijkstra;
 
 public class Vertex {
-    final private String id;
+    final private Long id;
     final private String name;
 
 
-    public Vertex(String id, String name) {
+    public Vertex(Long id, String name) {
         this.id = id;
         this.name = name;
     }
-    public String getId() {
+    public Long getId() {
         return id;
     }
 

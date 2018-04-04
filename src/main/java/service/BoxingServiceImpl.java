@@ -7,6 +7,9 @@ import utils.Tools;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,6 +33,12 @@ public class BoxingServiceImpl implements BoxingService {
         Boxing box = Tools.boxingFormToBoxing(boxForm);
         createBoxing(box);
         return box;
+    }
+    
+
+    @Override
+    public Map<Long, String> getAllBoxes() {
+        return boxingDAOService.getAllBoxes();
     }
     
     @Override

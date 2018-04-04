@@ -5,8 +5,27 @@ public class Order {
     private int name;
     private Boolean urgency;
     private Boolean ready;
+    private Long nodeStart;
+    private Long nodeTarget;
+    
 
-    public Long getId(){
+    public Long getNodeStart() {
+		return nodeStart;
+	}
+
+	public void setNodeStart(Long nodeStart) {
+		this.nodeStart = nodeStart;
+	}
+
+	public Long getNodeTarget() {
+		return nodeTarget;
+	}
+
+	public void setNodeTarget(Long nodeTarget) {
+		this.nodeTarget = nodeTarget;
+	}
+
+	public Long getId(){
         return id;
     }
 
