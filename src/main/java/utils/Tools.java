@@ -7,6 +7,7 @@ import beans.OrderCalculate;
 import beans.Rate;
 import beans.Transport;
 import beans.TransportRate;
+import form.request.CalculateForm;
 import form.request.NewAgreementForm;
 import form.request.NewBoxingForm;
 import form.request.NewNodeForm;
@@ -161,9 +162,15 @@ public class Tools {
     	return nodeDistance;
     }
     
-    public static OrderCalculate CalculateFormToCalculateOrder() {
-    	OrderCalculate calculateOrder = new OrderCalculate();
-    	return calculateOrder;
+    public static OrderCalculate CalculateFormToCalculateOrder(CalculateForm form) {
+    	OrderCalculate orderCalculate = new OrderCalculate();
+//    	orderCalculate.getCargo().isEnvelope(form.isEnvelope());
+//    	orderCalculate.getCargo().setLength(form.getLength());
+//    	orderCalculate.getCargo().setWidth(form.getWidth());
+//    	orderCalculate.getCargo().setHeight(form.getHeight());
+//    	orderCalculate.getCargo().setWeight(form.getWeight());
+//    	orderCalculate.getCargo().setQuantity(form.getQuantity());
+    	return orderCalculate;
     }
 
 }

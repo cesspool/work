@@ -14,6 +14,8 @@ import beans.NodeDistance;
 import form.request.NewNodeForm;
 import form.response.CalculateReq;
 import service.NodeDistanceService;
+import service.OrderService;
+import service.OrderServiceImpl;
 import web.Message;
 import web.Pages;
 
@@ -25,20 +27,25 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class ResultController {
 	
+//	@Autowired
+//	OrderService orderService = new OrderServiceImpl();
+	
+	//CostController costController = new CostController(); 
+	
 	@RequestMapping(value = "/result", method = RequestMethod.GET)
 	public String showResultForm(Model model) {
-		CalculateReq calculateReq = new CalculateReq();
-		calculateReq.setTypeDelivery("1234");
-		calculateReq.setTotalCost(158);
-		//calculateReq.setDateCurrent();
-		//calculateReq.setDateDelivery("");
-		calculateReq.setPath("123");
+		//CalculateReq calculateReq = costController.getCalculateReq();
+//		calculateReq.setTypeDelivery("1234");
+//		calculateReq.setTotalCost(158);
+//		//calculateReq.setDateCurrent();
+//		//calculateReq.setDateDelivery("");
+//		calculateReq.setFullPath("123"); 
 		
-	    model.addAttribute("typeDelivery", calculateReq.getTypeDelivery());
-	    model.addAttribute("totalCost", calculateReq.getTotalCost());
-	    model.addAttribute("dateSending", calculateReq.getDateCurrent());
-	    model.addAttribute("dateDelivery", calculateReq.getDateDelivery());
-	    model.addAttribute("fullPath", calculateReq.getPath());
+//	    model.addAttribute("typeDelivery", calculateReq.getTypeDelivery());
+//	    model.addAttribute("totalCost", calculateReq.getTotalCost());
+//	    model.addAttribute("dateSending", calculateReq.getDateCurrent());
+//	    model.addAttribute("dateDelivery", calculateReq.getDateDelivery());
+//	    model.addAttribute("fullPath", calculateReq.getFullPath());
 	    return Pages.RESULT;
 	}
 }

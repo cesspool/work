@@ -138,13 +138,13 @@ public class BestPath {
         return null;
     }
 
-    public CharacteristicsPath getAdditional(LinkedList Path){
+    public CharacteristicsPath getAdditional(LinkedList path){
         double[] costAndTime = {0.0, 0.0};
         List<Integer> transport = new ArrayList<>();
-        int limit = Path.size()-1;
+        int limit = path.size()-1;
         for(int i = 0; i<limit; i++){
-            Vertex node1 = (Vertex) Path.get(i);
-            Vertex node2 = (Vertex) Path.get(i+1);
+            Vertex node1 = (Vertex) path.get(i);
+            Vertex node2 = (Vertex) path.get(i+1);
             Edge someEdge = getEdge(node1, node2);
             costAndTime[0] += someEdge.getAdditionalC();
             costAndTime[1] += someEdge.getAdditionalW();

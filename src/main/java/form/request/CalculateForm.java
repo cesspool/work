@@ -13,7 +13,7 @@ public class CalculateForm {
     private double length;
     private double height;
     private double size;
-    private String boxesList;
+    private long boxesList;
 
     
 //    public String getStartNode() {
@@ -113,11 +113,11 @@ public class CalculateForm {
         this.size = size;
     }
 
-    public String getBoxesList() {
+    public long getBoxesList() {
         return boxesList;
     }
 
-    public void setBoxesList(String boxesList) {
+    public void setBoxesList(long boxesList) {
         this.boxesList = boxesList;
     }
 

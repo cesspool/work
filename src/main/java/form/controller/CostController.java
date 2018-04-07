@@ -17,8 +17,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import beans.NodeDistance;
 import beans.OrderCalculate;
+import exception.PathNotFoundException;
 import form.request.CalculateForm;
 import form.request.NewNodeForm;
+import form.response.CalculateReq;
 import service.BoxingService;
 import service.NodeDistanceService;
 import service.OrderService;
@@ -31,6 +33,7 @@ public class CostController {
     private BoxingService boxingService;
     private MessageSource messageSource;
     private OrderService orderService;
+    private CalculateReq calculateReq = new CalculateReq();
     
     @RequestMapping(value = "/costCalculation", method = {/**RequestMethod.POST, **/RequestMethod.GET}) // value = /costCalculation
     public String showOrderForm(Model model) {
@@ -59,21 +62,22 @@ public class CostController {
             redirectAttributes.addFlashAttribute(Pages.ATR_MESSAGE, message);
             return "redirect:result";
         } else {
-        	OrderCalculate calculateForm = orderService.prepareOrder(formData);
-            redirectAttributes.addFlashAttribute(Pages.ADMIN, formData);
-            return "redirect:result";
+        	try {
+	        	calculateReq = orderService.prepareOrder(formData);
+	        	calculateReq.setTypeDelivery(messageSource.getMessage(calculateReq.getTypeDelivery(), null, locale));
+	        	uiModel.addAttribute(Pages.ATR_COST_CALC_RESULT, calculateReq);
+	            return "resultCost";
+        	} catch(PathNotFoundException ex) {
+        		Message errMsg = ex.getMsg();
+        		errMsg.setMsg(messageSource.getMessage(errMsg.getKey(), null, locale));
+        		uiModel.addAttribute(Pages.ATR_MESSAGE, errMsg);
+        		return "personCost";
+        	}    
         }
 
     }
     
     
-    
-    
-    
-    @Autowired
-    protected void setMessageSource(MessageSource messageSource) {
-        this.messageSource = messageSource;
-    }
     
     private Message validateForm(CalculateForm formData) {
 //        if (Tools.isBlank(formData.getPsw())) {
@@ -108,6 +112,20 @@ public class CostController {
     @Autowired
     private void setBoxingService(BoxingService service) {
         this.boxingService = service;
-    } 
+    }
+
+	public CalculateReq getCalculateReq() {
+		return calculateReq;
+	}
+
+	public void setCalculateReq(CalculateReq calculateReq) {
+		this.calculateReq = calculateReq;
+	} 
+    
+    @Autowired
+    protected void setMessageSource(MessageSource messageSource) {
+        this.messageSource = messageSource;
+    }
+    
     
 }

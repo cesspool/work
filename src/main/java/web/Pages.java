@@ -78,6 +78,7 @@ public class Pages {
     /** Message to show at the target page  */
     public static final String ATR_MESSAGE = "message";
     
+    public static final String ATR_COST_CALC_RESULT = "costCalcRes";
     
     
 }

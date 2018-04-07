@@ -1,19 +1,24 @@
 package dbservice;
 
 import beans.Boxing;
+import beans.Customer;
 import utils.Pair;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Service;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,7 +32,20 @@ public class BoxingDAOServiceImpl extends DataService implements BoxingDAOServic
             " WHERE variety=?";
     
     private final static String SQL_SELECT_ALL = "SELECT id, variety FROM logistics.boxing";
+    
+    private final static String SQL_SELECT_BOX_BY_ID = "select B.cost from logistics.boxing B where id = ?";
+    
+    
 
+    @Override
+    @Transactional(readOnly = true)
+    public Boxing getCostByID(Long ID) {
+    	List<Boxing> boxes = getJdbcTemplate().query(SQL_SELECT_BOX_BY_ID, new Object[] {ID}, new CostMapper(ID)); 
+        return boxes.size() > 0 ? boxes.get(0) : null;
+    }
+    
+    
+    
     @Override
     @Transactional(readOnly = true)
     public Map<Long, String> getAllBoxes() {
@@ -66,4 +84,21 @@ public class BoxingDAOServiceImpl extends DataService implements BoxingDAOServic
     public void deleteBoxing(final Boxing boxing) {
         getJdbcTemplate().update(SQL_DELETE, boxing.getVariety());
     };
+    
+    
+    private class CostMapper implements RowMapper<Boxing> {
+    	private Long id;
+    	public CostMapper(Long ID) {
+    		this.id = ID;
+    	}
+    	
+		@Override
+		public Boxing mapRow(ResultSet rs, int rowNum) throws SQLException {
+    		Boxing boxy = new Boxing();
+    		boxy.setId(this.id);
+            int idx = 1;
+            boxy.setCost(rs.getDouble(idx++));
+            return boxy;
+		}
+    }
 }

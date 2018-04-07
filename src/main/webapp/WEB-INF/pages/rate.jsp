@@ -53,12 +53,11 @@
 <!-- Main -->
 <section id="main" class="wrapper">
     <div class="container">
-
-        <header class="major special">
-            <h2>${lbHeaderA} <data>name</data></h2>
-            <p>${lbHeaderB} <data>10.10.2010 - 10.10.2011</data></p>
+        <form class="registration" method="get" action="${contextPath}/rateform">
+          <header class="major special">
+            <h2>${lbHeaderA} ${name}</h2>
+            <p>${lbHeaderB} ${dateStart } - ${dateEnd}</p>
         </header>
-        <form class="registration">
             <div class="container limiter">
 
                 <table width="100%" cellspacing="0" cellpadding="5">
@@ -69,19 +68,19 @@
                     <tr>
                         <td width="200" valign="top">
                             <label for="lastName"><b>${lbSectionBA}</b></label>
-                            <data>40</data>
+                            ${weight }
                         </td>
                         <td width="200" valign="top">
                             <label for="lastName"><b>${lbSectionBB}</b></label>
-                            <data>40</data>
+                            ${length }
                         </td>
                         <td width="200" valign="top">
                             <label for="lastName"><b>${lbSectionBC}</b></label>
-                            <data>40</data>
+                            ${width }
                         </td>
                         <td width="200" valign="top">
                             <label for="lastName"><b>${lbSectionBD}</b></label>
-                            <data>40</data>
+                            ${height }
                         </td>
                     </tr>
                     <tr>
@@ -90,15 +89,15 @@
                         </td>
                         <td width="200" valign="top">
                             <label for="lastName"><b>${lbSectionCB}</b></label>
-                            <data>20%</data>
+                            ${costShippingCargo }
                         </td>
                         <td width="200" valign="top">
                             <label for="lastName"><b>${lbSectionCC}</b></label>
-                            <data>20%</data>
+                            ${costShippingAir }
                         </td>
                         <td width="200" valign="top">
                             <label for="lastName"><b>${lbSectionCD}</b></label>
-                            <data>20%</data>
+                            ${costShippingRail }
                         </td>
                     </tr>
                     <tr>
@@ -107,15 +106,15 @@
                         </td>
                         <td width="200" valign="top">
                             <label for="lastName"><b>${lbSectionCB}</b></label>
-                            <data>20%</data>
+                            ${addCostShippingCargo }
                         </td>
                         <td width="200" valign="top">
                             <label for="lastName"><b>${lbSectionCC}</b></label>
-                            <data>20%</data>
+                            ${addCostShippingAir }
                         </td>
                         <td width="200" valign="top">
                             <label for="lastName"><b>${lbSectionCD}</b></label>
-                            <data>20%</data>
+                            ${addCostShippingRail }
                         </td>
                     </tr>
                     <tr>
@@ -124,15 +123,15 @@
                         </td>
                         <td width="200" valign="top">
                             <label for="lastName"><b>${lbSectionCB}</b></label>
-                            <data>20%</data>
+                            ${costKmCargo }
                         </td>
                         <td width="200" valign="top">
                             <label for="lastName"><b>${lbSectionCC}</b></label>
-                            <data>20%</data>
+                            ${costKmAir}
                         </td>
                         <td width="200" valign="top">
                             <label for="lastName"><b>${lbSectionCD}</b></label>
-                            <data>20%</data>
+                            ${costKmRail }
                         </td>
                     </tr>
                 </table>
@@ -142,98 +141,6 @@
     </div>
     <hr>
     <!---------------------------------------------------------------------------------------------------------------->
-
-
-
-    <div class="container">
-
-        <header class="major special">
-            <h2>${lbAdditional} <data>name</data></h2>
-            <p>${lbHeaderB } <data>10.10.2010 - 10.10.2011</data></p>
-        </header>
-        <form class="registration">
-            <div class="container limiter">
-
-                <table width="100%" cellspacing="0" cellpadding="5">
-                    <tr ><td class="someTable" colspan="2" width="200" valign="top">
-                        ${lbTableTR }
-                    </td>
-                    </tr>
-                    <tr>
-                        <td width="200" valign="top">
-                            <label for="lastName"><b>${lbSectionBA}</b></label>
-                            <data>40</data>
-                        </td>
-                        <td width="200" valign="top">
-                            <label for="lastName"><b>${lbSectionBB}</b></label>
-                            <data>40</data>
-                        </td>
-                        <td width="200" valign="top">
-                            <label for="lastName"><b>${lbSectionBC}</b></label>
-                            <data>40</data>
-                        </td>
-                        <td width="200" valign="top">
-                            <label for="lastName"><b>${lbSectionBD}</b></label>
-                            <data>40</data>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td width="200" valign="top">
-                            ${lbSectionCA}
-                        </td>
-                        <td width="200" valign="top">
-                            <label for="lastName"><b>${lbSectionCB}</b></label>
-                            <data>20%</data>
-                        </td>
-                        <td width="200" valign="top">
-                            <label for="lastName"><b>${lbSectionCC}</b></label>
-                            <data>20%</data>
-                        </td>
-                        <td width="200" valign="top">
-                            <label for="lastName"><b>${lbSectionCD}</b></label>
-                            <data>20%</data>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td width="200" valign="top">
-                            ${lbSectionDA}
-                        </td>
-                        <td width="200" valign="top">
-                            <label for="lastName"><b>${lbSectionCB}</b></label>
-                            <data>20%</data>
-                        </td>
-                        <td width="200" valign="top">
-                            <label for="lastName"><b>${lbSectionCC}</b></label>
-                            <data>20%</data>
-                        </td>
-                        <td width="200" valign="top">
-                            <label for="lastName"><b>${lbSectionCD}</b></label>
-                            <data>20%</data>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td width="200" valign="top">
-                            ${lbSectionEA}
-                        </td>
-                        <td width="200" valign="top">
-                            <label for="lastName"><b>${lbSectionCB}</b></label>
-                            <data>20%</data>
-                        </td>
-                        <td width="200" valign="top">
-                            <label for="lastName"><b>${lbSectionCC}</b></label>
-                            <data>20%</data>
-                        </td>
-                        <td width="200" valign="top">
-                            <label for="lastName"><b>${lbSectionCD}</b></label>
-                            <data>20%</data>
-                        </td>
-                    </tr>
-                </table>
-
-            </div>
-        </form>
-    </div>
-</section>
 
 
 

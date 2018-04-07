@@ -5,6 +5,7 @@ import beans.Transport;
 import beans.TransportRate;
 import utils.Pair;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
@@ -18,4 +19,5 @@ public interface TranspRateDAOService {
     public List<Transport> getAllTransports();
 
     Collection<Transport> getTransports();
+    public List<Rate> getCurrentRate();
 }

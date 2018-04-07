@@ -60,12 +60,11 @@ public class NodeDistanceDAOServiceImpl extends DataService implements NodeDista
     
     @Override
     @Transactional(readOnly = true)
-    public Map<Long, Long> getAllNodeTransports() {
+    public List<Pair<Long, Long>> getAllNodeTransports() {
            List<Pair<Long, Long>> transports = getJdbcTemplate().query(SQL_SEL_ALL_NODE_TRANSPORT, (rs, num) -> {
                return new Pair<>(rs.getLong(1), rs.getLong(2));
            });
-           Map<Long, Long> allTransports = transports.stream().collect(Collectors.toMap(Pair::getLeft, Pair::getRight));
-           return allTransports;
+           return transports;
     }
     
     

@@ -1,6 +1,8 @@
 package dbservice;
 
 import java.sql.PreparedStatement;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +11,11 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import beans.CoordinatesPrep;
+import beans.Node;
+import form.response.OrderingReq;
+import utils.Pair;
 
 //import beans.Order;
 //import beans.Rate;
@@ -25,6 +32,43 @@ public class OrderDAOServiceImpl  implements OrderDAOService {
 	private final static String SQL_INSERT_Order = "INSERT INTO logistics.order " +
             " (name, urgency, ready, sender_id, rate_id, package_id, boxing_id) " +
             " VALUES (?, ?, ?, ?, ?, ?, ?) ";
+	
+	private final static String SQL_SEL_ORDERS_BY_READY_AND_RECIPIENT= "select Ord.name," +
+			" Ord.urgency, Ord.plan_date, Ord.cost, Ord.contact_information, Pk.envelop," +
+			" Pk.height, Pk.width, Pk.length, Pk.weight, Pk.size, Bx.variety, Nds.city, Ndt.city" + 
+			" from logistics.order Ord" + 
+			" inner join logistics.package Pk on Pk.id = Ord.package_id" + 
+			" inner join logistics.boxing Bx on Bx.id = Ord.boxing_id" + 
+			" inner join logistics.rate Rt on Rt.id = Ord.rate_id" + 
+			" inner join logistics.node Nds on Nds.id = Ord.node_start_id" + 
+			" inner join logistics.node Ndt on Ndt.id = Ord.node_target_id" + 
+			" WHERE recipient_id = ? and ready=?";
+	
+	
+	
+//	@Override
+//    @Transactional(readOnly = true)
+//    public List<OrderingReq> getOrdersByReady(Node start) {
+//           List<Pair<Node, Node>> coordinates = getJdbcTemplate().query(SQL_SEL_COORDINATES_BY_ID, (rs, num) -> {
+//               Node ndStart = new Node();
+//               Node ndEnd = new Node();
+//               int idx = 1;
+//               ndStart.setCoordinateX(rs.getDouble(idx++));
+//               ndStart.setCoordinateY(rs.getDouble(idx++));
+//               ndStart.setId(rs.getLong(idx++));
+//               ndEnd.setCoordinateX(rs.getDouble(idx++));
+//               ndEnd.setCoordinateY(rs.getDouble(idx++));
+//               ndEnd.setId(rs.getLong(idx++));
+//               return new Pair<Node, Node>(ndStart, ndEnd);
+//           });
+//           List<CoordinatesPrep> result = new ArrayList<>();
+//           for(Pair<Node, Node> path : coordinates) {
+//        	   result.add(new CoordinatesPrep(path.getLeft(), path.getRight()));
+//           }
+//           return result;
+//    }
+	
+	
 	
 	
 	 	//@Override

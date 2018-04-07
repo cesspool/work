@@ -8,4 +8,5 @@ public interface BoxingDAOService {
     void insertBoxing(Boxing boxing);
     void deleteBoxing(Boxing boxing);
     Map<Long, String> getAllBoxes();
+    public Boxing getCostByID(Long ID);
 }

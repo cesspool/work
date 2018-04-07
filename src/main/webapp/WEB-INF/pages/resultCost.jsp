@@ -28,6 +28,11 @@
 <spring:message code="resultCost.table.trB.tdB" var="lbTableBB"/>
 <spring:message code="resultCost.table.trC.tdA" var="lbTableCA"/>
 
+<spring:message code="resultCost.time.begin" var="lbTimeBg"/>
+<spring:message code="resultCost.time.end" var="lbTimeEnd"/>
+
+
+
 
 
 <html>
@@ -60,23 +65,26 @@
 
                 <table width="100%" cellspacing="0" cellpadding="5">
                     <tr ><td colspan="4" width="200" valign="top">
-                       ${lbTableAA} ${typeDelivery}
+                       ${lbTableAA} ${costCalcRes.typeDelivery}
                     </td>
                         <td colspan="2" width="200" valign="top">
-                            ${lbTableAB} ${totalCost}
+                            ${lbTableAB} ${costCalcRes.totalCost}
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2" width="200" valign="top">
-                            ${lbTableBA} ${dateSending}
+                            ${lbTableBA} ${costCalcRes.dateCurrent}
                         </td>
                         <td colspan="2" width="200" valign="top">
-                            ${lbTableBB} ${dateDelivery }
+                            ${lbTableBB} ${costCalcRes.dateDelivery } 
+                        </td>
+                        <td colspan="2" width="200" valign="top">
+                            ${lbTimeBg } ${costCalcRes.quatityHours} ${lbTimeEnd }
                         </td>
                     </tr>
                     <tr>
                         <td colspan="5" width="200" valign="top">
-                            ${lbTableCA} ${fullPath}
+                            ${lbTableCA} ${costCalcRes.fullPath}
                         </td>
                     </tr>
                 </table>

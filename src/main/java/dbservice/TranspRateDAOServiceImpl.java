@@ -17,12 +17,15 @@ import utils.Tools;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -41,16 +44,39 @@ public class TranspRateDAOServiceImpl extends DataService implements TranspRateD
     private final static String SQL_UPDATE_TRANSPORT = "UPDATE logistics.transport " +
             " SET maxheight=?, maxwidth=?, maxlength=?, totalweight=?, totalcapacity=?";
     
-    private final static String SQL_SELECT_TRANSPORT = "SELECT variety, avspeed, costkm, " + 
+    private final static String SQL_SELECT_TRANSPORT = "SELECT id, variety, avspeed, costkm, " + 
     		"maxheight, maxwidth, maxlength, totalweight, totalcapacity from logistics.transport";
-
-
+    
+    private final static String SQL_SELECT_RATE = "select \"name\", costshipping, additionalcost," +
+    		 " startactiondate, endactiondate from logistics.rate R where now() between R.startactiondate and R.endactiondate";
+    
+    
+    
+    @Override
+    @Transactional(readOnly = true)
+    public List<Rate> getCurrentRate() {
+           List<Rate> rates = getJdbcTemplate().query(SQL_SELECT_RATE, (rs, num) -> {
+        	   Rate r = new Rate();
+        	   int idx=1;
+        	   r.setName(rs.getString(idx++));
+               r.setCostShipping(rs.getDouble(idx++));
+               r.setAdditionalCost(rs.getDouble(idx++));
+               r.setStartAction(rs.getDate(idx++));
+               r.setEndAction(rs.getDate(idx++));
+               return r;
+           });
+           return rates;
+    }
+    
+    
+    
     @Override
     @Transactional(readOnly = true)
     public List<Transport> getAllTransports() {
            List<Transport> transports = getJdbcTemplate().query(SQL_SELECT_TRANSPORT, (rs, num) -> {
         	   Transport transport = new Transport();
         	   int idx=1;
+        	   transport.setId(rs.getLong(idx++));
         	   transport.setVariety(rs.getString(idx++));
         	   transport.setAvSpeed(rs.getDouble(idx++));
         	   transport.setCostKm(rs.getDouble(idx++));

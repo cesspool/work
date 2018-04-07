@@ -28,6 +28,11 @@
 <spring:message code="contact.place.Fname" var="lbPlaceFname"/>
 <spring:message code="input.warning.massages" var="lbInputMsg"/>
 
+<spring:message code="registration.type.privilege" var="lbPrivilege"/>
+<spring:message code="registration.type.privilege.ordinary" var="lbPrivilegeOrdinary"/>
+<spring:message code="registration.type.privilege.manager" var="lbPrivilegeManager"/>
+<spring:message code="registration.type.privilege.admin" var="lbPrivilegeAdmin"/>
+
 <html>
 <head>
     <title>${lbMain}</title>
@@ -80,7 +85,15 @@
                 <label for="pswRepeat"><b>${lbTableBCB}</b></label>
                 <input type="password" placeholder="${lbPlacePswRepeat}" name="pswRepeat" id="pswRepeat" required
                 oninvalid="this.setCustomValidity('')" />
-            </td>
+                
+				<label for="privilege"><b>${lbPrivilege }</b></label>
+                <select id="privilege" name="privilege" class="form-select">
+					<option name = "ordinary" id = "ordinary" value = "0">${lbPrivilegeOrdinary}</option>
+                    <option name = "manager" id = "manager" value = "1">${lbPrivilegeManager }</option>
+                    <option name = "admin" id = "admin" value = "2">${lbPrivilegeAdmin }</option>
+                </select>
+             </td>
+            
 
     </table>
             <div class="clearfix">

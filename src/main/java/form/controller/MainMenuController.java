@@ -14,10 +14,6 @@ public class MainMenuController {
         return Pages.MAIN;
     }
 
-    @RequestMapping(value = "/rateform", method = RequestMethod.GET)
-    public String showRatesForm(Model model) {
-        return Pages.RATE;
-    }
 
     @RequestMapping(value = "/loginform", method = RequestMethod.GET)
     public String showLoginForm(Model model) {

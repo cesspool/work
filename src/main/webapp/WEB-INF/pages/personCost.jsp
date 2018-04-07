@@ -65,6 +65,16 @@
         <header class="major special">
             <h2>${lbSectionH}</h2>
             <p>${lbSectionP}</p>
+            <p> 
+            	<c:if test="${not empty message}">
+           	      <div>
+                     <div> <!-- ERROR MESSAGE BOX -->
+                      <h2>Error</h2>
+                      <p>${message.msg}</p>
+				  	</div>
+				  </div>
+            	</c:if>
+            </p>
         </header>
         <form class="registration" method="post" action="${contextPath}/costCalculation" name="costCalcForm"  id="costCalcForm">
             <div class="container limiter">
@@ -116,10 +126,8 @@
                         <td width="200" valign="top">
                             <label for="envelope"><b>${lbTableBA}</b></label>
                             <select id="envelope" name="field_sity_tid" class="form-select">
-                            <data>
 								<option name = "envelop" id = "envelop" value = "${envelopVal }">${lbOptEnvelop }</option>
                                 <option name = "cargo" id = "cargo" value = "${cargoVal }">${lbOptCargo }</option>
-                            </data>
                             </select>
                         </td>
 

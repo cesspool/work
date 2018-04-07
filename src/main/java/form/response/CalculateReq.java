@@ -6,66 +6,31 @@ import java.util.Date;
 import java.util.List;
 
 public class CalculateReq {
-    private List<String> nodes;
-    private List<String> addresses;
-    private List<Double> costOfbox;
-    private double volume;
-    private String transport;
-    private String path;
+    private String FullPath;
     private double totalCost;
     private Date dateCurrent;
-    private Date dateDelivery;
+    private String dateDelivery;
+    private long quatityHours;
     private String typeDelivery;
 
-    public List<String> getNodes() {
-        return nodes;
-    }
 
-    public void setNodes(List<String> nodes) {
-        this.nodes = nodes;
-    }
+    public String getFullPath() {
+		return FullPath;
+	}
 
-    public List<String> getAddresses() {
-        return addresses;
-    }
+	public void setFullPath(String fullPath) {
+		FullPath = fullPath;
+	}
 
-    public void setAddresses(List<String> addresses) {
-        this.addresses = addresses;
-    }
+	public long getQuatityHours() {
+		return quatityHours;
+	}
 
-    public List<Double> getCostOfbox() {
-        return costOfbox;
-    }
+	public void setQuatityHours(long quatityHours) {
+		this.quatityHours = quatityHours;
+	}
 
-    public void setCostOfbox(List<Double> costOfbox) {
-        this.costOfbox = costOfbox;
-    }
-
-    public double getVolume() {
-        return volume;
-    }
-
-    public void setVolume(double volume) {
-        this.volume = volume;
-    }
-
-    public String getTransport() {
-        return transport;
-    }
-
-    public void setTransport(String transport) {
-        this.transport = transport;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    public double getTotalCost() {
+	public double getTotalCost() {
         return totalCost;
     }
 
@@ -84,12 +49,10 @@ public class CalculateReq {
     }
 
     public String getDateDelivery() { //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Date
-    	DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-    	dateDelivery = new Date();
-        return dateFormat.format(dateDelivery);
+    	return dateDelivery;
     }
 
-    public void setDateDelivery(Date dateDelivery) {
+    public void setDateDelivery(String dateDelivery) {
         this.dateDelivery = dateDelivery;
     }
 

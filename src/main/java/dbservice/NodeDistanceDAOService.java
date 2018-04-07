@@ -5,6 +5,7 @@ import beans.Distance;
 import beans.Node;
 import beans.NodeDistance;
 import beans.Transport;
+import utils.Pair;
 
 import java.util.Collection;
 import java.util.List;
@@ -16,7 +17,7 @@ public interface NodeDistanceDAOService {
     public List<CoordinatesPrep> getCoordinatesFromStart(Node start);
     public List<Distance> getAllDistances();
     public Node getByName(String name);
-    public Map<Long, Long> getAllNodeTransports();
+    public List<Pair<Long, Long>> getAllNodeTransports();
     //Map<Long, String> getCities(Long nodeID); // searching cities linked with that node
     //SELECT id, city FROM logistics.node a inner join logistics.distance b on a.id=b.node_id_start where b.node_id_start = 2
 }

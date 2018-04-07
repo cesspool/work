@@ -42,7 +42,7 @@ public class TransCoordinate {
         double y = Math.sqrt(Math.pow((cl2*sdelta),2)+Math.pow((cl1*sl2-sl1*cl2*cdelta),2));
         double x = sl1*sl2+cl1*cl2*cdelta;
         double ad = Math.atan2(y,x);
-        double dist = ad*rad;
-        return dist;
+        double dist = ad*rad/1000;
+        return dist; //kilometers
     }
 }
