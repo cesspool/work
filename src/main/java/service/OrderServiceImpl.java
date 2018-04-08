@@ -41,6 +41,7 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private BoxingDAOService boxingDAOService = new BoxingDAOServiceImpl();
     
+	private Test calculate;
     private CalculateReq calculateReq =  new CalculateReq();
 	
     
@@ -81,7 +82,6 @@ public class OrderServiceImpl implements OrderService {
 		order.setNodeStart(nodeStart.getId());
 		order.setNodeTarget(nodeTarget.getId());
 		order.isUrgency(form.isUrgency());
-		Test calculate = new Test();
 		CharacteristicsPath charPath = calculate.testExcute(nodes, distances, transports, rates, order, nodeTransport, cargo);
 		return charPath;
 	}
@@ -145,5 +145,11 @@ public class OrderServiceImpl implements OrderService {
     	DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
     	return dateFormat.format(cal.getTime());
     }
+
+    @Autowired
+	private void setCalculate(Test calculate) {
+		this.calculate = calculate;
+	}
 	
+    
 }

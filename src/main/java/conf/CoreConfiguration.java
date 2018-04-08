@@ -1,6 +1,9 @@
 package conf;
 
 import com.zaxxer.hikari.HikariDataSource;
+
+import dijkstra.Test;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -59,4 +62,8 @@ public class CoreConfiguration {
         return tt;
     } 
     
+    @Bean
+    public Test test() {
+    	return new Test();
+    }
 }

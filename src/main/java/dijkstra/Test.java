@@ -14,22 +14,30 @@ import java.util.OptionalInt;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import beans.CharacteristicsPath;
 import beans.Distance;
+import beans.Node;
 import beans.Order;
 import beans.Package;
 import beans.Rate;
 import beans.Transport;
+import dbservice.NodeDistanceDAOService;
+import dbservice.NodeDistanceDAOServiceImpl;
 import exception.PathNotFoundException;
 
+@Component
 public class Test {
-    private List<Edge> edges = new ArrayList<>();;
+   
+    private NodeDistanceDAOService nodeDistanceDAOService;
 
     public CharacteristicsPath testExcute(Map<Long, String> nodeMap, List<Distance> distances, List<Transport> transports,
     									List<Rate> rates, Order order, List<Pair<Long, Long>> nodeTransport, Package cargo)
     									throws PathNotFoundException {
     	
-
+        List<Edge> edges = new ArrayList<>();
         List<Vertex> nodes = nodeMap.entrySet()
         		.stream()
         		.map(e -> new Vertex(e.getKey(), e.getValue()))
@@ -70,6 +78,8 @@ public class Test {
     	double costAir = Double.MAX_VALUE;
     	double timeRail = Double.MAX_VALUE;
     	double costRail = Double.MAX_VALUE;
+    	double timeCargo;
+    	double costCargo;
     	for (Distance dist : distances) {
     		
     		//if ((nodeTransport.get(dist.getNodeFrom()).equals(nodeTransport.get(dist.getNodeTo()))) && 
@@ -93,8 +103,8 @@ public class Test {
     		from = getIndexById(dist.getNodeFrom(), nodes);
     		to = getIndexById(dist.getNodeTo(), nodes);
     		
-    		double timeCargo = dist.getLength() / transports.get(0).getAvSpeed();
-        	double costCargo = (dist.getLength() * transports.get(0).getCostKm()) + 
+    		timeCargo = dist.getLength() / transports.get(0).getAvSpeed();
+        	costCargo = (dist.getLength() * transports.get(0).getCostKm()) + 
         			(dist.getLength() * transports.get(0).getCostKm())*KCargo + 
         			(dist.getLength() * transports.get(0).getCostKm())*rates.get(0).getCostShipping();
         	
@@ -105,7 +115,7 @@ public class Test {
         	List<Double> edgeTime = new ArrayList<>(Arrays.asList(timeCargo, timeAir, timeRail));
         	List<Double> edgeCost = new ArrayList<>(Arrays.asList(costCargo,costAir,costRail));
         	
-        	addLane("Edge_"+idx++, from, to, edgeTime, edgeCost, nodes);
+        	addLane("Edge_"+idx++, from, to, edgeTime, edgeCost, nodes, edges);
     	}
     	
     	
@@ -113,11 +123,75 @@ public class Test {
     	//create edges with all combinations of this nodes if such edge doesnt exist
     	//do the same with transportId=3
     	
+    	//nodeMap 
+    	//nodeTransport
+    	
+    	timeAir = Double.MAX_VALUE;
+    	costAir = Double.MAX_VALUE;
+    	timeRail = Double.MAX_VALUE;
+    	costRail = Double.MAX_VALUE;
+    	timeCargo = Double.MAX_VALUE;
+    	costCargo = Double.MAX_VALUE;
+    	List<Long> airList = new ArrayList();
+    	List<Long> railList = new ArrayList();
+    	for (int i=0; i< nodeTransport.size(); i++) {
+    		if(nodeTransport.get(i).getRight()==2L) {
+    			airList.add(nodeTransport.get(i).getLeft());
+    		}
+    		if(nodeTransport.get(i).getRight()==3L) {
+    			railList.add(nodeTransport.get(i).getLeft());
+    		}
+    	}
+    	
+    	Node startNode = new Node();
+    	Node endNode = new Node();
+    	double legthDist;
+    	TransCoordinate transCoordinate = new TransCoordinate();
+    	for(int i=0; i<airList.size()-1; i++) {
+    		for(int k=1+i; k<airList.size();k++) {
+    			if (!checkEdge(edges, nodes.get(getIndexById(airList.get(i), nodes)), nodes.get(getIndexById(airList.get(k), nodes))))
+    			startNode = nodeDistanceDAOService.getCoordinate(airList.get(i));
+    			endNode = nodeDistanceDAOService.getCoordinate(airList.get(k));
+    			legthDist = transCoordinate.setGeoCoordinate(startNode.getCoordinateX(), startNode.getCoordinateY(),
+    												endNode.getCoordinateX(), endNode.getCoordinateY());
+    			timeAir = legthDist / transports.get(1).getAvSpeed();
+            	costAir = legthDist * transports.get(1).getCostKm() + 
+            			(legthDist * transports.get(1).getCostKm())*KAir + 
+            			(legthDist * transports.get(1).getCostKm())*rates.get(1).getCostShipping();
+            	
+            	List<Double> edgeTime = new ArrayList<>(Arrays.asList(timeCargo, timeAir, timeRail));
+            	List<Double> edgeCost = new ArrayList<>(Arrays.asList(costCargo,costAir,costRail));
+            	
+            	addLane("Edge_"+idx++, getIndexById(airList.get(i), nodes), getIndexById(airList.get(k), nodes), edgeTime, edgeCost, nodes, edges);
+    		}
+    	}
     	
     	
+    	timeAir = Double.MAX_VALUE;
+    	costAir = Double.MAX_VALUE;
+    	timeRail = Double.MAX_VALUE;
+    	costRail = Double.MAX_VALUE;
+    	timeCargo = Double.MAX_VALUE;
+    	costCargo = Double.MAX_VALUE;
     	
-    	
-    	
+    	for(int i=0; i<railList.size()-1; i++) {
+    		for(int k=1+i; k<railList.size();k++) {
+    			if (!checkEdge(edges, nodes.get(getIndexById(railList.get(i), nodes)), nodes.get(getIndexById(railList.get(k),nodes))))
+    			startNode = nodeDistanceDAOService.getCoordinate(railList.get(i));
+    			endNode = nodeDistanceDAOService.getCoordinate(railList.get(k));
+    			legthDist = transCoordinate.setGeoCoordinate(startNode.getCoordinateX(), startNode.getCoordinateY(),
+    												endNode.getCoordinateX(), endNode.getCoordinateY());
+    			timeRail = legthDist / transports.get(2).getAvSpeed();
+            	costRail = legthDist * transports.get(2).getCostKm() + 
+            			(legthDist * transports.get(2).getCostKm())*KRail + 
+            			(legthDist * transports.get(2).getCostKm())*rates.get(2).getCostShipping();
+            	
+            	List<Double> edgeTime = new ArrayList<>(Arrays.asList(timeCargo, timeAir, timeRail));
+            	List<Double> edgeCost = new ArrayList<>(Arrays.asList(costCargo,costAir,costRail));
+            	
+            	addLane("Edge_"+idx++, getIndexById(railList.get(i), nodes), getIndexById(railList.get(k),nodes), edgeTime, edgeCost, nodes, edges);
+    		}
+    	}
     	
     	
     	
@@ -150,10 +224,22 @@ public class Test {
     }
 
     private void addLane(String laneId, int sourceLocNo, int destLocNo,
-                         List<Double> duration, List<Double> cost, List<Vertex> nodes) {
+                         List<Double> duration, List<Double> cost, List<Vertex> nodes, final List<Edge> edges) {
         Edge lane = new Edge(laneId, nodes.get(sourceLocNo), nodes.get(destLocNo), duration, cost );
         edges.add(lane);
     }
+    
+    //true if such edge is existing
+    private boolean checkEdge(List<Edge> edges, Vertex nodeSource, Vertex nodeDest) {
+	    boolean isFound = edges.stream().anyMatch(edge -> {
+        	return (edge.getSource().equals(nodeSource) && edge.getDestination().equals(nodeDest)) ||
+        			(edge.getDestination().equals(nodeSource) && edge.getSource().equals(nodeDest));
+        });
+	    return isFound;
+    }
+    
+    
+    
     
     
     public int getIndexById(long toFind, List<Vertex> nodes) {
@@ -190,6 +276,13 @@ public class Test {
     						.findFirst();
     	return start.isPresent() && end.isPresent();
     }
+
+    @Autowired
+	private void setNodeDistanceDAOService(NodeDistanceDAOService nodeDistanceDAOService) {
+		this.nodeDistanceDAOService = nodeDistanceDAOService;
+	}
+    
+    
 //	List<List<Double>> totalEdgeTime = new ArrayList<>();
 //	List<List<Double>> totalEdgeCost = new ArrayList<>();
     

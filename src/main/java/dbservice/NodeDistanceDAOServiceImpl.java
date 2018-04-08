@@ -246,17 +246,18 @@ public class NodeDistanceDAOServiceImpl extends DataService implements NodeDista
     @Override
     @Transactional(readOnly = true)
     public Node getCoordinate(Long ID) {
-        Node res = getJdbcTemplate().query(SQL_SEL_COORDINATE, new Object[] {ID}, (rs) -> {
-            if (!rs.next()) {
-                return null;
-            }
+        List<Node> res = getJdbcTemplate().query(SQL_SEL_COORDINATE, new Object[] {ID}, (rs, num) -> {
+//            if (!rs.next()) {
+//                return null;
+//            }
             Node n = new Node();
+            n.setId(ID);
             int idx = 1;
             n.setCoordinateX(rs.getDouble(idx++));
             n.setCoordinateY(rs.getDouble(idx++));
             return n;
         });
-        return res;
+        return res.get(0);
     }
     
 //    @Override !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
