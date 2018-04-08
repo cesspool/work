@@ -43,6 +43,7 @@ public class OrderServiceImpl implements OrderService {
     
     private CalculateReq calculateReq =  new CalculateReq();
 	
+    
     @Override
 	public CalculateReq prepareOrder(CalculateForm form) throws PathNotFoundException {
     	Boxing box = boxingDAOService.getCostByID(form.getBoxesList());

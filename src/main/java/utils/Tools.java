@@ -153,7 +153,7 @@ public class Tools {
     	}
     	
     	String selCities = form.getSelectedCities();
-    	if ((selCities.length() > 0) && (selCities.contains(","))) {
+    	if (selCities.trim().length() > 0) {
     		String[] cityIDs = selCities.split(",");
     		int ln = cityIDs.length;
     		nodeDistance.setCities(cityIDs);

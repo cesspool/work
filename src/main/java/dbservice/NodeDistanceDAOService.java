@@ -18,6 +18,7 @@ public interface NodeDistanceDAOService {
     public List<Distance> getAllDistances();
     public Node getByName(String name);
     public List<Pair<Long, Long>> getAllNodeTransports();
+    public Node getCoordinate(Long ID);
     //Map<Long, String> getCities(Long nodeID); // searching cities linked with that node
     //SELECT id, city FROM logistics.node a inner join logistics.distance b on a.id=b.node_id_start where b.node_id_start = 2
 }

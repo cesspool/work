@@ -82,7 +82,7 @@ node_target_id INTEGER REFERENCES logistics.node (id)
 
 CREATE TABLE logistics.distance(
 id SERIAL PRIMARY KEY NOT NULL,
-length real NOT NULL,
+length real,
 node_id_start integer REFERENCES logistics.node (id),
 node_id_end integer REFERENCES logistics.node (id)
 );

@@ -108,6 +108,24 @@ public class Test {
         	addLane("Edge_"+idx++, from, to, edgeTime, edgeCost, nodes);
     	}
     	
+    	
+    	//get all id of nodes from nodeTransport where transportId=2, convert into index of list<Nodes>
+    	//create edges with all combinations of this nodes if such edge doesnt exist
+    	//do the same with transportId=3
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
         int NodeFrom = getIndexById(order.getNodeStart(), nodes);
         int NodeTarget = getIndexById(order.getNodeTarget(), nodes);
     	Graph graph = new Graph(nodes, edges);

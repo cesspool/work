@@ -1,13 +1,32 @@
 package beans;
 
 public class Route {
-    private int number_node;
+    private int numberNode;
+    private Long orderId;
+    private Long nodeId;
+    
 
-    public int getNumber_node() {
-        return number_node;
+    public Long getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(Long orderId) {
+		this.orderId = orderId;
+	}
+
+	public Long getNodeId() {
+		return nodeId;
+	}
+
+	public void setNodeId(Long nodeId) {
+		this.nodeId = nodeId;
+	}
+
+	public int getNumberNode() {
+        return numberNode;
     }
 
-    public void setNumber_node(int number_node) {
-        this.number_node = number_node;
+    public void setNumberNode(int numberNode) {
+        this.numberNode = numberNode;
     }
 }

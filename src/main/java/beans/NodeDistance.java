@@ -1,5 +1,6 @@
 package beans;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +23,7 @@ public class NodeDistance {
 	}
 
 	public NodeDistance () {
+		transport = new ArrayList<>();
 		node = new Node();
 	}
 	

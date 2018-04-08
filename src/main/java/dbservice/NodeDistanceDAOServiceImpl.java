@@ -6,6 +6,8 @@ import beans.Distance;
 import beans.Node;
 import beans.NodeDistance;
 import beans.Transport;
+import logic.TransCoordinate;
+
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Service;
@@ -54,7 +56,12 @@ public class NodeDistanceDAOServiceImpl extends DataService implements NodeDista
     		" inner join logistics.node Ne on Ne.id = D.node_id_end" +
     		"where D.node_id_start = ?";
     
+    
+    private final static String SQL_SEL_COORDINATE = "select coordinatex, coordinatey from logistics.node where id = ?";
+    
     private final static String SQL_CITYID_BY_NAME = "select id from logistics.node where city = ?";
+    
+    //private final static String SQL_CITY_BY_ID = "select id from logistics.node where city = ?";
     
     private final static String SQL_SEL_ALL_NODE_TRANSPORT = "select node_id, transport_id from logistics.transport_node";
     
@@ -90,7 +97,8 @@ public class NodeDistanceDAOServiceImpl extends DataService implements NodeDista
     public void insertNode(NodeDistance nodeDistance){
     	Node node = nodeDistance.getNode();
     	//Collection<Transport> transports = nodeDistance.getTransports();
-    	Collection<Distance> distances = nodeDistance.getDistances();
+    	//Collection<Distance> distances = nodeDistance.getDistances();
+    	List<Distance> distances = new ArrayList();
     	
         try {
             KeyHolder keyHolder = new GeneratedKeyHolder();
@@ -111,6 +119,47 @@ public class NodeDistanceDAOServiceImpl extends DataService implements NodeDista
             Throwable ex = dEx.getCause();
             ex.toString();
         }
+        
+        List<Pair<Long, Long>> transNode = new ArrayList();
+        
+        for (int i =0; i< nodeDistance.getTransport().size();i++) {
+        	Pair<Long, Long> pair = new Pair(node.getId(), Long.valueOf(nodeDistance.getTransport().get(i)));
+        	transNode.add(pair);
+        }
+       
+        List<Object[]> typeOfNodes = transNode.stream()
+                .map(td -> new Object[]{td.getLeft(), td.getRight()})
+                .collect(Collectors.toList());
+
+	    try {
+	        getJdbcTemplate().batchUpdate(SQL_INSERT_TRANSPORT_NODE, typeOfNodes, new int[]{Types.INTEGER, Types.INTEGER});
+	    } catch (DataAccessException dEx) {
+	        Throwable ex = dEx.getCause();
+	        ex.toString();
+	    }
+
+	    
+	    double x1 = node.getCoordinateX();
+        double y1= node.getCoordinateY();
+        double x2;
+        double y2;
+        double result;
+        TransCoordinate transCoordinate = new TransCoordinate();
+        Node nd = new Node();
+	      
+	    
+     	for (int i=0; i<nodeDistance.getCities().length; i++) {
+     		nd = getCoordinate(Long.parseLong(nodeDistance.getCities()[i], 10));
+        	x2= nd.getCoordinateX();
+        	y2 = nd.getCoordinateY();
+        	result = transCoordinate.setGeoCoordinate(x1, y1, x2, y2); //write somewhere
+        	
+    		Distance dst = new Distance();
+    		dst.setNodeTo(Long.parseLong(nodeDistance.getCities()[i], 10));
+    		dst.setNodeFrom(node.getId());
+    		dst.setLength(result);
+    		distances.add(dst);
+    	}
 
 //        List<Object[]> params = transports.stream()
 //                    .map(tr -> new Object[]{node.getId(), tr.getId()})
@@ -124,7 +173,7 @@ public class NodeDistanceDAOServiceImpl extends DataService implements NodeDista
 //        }
 
         List<Object[]> dist = distances.stream()
-                    .map(dt -> new Object[]{dt.getLength(), node.getId(), dt.getNodeTarget().getId()})
+                    .map(dt -> new Object[]{dt.getLength(), dt.getNodeFrom(), dt.getNodeTo()})
                     .collect(Collectors.toList());
 
         try {
@@ -132,8 +181,17 @@ public class NodeDistanceDAOServiceImpl extends DataService implements NodeDista
         } catch (DataAccessException dEx) {
             Throwable ex = dEx.getCause();
             ex.toString();
-
         }
+        
+        
+        
+        
+        
+        
+        
+        //do update for correcting coordinates
+        
+        
 
     }
     
@@ -181,6 +239,24 @@ public class NodeDistanceDAOServiceImpl extends DataService implements NodeDista
         	   result.add(new CoordinatesPrep(path.getLeft(), path.getRight()));
            }
            return result;
+    }
+    
+    
+    
+    @Override
+    @Transactional(readOnly = true)
+    public Node getCoordinate(Long ID) {
+        Node res = getJdbcTemplate().query(SQL_SEL_COORDINATE, new Object[] {ID}, (rs) -> {
+            if (!rs.next()) {
+                return null;
+            }
+            Node n = new Node();
+            int idx = 1;
+            n.setCoordinateX(rs.getDouble(idx++));
+            n.setCoordinateY(rs.getDouble(idx++));
+            return n;
+        });
+        return res;
     }
     
 //    @Override !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

@@ -2,6 +2,8 @@ package form.controller;
 
 import beans.Boxing;
 import form.request.NewBoxingForm;
+import form.request.OrderingForm;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import service.BoxingService;
+import service.OrderService;
 import utils.Tools;
 import web.Message;
 import web.Pages;
@@ -28,11 +31,11 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class OrderController {
 
-	 private BoxingService boxingService;
+	 private OrderService orderService;
 	    private MessageSource messageSource;
 
 	    @RequestMapping(value = "/order", method = RequestMethod.POST)
-	    public String boxing(@ModelAttribute("order") NewBoxingForm formData,
+	    public String boxing(@ModelAttribute("order") OrderingForm formData,
 	                               BindingResult bundingResult,
 	                               Model uiModel,
 	                               HttpServletRequest httpServletRequest,
@@ -44,7 +47,7 @@ public class OrderController {
 	            redirectAttributes.addFlashAttribute(Pages.ATR_MESSAGE, message);
 	            return "redirect:boxing";
 	        } else {
-	            Boxing box = boxingService.createBoxing(formData); // mistake is here, don't go to DAO service
+	            //Order box = orderService.(formData); // mistake is here, don't go to DAO service
 	            redirectAttributes.addFlashAttribute(Pages.BOXING, formData);
 	            return "redirect:boxing";
 	        }
@@ -69,8 +72,8 @@ public class OrderController {
 
 
 	    @Autowired
-	    private void setBoxingService(BoxingService service) {
-	        this.boxingService = service;
+	    private void setBoxingService(OrderService service) {
+	        this.orderService = service;
 	    }
 
 	    @Autowired
@@ -78,7 +81,7 @@ public class OrderController {
 	        this.messageSource = messageSource;
 	    }
 
-	    private Message validateForm(NewBoxingForm formData) {
+	    private Message validateForm(OrderingForm formData) {
 //	        if (Tools.isBlank(formData.getPsw())) {
 //	            Message msg = new Message(Type.ERROR, "registration.no-pass");
 //	            return msg;

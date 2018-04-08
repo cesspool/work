@@ -30,6 +30,7 @@ public class NodeDistanceServiceImpl implements NodeDistanceService {
     	//node = getFormNode(node);
     	i++;
     	nodeDistance.getNode().setCode("Node_"+i);
+    	
         nodeDistanceDAOService.insertNode(nodeDistance);
     }
     
