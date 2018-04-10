@@ -1,8 +1,11 @@
 package form.controller;
 
 import beans.Boxing;
+import beans.OrderWriter;
+import form.request.CalculateForm;
 import form.request.NewBoxingForm;
 import form.request.OrderingForm;
+import form.response.CalculateReq;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -29,27 +32,38 @@ import web.Message.Type;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class OrderController {
+@SessionAttributes("orderWriter")
+public class OrderController extends BaseController {
 
 	 private OrderService orderService;
 	    private MessageSource messageSource;
 
+	    @RequestMapping(value = "/order", method = RequestMethod.GET)
+	    public String showOrder(Model model) {
+	    	return Pages.ORDER;
+	    }
+	    
 	    @RequestMapping(value = "/order", method = RequestMethod.POST)
-	    public String boxing(@ModelAttribute("order") OrderingForm formData,
+	    public String createOrder(@ModelAttribute("orderWriter")OrderWriter orderWriter, 	  
+	    		 				   OrderingForm formData,
 	                               BindingResult bundingResult,
 	                               Model uiModel,
 	                               HttpServletRequest httpServletRequest,
 	                               RedirectAttributes redirectAttributes,
 	                               Locale locale) {
 	        Message message = validateForm(formData);
+	        CalculateReq calcReq = orderWriter.getCalculateReq();
+	        CalculateForm calcForm = orderWriter.getForm();
 	        if (message != null) {
 	            message.setMsg(messageSource.getMessage(message.getKey(), null, locale));
 	            redirectAttributes.addFlashAttribute(Pages.ATR_MESSAGE, message);
 	            return "redirect:boxing";
 	        } else {
+	        	orderWriter.setRecipientId(1L);
+	        	orderService.createOrder(orderWriter, formData);
 	            //Order box = orderService.(formData); // mistake is here, don't go to DAO service
-	            redirectAttributes.addFlashAttribute(Pages.BOXING, formData);
-	            return "redirect:boxing";
+	            redirectAttributes.addFlashAttribute(Pages.COST, formData);
+	            return "redirect:costCalculation";
 	        }
 
 	    }

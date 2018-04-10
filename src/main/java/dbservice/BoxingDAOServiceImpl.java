@@ -31,9 +31,11 @@ public class BoxingDAOServiceImpl extends DataService implements BoxingDAOServic
     private final static String SQL_DELETE = "DELETE FROM logistics.boxing " +
             " WHERE variety=?";
     
-    private final static String SQL_SELECT_ALL = "SELECT id, variety FROM logistics.boxing";
+    private final static String SQL_SELECT_ALL = "SELECT id, variety FROM logistics.boxing"
+    		+ " where unavailable = 'false'";
     
-    private final static String SQL_SELECT_BOX_BY_ID = "select B.cost from logistics.boxing B where id = ?";
+    private final static String SQL_SELECT_BOX_BY_ID = "select B.cost from logistics.boxing"
+    		+ " B where id = ? and unavailable = 'false'";
     
     
 

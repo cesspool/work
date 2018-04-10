@@ -47,7 +47,7 @@ public class TranspRateDAOServiceImpl extends DataService implements TranspRateD
     private final static String SQL_SELECT_TRANSPORT = "SELECT id, variety, avspeed, costkm, " + 
     		"maxheight, maxwidth, maxlength, totalweight, totalcapacity from logistics.transport";
     
-    private final static String SQL_SELECT_RATE = "select \"name\", costshipping, additionalcost," +
+    private final static String SQL_SELECT_RATE = "select id, \"name\", costshipping, additionalcost," +
     		 " startactiondate, endactiondate from logistics.rate R where now() between R.startactiondate and R.endactiondate";
     
     
@@ -58,6 +58,7 @@ public class TranspRateDAOServiceImpl extends DataService implements TranspRateD
            List<Rate> rates = getJdbcTemplate().query(SQL_SELECT_RATE, (rs, num) -> {
         	   Rate r = new Rate();
         	   int idx=1;
+        	   r.setId(rs.getLong(idx++));
         	   r.setName(rs.getString(idx++));
                r.setCostShipping(rs.getDouble(idx++));
                r.setAdditionalCost(rs.getDouble(idx++));

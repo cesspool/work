@@ -56,3 +56,31 @@
  };
  
  window.onload=js.init();
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ $(function() {
+     $("#selChanging").on("change",function() {
+         var selectedColor = $(this).children("option").filter(":selected").text();
+         $(".hideable").hide();
+         if(selectedColor=="add")
+         {
+             $("#test1").show();
+         }
+         else if(selectedColor=="change")
+         {
+             $("#test2").show();
+         }
+         else if(selectedColor=="delete")
+         {
+             $("#test3").show();
+         }
+     }).change();
+ });

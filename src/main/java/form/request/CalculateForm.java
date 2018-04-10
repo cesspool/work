@@ -61,7 +61,7 @@ public class CalculateForm {
         return envelope;
     }
 
-    public void isEnvelope(boolean envelope) {
+    public void setEnvelope(boolean envelope) {
         this.envelope = envelope;
     }
 

@@ -1,15 +1,45 @@
 package form.response;
 
 import beans.Boxing;
+import beans.Node;
 import beans.Order;
+import beans.Package;
 
 public class OrderingReq {
     private Order order;
     private Package cargo;
     private Boxing box;
-    private String NodeStart;
-    private String NodeEnd;
+    private Node NodeStart;
+    private Node NodeEnd;
+    private String typeDelivery;
+    private String typeCargo;
     
+    
+    
+	public Node getNodeStart() {
+		return NodeStart;
+	}
+	public void setNodeStart(Node nodeStart) {
+		NodeStart = nodeStart;
+	}
+	public Node getNodeEnd() {
+		return NodeEnd;
+	}
+	public void setNodeEnd(Node nodeEnd) {
+		NodeEnd = nodeEnd;
+	}
+	public String getTypeDelivery() {
+		return typeDelivery;
+	}
+	public void setTypeDelivery(String typeDelivery) {
+		this.typeDelivery = typeDelivery;
+	}
+	public String getTypeCargo() {
+		return typeCargo;
+	}
+	public void setTypeCargo(String typeCargo) {
+		this.typeCargo = typeCargo;
+	}
 	public Order getOrder() {
 		return order;
 	}
@@ -28,18 +58,5 @@ public class OrderingReq {
 	public void setBox(Boxing box) {
 		this.box = box;
 	}
-	public String getNodeStart() {
-		return NodeStart;
-	}
-	public void setNodeStart(String nodeStart) {
-		NodeStart = nodeStart;
-	}
-	public String getNodeEnd() {
-		return NodeEnd;
-	}
-	public void setNodeEnd(String nodeEnd) {
-		NodeEnd = nodeEnd;
-	}
-    
     
 }

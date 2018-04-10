@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import web.Pages;
 
 @Controller
-public class MainMenuController {
+public class MainMenuController extends BaseController {
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String showMainPage(Model model) {
@@ -20,10 +20,7 @@ public class MainMenuController {
         return Pages.LOGIN;
     }
 
-    @RequestMapping(value = "/history", method = RequestMethod.GET)
-    public String showHistoryForm(Model model) {
-        return Pages.HISTORY;
-    }
+
 
 //    @RequestMapping(value = "/cost", method = RequestMethod.GET)
 //    public String showPersonCostForm(Model model) {
@@ -35,10 +32,6 @@ public class MainMenuController {
         return Pages.CONTACT;
     }
     
-    @RequestMapping(value = "/boxing", method = RequestMethod.GET)
-    public String showBoxingForm(Model model) {
-        return Pages.BOXING;
-    }
 
     @RequestMapping(value = "/newrate", method = RequestMethod.GET)
     public String showNewRateForm(Model model) {
@@ -48,9 +41,16 @@ public class MainMenuController {
         return Pages.NEWRATE;
     }
     
-    @RequestMapping(value = "/order", method = RequestMethod.GET)
-    public String showOrderForm(Model model) {
-        return Pages.ORDER;
+    @RequestMapping(value = "/status", method = RequestMethod.GET)
+    public String showAdminForm(Model model) {
+        return Pages.STATUS;
+    }
+    
+    @RequestMapping(value = "/report", method = RequestMethod.GET)
+    public String showReportForm(Model model) {
+    	model.addAttribute("ord1", 1);
+    	model.addAttribute("ord2", 2);
+        return Pages.REPORT;
     }
     
 }

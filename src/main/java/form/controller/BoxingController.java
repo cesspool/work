@@ -20,13 +20,14 @@ import web.Message;
 import web.Pages;
 
 import java.util.Locale;
+import java.util.Map;
 
 import web.Message.Type;
 
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class BoxingController {
+public class BoxingController extends BaseController {
 	    private BoxingService boxingService;
 	    private MessageSource messageSource;
 
@@ -49,6 +50,17 @@ public class BoxingController {
 	        }
 
 	    }
+	    
+	    
+	    @RequestMapping(value = "/boxing", method = RequestMethod.GET)
+	    public String showAdminForm(Model model) {
+	    	Map<Long, String> bx = boxingService.getAllBoxes();
+	        model.addAttribute("allBoxes", bx);
+	        //model.addAttribute("chosenCities", nodeService.getCities(nodeID));
+	        return Pages.BOXING;
+	    }
+	    
+	    
 
 //	    @RequestMapping(value = "/registrationform", method = RequestMethod.GET)
 //	    public String showRegistrationForm(Model model) {

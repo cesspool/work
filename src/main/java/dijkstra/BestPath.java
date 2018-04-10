@@ -58,8 +58,11 @@ public class BestPath {
 
     private double getDistance(Vertex node, Vertex target, boolean key) {
         for (Edge edge : edges) {
-            if (edge.getSource().equals(node)
-                    && edge.getDestination().equals(target)) {
+            if ((edge.getSource().equals(node)
+                    && edge.getDestination().equals(target))
+            		||(edge.getDestination().equals(node)
+        					&& edge.getSource().equals(target)))
+            		{
                 if(key)
                     return edge.getWeight();
                 else
@@ -71,12 +74,16 @@ public class BestPath {
 
     private List<Vertex> getNeighbors(Vertex node) {
         List<Vertex> neighbors = new ArrayList<>();
-        for (Edge edge : edges) {
-            if (edge.getSource().equals(node)
-                    && !isSettled(edge.getDestination())) {
-                neighbors.add(edge.getDestination());
-            }
-        }
+		for (Edge edge : edges) {
+			if (edge.getSource().equals(node)
+					&& !isSettled(edge.getDestination())){
+				neighbors.add(edge.getDestination());
+			}
+			if(edge.getDestination().equals(node)
+					&& !isSettled(edge.getSource())){
+				neighbors.add(edge.getSource());
+			}
+		}
         return neighbors;
     }
 
@@ -130,8 +137,10 @@ public class BestPath {
 
     public Edge getEdge(Vertex node, Vertex target){
         for (Edge edge : edges) {
-            if (edge.getSource().equals(node)
-                    && edge.getDestination().equals(target)) {
+            if ((edge.getSource().equals(node)
+                    && edge.getDestination().equals(target))
+            	||(edge.getSource().equals(target)
+                        && edge.getDestination().equals(node))) {
                 return edge;
             }
         }

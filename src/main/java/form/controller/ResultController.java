@@ -28,7 +28,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class ResultController {
+public class ResultController extends BaseController {
 	
 	private MessageSource messageSource;
 	

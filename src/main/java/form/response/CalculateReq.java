@@ -12,9 +12,19 @@ public class CalculateReq {
     private String dateDelivery;
     private long quatityHours;
     private String typeDelivery;
+    private List<Long> pathId;
+    
+    
 
+    public List<Long> getPathId() {
+		return pathId;
+	}
 
-    public String getFullPath() {
+	public void setPathId(List<Long> pathId) {
+		this.pathId = pathId;
+	}
+
+	public String getFullPath() {
 		return FullPath;
 	}
 

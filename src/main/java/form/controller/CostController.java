@@ -13,10 +13,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import beans.NodeDistance;
 import beans.OrderCalculate;
+import beans.OrderWriter;
 import exception.PathNotFoundException;
 import form.request.CalculateForm;
 import form.request.NewNodeForm;
@@ -28,7 +30,8 @@ import web.Message;
 import web.Pages;
 
 @Controller
-public class CostController {
+@SessionAttributes("orderWriter")
+public class CostController extends BaseController {
     private NodeDistanceService nodeService;
     private BoxingService boxingService;
     private MessageSource messageSource;
@@ -63,8 +66,12 @@ public class CostController {
             return "redirect:result";
         } else {
         	try {
+        		OrderWriter orderWriter = new OrderWriter();
 	        	calculateReq = orderService.prepareOrder(formData);
 	        	calculateReq.setTypeDelivery(messageSource.getMessage(calculateReq.getTypeDelivery(), null, locale));
+        		orderWriter.setForm(formData);
+        		orderWriter.setCalculateReq(calculateReq);
+        		uiModel.addAttribute("orderWriter", orderWriter);
 	        	uiModel.addAttribute(Pages.ATR_COST_CALC_RESULT, calculateReq);
 	            return "resultCost";
         	} catch(PathNotFoundException ex) {
@@ -74,7 +81,6 @@ public class CostController {
         		return "personCost";
         	}    
         }
-
     }
     
     

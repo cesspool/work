@@ -33,7 +33,7 @@ import web.Message.Type;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class AgreementController {
+public class AgreementController extends BaseController {
     private TranspRateService transpRateService;
     private MessageSource messageSource;
     

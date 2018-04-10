@@ -63,6 +63,17 @@
             <h2>${lbHeader}</h2>
             <p>${lbUlSect}</p>
         </header>
+        
+        <select id="selChanging">
+            <option selected>add</option>
+            <option>change</option>
+            <option>delete</option>
+        </select>
+        
+        
+        
+        
+       <div id ="test1" class="hideable">
         <form class="registration" method="post" action="${contextPath}/admin" id="newNodeForm" name="newNodeForm">
             <div class="container limiter">
                 <table width="100%" cellspacing="0" cellpadding="5">
@@ -147,6 +158,35 @@
                 </div>
             </div>
         </form>
+       </div>
+       
+       <div id = "test2" class="hideable">
+       		<form> 
+       		
+       		</form>
+       </div>
+       
+       <div id = "test3" class="hideable">
+       		<form> 
+       		Warning! deleting branch deletes all orders related with this branch 
+       		select the city of deleted branch:
+       		<label for="startNode"><b>${lbTableAA}</b></label> 
+            <div class="dropdown">
+                <input list="cityList" id="cityStart" name="cityStart"> 
+				<datalist id="cityList">
+					<c:forEach var="city" items="${allCities}">
+		                <option value="${city.value}"/>
+		            </c:forEach>
+				</datalist>
+			</div>
+       		<button type="submit" class="signupbtn">delete</button>
+       		</form>
+       </div>
+        
+        
+        
+        
+        
     </div>
 </section>
 

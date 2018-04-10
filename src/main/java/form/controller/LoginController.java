@@ -18,7 +18,7 @@ import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class LoginController {
+public class LoginController extends BaseController {
     private CustomerService customerService;
     private MessageSource messageSource;
 
@@ -51,12 +51,6 @@ public class LoginController {
     @Autowired
     protected void setMessageSource(MessageSource messageSource) {
         this.messageSource = messageSource;
-    }
-    
-
-    @RequestMapping(value = "/status", method = RequestMethod.GET)
-    public String showAdminForm(Model model) {
-        return Pages.STATUS;
     }
 
     

@@ -43,12 +43,15 @@ public class NodeDistanceDAOServiceImpl extends DataService implements NodeDista
     private final static String SQL_INSERT_DISTANCE = "INSERT INTO logistics.distance" +
             "(length, node_id_start, node_id_end) VALUES(?,?,?)";
 
-    private final static String SQL_SELECT_ALL = "SELECT id, city FROM logistics.node";
+    private final static String SQL_SELECT_ALL = "SELECT id, city FROM logistics.node"
+    		+ " where unavailable = 'false'";
 
-    private final static String SQL_SELECT_ALL_DISTANCES = "SELECT length, node_id_start, node_id_end FROM logistics.distance";
+    private final static String SQL_SELECT_ALL_DISTANCES = "SELECT length, node_id_start,"
+    		+ " node_id_end FROM logistics.distance ";
     
     private final static String SQL_SELECT_CITIES = "SELECT a.id, a.city FROM logistics.node a " + 
-    		"inner join logistics.distance b on a.id=b.node_id_end where b.node_id_start = ?";
+    		"inner join logistics.distance b on a.id=b.node_id_end where b.node_id_start = ? "
+    		+ " and a.unavailable = 'false'";
     
     private final static String SQL_SEL_COORDINATES_BY_ID = "select Ns.coordinatex, Ns.coordinatey, Ns.id, " + 
     		" Ne.coordinatex, Ne.coordinatey, Ne.id  from logistics.distance D" +
@@ -57,9 +60,11 @@ public class NodeDistanceDAOServiceImpl extends DataService implements NodeDista
     		"where D.node_id_start = ?";
     
     
-    private final static String SQL_SEL_COORDINATE = "select coordinatex, coordinatey from logistics.node where id = ?";
+    private final static String SQL_SEL_COORDINATE = "select coordinatex, coordinatey from logistics.node where"
+    		+ " id = ? and unavailable = 'false'";
     
-    private final static String SQL_CITYID_BY_NAME = "select id from logistics.node where city = ?";
+    private final static String SQL_CITYID_BY_NAME = "select id from logistics.node"
+    		+ " where city = ? and unavailable = 'false'";
     
     //private final static String SQL_CITY_BY_ID = "select id from logistics.node where city = ?";
     

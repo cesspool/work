@@ -67,9 +67,14 @@ public class Pages {
     public static final String REGISTRATION = "registration";
 
     /**
-     * page for changing status of orders (manager and admin can see)
+     * page for changing status of orders (manager can see)
      */
     public static final String STATUS = "statusOrder";
+    
+    /**
+     * page for reports(get requsts only) (manager can see)
+     */
+    public static final String REPORT = "reports";
 
     
     //=============== Page's attributes ====================================================================
@@ -79,6 +84,8 @@ public class Pages {
     public static final String ATR_MESSAGE = "message";
     
     public static final String ATR_COST_CALC_RESULT = "costCalcRes";
+    
+    public static final String ATR_ORDER_READY = "orderReq";
     
     
 }

@@ -59,7 +59,6 @@
         <select id="selColor">
             <option selected>${lbSelectA}</option>
             <option>${lbSelectB}</option>
-            <option>Green</option>
         </select>
 
         <div id="test1" class="hideable">
@@ -96,23 +95,20 @@
             <table width="100%" cellspacing="0" cellpadding="5">
                 <tr ><td width="200" valign="top">
                     <label for="lastName"><b>${lbTableA }</b></label>
-                    <select name="field_sity_tid" class="form-select">
-                    <data>
-                        <option value="111">standart</option>
-                        <option value="112">additional</option>
-                    </data>
+                    <select id="boxesList" name="boxesList" class="form-select">
+                       <c:forEach var="box" items="${allBoxes}">
+		                   <option value="${box.key}">${box.value}</option>
+		               </c:forEach>
                     </select>
                 </td>
                     <td width="200" valign="top">
                         <label for="lastName"><b>${lbTableB}</b></label>
-                        <data>
-                        500 rub.
-                        </data>
+                        
+                        
                     </td>
                 </tr>
             </table>
             <div class="clearfix">
-                <button type="button" class="cancelbtn">${lbCancel }</button>
                 <button type="submit" class="signupbtn">${lbSend}</button>
              </div>
 

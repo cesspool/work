@@ -149,20 +149,21 @@ public class Test {
     	TransCoordinate transCoordinate = new TransCoordinate();
     	for(int i=0; i<airList.size()-1; i++) {
     		for(int k=1+i; k<airList.size();k++) {
-    			if (!checkEdge(edges, nodes.get(getIndexById(airList.get(i), nodes)), nodes.get(getIndexById(airList.get(k), nodes))))
-    			startNode = nodeDistanceDAOService.getCoordinate(airList.get(i));
-    			endNode = nodeDistanceDAOService.getCoordinate(airList.get(k));
-    			legthDist = transCoordinate.setGeoCoordinate(startNode.getCoordinateX(), startNode.getCoordinateY(),
-    												endNode.getCoordinateX(), endNode.getCoordinateY());
-    			timeAir = legthDist / transports.get(1).getAvSpeed();
-            	costAir = legthDist * transports.get(1).getCostKm() + 
-            			(legthDist * transports.get(1).getCostKm())*KAir + 
-            			(legthDist * transports.get(1).getCostKm())*rates.get(1).getCostShipping();
-            	
-            	List<Double> edgeTime = new ArrayList<>(Arrays.asList(timeCargo, timeAir, timeRail));
-            	List<Double> edgeCost = new ArrayList<>(Arrays.asList(costCargo,costAir,costRail));
-            	
-            	addLane("Edge_"+idx++, getIndexById(airList.get(i), nodes), getIndexById(airList.get(k), nodes), edgeTime, edgeCost, nodes, edges);
+    			if (!checkEdge(edges, nodes.get(getIndexById(airList.get(i), nodes)), nodes.get(getIndexById(airList.get(k), nodes)))) {
+	    			startNode = nodeDistanceDAOService.getCoordinate(airList.get(i));
+	    			endNode = nodeDistanceDAOService.getCoordinate(airList.get(k));
+	    			legthDist = transCoordinate.setGeoCoordinate(startNode.getCoordinateX(), startNode.getCoordinateY(),
+	    												endNode.getCoordinateX(), endNode.getCoordinateY());
+	    			timeAir = legthDist / transports.get(1).getAvSpeed();
+	            	costAir = legthDist * transports.get(1).getCostKm() + 
+	            			(legthDist * transports.get(1).getCostKm())*KAir + 
+	            			(legthDist * transports.get(1).getCostKm())*rates.get(1).getCostShipping();
+	            	
+	            	List<Double> edgeTime = new ArrayList<>(Arrays.asList(timeCargo, timeAir, timeRail));
+	            	List<Double> edgeCost = new ArrayList<>(Arrays.asList(costCargo,costAir,costRail));
+	            	
+	            	addLane("Edge_"+idx++, getIndexById(airList.get(i), nodes), getIndexById(airList.get(k), nodes), edgeTime, edgeCost, nodes, edges);
+    			}
     		}
     	}
     	
@@ -176,20 +177,21 @@ public class Test {
     	
     	for(int i=0; i<railList.size()-1; i++) {
     		for(int k=1+i; k<railList.size();k++) {
-    			if (!checkEdge(edges, nodes.get(getIndexById(railList.get(i), nodes)), nodes.get(getIndexById(railList.get(k),nodes))))
-    			startNode = nodeDistanceDAOService.getCoordinate(railList.get(i));
-    			endNode = nodeDistanceDAOService.getCoordinate(railList.get(k));
-    			legthDist = transCoordinate.setGeoCoordinate(startNode.getCoordinateX(), startNode.getCoordinateY(),
-    												endNode.getCoordinateX(), endNode.getCoordinateY());
-    			timeRail = legthDist / transports.get(2).getAvSpeed();
-            	costRail = legthDist * transports.get(2).getCostKm() + 
-            			(legthDist * transports.get(2).getCostKm())*KRail + 
-            			(legthDist * transports.get(2).getCostKm())*rates.get(2).getCostShipping();
-            	
-            	List<Double> edgeTime = new ArrayList<>(Arrays.asList(timeCargo, timeAir, timeRail));
-            	List<Double> edgeCost = new ArrayList<>(Arrays.asList(costCargo,costAir,costRail));
-            	
-            	addLane("Edge_"+idx++, getIndexById(railList.get(i), nodes), getIndexById(railList.get(k),nodes), edgeTime, edgeCost, nodes, edges);
+    			if (!checkEdge(edges, nodes.get(getIndexById(railList.get(i), nodes)), nodes.get(getIndexById(railList.get(k),nodes)))) {
+	    			startNode = nodeDistanceDAOService.getCoordinate(railList.get(i));
+	    			endNode = nodeDistanceDAOService.getCoordinate(railList.get(k));
+	    			legthDist = transCoordinate.setGeoCoordinate(startNode.getCoordinateX(), startNode.getCoordinateY(),
+	    												endNode.getCoordinateX(), endNode.getCoordinateY());
+	    			timeRail = legthDist / transports.get(2).getAvSpeed();
+	            	costRail = legthDist * transports.get(2).getCostKm() + 
+	            			(legthDist * transports.get(2).getCostKm())*KRail + 
+	            			(legthDist * transports.get(2).getCostKm())*rates.get(2).getCostShipping();
+	            	
+	            	List<Double> edgeTime = new ArrayList<>(Arrays.asList(timeCargo, timeAir, timeRail));
+	            	List<Double> edgeCost = new ArrayList<>(Arrays.asList(costCargo,costAir,costRail));
+	            	
+	            	addLane("Edge_"+idx++, getIndexById(railList.get(i), nodes), getIndexById(railList.get(k),nodes), edgeTime, edgeCost, nodes, edges);
+    			}
     		}
     	}
     	
@@ -215,10 +217,13 @@ public class Test {
         // assertTrue(path.size() > 0);
 
         List<String> pathStr = new ArrayList<>();
+        List<Long> pathId = new ArrayList<>();
         for (Vertex vertex : path) {
         	pathStr.add(vertex.getName());
+        	pathId.add(vertex.getId());
         }
         charPath.setPath(pathStr);
+        charPath.setPathId(pathId);
         return charPath;
 
     }

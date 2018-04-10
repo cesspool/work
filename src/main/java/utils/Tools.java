@@ -3,7 +3,10 @@ package utils;
 import beans.Boxing;
 import beans.Customer;
 import beans.NodeDistance;
+import beans.Order;
 import beans.OrderCalculate;
+import beans.OrderShow;
+import beans.OrderWriter;
 import beans.Rate;
 import beans.Transport;
 import beans.TransportRate;
@@ -11,13 +14,19 @@ import form.request.CalculateForm;
 import form.request.NewAgreementForm;
 import form.request.NewBoxingForm;
 import form.request.NewNodeForm;
+import form.request.OrderingForm;
 import form.request.RegistrationForm;
+import form.response.OrderingReq;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import beans.Package;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -171,6 +180,75 @@ public class Tools {
 //    	orderCalculate.getCargo().setWeight(form.getWeight());
 //    	orderCalculate.getCargo().setQuantity(form.getQuantity());
     	return orderCalculate;
+    }
+    
+    public static String orderingFormToString(OrderingForm formData) {
+    	String info = new String();
+    	info = formData.getFirstName()+" "+formData.getLastName()+" "+
+    			formData.getPatronymic()+" - "+formData.getTelephone();
+    	return info;
+    }
+    
+    public static Order orderWriterToOrder(OrderWriter orderWriter, OrderingForm formData) {
+    	String info = orderingFormToString(formData);
+    	Order order = new Order();
+    	SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+    	try {
+    		order.setPlanDate(formatter.parse(orderWriter.getCalculateReq().getDateDelivery()));
+    	} catch (ParseException e) {
+    		e.printStackTrace();
+    	}
+    	order.setRecipientId(orderWriter.getRecipientId());
+    	order.setName(1);
+    	order.isUrgency(orderWriter.getForm().isUrgency());
+    	order.setReady(false);
+    	order.setCost(orderWriter.getCalculateReq().getTotalCost());
+    	order.setContact_information(info);   	
+    	order.setBoxingId(orderWriter.getForm().getBoxesList());
+    	order.setNodeStart(orderWriter.getCalculateReq().getPathId().get(0));
+    	order.setNodeTarget(orderWriter.getCalculateReq().getPathId()
+    				.get(orderWriter.getCalculateReq().getPathId().size()-1));
+    	return order;
+    }
+    
+    public static Package orderWriterCargo(OrderWriter orderWriter) {
+    	Package cargo = new Package();
+    	cargo.setName("1");
+    	cargo.isEnvelope(orderWriter.getForm().isEnvelope());
+    	cargo.setHeight(orderWriter.getForm().getHeight());
+    	cargo.setWidth(orderWriter.getForm().getWidth());
+    	cargo.setLength(orderWriter.getForm().getLength());
+    	cargo.setWeight(orderWriter.getForm().getWeight());
+    	cargo.setQuantity(orderWriter.getForm().getQuantity());
+    	cargo.setSize(orderWriter.getForm().getHeight() *
+    			orderWriter.getForm().getWidth() *
+    			orderWriter.getForm().getLength());
+    	return cargo;
+    }
+    
+    public static List<OrderingReq> orderToHistoryForm(List<OrderShow> orders) {
+    	List<OrderingReq> orderReq = new ArrayList();
+    	for (OrderShow ord : orders) {
+    		OrderingReq order = new OrderingReq();
+    		if (ord.getOrder().isUrgency()==true) {
+    			order.setTypeDelivery("express");
+    		} else {
+    			order.setTypeDelivery("econom");
+    		}
+    		if (ord.getCargo().isEnvelope()==true) {
+    			order.setTypeCargo("envelope");
+    		} else {
+    			order.setTypeCargo("cargo");
+    		}
+    		order.setBox(ord.getBox());
+    		order.setCargo(ord.getCargo());
+    		order.setOrder(ord.getOrder());
+    		order.setNodeStart(ord.getNodeStart());
+    		order.setNodeEnd(ord.getNodeEnd());
+    		orderReq.add(order);
+    	}
+    	//orderReq.getBox.setVariety((order.getBox().getVariety()));
+    	return orderReq;
     }
 
 }

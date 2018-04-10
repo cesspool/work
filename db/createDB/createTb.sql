@@ -3,7 +3,8 @@ CREATE SCHEMA logistics;
 CREATE TABLE logistics.boxing(
 id SERIAL PRIMARY KEY NOT NULL,
 variety varchar(50) NOT NULL,
-cost real
+cost real,
+unavailable boolean DEFAULT false
 );
 
 CREATE TABLE logistics.transport(
@@ -50,7 +51,8 @@ city VARCHAR(50) NOT NULL,
 address varchar(100) NOT NULL,
 coordinateX real NOT NULL,
 coordinateY real NOT NULL,
-code VARCHAR(20) NOT NULL
+code VARCHAR(20) NOT NULL,
+unavailable boolean DEFAULT false
 );
 
 CREATE TABLE logistics.rate(

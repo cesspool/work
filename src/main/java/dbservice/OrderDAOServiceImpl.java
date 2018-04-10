@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
@@ -15,11 +16,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import beans.Boxing;
+import beans.CharacteristicsPath;
 import beans.Package;
 import beans.Route;
 import beans.CoordinatesPrep;
 import beans.Node;
 import beans.Order;
+import beans.OrderShow;
 import form.response.OrderingReq;
 import utils.Pair;
 import utils.Tools;
@@ -43,7 +46,7 @@ public class OrderDAOServiceImpl extends DataService  implements OrderDAOService
 	
 	private final static String SQL_SEL_ORDERS_BY_READY_AND_RECIPIENT= "select Ord.name," +
 			" Ord.urgency, Ord.plan_date, Ord.cost, Ord.contact_information, Pk.envelop," +
-			" Pk.height, Pk.width, Pk.length, Pk.weight, Pk.size, Bx.variety, Nds.city, Ndt.city" + 
+			" Pk.height, Pk.width, Pk.length, Pk.weight, Pk.size, Bx.variety, Nds.city, Ndt.city, Ndt.address" + 
 			" from logistics.order Ord" + 
 			" inner join logistics.package Pk on Pk.id = Ord.package_id" + 
 			" inner join logistics.boxing Bx on Bx.id = Ord.boxing_id" + 
@@ -51,7 +54,6 @@ public class OrderDAOServiceImpl extends DataService  implements OrderDAOService
 			" inner join logistics.node Nds on Nds.id = Ord.node_start_id" + 
 			" inner join logistics.node Ndt on Ndt.id = Ord.node_target_id" + 
 			" WHERE recipient_id = ? and ready=?";
-	
 	
 	private final static String SQL_INSERT_ORDER="INSERT INTO logistics.order (name, urgency, ready, plan_date, cost,"
 			+ " contact_information, recipient_id, rate_id, " + 
@@ -65,9 +67,47 @@ public class OrderDAOServiceImpl extends DataService  implements OrderDAOService
 	
 	
 	
+	
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<List<OrderShow>> getOrders(Long ID, boolean ready) {
+        List<OrderShow> orders = getJdbcTemplate().query(SQL_SEL_ORDERS_BY_READY_AND_RECIPIENT,
+        						new Object[] {ID, ready}, (rs, num) -> {
+            if (!rs.next()) {
+                return null;
+            }
+            OrderShow o = new OrderShow();
+//            n.setId(ID);
+            int idx = 1;
+            o.getOrder().setName(rs.getInt(idx++));
+            o.getOrder().isUrgency(rs.getBoolean(idx++));
+            o.getOrder().setPlanDate(rs.getDate(idx++));
+            o.getOrder().setCost(rs.getDouble(idx++));
+            o.getOrder().setContact_information(rs.getString(idx++));
+            o.getCargo().isEnvelope(rs.getBoolean(idx++));
+            o.getCargo().setHeight(rs.getDouble(idx++));
+            o.getCargo().setWidth(rs.getDouble(idx++));
+            o.getCargo().setLength(rs.getDouble(idx++));
+            o.getCargo().setWeight(rs.getDouble(idx++));
+            o.getCargo().setSize(rs.getDouble(idx++));
+            o.getBox().setVariety(rs.getString(idx++));
+            o.getNodeStart().setCity(rs.getString(idx++));
+            o.getNodeEnd().setCity(rs.getString(idx++));
+            o.getNodeEnd().setAddress(rs.getString(idx++));
+            return o;
+        });
+        return Optional.ofNullable(orders);
+    }
+	
+	
+	
+	
+	
+	
+	
     @Override
     @Transactional
-    public void insertNewOrder(Order order, Package cargo, List<Route> routes) {
+    public void insertNewOrder(Order order, Package cargo, CharacteristicsPath charPath) {
 
         KeyHolder keyHolderPackage = new GeneratedKeyHolder();
         getJdbcTemplate().update((con) ->  {
@@ -108,7 +148,14 @@ public class OrderDAOServiceImpl extends DataService  implements OrderDAOService
         Long IDOrder = keyHolderOrder.getKey().longValue();
         order.setId(IDOrder);
         
-        
+        List<Route> routes = new ArrayList<>();
+        for (int i=0; i< charPath.getPathId().size(); i++) {
+        	Route r = new Route();
+        	r.setNodeId(charPath.getPathId().get(i));
+        	r.setNumberNode(i);
+        	r.setOrderId(order.getId());
+        	routes.add(r);
+        }
         //fill routes by orderId
         
         List<Object[]> route = routes.stream()

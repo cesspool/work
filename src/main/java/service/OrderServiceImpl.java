@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,18 +20,24 @@ import beans.Package;
 import beans.Rate;
 import beans.Order;
 import beans.OrderCalculate;
+import beans.OrderShow;
+import beans.OrderWriter;
 import beans.Transport;
 import dbservice.BoxingDAOService;
 import dbservice.BoxingDAOServiceImpl;
 import dbservice.NodeDistanceDAOService;
 import dbservice.NodeDistanceDAOServiceImpl;
+import dbservice.OrderDAOService;
+import dbservice.OrderDAOServiceImpl;
 import dbservice.TranspRateDAOService;
 import dbservice.TranspRateDAOServiceImpl;
 import dijkstra.Test;
 import exception.PathNotFoundException;
 import form.request.CalculateForm;
+import form.request.OrderingForm;
 import form.response.CalculateReq;
 import utils.Pair;
+import utils.Tools;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -40,10 +47,31 @@ public class OrderServiceImpl implements OrderService {
     private TranspRateDAOService transpRateDAOService = new TranspRateDAOServiceImpl();
     @Autowired
     private BoxingDAOService boxingDAOService = new BoxingDAOServiceImpl();
+    @Autowired
+    private OrderDAOService orderDAOService = new OrderDAOServiceImpl();
+    
+    private CharacteristicsPath calcInfo;
     
 	private Test calculate;
     private CalculateReq calculateReq =  new CalculateReq();
 	
+    
+    @Override
+    public Optional<List<OrderShow>> getOrderByParam(Long ID, boolean ready) {
+    	Optional<List<OrderShow>> orders = orderDAOService.getOrders(ID, ready);
+    	return orders;
+    }
+    
+    @Override
+    public void createOrder(OrderWriter orderWriter, OrderingForm formData) {
+    	List<Rate> rates = transpRateDAOService.getCurrentRate();
+    	Order order = Tools.orderWriterToOrder(orderWriter, formData);
+    	order.setRateId(rates.get(0).getId());
+    	Package cargo = new Package();
+    	cargo=Tools.orderWriterCargo(orderWriter);
+    	orderDAOService.insertNewOrder(order, cargo, calcInfo);
+    }
+    
     
     @Override
 	public CalculateReq prepareOrder(CalculateForm form) throws PathNotFoundException {
@@ -52,12 +80,13 @@ public class OrderServiceImpl implements OrderService {
     	List<Transport> transports = transpRateDAOService.getAllTransports();
     	//CalculateReq calculateReq = new CalculateReq();
 		CharacteristicsPath charPath = pathCalculate(form, transports);
+		calcInfo=charPath;
 		calculateReq.setFullPath(getNodesTransport(charPath, transports));
 		calculateReq.setTotalCost(conversionCost(charPath, costOfBoxing));
 		calculateReq.setQuatityHours(Math.round(charPath.getTime()));
 		calculateReq.setDateDelivery(conversionDate(charPath));
 		calculateReq.setTypeDelivery(getTypeDelivery(charPath.getTransport()));
-		
+		calculateReq.setPathId(charPath.getPathId());
 		return calculateReq;
     }
 	

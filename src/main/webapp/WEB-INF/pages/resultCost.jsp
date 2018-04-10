@@ -60,7 +60,7 @@
             <h2>${lbHeaderH }</h2>
             <p>${lbHEaderP}</p>
         </header>
-        <form class="registration" method="get" action="${contextPath}/result" name="result"  id="result">
+        <form class="registration" method="post" action="${contextPath}/result" name="result"  id="result">
             <div class="container limiter">
 
                 <table width="100%" cellspacing="0" cellpadding="5">

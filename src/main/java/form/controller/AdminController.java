@@ -22,7 +22,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class AdminController {
+public class AdminController extends BaseController{
     private NodeDistanceService nodeService;
     private MessageSource messageSource;
     

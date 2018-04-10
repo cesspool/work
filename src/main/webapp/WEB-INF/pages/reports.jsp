@@ -44,6 +44,7 @@
 <spring:message code="statusOrder.ready" var="lbReady"/>
 
 
+
 <html>
 <head>
     <title>${lbUlLiB}</title>
@@ -55,6 +56,60 @@
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400;300" rel="stylesheet" type="text/css">
     <link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet"/>
     <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+    
+     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+    	  
+    	  var info = [
+              ['Task', 'Hours per Day'],
+              ['Work',     ${ord1}],
+              ['Eat',      ${ord2}],
+              ['not',      ${ord2}]
+            ]
+
+        var data = google.visualization.arrayToDataTable(info);
+
+        var options = {
+          title: 'My Daily Activities'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+    
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawVisualization);
+
+      function drawVisualization() {
+        // Some raw data (not necessarily accurate)
+        var data = google.visualization.arrayToDataTable([
+         ['Month', 'Bolivia', 'Ecuador', 'Madagascar', 'Papua New Guinea', 'Rwanda', 'Average'],
+         ['2004/05',  165,      938,         522,             998,           450,      614.6],
+         ['2005/06',  135,      1120,        599,             1268,          288,      682],
+         ['2006/07',  157,      1167,        587,             807,           397,      623],
+         ['2007/08',  139,      1110,        615,             968,           215,      609.4],
+         ['2008/09',  136,      691,         629,             1026,          366,      569.6]
+      ]);
+
+    var options = {
+      title : 'Monthly Coffee Production by Country',
+      vAxis: {title: 'Cups'},
+      hAxis: {title: 'Month'},
+      seriesType: 'bars',
+      series: {5: {type: 'line'}}
+    };
+
+    var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+  }
+    </script>
 </head>
 <body>
 
@@ -64,94 +119,13 @@
 
 <section id="main" class="wrapper">
     <div class="container">
-
         <header class="major special">
             <h2>${lbUlLiA}</h2>
-            <input type="text" placeholder = "${lbPlaceRecipient}" id="name" name="name">
-            <br>
-            <button type="submit" class="signupbtn">${lbSearch}</button>
         </header>
-        <form class="registration">
-            <div class="container limiter">
-
-                <table width="100%" cellspacing="0" cellpadding="5">
-                    <tr ><td class="someTable" width="200" valign="top">
-                            ${lbTableAA} <data>14251</data>
-                        </td>
-                        <td class="someTable" colspan="2" width="200" valign="top">
-                            ${lbTableAB} <data>1561 руб</data>
-                        </td>
-                        <td width="200" valign="top">
-							 <input type="checkbox" id="ready" name="ready" value="air">
-                            <label for="ready">${lbReady}</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td width="200" valign="top">
-                            ${lbTableBA} <data>express</data>
-                        </td>
-                        <td width="200" valign="top">
-                            ${lbTableBB} <data>standart</data>
-                        </td>
-                        <td width="200" valign="top">
-                            ${lbTableBC} <data>name</data>
-                        </td>
-                        <td width="200" valign="top">
-                            ${lbTableBD} <data>1.5</data>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td width="200" valign="top">
-                            ${lbTableCA} <data>Moscow</data>
-                        </td>
-                        <td width="200" valign="top">
-                            ${lbTableCB} <data>Ufa</data>
-                        </td>
-                        <td width="200" valign="top">
-                            ${lbTableCC} <data>Envelop </data>
-                        </td>
-                        <td width="200" valign="top">
-                            ${lbTableCD} <data>1</data>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td width="200" valign="top">
-                            ${lbTableDA} <data>10.10.2017</data>
-                        </td>
-                        <td width="200" valign="top">
-                            ${lbTableDB} <data>12.12.2017</data>
-                        </td>
-                        <td width="200" valign="top">
-                            ${lbTableDC} <data>1</data>
-                        </td>
-                        <td width="200" valign="top">
-                            ${lbTableDD} <data>1</data>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" width="200" valign="top">
-                            ${lbTableEA} <data>Ivanov Ivan Ivanovich</data>
-                        </td>
-
-                        <td width="200" valign="top">
-                            ${lbTableEB} <data>1</data>
-                        </td>
-                        <td width="200" valign="top">
-                            ${lbTableEC} <data>1</data>
-                        </td>
-                    </tr>
-                </table>
-                <div class="clearfix">
-                	<button type="button" class="cancelbtn">${lbCancel }</button>
-                	<button type="submit" class="signupbtn">${lbSave }</button>
-            	</div>
-
-            </div>
-        </form>
     </div>
-    <hr>
 </section>
-
+<div id="piechart" style="width: 900px; height: 500px;"></div>
+<div id="chart_div" style="width: 900px; height: 500px;"></div>
 
 <script src="<c:url value="/resources/assets/js/jquery.min.js"/>"></script>
 <script src="<c:url value="/resources/assets/js/skel.min.js"/>"></script>

@@ -5,7 +5,6 @@
     </div>
 
     <ul>
-        <li><a href="${contextPath}/status">${lbUlA}</a></li>
         <li><a href="${contextPath}/admin">${lbUlB}</a></li>
         <li><a href="${contextPath}/newrate">${lbUlC}</a></li>
         <li><a href="${contextPath}/boxing">${lbUlD}</a></li>

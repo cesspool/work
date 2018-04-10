@@ -25,7 +25,7 @@ import web.Message.Type;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class RegistrationController {
+public class RegistrationController extends BaseController {
     private CustomerService customerService;
     private MessageSource messageSource;
 

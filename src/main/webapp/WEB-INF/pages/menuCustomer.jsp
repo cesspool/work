@@ -7,7 +7,7 @@
     <ul>
         <li><a href="${contextPath}/personal">${lbUlLiA}</a></li>
         <li><a href="${contextPath}/history">${lbUlLiB}</a></li>
-        <li><a href="${contextPath}/cost">${lbUlLiC}</a></li>
+        <li><a href="${contextPath}/costCalculation">${lbUlLiC}</a></li>
         <li><a href="${contextPath}/contact">${lbUlLiD}</a></li>
         <li><a href="${contextPath}/index">${lbUlLiE}</a></li>
     </ul>

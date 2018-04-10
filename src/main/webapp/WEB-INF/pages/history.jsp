@@ -66,10 +66,10 @@
         </header>
         <form class="registration">
             <div class="container limiter">
-
+			<c:forEach var="order" items="${orderReq}">		                    
                 <table width="100%" cellspacing="0" cellpadding="5">
                     <tr ><td class="someTable" colspan="2" width="200" valign="top">
-                            ${lbTableAA} <data>14251</data>
+                            ${lbTableAA} {$order.box.variety}
                         </td>
                         <td class="someTable" colspan="2" width="200" valign="top">
                             ${lbTableAB} <data>1561 руб</data>
@@ -130,7 +130,7 @@
                         </td>
                     </tr>
                 </table>
-
+				</c:forEach>
             </div>
         </form>
     </div>

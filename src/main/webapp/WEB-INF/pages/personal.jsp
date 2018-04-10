@@ -35,6 +35,10 @@
 <spring:message code="history.table.trE.tdA" var="lbTableEA"/>
 <spring:message code="history.table.trE.tdB" var="lbTableEB"/>
 <spring:message code="history.table.trE.tdC" var="lbTableEC"/>
+<spring:message code="personal.address" var="lbAddress"/>
+
+
+
 
 <html>
 <head>
@@ -80,11 +84,8 @@
                         <td width="200" valign="top">
                             ${lbTableBB} <data>стандартная</data>
                         </td>
-                        <td width="200" valign="top">
-                            ${lbTableBC} <data>название</data>
-                        </td>
-                        <td width="200" valign="top">
-                            ${lbTableBD} <data>1.5</data>
+                        <td colspan="2" width="200" valign="top">
+                            ${lbAddress} <data>ул. Молодежная д.4</data>
                         </td>
                     </tr>
                     <tr>
