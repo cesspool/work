@@ -12,9 +12,12 @@ import java.util.Map;
 public interface NodeDistanceService {
     void createNode(NodeDistance nodeDistance);
     NodeDistance createNode(NewNodeForm nodeForm);
+    public void deleteNodeById(Long ID);
+    public void changeNodeById(NewNodeForm nodeForm);
     //Node getFormNode(Node node);
-    
+    public Map<Long, String> getCities(Long id);
     Map<Long, String> getAllCities();
+    public Node getInfoNode(long id);
     //Map<Long, String> getCities(Long nodeID); // searching cities linked with that node
 
 }

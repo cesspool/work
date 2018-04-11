@@ -2,8 +2,12 @@ package form.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import form.request.RegistrationForm;
+import utils.Tools;
 import web.Pages;
 
 @Controller
@@ -27,11 +31,7 @@ public class MainMenuController extends BaseController {
 //        return Pages.COST;
 //    }
 
-    @RequestMapping(value = "/contact", method = RequestMethod.GET)
-    public String showPersonContactForm(Model model) {
-        return Pages.CONTACT;
-    }
-    
+
 
     @RequestMapping(value = "/newrate", method = RequestMethod.GET)
     public String showNewRateForm(Model model) {

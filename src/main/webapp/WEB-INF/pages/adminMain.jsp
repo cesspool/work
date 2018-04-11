@@ -64,31 +64,23 @@
             <p>${lbUlSect}</p>
         </header>
         
-        <select id="selChanging">
-            <option selected>add</option>
-            <option>change</option>
-            <option>delete</option>
-        </select>
-        
-        
-        
-        
-       <div id ="test1" class="hideable">
+ 
         <form class="registration" method="post" action="${contextPath}/admin" id="newNodeForm" name="newNodeForm">
+        	<input type ="hidden" value = "${node.id}" name = "idNode" id = "idNode">
             <div class="container limiter">
-                <table width="100%" cellspacing="0" cellpadding="5">
+                 <table width="100%" cellspacing="0" cellpadding="5">
                     <tr>
                         <label for="name"><b>${lbTableAA}</b></label>
                         <td width="200" valign="top">
-                            <input type="text" placeholder="${lbPlaceBranch}" name="name" id="name" required>
+                            <input type="text" value = "${node.name}" placeholder="${lbPlaceBranch}" name="name" id="name" required>
                         </td>
 
                         <td>
-                            <input type="checkbox" id="airport" name="airport" value="2">
+                            <input type="checkbox" id="airport" name="airport" value="2" ${node.airport }>
                             <label for="airport">${lbTableAB}</label>
                         </td>
                         <td>
-                            <input type="checkbox" id="railway" name="railway" value="3">
+                            <input type="checkbox" id="railway" name="railway" value="3" ${node.rail}>
                             <label for="railway">${lbTableAC}</label>
                         </td>
                     </tr>
@@ -96,19 +88,19 @@
                     <tr>
                         <td width="200" valign="top">
                             <label for="coordinateX"><b>${lbTableBA}</b></label>
-                            <input type="text" placeholder="1424.1525" name="coordinateX" id="coordinateX" required>
+                            <input value = "${node.coordinateX}" type="text" placeholder="1424.1525" name="coordinateX" id="coordinateX" required>
                         </td>
                         <td>
                             <label for="coordinateY"><b>${lbTableBB}</b></label>
-                            <input type="text" placeholder="12515.152" name="coordinateY" id="coordinateY" required>
+                            <input value = "${node.coordinateY}" type="text" placeholder="12515.152" name="coordinateY" id="coordinateY" required>
                         </td>
                         <td>
                             <label for="address"><b>${lbTableBC}</b></label>
-                            <input type="text" placeholder="${lbPlaceAddress}" name="address" id="address" required>
+                            <input value = "${node.address}" type="text" placeholder="${lbPlaceAddress}" name="address" id="address" required>
                         </td>
                         <td width="200" valign="top">
                             <label for="city"><b>${lbTableBD}</b></label>
-                            <input type="text" placeholder="${lbPlaceCity}" name="city" id="city" required>
+                            <input value = "${node.city}" type="text" placeholder="${lbPlaceCity}" name="city" id="city" required>
                         </td>
                     </tr>
                     <tr>
@@ -120,16 +112,6 @@
                                       <c:forEach var="city" items="${allCities}">
                                         <option value="${city.key}">${city.value}</option>
                                       </c:forEach>  
-                                        <!-- 
-                                        <option value="10">Moscow</option>    
-                                        <option value="11">Riga</option>
-                                        <option value="12">Dolgoprudniy</option>
-                                        <option value="13">St.Piter</option>
-                                        <option value="14">Ufa</option>
-                                        <option value="15">Chelabinsk</option>
-                                        <option value="16">Prostokvashino</option>
-                                        <option value="17">Mars</option>
-                                        -->
                                     </select>
                                 </div>
                             </div>
@@ -142,6 +124,9 @@
                             <div class="rightBox">
                                 <div class="rightSel">
                                   <select size="5" name="chosenCities" id="chosenCities">
+                                      <c:forEach var="linkedCity" items="${linkedNodes}">
+                                        <option value="${linkedCity.key}">${linkedCity.value}</option>
+                                      </c:forEach> 
                                   </select>
                                   <input type="hidden" id="selectedCities" name="selectedCities"/>
                                 </div>
@@ -158,36 +143,7 @@
                 </div>
             </div>
         </form>
-       </div>
-       
-       <div id = "test2" class="hideable">
-       		<form> 
-       		
-       		</form>
-       </div>
-       
-       <div id = "test3" class="hideable">
-       <form method="post" action="${contextPath}/delete" id="deleteNodeForm" name="deleteNodeForm"> 
-       		Warning! deleting branch deletes all orders related with this branch 
-       		select the city of deleted branch:
-       		<label for="startNode"><b>${lbTableAA}</b></label> 
-            <div class="dropdown">
-                <input list="cityList" id="cityStart" name="cityStart"> 
-				<datalist id="cityList">
-					<c:forEach var="city" items="${allCities}">
-		                <option value="${city.value}"/>
-		            </c:forEach>
-				</datalist>
-			</div>
-       		<button type="submit" class="signupbtn">delete</button>
-       		</form>
-       </div>
-        
-        
-        
-        
-        
-    </div>
+
 </section>
 
 

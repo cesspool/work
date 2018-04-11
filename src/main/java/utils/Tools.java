@@ -165,6 +165,7 @@ public class Tools {
     
     public static NodeDistance NewNodeFormToNodeDistance(NewNodeForm form) {
     	NodeDistance nodeDistance = new NodeDistance();
+    	nodeDistance.getNode().setId(form.getIdNode());
     	nodeDistance.getNode().setName(form.getName());
     	nodeDistance.getNode().setCity(form.getCity());
     	nodeDistance.getNode().setAddress(form.getAddress());

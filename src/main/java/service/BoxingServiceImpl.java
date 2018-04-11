@@ -8,6 +8,7 @@ import utils.Tools;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -19,6 +20,12 @@ public class BoxingServiceImpl implements BoxingService {
     
     @Autowired
     private BoxingDAOService boxingDAOService;
+    
+    @Override
+    public List<Boxing> getAllInfoBoxes(){
+    	List<Boxing> boxes = boxingDAOService.getAllInfoBoxes();
+    	return boxes;
+    }
 
     @Override
     public void createBoxing(Boxing boxing) {
@@ -42,8 +49,8 @@ public class BoxingServiceImpl implements BoxingService {
     }
     
     @Override
-    public void deleteBoxing(Boxing boxing){
-        boxingDAOService.deleteBoxing(boxing);
+    public void deleteBoxing(Long id){
+        boxingDAOService.deleteBoxing(id);
     }
     
 }

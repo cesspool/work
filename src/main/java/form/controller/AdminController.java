@@ -52,9 +52,15 @@ public class AdminController extends BaseController{
             redirectAttributes.addFlashAttribute(Pages.ATR_MESSAGE, message);
             return "redirect:admin";
         } else {
-            NodeDistance nodeDistance = nodeService.createNode(formData);
-            redirectAttributes.addFlashAttribute(Pages.ADMIN, formData);
-            return "redirect:admin";
+        	if(formData.getIdNode()==null) {
+        		NodeDistance nodeDistance = nodeService.createNode(formData);
+                redirectAttributes.addFlashAttribute(Pages.ADMIN, formData);
+                return "redirect:admin";
+        	} else {
+        		nodeService.changeNodeById(formData);
+        		return "redirect:changingBranch";
+        	}
+            
         }
 
     }

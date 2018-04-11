@@ -8,8 +8,28 @@ public class Node {
     private double coordinateX;
     private double coordinateY;
     private String code;
+    private String airport;
+    private String rail;
+    
+    
 
-    public Long getId(){
+    public String getAirport() {
+		return airport;
+	}
+
+	public void setAirport(String airport) {
+		this.airport = airport;
+	}
+
+	public String getRail() {
+		return rail;
+	}
+
+	public void setRail(String rail) {
+		this.rail = rail;
+	}
+
+	public Long getId(){
         return id;
     }
 

@@ -28,17 +28,33 @@ public class BoxingDAOServiceImpl extends DataService implements BoxingDAOServic
     private final static String SQL_INSERT = "INSERT INTO logistics.boxing " +
             " (variety, cost) " + " VALUES (?, ?)";
 
-    private final static String SQL_DELETE = "DELETE FROM logistics.boxing " +
-            " WHERE variety=?";
+    private final static String SQL_DELETE = "update logistics.boxing set unavailable = true where id =?";
     
-    private final static String SQL_SELECT_ALL = "SELECT id, variety FROM logistics.boxing"
+    private final static String SQL_SELECT_MAP = "SELECT id, variety FROM logistics.boxing"
     		+ " where unavailable = 'false'";
     
     private final static String SQL_SELECT_BOX_BY_ID = "select B.cost from logistics.boxing"
     		+ " B where id = ? and unavailable = 'false'";
     
+    private final static String SQL_SELECT_ALL = "SELECT id, variety, cost FROM logistics.boxing"
+    		+ " where unavailable = 'false'";
     
-
+    @Override
+    @Transactional(readOnly = true)
+    public List<Boxing> getAllInfoBoxes() {
+           List<Boxing> boxes = getJdbcTemplate().query(SQL_SELECT_ALL, (rs, num) -> {
+        	   Boxing box = new Boxing();
+        	   int idx=1;
+        	   box.setId(rs.getLong(idx++));
+        	   box.setVariety(rs.getString(idx++));
+        	   box.setCost(rs.getDouble(idx++));
+               return box;
+           });
+           return boxes;
+    }
+    
+    
+    
     @Override
     @Transactional(readOnly = true)
     public Boxing getCostByID(Long ID) {
@@ -51,7 +67,7 @@ public class BoxingDAOServiceImpl extends DataService implements BoxingDAOServic
     @Override
     @Transactional(readOnly = true)
     public Map<Long, String> getAllBoxes() {
-           List<Pair<Long, String>> boxes = getJdbcTemplate().query(SQL_SELECT_ALL, (rs, num) -> {
+           List<Pair<Long, String>> boxes = getJdbcTemplate().query(SQL_SELECT_MAP, (rs, num) -> {
                return new Pair<>(rs.getLong(1), rs.getString(2));
            });
            Map<Long, String> allBoxes = boxes.stream().collect(Collectors.toMap(Pair::getLeft, Pair::getRight));
@@ -83,8 +99,8 @@ public class BoxingDAOServiceImpl extends DataService implements BoxingDAOServic
 
     @Override
     @Transactional
-    public void deleteBoxing(final Boxing boxing) {
-        getJdbcTemplate().update(SQL_DELETE, boxing.getVariety());
+    public void deleteBoxing(Long ID) {
+        getJdbcTemplate().update(SQL_DELETE, ID);
     };
     
     

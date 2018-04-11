@@ -76,6 +76,21 @@ public class Pages {
      */
     public static final String REPORT = "reports";
 
+    /**
+     * page for all manipulations with branch (admin can see)
+     */
+    public static final String BRANCH = "changingBranch";
+    
+    /**
+     * page for all manipulations with branch (admin can see)
+     */
+    public static final String BOX = "changingBox";
+    
+    /**
+     * page for changing branch (admin can see)
+     */
+    public static final String TRANSFORM_BRANCH = "transformBranch";
+    
     
     //=============== Page's attributes ====================================================================
     /** Customer instance */

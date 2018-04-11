@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 public class NewNodeForm {
+	Long idNode;
     int airport;
     int railway;
     private String name;
@@ -14,6 +15,8 @@ public class NewNodeForm {
     private String selectedCities;
 	//List<String> chosenCities;
 	
+    
+    
 	
 	
 //    public String getAirport() {
@@ -38,6 +41,14 @@ public class NewNodeForm {
 
 	public String getSelectedCities() {
 		return selectedCities;
+	}
+
+	public Long getIdNode() {
+		return idNode;
+	}
+
+	public void setIdNode(Long idNode) {
+		this.idNode = idNode;
 	}
 
 	public int getAirport() {

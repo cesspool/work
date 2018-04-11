@@ -55,15 +55,26 @@ public class RegistrationController extends BaseController {
         model.addAttribute(Pages.ATR_CUSTOMER, formData);
         return Pages.REGISTRATION;
     }
-
-    @RequestMapping(value = "/registrationform/{id}", method = RequestMethod.GET)
-    public String showCustomerForm(@PathVariable("id") Long id, Model model) {
-        customerService.getByID(id).ifPresent(cmr -> {
+    
+    
+    
+    @RequestMapping(value = "/contact/{id}", method = RequestMethod.GET)
+    public String showPersonContactForm(@PathVariable("id") Long id, Model model) {
+    		customerService.getByID(id).ifPresent(cmr -> {
             RegistrationForm formData = Tools.customerToRegistrationForm(cmr);
             model.addAttribute(Pages.ATR_CUSTOMER, formData);
         });
-        return Pages.REGISTRATION;
+        return Pages.CONTACT;
     }
+
+//    @RequestMapping(value = "/registrationform/{id}", method = RequestMethod.GET)
+//    public String showCustomerForm(@PathVariable("id") Long id, Model model) {
+//        customerService.getByID(id).ifPresent(cmr -> {
+//            RegistrationForm formData = Tools.customerToRegistrationForm(cmr);
+//            model.addAttribute(Pages.ATR_CUSTOMER, formData);
+//        });
+//        return Pages.REGISTRATION;
+//    }
 
 
     @Autowired

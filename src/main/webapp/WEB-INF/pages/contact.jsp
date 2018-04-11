@@ -87,10 +87,10 @@
             <form class="registration">
                 <div class="container limiter">
 
-                    <table width="100%" cellspacing="0" cellpadding="5">
+                    <table width="100%" cellspacing="0" cellpadding="6">
                         <tr >
                             <td colspan="2" width="200" valign="top">
-                                ${lbTableAAA} <data>First last middle name</data>
+                                ${lbTableAAA} ${customer.firstName} ${customer.lastName} ${customer.patronymic}
                             </td>
                             <td colspan="2" width="200" valign="top">
                                 ${lbTableAAB} <data> yes </data>
@@ -98,13 +98,13 @@
                         </tr>
                         <tr>
                             <td colspan="2" width="200" valign="top">
-                                ${lbTableABA} <data>Moscow, Molodeznaya street, 6</data>
+                                ${lbTableABA} ${customer.city} 
                             </td>
-                            <td width="200" valign="top">
-                                ${lbTableABB}<data>8(926)723-16-50</data>
+                            <td colspan="2" width="200" valign="top">
+                                ${lbTableABB} ${customer.telephone}
                             </td>
-                            <td width="300" valign="top">
-                                ${lbTableABC} <data>paulkapay@gmail.com</data>
+                            <td colspan="2" width="300" valign="top">
+                                ${lbTableABC} ${customer.email}
                             </td>
                         </tr>
                     </table>
@@ -125,23 +125,23 @@
                     <table width="100%" cellspacing="0" cellpadding="5">
                         <td width="200" valign="top">
                             <label for="email"><b>${lbTableBAA}</b></label>
-                            <input type="text" placeholder="paulkapay@gmail.com" name="email" id="email" required>
+                            <input value = "${customer.email}" type="text" placeholder="paulkapay@gmail.com" name="email" id="email" required>
 
                             <label for="telephone"><b>${lbTableBAB}</b></label>
-                            <input type="text" placeholder="+7(926)723-16-50" name="telephone" id="telephone" required>
+                            <input  value = "${customer.telephone}" type="text" placeholder="+7(926)723-16-50" name="telephone" id="telephone" required>
 
                             <label for="city"><b>${lbTableBAC}</b></label>
-                            <input type="text" placeholder="${lbPlaceCity}" name="city" id="city" required>
+                            <input value = "${customer.city}" type="text" placeholder="${lbPlaceCity}" name="city" id="city" required>
                         </td>
                         <td width="200" valign="top">
                             <label for="lastName"><b>${lbTableBBA}</b></label>
-                            <input type="text" placeholder="${lbPlaceLname}" name="lastName" id="lastName" required>
+                            <input value = "${customer.lastName}" type="text" placeholder="${lbPlaceLname}" name="lastName" id="lastName" required>
 
                             <label for="firstName"><b>${lbTableBBB}</b></label>
-                            <input type="text" placeholder="${lbPlaceFname}" name="firstName" id="firstName" required>
+                            <input value = "${customer.firstName}" type="text" placeholder="${lbPlaceFname}" name="firstName" id="firstName" required>
 
                             <label for="patronymic"><b>${lbTableBBC}</b></label>
-                            <input type="text" placeholder="${lbPlaceMname}" name="patronymic" id="patronymic"  required>
+                            <input value = "${customer.patronymic}" type="text" placeholder="${lbPlaceMname}" name="patronymic" id="patronymic"  required>
                         </td>
 
                         <td width="200" valign="top">
