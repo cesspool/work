@@ -60,6 +60,23 @@ public class AdminController extends BaseController{
     }
     
     
+//    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+//    public String delete(Model uiModel,
+//                               HttpServletRequest httpServletRequest,
+//                               RedirectAttributes redirectAttributes,
+//                               Locale locale) {
+//        Message message = validateForm(formData);
+//        if (message != null) {
+//            message.setMsg(messageSource.getMessage(message.getKey(), null, locale));
+//            redirectAttributes.addFlashAttribute(Pages.ATR_MESSAGE, message);
+//            return "redirect:admin";
+//        } else {
+//            NodeDistance nodeDistance = nodeService.createNode(formData);
+//            redirectAttributes.addFlashAttribute(Pages.ADMIN, formData);
+//            return "redirect:admin";
+//        }
+//
+//    }
     
     
     

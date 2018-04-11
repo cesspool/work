@@ -9,8 +9,7 @@ public class RegistrationForm {
     private String city;
     private String psw;
     private String pswRepeat;
-    private boolean admin;
-    private boolean manager;
+    private int privilege;
 
     public String getFirstName() {
         return firstName;
@@ -76,21 +75,15 @@ public class RegistrationForm {
         this.pswRepeat = pswRepeat;
     }
 
-    public boolean isAdmin() {
-        return admin;
-    }
+	public int getPrivilege() {
+		return privilege;
+	}
 
-    public void setAdmin(boolean admin) {
-        this.admin = admin;
-    }
+	public void setPrivilege(int privilege) {
+		this.privilege = privilege;
+	}
 
-    public boolean isManager() {
-        return manager;
-    }
 
-    public void setManager(boolean manager) {
-        this.manager = manager;
-    }
     
     
 }

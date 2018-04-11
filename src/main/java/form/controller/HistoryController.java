@@ -41,10 +41,15 @@ public class HistoryController extends BaseController {
     }
 	
 	
+    
 	@RequestMapping(value = "/history/{id}", method = RequestMethod.GET)
-    public String showHistorySepForm(@PathVariable("id") Long id, Model model) {
-        orderService.getOrderByParam(id, false).ifPresent(ord -> {
+    public String showHistorySepForm(@PathVariable("id") Long id, Model model, Locale locale) {
+        orderService.getOrderByParam(id, true).ifPresent(ord -> {
         	List<OrderingReq> orderReq = Tools.orderToHistoryForm(ord);
+        	for (OrderingReq ordReq : orderReq) {
+        		ordReq.setTypeDelivery(messageSource.getMessage(ordReq.getTypeDelivery(), null, locale));
+        		ordReq.setTypeCargo(messageSource.getMessage(ordReq.getTypeCargo(), null, locale));
+        	}
             model.addAttribute(Pages.ATR_ORDER_READY, orderReq);
         });
         return Pages.HISTORY;

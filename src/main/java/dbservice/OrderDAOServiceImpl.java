@@ -5,6 +5,7 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
@@ -45,8 +46,8 @@ public class OrderDAOServiceImpl extends DataService  implements OrderDAOService
 //            " VALUES (?, ?, ?, ?, ?, ?, ?) ";
 	
 	private final static String SQL_SEL_ORDERS_BY_READY_AND_RECIPIENT= "select Ord.name," +
-			" Ord.urgency, Ord.plan_date, Ord.cost, Ord.contact_information, Pk.envelop," +
-			" Pk.height, Pk.width, Pk.length, Pk.weight, Pk.size, Bx.variety, Nds.city, Ndt.city, Ndt.address" + 
+			" Ord.urgency, Ord.plan_date, Ord.cost, Ord.contact_information, Ord.shipment_date, Ord.real_date, Pk.envelop," +
+			" Pk.height, Pk.width, Pk.length, Pk.weight, Pk.quantity, Bx.variety, Nds.city, Ndt.city, Ndt.address" + 
 			" from logistics.order Ord" + 
 			" inner join logistics.package Pk on Pk.id = Ord.package_id" + 
 			" inner join logistics.boxing Bx on Bx.id = Ord.boxing_id" + 
@@ -56,9 +57,9 @@ public class OrderDAOServiceImpl extends DataService  implements OrderDAOService
 			" WHERE recipient_id = ? and ready=?";
 	
 	private final static String SQL_INSERT_ORDER="INSERT INTO logistics.order (name, urgency, ready, plan_date, cost,"
-			+ " contact_information, recipient_id, rate_id, " + 
+			+ " shipment_date, contact_information, recipient_id, rate_id, " + 
 			" package_id, boxing_id, node_start_id, node_target_id) VALUES " + 
-			" (?,?,'0',?,?,?,?,?,?,?,?,?)";
+			" (?,?,'0',?,?,now(),?,?,?,?,?,?,?)";
 	
 	private final static String SQL_INSERT_PACKAGE="INSERT INTO logistics.package (name, envelop, height, width, "
 			+ " length, weight, quantity, size) VALUES (?,?,?,?,?,?,?,?)";
@@ -73,23 +74,25 @@ public class OrderDAOServiceImpl extends DataService  implements OrderDAOService
     public Optional<List<OrderShow>> getOrders(Long ID, boolean ready) {
         List<OrderShow> orders = getJdbcTemplate().query(SQL_SEL_ORDERS_BY_READY_AND_RECIPIENT,
         						new Object[] {ID, ready}, (rs, num) -> {
-            if (!rs.next()) {
-                return null;
-            }
+//            if (!rs.next()) {
+//                return null;
+//            }
             OrderShow o = new OrderShow();
 //            n.setId(ID);
             int idx = 1;
-            o.getOrder().setName(rs.getInt(idx++));
+            o.getOrder().setName(rs.getString(idx++));
             o.getOrder().isUrgency(rs.getBoolean(idx++));
             o.getOrder().setPlanDate(rs.getDate(idx++));
             o.getOrder().setCost(rs.getDouble(idx++));
             o.getOrder().setContact_information(rs.getString(idx++));
+            o.getOrder().setShipmentDate(rs.getDate(idx++));
+            o.getOrder().setRealDate(rs.getDate(idx++));
             o.getCargo().isEnvelope(rs.getBoolean(idx++));
             o.getCargo().setHeight(rs.getDouble(idx++));
             o.getCargo().setWidth(rs.getDouble(idx++));
             o.getCargo().setLength(rs.getDouble(idx++));
             o.getCargo().setWeight(rs.getDouble(idx++));
-            o.getCargo().setSize(rs.getDouble(idx++));
+            o.getCargo().setQuantity(rs.getInt(idx++));
             o.getBox().setVariety(rs.getString(idx++));
             o.getNodeStart().setCity(rs.getString(idx++));
             o.getNodeEnd().setCity(rs.getString(idx++));
@@ -108,7 +111,8 @@ public class OrderDAOServiceImpl extends DataService  implements OrderDAOService
     @Override
     @Transactional
     public void insertNewOrder(Order order, Package cargo, CharacteristicsPath charPath) {
-
+    	String nameCargo = UUID.randomUUID().toString();
+    	cargo.setName(nameCargo);
         KeyHolder keyHolderPackage = new GeneratedKeyHolder();
         getJdbcTemplate().update((con) ->  {
             PreparedStatement pst = con.prepareStatement(SQL_INSERT_PACKAGE, new String[] {"id"}); // Statement.RETURN_GENERATED_KEYS
@@ -127,12 +131,13 @@ public class OrderDAOServiceImpl extends DataService  implements OrderDAOService
         cargo.setId(IDCargo);
         order.setPackageId(IDCargo);
     	
-    	
+    	String name = UUID.randomUUID().toString();
+    	order.setName(name);
         KeyHolder keyHolderOrder = new GeneratedKeyHolder();
         getJdbcTemplate().update((con) ->  {
             PreparedStatement pst = con.prepareStatement(SQL_INSERT_ORDER, new String[] {"id"}); // Statement.RETURN_GENERATED_KEYS
             int idx = 1;
-            pst.setInt(idx++, order.getName());
+            pst.setString(idx++, order.getName());
             pst.setBoolean(idx++, order.isUrgency());
             pst.setDate(idx++,  Tools.toSQLDate(order.getPlanDate()));
             pst.setDouble(idx++, order.getCost());

@@ -167,7 +167,7 @@
        </div>
        
        <div id = "test3" class="hideable">
-       		<form> 
+       <form method="post" action="${contextPath}/delete" id="deleteNodeForm" name="deleteNodeForm"> 
        		Warning! deleting branch deletes all orders related with this branch 
        		select the city of deleted branch:
        		<label for="startNode"><b>${lbTableAA}</b></label> 

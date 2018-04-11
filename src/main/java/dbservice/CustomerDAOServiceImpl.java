@@ -36,6 +36,8 @@ public class CustomerDAOServiceImpl extends DataService implements CustomerDAOSe
     private final static String SQL_SEL_BY_EMAIL = "SELECT id, firstName, lastName, patronymic, address, telephone, hashcode, admin, manager " +
         " FROM logistics.customer WHERE email=?";
 
+    private final static String SQL_CHANGE_STATUS = "update logistics.order set ready = true where name = ?";
+    
     @Override
     @Transactional(readOnly = true)
     public Optional<Customer> getByID(Long ID) {

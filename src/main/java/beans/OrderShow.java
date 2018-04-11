@@ -6,6 +6,15 @@ public class OrderShow {
 	private Boxing box;
 	private Node nodeStart;
 	private Node nodeEnd;
+	
+	
+	public OrderShow() {
+		order = new Order();
+		cargo = new Package();
+		box = new Boxing();
+		nodeStart = new Node();
+		nodeEnd = new Node();
+	}
 	public Order getOrder() {
 		return order;
 	}

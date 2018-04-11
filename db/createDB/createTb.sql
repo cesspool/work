@@ -67,12 +67,13 @@ transport_id INTEGER REFERENCES logistics.transport(id)
 
 CREATE TABLE logistics.order(
 id SERIAL PRIMARY KEY NOT NULL,
-name integer NOT NULL,
+name varchar(50) NOT NULL,
 urgency boolean,
 ready BOOLEAN,
 plan_date date,
 real_date date,
 cost real,
+shipment_date date NOT NULL,
 contact_information VARCHAR(256),
 recipient_id integer REFERENCES logistics.customer (id),
 rate_id INTEGER REFERENCES logistics.rate (id),

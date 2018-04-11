@@ -75,8 +75,18 @@ public class Tools {
         cmr.setEmail(form.getEmail());
         cmr.setTelephone(form.getTelephone());
         cmr.setMd5(form.getPsw());
-        cmr.setAdmin(form.isAdmin());
-        cmr.setManager(form.isManager());
+        if (form.getPrivilege()==1) {
+        	cmr.setManager(true);
+        	cmr.setAdmin(false);
+        }
+        if (form.getPrivilege()==2) {
+        	cmr.setManager(false);
+        	cmr.setAdmin(true);
+        } else {
+        	cmr.setAdmin(false);
+        	cmr.setManager(false);
+        }
+
         return cmr;
     }
 
@@ -89,8 +99,14 @@ public class Tools {
         form.setCity(cmr.getAddress());
         form.setEmail(cmr.getEmail());
         form.setTelephone(cmr.getTelephone());
-        form.setAdmin(cmr.isAdmin());
-        form.setManager(cmr.isManager());
+        if (cmr.isAdmin()) {
+        	form.setPrivilege(2);
+        }
+        if(cmr.isManager()) {
+        	form.setPrivilege(1);
+        } else {
+        	form.setPrivilege(0);
+        }
         return form;
     }
     
@@ -199,7 +215,6 @@ public class Tools {
     		e.printStackTrace();
     	}
     	order.setRecipientId(orderWriter.getRecipientId());
-    	order.setName(1);
     	order.isUrgency(orderWriter.getForm().isUrgency());
     	order.setReady(false);
     	order.setCost(orderWriter.getCalculateReq().getTotalCost());
@@ -231,14 +246,14 @@ public class Tools {
     	for (OrderShow ord : orders) {
     		OrderingReq order = new OrderingReq();
     		if (ord.getOrder().isUrgency()==true) {
-    			order.setTypeDelivery("express");
+    			order.setTypeDelivery("history.express-delivery");
     		} else {
-    			order.setTypeDelivery("econom");
+    			order.setTypeDelivery("history.econom-delivery");
     		}
     		if (ord.getCargo().isEnvelope()==true) {
-    			order.setTypeCargo("envelope");
+    			order.setTypeCargo("history.envelope-package");
     		} else {
-    			order.setTypeCargo("cargo");
+    			order.setTypeCargo("history.cargo-package");
     		}
     		order.setBox(ord.getBox());
     		order.setCargo(ord.getCargo());

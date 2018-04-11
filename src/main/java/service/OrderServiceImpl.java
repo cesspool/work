@@ -42,13 +42,13 @@ import utils.Tools;
 @Service
 public class OrderServiceImpl implements OrderService {
     @Autowired
-    private NodeDistanceDAOService nodeDistanceDAOService = new NodeDistanceDAOServiceImpl();
+    private NodeDistanceDAOService nodeDistanceDAOService;
     @Autowired
-    private TranspRateDAOService transpRateDAOService = new TranspRateDAOServiceImpl();
+    private TranspRateDAOService transpRateDAOService; //initialization 
     @Autowired
-    private BoxingDAOService boxingDAOService = new BoxingDAOServiceImpl();
+    private BoxingDAOService boxingDAOService;
     @Autowired
-    private OrderDAOService orderDAOService = new OrderDAOServiceImpl();
+    private OrderDAOService orderDAOService;
     
     private CharacteristicsPath calcInfo;
     

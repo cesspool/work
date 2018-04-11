@@ -4,13 +4,14 @@ import java.util.Date;
 
 public class Order {
     private Long id;
-    private int name;
+    private String name;
     private Boolean urgency;
     private Boolean ready;
     private Long nodeStart;
     private Long nodeTarget;
     private Date planDate;
     private Date realDate;
+    private Date shipmentDate;
     private double cost;
     private String contact_information;
     private Long recipientId;
@@ -21,7 +22,15 @@ public class Order {
     
     
 
-    public Long getRecipientId() {
+    public Date getShipmentDate() {
+		return shipmentDate;
+	}
+
+	public void setShipmentDate(Date shipmentDate) {
+		this.shipmentDate = shipmentDate;
+	}
+
+	public Long getRecipientId() {
 		return recipientId;
 	}
 
@@ -109,11 +118,11 @@ public class Order {
         this.id = id;
     }
 
-    public int getName(){
+    public String getName(){
         return name;
     }
 
-    public void setName(int name){
+    public void setName(String name){
         this.name = name;
     }
 

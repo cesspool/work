@@ -46,8 +46,10 @@ public class NodeDistanceDAOServiceImpl extends DataService implements NodeDista
     private final static String SQL_SELECT_ALL = "SELECT id, city FROM logistics.node"
     		+ " where unavailable = 'false'";
 
-    private final static String SQL_SELECT_ALL_DISTANCES = "SELECT length, node_id_start,"
-    		+ " node_id_end FROM logistics.distance ";
+    private final static String SQL_SELECT_ALL_DISTANCES = "SELECT D.length, D.node_id_start, D.node_id_end " +
+    		" FROM logistics.distance D" +
+    		" inner join logistics.node Ns on Ns.id = D.node_id_start and Ns.unavailable=false" +
+            " inner join logistics.node Ne on Ne.id = D.node_id_end and Ne.unavailable=false";
     
     private final static String SQL_SELECT_CITIES = "SELECT a.id, a.city FROM logistics.node a " + 
     		"inner join logistics.distance b on a.id=b.node_id_end where b.node_id_start = ? "
@@ -61,14 +63,18 @@ public class NodeDistanceDAOServiceImpl extends DataService implements NodeDista
     
     
     private final static String SQL_SEL_COORDINATE = "select coordinatex, coordinatey from logistics.node where"
-    		+ " id = ? and unavailable = 'false'";
+    		+ " id = ? and unavailable = false";
     
     private final static String SQL_CITYID_BY_NAME = "select id from logistics.node"
     		+ " where city = ? and unavailable = 'false'";
     
     //private final static String SQL_CITY_BY_ID = "select id from logistics.node where city = ?";
     
-    private final static String SQL_SEL_ALL_NODE_TRANSPORT = "select node_id, transport_id from logistics.transport_node";
+    private final static String SQL_SEL_ALL_NODE_TRANSPORT = "select Tn.node_id, Tn.transport_id " + 
+    		" from logistics.transport_node Tn" + 
+    		" inner join logistics.node N on Tn.node_id = N.id and N.unavailable = false";
+    
+    private final static String SQL_DEL_NODE_BY_ID= "UPDATE logistics.node set unavailable = true where id = ?";
     
     @Override
     @Transactional(readOnly = true)
