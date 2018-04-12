@@ -89,17 +89,17 @@
                         <td width="200" valign="top">
                             <label for="costShippingCargo"><b>${lbSectionCB}</b></label>
                             <input value = "${costShippingCargo }" type="text" placeholder="15" name="costShippingCargo" id="costShippingCargo" required>
-                            <input type="hidden" name="cargoID" id="cargoID" value="${cargoID}">
+                            <input type="hidden" name="trCargoID" id="trCargoID" value="${cargoID}">
                         </td>
                         <td width="200" valign="top">
                             <label for="costShippingAir"><b>${lbSectionCC}</b></label>
                             <input value = "${costShippingAir }" type="text" placeholder="16" name="costShippingAir" id="costShippingAir" required>
-                            <input type="hidden" name="airID" id="airID" value="${airID}">
+                            <input type="hidden" name="trAirID" id="trAirID" value="${airID}">
                         </td>
                         <td width="200" valign="top">
                             <label for="costShippingRail"><b>${lbSectionCD}</b></label>
                             <input value = "${costShippingRail }" type="text" placeholder="10" name="costShippingRail" id="costShippingRail" required>
-                            <input type="hidden" name="railID" id="railID" value="${railID}">
+                            <input type="hidden" name="trRailID" id="trRailID" value="${railID}">
                         </td>
                     </tr>
                     <tr>

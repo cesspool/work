@@ -133,7 +133,7 @@ public class Tools {
     	rateCargo.setAdditionalCost(form.getAddCostShippingCargo());
     	rateCargo.setStartAction(form.getStartAction());
     	rateCargo.setEndAction(form.getEndAction());
-    	rateCargo.setTransportID(form.getCargoID());
+    	rateCargo.setTransportID(form.getTrCargoID());
     	rateCargo.setCostKm(form.getCostKmCargo());
     	
     	Rate rateAir = new Rate();
@@ -143,7 +143,7 @@ public class Tools {
     	rateAir.setAdditionalCost(form.getAddCostShippingAir());
     	rateAir.setStartAction(form.getStartAction());
     	rateAir.setEndAction(form.getEndAction());
-    	rateAir.setTransportID(form.getAirID());
+    	rateAir.setTransportID(form.getTrAirID());
     	rateAir.setCostKm(form.getCostKmAir());
     	
     	Rate rateRail = new Rate();
@@ -153,7 +153,7 @@ public class Tools {
     	rateRail.setAdditionalCost(form.getAddCostShippingRail());
     	rateRail.setStartAction(form.getStartAction());
     	rateRail.setEndAction(form.getEndAction());
-    	rateRail.setTransportID(form.getRailID());
+    	rateRail.setTransportID(form.getTrRailID());
     	rateRail.setCostKm(form.getCostKmRail());
     	List<Rate> rates = new ArrayList<>();
     	rates.add(rateCargo);

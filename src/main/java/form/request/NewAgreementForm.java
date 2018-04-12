@@ -25,8 +25,35 @@ public class NewAgreementForm {
     private long railID;
     private long airID;
     private long cargoID;
+    private long trRailID;
+    private long trAirID;
+    private long trCargoID;
+
     
-    
+
+	public long getTrRailID() {
+		return trRailID;
+	}
+
+	public void setTrRailID(long trRailID) {
+		this.trRailID = trRailID;
+	}
+
+	public long getTrAirID() {
+		return trAirID;
+	}
+
+	public void setTrAirID(long trAirID) {
+		this.trAirID = trAirID;
+	}
+
+	public long getTrCargoID() {
+		return trCargoID;
+	}
+
+	public void setTrCargoID(long trCargoID) {
+		this.trCargoID = trCargoID;
+	}
 
 	public long getRailID() {
 		return railID;
