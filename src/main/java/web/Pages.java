@@ -92,6 +92,11 @@ public class Pages {
     public static final String TRANSFORM_BRANCH = "transformBranch";
     
     
+    /**
+     * page for changing rate (admin can see)
+     */
+    public static final String CHANGING_RATES = "changingAgreement";
+    
     //=============== Page's attributes ====================================================================
     /** Customer instance */
     public static final String ATR_CUSTOMER = "customer";
