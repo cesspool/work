@@ -22,20 +22,15 @@
 
 <spring:message code="newRate.section.header" var="lbUlHeader"/>
 <spring:message code="newRate.section.p" var="lbUlSect"/>
-<spring:message code="newRate.section.trA.tdA" var="lbSectionAA"/>
-<spring:message code="newRate.section.trA.tdB" var="lbSectionAB"/>
-<spring:message code="newRate.section.trA.tdC" var="lbSectionAC"/>
 
 <spring:message code="newRate.section.trB.tdA" var="lbSectionBA"/>
 <spring:message code="newRate.section.trB.tdB" var="lbSectionBB"/>
 <spring:message code="newRate.section.trB.tdC" var="lbSectionBC"/>
 <spring:message code="newRate.section.trB.tdD" var="lbSectionBD"/>
-<spring:message code="newRate.section.trC.tdA" var="lbSectionCA"/>
-<spring:message code="newRate.section.trC.tdB" var="lbSectionCB"/>
-<spring:message code="newRate.section.trC.tdC" var="lbSectionCC"/>
-<spring:message code="newRate.section.trC.tdD" var="lbSectionCD"/>
-<spring:message code="newRate.section.trD.tdA" var="lbSectionDA"/>
-<spring:message code="newRate.section.trE.tdA" var="lbSectionEA"/>
+
+<spring:message code="changingTransport.changingMax" var="lbNameTitle"/>
+
+
 
 <html>
 <head>
@@ -58,7 +53,7 @@
     <div class="container">
 
         <header class="major special">
-            <h2>${lbUlA}</h2>
+            <h2>${lbNameTitle}</h2>
             <p>${lbUlSect}</p>
         </header>
         <form method="post" action="${contextPath}/changingTransport" id = "changingTransport" class = "changingTransport">

@@ -11,8 +11,10 @@ public class Customer {
     private String hashcode;
     private Boolean admin = Boolean.FALSE;
     private Boolean manager = Boolean.FALSE;
+
     
-    public Long getId() {
+
+	public Long getId() {
         return id;
     }
 

@@ -42,11 +42,11 @@
 <spring:message code="history.table.trE.tdB" var="lbTableEB"/>
 <spring:message code="history.table.trE.tdC" var="lbTableEC"/>
 <spring:message code="statusOrder.ready" var="lbReady"/>
-
+<spring:message code="adminManager.head.title" var="lbManagerTitle"/>
 
 <html>
 <head>
-    <title>${lbUlLiB}</title>
+    <title>${lbManagerTitle}</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   	<link rel="stylesheet" href="<c:url value="/resources/assets/css/main.css"/>"/>
@@ -66,7 +66,7 @@
     <div class="container">
 
         <header class="major special">
-            <h2>${lbUlLiA}</h2>
+            <h2>${lbStatusOrder}</h2>
             <input type="text" placeholder = "${lbPlaceRecipient}" id="name" name="name">
             <br>
             <button type="submit" class="signupbtn">${lbSearch}</button>

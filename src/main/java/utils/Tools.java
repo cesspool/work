@@ -69,6 +69,7 @@ public class Tools {
     
     public static Customer registrationFormToCustomer(RegistrationForm form) {
         Customer cmr = new Customer();
+        cmr.setId(form.getId());
         cmr.setFirstName(form.getFirstName());
         cmr.setLastName(form.getLastName());
         cmr.setPatronymic(form.getPatronymic());
@@ -94,6 +95,7 @@ public class Tools {
     
     public static RegistrationForm customerToRegistrationForm(Customer cmr) {
         RegistrationForm form = new RegistrationForm();
+        form.setId(cmr.getId());
         form.setFirstName(cmr.getFirstName());
         form.setLastName(cmr.getLastName());
         form.setPatronymic(cmr.getPatronymic());
@@ -101,12 +103,12 @@ public class Tools {
         form.setEmail(cmr.getEmail());
         form.setTelephone(cmr.getTelephone());
         if (cmr.isAdmin()) {
-        	form.setPrivilege(2);
+        	form.setPerk("contact.perk-admin");
         }
         if(cmr.isManager()) {
-        	form.setPrivilege(1);
+        	form.setPerk("contact.perk-manager");
         } else {
-        	form.setPrivilege(0);
+        	form.setPerk("contact.perk-ordinary");
         }
         return form;
     }

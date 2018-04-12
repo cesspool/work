@@ -28,12 +28,18 @@ public class ChangingAgreementConroller extends BaseController {
         //Map<Long, String> res = nodeService.getAllCities();
         //model.addAttribute("allCities", res);
     	List<Rate> rates = transpRateService.getAllRates();
+    	List<Rate> ratesOut = new ArrayList<>();
+    	for (int i =0; i< rates.size(); ) {
+    		ratesOut.add(rates.get(i));
+    		i=i+3;
+    	}
+
     	List<Transport> transports = transpRateService.getAllTransports();
     	model.addAttribute("weight", transports.get(0).getTotalWeight());
     	model.addAttribute("length", transports.get(0).getMaxLength());
     	model.addAttribute("width", transports.get(0).getMaxWidth());
     	model.addAttribute("height", transports.get(0).getMaxHeight());
-        model.addAttribute("allRates", rates);
+        model.addAttribute("allRates", ratesOut);
         return Pages.CHANGING_RATES;
     }
     

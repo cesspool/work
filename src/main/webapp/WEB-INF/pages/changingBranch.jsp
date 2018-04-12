@@ -38,6 +38,14 @@
 <spring:message code="adminMain.button.add" var="lbBtnAdd"/>
 <spring:message code="adminMain.button.remove" var="lbBtnRemove"/>
 
+<spring:message code="changingBranch.branches" var="lbBranches"/>
+<spring:message code="changingBranch.branch.name" var="lbBranchName"/>
+
+<spring:message code="changingAgreement.button.add" var="lbAddBox"/>
+<spring:message code="changingAgreement.button.delete" var="lbDeleteBox"/>
+<spring:message code="changingAgreement.button.change" var="lbChangeBox"/>
+<spring:message code="changingBranch.deleting" var="lbWarningDelete"/>
+
 <html>
 <head>
     <title>${lbHeadTitle}</title>
@@ -63,9 +71,8 @@
     <div class="container">
 
         <header class="major special">
-            <h2>${lbHeader}</h2>
-            <p>${lbUlSect}</p>
-            <p>Branches</p>
+            <h2>${lbNameTitleBranch}</h2>
+            <p>${lbBranches}</p>
         </header>
         
    
@@ -75,21 +82,21 @@
 		             <c:forEach var="city" items="${allCities}">
 		              	 <tr width="200" valign="top">
 		              	 	<td colspan="2">
-		                       Branch of city ${city.value} 
+		                       ${lbBranchName} ${city.value} 
 		                    </td>
 		                    <td>
 		                       <a href="${contextPath}/changingBranch/delete/${city.key}" 
-		                       		class="likeButton" onclick="return confirm('Are you sure you want to delete this item?');">delete</a>
+		                       		class="likeButton" onclick="return confirm('${lbWarningDelete}');">${lbDeleteBox }</a>
 		                    </td>
 		                    <td>
 		                       <a href="${contextPath}/changingBranch/change/${city.key}" 
-		                       		class="likeButton">change</a>
+		                       		class="likeButton">${lbChangeBox }</a>
 		                    </td>
 		                 </tr>
 		             </c:forEach>  
 				</table>
                 <div class="clearfix">
-                     <a href="${contextPath}/admin" class="likeButton">add</a>
+                     <a href="${contextPath}/admin" class="likeButton">${lbAddBox }</a>
                 </div>
             </div>
         </form>

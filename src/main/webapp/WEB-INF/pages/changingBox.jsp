@@ -37,6 +37,14 @@
 <spring:message code="adminMain.place.address" var="lbPlaceAddress"/>
 <spring:message code="adminMain.button.add" var="lbBtnAdd"/>
 <spring:message code="adminMain.button.remove" var="lbBtnRemove"/>
+<spring:message code="changingBox.boxes" var="lbBoxes"/>
+<spring:message code="changingBox.nameBox" var="lbNameBox"/>
+<spring:message code="changingBox.costBox" var="lbCostBox"/>
+
+<spring:message code="changingAgreement.button.add" var="lbAddBox"/>
+<spring:message code="changingAgreement.button.delete" var="lbDeleteBox"/>
+
+<spring:message code="changingBranch.deleting" var="lbWarningDelete"/>
 
 <html>
 <head>
@@ -63,9 +71,8 @@
     <div class="container">
 
         <header class="major special">
-            <h2>${lbHeader}</h2>
-            <p>${lbUlSect}</p>
-            <p>Branches</p>
+            <h2>${lbNameTitleBoxMan}</h2>
+            <p>${lbBoxes }</p>
         </header>
         
    
@@ -75,20 +82,20 @@
 		             <c:forEach var="box" items="${allBoxes}">
 		              	 <tr width="200" valign="top">
 		              	 	<td colspan="2">
-		                       name of Box ${box.variety} 
+		                       ${lbNameBox }: ${box.variety} 
 		                    </td>
 		                    <td >
-		                       cost of Box ${box.cost} 
+		                       ${lbCostBox }: ${box.cost} 
 		                    </td>
 		                    <td>
 		                       <a href="${contextPath}/changingBox/delete/${box.id}" 
-		                       		class="likeButton" onclick="return confirm('Are you sure you want to delete this item?');">delete</a>
+		                       		class="likeButton" onclick="return confirm('${lbWarningDelete}');">${lbDeleteBox }</a>
 		                    </td>
 		                 </tr>
 		             </c:forEach>  
 				</table>
                 <div class="clearfix">
-                     <a href="${contextPath}/boxing" class="likeButton">add</a>
+                     <a href="${contextPath}/boxing" class="likeButton">${lbAddBox }</a>
                 </div>
             </div>
         </form>

@@ -1,3 +1,8 @@
+<spring:message code="report.nameTitle.rep" var="lbReportTitleName"/>
+<spring:message code="order.orders" var="lbStatusOrder"/>
+
+
+
 <div class="menu">
 
      <div class="icon-close">
@@ -5,7 +10,7 @@
     </div>
 
     <ul>
-        <li><a href="${contextPath}/status">${lbUlLiA}</a></li>
-        <li><a href="${contextPath}/report">reports</a></li>
+        <li><a href="${contextPath}/status">${lbStatusOrder}</a></li>
+        <li><a href="${contextPath}/report">${lbReportTitleName }</a></li>
     </ul>
 </div>

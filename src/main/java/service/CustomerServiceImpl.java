@@ -40,8 +40,12 @@ public class CustomerServiceImpl implements CustomerService {
 
 
     @Override
-    public void updateCustomer(Customer customer) {
-
+    public Customer updateCustomer(RegistrationForm regForm) {
+    	Customer cmr = Tools.registrationFormToCustomer(regForm);
+    	String md5 = Tools.stringToMD5(cmr.getMd5());
+        cmr.setMd5(md5);
+    	customerDAOService.updateCustomer(cmr);
+    	return cmr;
     }
 
     @Override

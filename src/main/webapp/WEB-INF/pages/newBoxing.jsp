@@ -20,6 +20,7 @@
 <spring:message code="contact.cancel" var="lbCancel"/>
 <spring:message code="personCost.send" var="lbSend"/>
 <spring:message code="history.table.trB.tdB" var="lbTableBB"/>
+<spring:message code="newRate.section.p" var="lbUlSect"/>
 
 <spring:message code="newBoxing.section.h" var="lbSectionH"/>
 <spring:message code="newBoxing.section.p" var="lbSectionP"/>
@@ -28,6 +29,8 @@
 <spring:message code="newBoxing.table.tdA" var="lbTableA"/>
 <spring:message code="newBoxing.table.tdB" var="lbTableB"/>
 <spring:message code="newBoxing.place.name" var="lbPlaceName"/>
+<spring:message code="changingBox.nameTitle" var="lbNameTitle"/>
+
 
 
 
@@ -52,16 +55,9 @@
     <div class="container">
 
         <header class="major special">
-            <h2>${lbSectionH}</h2>
-            <p>${lbSectionP }</p>
+            <h2>${lbNameTitle}</h2>
+              <p>${lbUlSect}</p>
         </header>
-
-        <select id="selColor">
-            <option selected>${lbSelectA}</option>
-            <option>${lbSelectB}</option>
-        </select>
-
-        <div id="test1" class="hideable">
 
             <header class="major special">
             </header>
@@ -87,35 +83,7 @@
                 </div>
             </form>
 
-        </div>
-
-
-        <div id="test2" class="hideable">
-
-            <table width="100%" cellspacing="0" cellpadding="5">
-                <tr ><td width="200" valign="top">
-                    <label for="lastName"><b>${lbTableA }</b></label>
-                    <select id="boxesList" name="boxesList" class="form-select">
-                       <c:forEach var="box" items="${allBoxes}">
-		                   <option value="${box.key}">${box.value}</option>
-		               </c:forEach>
-                    </select>
-                </td>
-                    <td width="200" valign="top">
-                        <label for="lastName"><b>${lbTableB}</b></label>
-                        
-                        
-                    </td>
-                </tr>
-            </table>
-            <div class="clearfix">
-                <button type="submit" class="signupbtn">${lbSend}</button>
-             </div>
-
-        </div>
-        <div id="test3" class="hideable"> GREEN COLOR DIV </div>
-
-    </div>
+      
 </section>
 
 <!-- Main -->

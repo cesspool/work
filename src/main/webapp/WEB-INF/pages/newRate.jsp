@@ -36,6 +36,7 @@
 <spring:message code="newRate.section.trC.tdD" var="lbSectionCD"/>
 <spring:message code="newRate.section.trD.tdA" var="lbSectionDA"/>
 <spring:message code="newRate.section.trE.tdA" var="lbSectionEA"/>
+<spring:message code="newRate.name.title" var="lbNameTitle"/>
 
 <html>
 <head>
@@ -58,7 +59,7 @@
     <div class="container">
 
         <header class="major special">
-            <h2>${lbUlA}</h2>
+            <h2>${lbNameTitle}</h2>
             <p>${lbUlSect}</p>
         </header>
         <form class="registration" method="post" action="${contextPath}/newrate">

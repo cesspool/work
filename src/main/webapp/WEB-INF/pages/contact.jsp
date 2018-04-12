@@ -84,7 +84,7 @@
 
         <div id="test1" class="hideable">
 
-            <form class="registration">
+            <form class="registration" method="get" action="${contextPath}/contact">
                 <div class="container limiter">
 
                     <table width="100%" cellspacing="0" cellpadding="6">
@@ -93,7 +93,7 @@
                                 ${lbTableAAA} ${customer.firstName} ${customer.lastName} ${customer.patronymic}
                             </td>
                             <td colspan="2" width="200" valign="top">
-                                ${lbTableAAB} <data> yes </data>
+                                ${lbTableAAB} ${customer.perk }
                             </td>
                         </tr>
                         <tr>
@@ -116,13 +116,14 @@
 
         <div id="test2" class="hideable">
 
-            <form class="registration">
+            <form class="registration" method="post" action="${contextPath}/contact">
                 <div class="container limiter">
             <span class="login100-form-title p-b-26">
                 ${lbTableBspanA}.
             </span>
                     <span class="p-b-26">${lbTableBspanB }</span>
                     <table width="100%" cellspacing="0" cellpadding="5">
+                    <input type = "hidden" value = "${customer.id }" name = "id" id ="id">
                         <td width="200" valign="top">
                             <label for="email"><b>${lbTableBAA}</b></label>
                             <input value = "${customer.email}" type="text" placeholder="paulkapay@gmail.com" name="email" id="email" required>

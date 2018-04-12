@@ -10,8 +10,29 @@ public class RegistrationForm {
     private String psw;
     private String pswRepeat;
     private int privilege;
+    private Long id;
+    private String perk;
+    
+    
 
-    public String getFirstName() {
+
+	public String getPerk() {
+		return perk;
+	}
+
+	public void setPerk(String perk) {
+		this.perk = perk;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getFirstName() {
         return firstName;
     }
 

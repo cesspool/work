@@ -12,7 +12,7 @@ public interface CustomerService {
     
     Customer createCustomer(RegistrationForm regForm);
 
-    void updateCustomer(Customer customer);
+    //void updateCustomer(Customer customer);
 
     void setPassword(Customer customer, String pass);
     
@@ -21,4 +21,6 @@ public interface CustomerService {
     Optional<Customer> getByID(Long ID);
     
     Customer authenticate(String email, String pass, Message msg);
+    
+    Customer updateCustomer(RegistrationForm regForm);
 }

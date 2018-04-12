@@ -31,12 +31,29 @@
 <spring:message code="adminMain.table.trB.tdC" var="lbTableBC"/>
 <spring:message code="adminMain.table.trB.tdD" var="lbTableBD"/>
 <spring:message code="adminMain.table.trC.tdA" var="lbTableCA"/>
-
 <spring:message code="adminMain.place.city" var="lbPlaceCity"/>
 <spring:message code="adminMain.place.branch" var="lbPlaceBranch"/>
 <spring:message code="adminMain.place.address" var="lbPlaceAddress"/>
 <spring:message code="adminMain.button.add" var="lbBtnAdd"/>
 <spring:message code="adminMain.button.remove" var="lbBtnRemove"/>
+
+
+<spring:message code="changingAgreement.maxValues" var="lbChangAgrMaxValues"/>
+<spring:message code="changingAgreement.agreement" var="lbChangAgrAgreement"/>
+<spring:message code="changingAgreement.button.add" var="lbChangAgrAdd"/>
+<spring:message code="changingAgreement.button.delete" var="lbChangAgrDelete"/>
+<spring:message code="changingAgreement.button.change" var="lbChangAgrChange"/>
+<spring:message code="changingAgreement.cargo.weight" var="lbChangAgrWeight"/>
+<spring:message code="changingAgreement.cargo.length" var="lbChangAgrLength"/>
+<spring:message code="changingAgreement.cargo.width" var="lbChangAgrWidth"/>
+<spring:message code="changingAgreement.cargo.height" var="lbChangAgrHeight"/>
+<spring:message code="changingAgreement.name" var="lbChangAgrName"/>
+<spring:message code="changingAgreement.dateStart" var="lbChangAgrDateStart"/>
+<spring:message code="changingAgreement.dateEnd" var="lbChangAgrDateEnd"/>
+
+<spring:message code="changingAgreement.button.add" var="lbAddBox"/>
+<spring:message code="changingAgreement.button.delete" var="lbDeleteBox"/>
+<spring:message code="changingAgreement.button.change" var="lbChangeBox"/>
 
 <html>
 <head>
@@ -63,60 +80,63 @@
     <div class="container">
 
         <header class="major special">
-            <h2>${lbHeader}</h2>
-            <p>${lbUlSect}</p>
-            <p>max values for packages</p>
+            <h2>${lbChangAgrHeader}</h2>
+            <p>${lbChangAgrMaxValues }</p>
         </header>
         
    
         <form class="changingTransport" method="get" action="${contextPath}/changingTransport" id="changingTransportForm" name="changingTransportForm">
         
-        <table>
+        <table width="100%" cellspacing="0" cellpadding="5">
             <tr>
                  <td width="200" valign="top">
-                     <label for="lastName"><b>${lbSectionBA}</b></label>
+                     <label for="lastName"><b>${lbChangAgrWeight}</b></label>
                      ${weight }
                  </td>
                  <td width="200" valign="top">
-                     <label for="lastName"><b>${lbSectionBB}</b></label>
+                     <label for="lastName"><b>${lbChangAgrLength}</b></label>
                      ${length }
                  </td>
                  <td width="200" valign="top">
-                     <label for="lastName"><b>${lbSectionBC}</b></label>
+                     <label for="lastName"><b>${lbChangAgrWidth}</b></label>
                      ${width }
                  </td>
                  <td width="200" valign="top">
-                     <label for="lastName"><b>${lbSectionBD}</b></label>
+                     <label for="lastName"><b>${lbChangAgrHeight}</b></label>
                      ${height }
                  </td>
                  <td>
 		                <a href="${contextPath}/changingTransport" 
-		                     class="likeButton" >change</a>
+		                     class="likeButton" >${lbChangeBox }</a>
 		         </td>
             </tr>
         </table>
+          <header class="major special">
+			<br />
+            <p>${lbChangAgrAgreement}</p>
+        </header>
             <div class="container limiter">
 	            <table width="100%" cellspacing="0" cellpadding="5">
 		             <c:forEach var="rate" items="${allRates}">
 		              	 <tr width="200" valign="top">
 		              	 	<td colspan="2">
-		                       name of Box ${rate.name} 
+		                       ${lbChangAgrName }: ${rate.name} 
 		                    </td>
 		                    <td >
-		                       date of start ${rate.startAction} 
+		                       ${lbChangAgrDateStart }: ${rate.startAction} 
 		                    </td>
 		                    <td >
-		                       date of end ${rate.endAction} 
+		                       ${lbChangAgrDateEnd }: ${rate.endAction} 
 		                    </td>
 		                    <td>
 		                       <a href="${contextPath}/changingAgreement/change/${rate.id}" 
-		                       		class="likeButton" >change</a>
+		                       		class="likeButton" >${lbChangeBox }</a>
 		                    </td>
 		                 </tr>
 		             </c:forEach>  
 				</table>
                 <div class="clearfix">
-                     <a href="${contextPath}/boxing" class="likeButton">add</a>
+                     <a href="${contextPath}/newrate" class="likeButton">${lbAddBox }</a>
                 </div>
             </div>
         </form>

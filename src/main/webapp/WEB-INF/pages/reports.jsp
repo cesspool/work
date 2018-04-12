@@ -42,12 +42,12 @@
 <spring:message code="history.table.trE.tdB" var="lbTableEB"/>
 <spring:message code="history.table.trE.tdC" var="lbTableEC"/>
 <spring:message code="statusOrder.ready" var="lbReady"/>
-
+<spring:message code="adminManager.head.title" var="lbManagerTitle"/>
 
 
 <html>
 <head>
-    <title>${lbUlLiB}</title>
+    <title>${lbManagerTitle}</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   	<link rel="stylesheet" href="<c:url value="/resources/assets/css/main.css"/>"/>
