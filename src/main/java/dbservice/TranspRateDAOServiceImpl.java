@@ -1,6 +1,7 @@
 package dbservice;
 
 import beans.Customer;
+import beans.Node;
 import beans.Rate;
 import beans.Transport;
 import beans.TransportRate;
@@ -34,22 +35,88 @@ public class TranspRateDAOServiceImpl extends DataService implements TranspRateD
     
 
     private final static String SQL_INSERT_RATE = "INSERT INTO logistics.rate " +
-            " (name, costShipping, additionalCost, startActionDate, endActionDate, transport_id) " +
-            " VALUES (?, ?, ?, ?, ?, ?) ";
+            " (name, costShipping, additionalCost, costkm, startActionDate, endActionDate, transport_id) " +
+            " VALUES (?, ?, ?, ?, ?, ?, ?) ";
 
     private final static String SQL_INSERT_TRANSPORT = "INSERT INTO logistics.transport " +
-            " (variety, avSpeed, costKm, maxHeight, maxWidth, maxLength, totalWeight, totalCapacity) " +
-            " VALUES (?, ?, ?, ?, ?, ?, ?, ?) ";
+            " (variety, avSpeed, maxHeight, maxWidth, maxLength, totalWeight, totalCapacity) " +
+            " VALUES (?, ?, ?, ?, ?, ?, ?) ";
     
     private final static String SQL_UPDATE_TRANSPORT = "UPDATE logistics.transport " +
             " SET maxheight=?, maxwidth=?, maxlength=?, totalweight=?, totalcapacity=?";
     
-    private final static String SQL_SELECT_TRANSPORT = "SELECT id, variety, avspeed, costkm, " + 
+    private final static String SQL_SELECT_TRANSPORT = "SELECT id, variety, avspeed, " + 
     		"maxheight, maxwidth, maxlength, totalweight, totalcapacity from logistics.transport";
     
-    private final static String SQL_SELECT_RATE = "select id, \"name\", costshipping, additionalcost," +
+    private final static String SQL_SELECT_RATE = "select id, \"name\", costshipping, additionalcost, costkm, " +
     		 " startactiondate, endactiondate from logistics.rate R where now() between R.startactiondate and R.endactiondate";
     
+    private final static String SQL_SELECT_ALL_RATE = "select id, \"name\", costshipping, additionalcost, costkm, " +
+   		 " startactiondate, endactiondate from logistics.rate";
+    
+    private final static String SQL_SELECT_RATE_BY_ID = "select R.id, R.name, R.costshipping, R.additionalcost, R.costkm, " + 
+    		" R.startactiondate, R.endactiondate from ( " + 
+    		" select \"name\" " + 
+    		" from logistics.rate " + 
+    		" where \"id\"=? " + 
+    		" )tbl inner join logistics.rate R on R.name=tbl.name";
+    
+    private final static String SQL_UPDATE_RATE_BY_NAME = "update logistics.rate" +
+    		 " set name = ?, costshipping=?, additionalcost=?, costkm = ?, " +
+    		 " startactiondate = ?, endactiondate=? where id =  ?";
+    
+    
+    @Override
+    @Transactional
+    public void updateTransport(Transport transport) {
+	    	getJdbcTemplate().update(SQL_UPDATE_TRANSPORT, (ps) -> {
+	            int idx = 1;
+	            ps.setDouble(idx++, transport.getMaxHeight());
+	            ps.setDouble(idx++, transport.getMaxWidth());
+	            ps.setDouble(idx++, transport.getMaxLength());
+	            ps.setDouble(idx++, transport.getTotalWeight());
+	            ps.setDouble(idx++, transport.getTotalCapacity());
+	        });
+    }
+    
+    
+    
+    @Override
+    @Transactional
+    public void updateRateById(List<Rate> rates) {
+	    for (Rate rate : rates) {
+	    	getJdbcTemplate().update(SQL_UPDATE_RATE_BY_NAME, (ps) -> {
+	            int idx = 1;
+	            ps.setString(idx++, rate.getName());
+	            ps.setDouble(idx++, rate.getCostShipping());
+	            ps.setDouble(idx++, rate.getAdditionalCost());
+	            ps.setDouble(idx++, rate.getCostKm());
+	            ps.setDate(idx++, Tools.toSQLDate(rate.getStartAction()));
+	            ps.setDate(idx++, Tools.toSQLDate(rate.getEndAction()));
+	            ps.setLong(idx++, rate.getId());
+	        });
+	    }
+    }
+    
+    
+    
+    @Override
+    @Transactional(readOnly = true)
+    public List<Rate> getRatesById(Long ID) {
+    	List<Rate> res = getJdbcTemplate().query(SQL_SELECT_RATE_BY_ID, new Object[] {ID}, (rs, num) -> {
+            Rate r = new Rate();
+            int idx = 1;
+            r.setId(rs.getLong(idx++));
+            r.setName(rs.getString(idx++));
+            r.setCostShipping(rs.getDouble(idx++));
+            r.setAdditionalCost(rs.getDouble(idx++));
+            r.setCostKm(rs.getDouble(idx++));
+            r.setStartAction(rs.getDate(idx++));
+            r.setEndAction(rs.getDate(idx++));
+            return r;
+        });
+        return res;
+    }
     
     
     @Override
@@ -62,6 +129,26 @@ public class TranspRateDAOServiceImpl extends DataService implements TranspRateD
         	   r.setName(rs.getString(idx++));
                r.setCostShipping(rs.getDouble(idx++));
                r.setAdditionalCost(rs.getDouble(idx++));
+               r.setCostKm(rs.getDouble(idx++));
+               r.setStartAction(rs.getDate(idx++));
+               r.setEndAction(rs.getDate(idx++));
+               return r;
+           });
+           return rates;
+    }
+    
+    
+    @Override
+    @Transactional(readOnly = true)
+    public List<Rate> getAllRate() {
+           List<Rate> rates = getJdbcTemplate().query(SQL_SELECT_ALL_RATE, (rs, num) -> {
+        	   Rate r = new Rate();
+        	   int idx=1;
+        	   r.setId(rs.getLong(idx++));
+        	   r.setName(rs.getString(idx++));
+               r.setCostShipping(rs.getDouble(idx++));
+               r.setAdditionalCost(rs.getDouble(idx++));
+               r.setCostKm(rs.getDouble(idx++));
                r.setStartAction(rs.getDate(idx++));
                r.setEndAction(rs.getDate(idx++));
                return r;
@@ -80,7 +167,6 @@ public class TranspRateDAOServiceImpl extends DataService implements TranspRateD
         	   transport.setId(rs.getLong(idx++));
         	   transport.setVariety(rs.getString(idx++));
         	   transport.setAvSpeed(rs.getDouble(idx++));
-        	   transport.setCostKm(rs.getDouble(idx++));
         	   transport.setMaxHeight(rs.getDouble(idx++));
         	   transport.setMaxWidth(rs.getDouble(idx++));
         	   transport.setMaxLength(rs.getDouble(idx++));
@@ -94,8 +180,7 @@ public class TranspRateDAOServiceImpl extends DataService implements TranspRateD
     
     @Override
     @Transactional
-    public void insertRate(TransportRate transportRate) {
-    	Transport transport = transportRate.getTransport();
+    public void insertRate(List<Rate> rates) {
 //    	Rate rateCargo = transportRate.getRate().get(0);
 //    	Rate rateAir = transportRate.getRate().get(1);
 //    	Rate rateRail = transportRate.getRate().get(2);
@@ -122,7 +207,7 @@ public class TranspRateDAOServiceImpl extends DataService implements TranspRateD
 //        }
     	
     	 try {
-         	for(Rate rate : transportRate.getRate()) {
+         	for(Rate rate : rates) {
  	            KeyHolder keyHolder = new GeneratedKeyHolder();
  	            getJdbcTemplate().update((con) ->  {
  	                PreparedStatement pst = con.prepareStatement(SQL_INSERT_RATE, new String[] {"id"}); // Statement.RETURN_GENERATED_KEYS
@@ -130,19 +215,25 @@ public class TranspRateDAOServiceImpl extends DataService implements TranspRateD
  	                pst.setString(idx++, rate.getName());
  	                pst.setDouble(idx++, rate.getCostShipping());
  	                pst.setDouble(idx++, rate.getAdditionalCost());
+ 	                pst.setDouble(idx++, rate.getCostKm());
  	                pst.setDate(idx++, Tools.toSQLDate(rate.getStartAction()));
  	                pst.setDate(idx++, Tools.toSQLDate(rate.getEndAction()));
  	                pst.setLong(idx++, rate.getTransportID());
  	                return pst;
  	            }, keyHolder);
  	            Long ID1 = keyHolder.getKey().longValue();
- 	            transport.setId(ID1);
+ 	            //transport.setId(ID1);
          	}
          } catch (DataAccessException dEx) {
              Throwable ex = dEx.getCause();
              ex.toString();
          }
     	
+    }
+    
+    @Override
+    @Transactional
+    public void insertTransport(Transport transport) {
     	getJdbcTemplate().update(SQL_UPDATE_TRANSPORT, (ps) -> {
             int idx = 1;
             ps.setDouble(idx++, transport.getMaxHeight());
@@ -151,10 +242,8 @@ public class TranspRateDAOServiceImpl extends DataService implements TranspRateD
             ps.setDouble(idx++, transport.getTotalWeight());
             ps.setDouble(idx++, transport.getTotalCapacity());
         });
-            
-       
-
     }
+    
 
     @Override
     @Transactional(readOnly=true)

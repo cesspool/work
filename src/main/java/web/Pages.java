@@ -97,6 +97,11 @@ public class Pages {
      */
     public static final String CHANGING_RATES = "changingAgreement";
     
+    /**
+     * page for changing transport (admin can see)
+     */
+    public static final String TRANSFORM_TRANSPORT = "transformTransport";
+    
     //=============== Page's attributes ====================================================================
     /** Customer instance */
     public static final String ATR_CUSTOMER = "customer";

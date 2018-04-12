@@ -7,6 +7,7 @@ import beans.TransportRate;
 import dbservice.TranspRateDAOService;
 import form.request.NewAgreementForm;
 import form.request.NewBoxingForm;
+import form.request.TransportForm;
 import utils.Tools;
 
 import org.slf4j.Logger;
@@ -15,7 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -33,21 +37,51 @@ public class TranspRateServiceImpl implements TranspRateService {
 //            transportCache.put(tr.getId(), tr);
 //        });
 //    }
+    @Override
+    public List<Transport> getAllTransports() {
+    	List<Transport> transports = new ArrayList<>();
+    	transports=transpRateDAOService.getAllTransports();
+    	return transports;
+    }
+    
+    @Override 
+    public void updateRateById(NewAgreementForm formData) {
+    	List<Rate> rates = Tools.newAgreementFormToRate(formData);
+    	transpRateDAOService.updateRateById(rates);
+    }
     
     @Override
-    public TransportRate createRate(NewAgreementForm rateForm) {
-    	TransportRate transportRate = Tools.newAgreementFormToTransportRate(rateForm);
-        createRate(transportRate);
-        return transportRate;
+    public void updateTransport(TransportForm formData) {
+    	Transport trans = Tools.newAgreementFormToTransport(formData);
+    	transpRateDAOService.updateTransport(trans);
+    }
+    
+    @Override
+    public List<Rate> getAllRates(){
+    	List<Rate> rates = transpRateDAOService.getAllRate();
+    	return rates;
+    }
+    @Override
+    public List<Rate> getRatesById(Long ID){
+    	List<Rate> rates = transpRateDAOService.getRatesById(ID);
+    	return rates;
+    }
+    
+    
+    @Override
+    public List<Rate> createRate(NewAgreementForm rateForm) {
+    	List<Rate> rates = Tools.newAgreementFormToRate(rateForm);
+    	createRate(rates);
+        return rates;
     }
 
     @Override
-    public void createRate(TransportRate transportRate){
-        if (transportRate!=null) {
+    public void createRate(List<Rate> rates){
+        if (rates!=null) {
             // validate the bean's fileds
-        	transportRate.getTransport().setTotalCapacity(transportRate.getTransport().getMaxHeight() *
-        			transportRate.getTransport().getMaxLength() * transportRate.getTransport().getMaxWidth());
-                transpRateDAOService.insertRate(transportRate);
+//        	transportRate.getTransport().setTotalCapacity(transportRate.getTransport().getMaxHeight() *
+//        			transportRate.getTransport().getMaxLength() * transportRate.getTransport().getMaxWidth());
+                transpRateDAOService.insertRate(rates);
         }
     }
 

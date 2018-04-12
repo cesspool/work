@@ -62,39 +62,24 @@
             <p>${lbUlSect}</p>
         </header>
         <form class="registration" method="post" action="${contextPath}/newrate">
+        	<input type = "hidden" value = "${idRateCargo}" name = "cargoID" id = "cargoID">
+        	<input type = "hidden" value = "${idRateAir}" name = "airID" id = "airID">
+        	<input type = "hidden" value = "${idRateRail}" name = "railID" id = "railID">
             <div class="container limiter">
 
                 <table width="100%" cellspacing="0" cellpadding="5">
                     <tr >
                         <td width="200" valign="top">
                             <label for="startAction"><b>${lbSectionAA}</b></label>
-                            <input type="date" name="startAction" id="startAction" required>
+                            <input value = "${dateStart }" type="date" name="startAction" id="startAction" required>
                         </td>
                         <td width="200" valign="top">
                             <label for="endAction"><b>${lbSectionAB}</b></label>
-                            <input type="date" name="endAction" id="endAction" required>
+                            <input value = "${dateEnd}" type="date" name="endAction" id="endAction" required>
                         </td>
                         <td colspan="2" width="200" valign="top">
                             <label for="name"><b>${lbSectionAC}</b></label>
-                            <input type="text" placeholder="Экономный" name="name" id="name" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td width="200" valign="top">
-                            <label for="totalWeight"><b>${lbSectionBA}</b></label>
-                            <input type="text" placeholder="10" name="totalWeight" id="totalWeight" required>
-                        </td>
-                        <td width="200" valign="top">
-                            <label for="maxLength"><b>${lbSectionBB}</b></label>
-                            <input type="text" placeholder="0.6" name="maxLength" id="maxLength" required>
-                        </td>
-                        <td width="200" valign="top">
-                            <label for="maxWidth"><b>${lbSectionBC}</b></label>
-                            <input type="text" placeholder="0.3" name="maxWidth" id="maxWidth" required>
-                        </td>
-                        <td width="200" valign="top">
-                            <label for="maxHeight"><b>${lbSectionBD}</b></label>
-                            <input type="text" placeholder="0.2" name="maxHeight" id="maxHeight" required>
+                            <input value = "${name}" type="text" placeholder="Экономный" name="name" id="name" required>
                         </td>
                     </tr>
                     <tr>
@@ -103,17 +88,17 @@
                         </td>
                         <td width="200" valign="top">
                             <label for="costShippingCargo"><b>${lbSectionCB}</b></label>
-                            <input type="text" placeholder="15" name="costShippingCargo" id="costShippingCargo" required>
+                            <input value = "${costShippingCargo }" type="text" placeholder="15" name="costShippingCargo" id="costShippingCargo" required>
                             <input type="hidden" name="cargoID" id="cargoID" value="${cargoID}">
                         </td>
                         <td width="200" valign="top">
                             <label for="costShippingAir"><b>${lbSectionCC}</b></label>
-                            <input type="text" placeholder="16" name="costShippingAir" id="costShippingAir" required>
+                            <input value = "${costShippingAir }" type="text" placeholder="16" name="costShippingAir" id="costShippingAir" required>
                             <input type="hidden" name="airID" id="airID" value="${airID}">
                         </td>
                         <td width="200" valign="top">
                             <label for="costShippingRail"><b>${lbSectionCD}</b></label>
-                            <input type="text" placeholder="10" name="costShippingRail" id="costShippingRail" required>
+                            <input value = "${costShippingRail }" type="text" placeholder="10" name="costShippingRail" id="costShippingRail" required>
                             <input type="hidden" name="railID" id="railID" value="${railID}">
                         </td>
                     </tr>
@@ -123,15 +108,15 @@
                         </td>
                         <td width="200" valign="top">
                             <label for="addCostShippingCargo"><b>${lbSectionCB}</b></label>
-                            <input type="text" placeholder="10" name="addCostShippingCargo" id="addCostShippingCargo" required>
+                            <input value = "${addCostShippingCargo }" type="text" placeholder="10" name="addCostShippingCargo" id="addCostShippingCargo" required>
                         </td>
                         <td width="200" valign="top">
                             <label for="addCostShippingAir"><b>${lbSectionCC}</b></label>
-                            <input type="text" placeholder="10" name="addCostShippingAir" id="addCostShippingAir" required>
+                            <input value = "${addCostShippingAir }" type="text" placeholder="10" name="addCostShippingAir" id="addCostShippingAir" required>
                         </td>
                         <td width="200" valign="top">
                             <label for="addCostShippingRail"><b>${lbSectionCD}</b></label>
-                            <input type="text" placeholder="10" name="addCostShippingRail" id="addCostShippingRail" required>
+                            <input value = "${addCostShippingRail }" type="text" placeholder="10" name="addCostShippingRail" id="addCostShippingRail" required>
                         </td>
                     </tr>
                     <tr>
@@ -140,15 +125,15 @@
                         </td>
                         <td width="200" valign="top">
                             <label for="costKmCargo"><b>${lbSectionCB}</b></label>
-                            <input type="text" placeholder="15" name="costKmCargo" id="costKmCargo" required>
+                            <input value = "${costKmCargo }" type="text" placeholder="15" name="costKmCargo" id="costKmCargo" required>
                         </td>
                         <td width="200" valign="top">
                             <label for="costKmAir"><b>${lbSectionCC}</b></label>
-                            <input type="text" placeholder="15" name="costKmAir" id="costKmAir" required>
+                            <input value = "${costKmAir}" type="text" placeholder="15" name="costKmAir" id="costKmAir" required>
                         </td>
                         <td width="200" valign="top">
                             <label for="costKmRail"><b>${lbSectionCD}</b></label>
-                            <input type="text" placeholder="15" name="costKmRail" id="costKmRail" required>
+                            <input value = "${costKmRail }" type="text" placeholder="15" name="costKmRail" id="costKmRail" required>
                         </td>
                     </tr>
                 </table>

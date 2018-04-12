@@ -9,11 +9,20 @@ public class Rate {
     private String name;
     private double costShipping;
     private double additionalCost;
+    private double costKm;
     private Date startAction;
     private Date endAction;
     private long transportID;
 
-    public long getTransportID() {
+    public double getCostKm() {
+		return costKm;
+	}
+
+	public void setCostKm(double costkm) {
+		this.costKm = costkm;
+	}
+
+	public long getTransportID() {
 		return transportID;
 	}
 

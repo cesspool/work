@@ -11,7 +11,6 @@ public class Transport {
     private double maxLength;
     private double totalWeight;
     private double totalCapacity;
-    private double costKm;
 
     public Long getId() {
         return id;
@@ -19,14 +18,6 @@ public class Transport {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public double getCostKm() {
-        return costKm;
-    }
-
-    public void setCostKm(double costKm) {
-        this.costKm = costKm;
     }
 
     public double getTotalCapacity() {

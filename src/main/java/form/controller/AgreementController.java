@@ -18,6 +18,7 @@ import beans.Transport;
 import beans.TransportRate;
 import dbservice.TranspRateDAOService;
 import form.request.NewAgreementForm;
+import form.request.TransportForm;
 import service.TranspRateService;
 import utils.Tools;
 import web.Message;
@@ -53,12 +54,20 @@ public class AgreementController extends BaseController {
             redirectAttributes.addFlashAttribute(Pages.ATR_MESSAGE, message);
             return "redirect:newrate";
         } else {
-        	TransportRate transportRate = transpRateService.createRate(formData);// (formData);
-            redirectAttributes.addFlashAttribute(Pages.NEWRATE, formData);
-            return "redirect:newrate";
+        	if(formData.getCargoID() == 0)
+        	{
+        		List<Rate> transportRate = transpRateService.createRate(formData);// (formData);
+                redirectAttributes.addFlashAttribute(Pages.NEWRATE, formData);
+                return "redirect:newrate";
+        	} else {
+        		transpRateService.updateRateById(formData);
+        		return "redirect:changingAgreement";
+        	}
         }
-
     }
+    
+    
+   
     
     @RequestMapping(value = "/rateform", method = RequestMethod.GET)	
     public String showRateForm(Model model) {
@@ -77,9 +86,9 @@ public class AgreementController extends BaseController {
     	model.addAttribute("addCostShippingCargo", rates.get(0).getAdditionalCost());
     	model.addAttribute("addCostShippingAir", rates.get(1).getAdditionalCost());
     	model.addAttribute("addCostShippingRail", rates.get(2).getAdditionalCost());
-    	model.addAttribute("costKmCargo", transports.get(0).getCostKm());
-    	model.addAttribute("costKmAir", transports.get(1).getCostKm());
-    	model.addAttribute("costKmRail", transports.get(2).getCostKm());
+    	model.addAttribute("costKmCargo", rates.get(0).getCostKm());
+    	model.addAttribute("costKmAir", rates.get(1).getCostKm());
+    	model.addAttribute("costKmRail", rates.get(2).getCostKm());
 
         return Pages.RATE;
     }

@@ -2,7 +2,6 @@ package dijkstra;
 
 import logic.TransCoordinate;
 import utils.Pair;
-import utils.TimeCostCalculator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -86,17 +85,17 @@ public class Test {
     		//								(nodeTransport.get(dist.getNodeFrom()).longValue() == 2L)) {
     		if (isHaveEqualTransport(nodeTransport, dist, 2L)) {
             	timeAir = dist.getLength() / transports.get(1).getAvSpeed();
-            	costAir = dist.getLength() * transports.get(1).getCostKm() + 
-            			(dist.getLength() * transports.get(1).getCostKm())*KAir + 
-            			(dist.getLength() * transports.get(1).getCostKm())*rates.get(1).getCostShipping();
+            	costAir = dist.getLength() * rates.get(1).getCostKm() + 
+            			(dist.getLength() * rates.get(1).getCostKm())*KAir + 
+            			(dist.getLength() * rates.get(1).getCostKm())*rates.get(1).getCostShipping();
             	
     		}
    		
     		if (isHaveEqualTransport(nodeTransport, dist, 3L)) {
             	timeRail = dist.getLength() / transports.get(2).getAvSpeed();
-            	costRail = dist.getLength() * transports.get(2).getCostKm() +
-            			(dist.getLength() * transports.get(2).getCostKm())*KRail + 
-            			(dist.getLength() * transports.get(2).getCostKm())*rates.get(2).getCostShipping();
+            	costRail = dist.getLength() * rates.get(2).getCostKm() +
+            			(dist.getLength() * rates.get(2).getCostKm())*KRail + 
+            			(dist.getLength() * rates.get(2).getCostKm())*rates.get(2).getCostShipping();
             	
     		}
     		
@@ -104,9 +103,9 @@ public class Test {
     		to = getIndexById(dist.getNodeTo(), nodes);
     		
     		timeCargo = dist.getLength() / transports.get(0).getAvSpeed();
-        	costCargo = (dist.getLength() * transports.get(0).getCostKm()) + 
-        			(dist.getLength() * transports.get(0).getCostKm())*KCargo + 
-        			(dist.getLength() * transports.get(0).getCostKm())*rates.get(0).getCostShipping();
+        	costCargo = (dist.getLength() * rates.get(0).getCostKm()) + 
+        			(dist.getLength() * rates.get(0).getCostKm())*KCargo + 
+        			(dist.getLength() * rates.get(0).getCostKm())*rates.get(0).getCostShipping();
         	
         	
         	//double timeAir = Double.MAX_VALUE;
@@ -155,9 +154,9 @@ public class Test {
 	    			legthDist = transCoordinate.setGeoCoordinate(startNode.getCoordinateX(), startNode.getCoordinateY(),
 	    												endNode.getCoordinateX(), endNode.getCoordinateY());
 	    			timeAir = legthDist / transports.get(1).getAvSpeed();
-	            	costAir = legthDist * transports.get(1).getCostKm() + 
-	            			(legthDist * transports.get(1).getCostKm())*KAir + 
-	            			(legthDist * transports.get(1).getCostKm())*rates.get(1).getCostShipping();
+	            	costAir = legthDist * rates.get(1).getCostKm() + 
+	            			(legthDist * rates.get(1).getCostKm())*KAir + 
+	            			(legthDist * rates.get(1).getCostKm())*rates.get(1).getCostShipping();
 	            	
 	            	List<Double> edgeTime = new ArrayList<>(Arrays.asList(timeCargo, timeAir, timeRail));
 	            	List<Double> edgeCost = new ArrayList<>(Arrays.asList(costCargo,costAir,costRail));
@@ -183,9 +182,9 @@ public class Test {
 	    			legthDist = transCoordinate.setGeoCoordinate(startNode.getCoordinateX(), startNode.getCoordinateY(),
 	    												endNode.getCoordinateX(), endNode.getCoordinateY());
 	    			timeRail = legthDist / transports.get(2).getAvSpeed();
-	            	costRail = legthDist * transports.get(2).getCostKm() + 
-	            			(legthDist * transports.get(2).getCostKm())*KRail + 
-	            			(legthDist * transports.get(2).getCostKm())*rates.get(2).getCostShipping();
+	            	costRail = legthDist * rates.get(2).getCostKm() + 
+	            			(legthDist * rates.get(2).getCostKm())*KRail + 
+	            			(legthDist * rates.get(2).getCostKm())*rates.get(2).getCostShipping();
 	            	
 	            	List<Double> edgeTime = new ArrayList<>(Arrays.asList(timeCargo, timeAir, timeRail));
 	            	List<Double> edgeCost = new ArrayList<>(Arrays.asList(costCargo,costAir,costRail));

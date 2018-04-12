@@ -16,6 +16,7 @@ import form.request.NewBoxingForm;
 import form.request.NewNodeForm;
 import form.request.OrderingForm;
 import form.request.RegistrationForm;
+import form.request.TransportForm;
 import form.response.OrderingReq;
 
 import org.slf4j.Logger;
@@ -124,42 +125,52 @@ public class Tools {
     	return form;
     }
     
-    public static TransportRate newAgreementFormToTransportRate(NewAgreementForm form) {
-    	Transport transport = new Transport();
-    	transport.setMaxHeight(form.getMaxHeight());
-    	transport.setMaxWidth(form.getMaxWidth());
-    	transport.setMaxLength(form.getMaxLength());
-    	transport.setTotalWeight(form.getTotalWeight());
-    	
+    public static List<Rate> newAgreementFormToRate(NewAgreementForm form) {
     	Rate rateCargo = new Rate();	
+    	rateCargo.setId(form.getCargoID());
     	rateCargo.setName(form.getName());
     	rateCargo.setCostShipping(form.getCostShippingCargo());
     	rateCargo.setAdditionalCost(form.getAddCostShippingCargo());
     	rateCargo.setStartAction(form.getStartAction());
     	rateCargo.setEndAction(form.getEndAction());
     	rateCargo.setTransportID(form.getCargoID());
+    	rateCargo.setCostKm(form.getCostKmCargo());
     	
     	Rate rateAir = new Rate();
+    	rateAir.setId(form.getAirID());
     	rateAir.setName(form.getName());
     	rateAir.setCostShipping(form.getCostShippingAir());
     	rateAir.setAdditionalCost(form.getAddCostShippingAir());
     	rateAir.setStartAction(form.getStartAction());
     	rateAir.setEndAction(form.getEndAction());
     	rateAir.setTransportID(form.getAirID());
+    	rateAir.setCostKm(form.getCostKmAir());
     	
     	Rate rateRail = new Rate();
+    	rateRail.setId(form.getRailID());
     	rateRail.setName(form.getName());
     	rateRail.setCostShipping(form.getCostShippingRail());
     	rateRail.setAdditionalCost(form.getAddCostShippingRail());
     	rateRail.setStartAction(form.getStartAction());
     	rateRail.setEndAction(form.getEndAction());
     	rateRail.setTransportID(form.getRailID());
+    	rateRail.setCostKm(form.getCostKmRail());
     	List<Rate> rates = new ArrayList<>();
     	rates.add(rateCargo);
     	rates.add(rateAir);
     	rates.add(rateRail);
-    	TransportRate transportRate = new TransportRate(rates, transport);
-    	return transportRate;
+    	return rates;
+    }
+    
+    public static Transport newAgreementFormToTransport(TransportForm form) {
+    	Transport transport = new Transport();
+    	transport.setMaxHeight(form.getMaxHeight());
+    	transport.setMaxWidth(form.getMaxWidth());
+    	transport.setMaxLength(form.getMaxLength());
+    	transport.setTotalWeight(form.getTotalWeight());
+    	transport.setTotalCapacity(form.getMaxHeight() * form.getMaxLength() * 
+    								form.getMaxWidth());
+    	return transport;
     }
     
     

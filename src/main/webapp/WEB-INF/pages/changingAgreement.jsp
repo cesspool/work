@@ -69,20 +69,48 @@
         </header>
         
    
-        <form class="changingBox" method="get" action="${contextPath}/changingBox" id="changingBoxForm" name="changingBoxForm">
+        <form class="changingTransport" method="get" action="${contextPath}/changingTransport" id="changingTransportForm" name="changingTransportForm">
+        
+        <table>
+            <tr>
+                 <td width="200" valign="top">
+                     <label for="lastName"><b>${lbSectionBA}</b></label>
+                     ${weight }
+                 </td>
+                 <td width="200" valign="top">
+                     <label for="lastName"><b>${lbSectionBB}</b></label>
+                     ${length }
+                 </td>
+                 <td width="200" valign="top">
+                     <label for="lastName"><b>${lbSectionBC}</b></label>
+                     ${width }
+                 </td>
+                 <td width="200" valign="top">
+                     <label for="lastName"><b>${lbSectionBD}</b></label>
+                     ${height }
+                 </td>
+                 <td>
+		                <a href="${contextPath}/changingTransport" 
+		                     class="likeButton" >change</a>
+		         </td>
+            </tr>
+        </table>
             <div class="container limiter">
 	            <table width="100%" cellspacing="0" cellpadding="5">
-		             <c:forEach var="box" items="${allBoxes}">
+		             <c:forEach var="rate" items="${allRates}">
 		              	 <tr width="200" valign="top">
 		              	 	<td colspan="2">
-		                       name of Box ${box.variety} 
+		                       name of Box ${rate.name} 
 		                    </td>
 		                    <td >
-		                       cost of Box ${box.cost} 
+		                       date of start ${rate.startAction} 
+		                    </td>
+		                    <td >
+		                       date of end ${rate.endAction} 
 		                    </td>
 		                    <td>
-		                       <a href="${contextPath}/changingBox/delete/${box.id}" 
-		                       		class="likeButton" onclick="return confirm('Are you sure you want to delete this item?');">delete</a>
+		                       <a href="${contextPath}/changingAgreement/change/${rate.id}" 
+		                       		class="likeButton" >change</a>
 		                    </td>
 		                 </tr>
 		             </c:forEach>  

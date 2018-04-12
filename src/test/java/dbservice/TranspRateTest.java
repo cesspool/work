@@ -34,7 +34,7 @@ public class TranspRateTest {
         Transport transport = new Transport();
         transport.setVariety("ЖД перевозки");
         transport.setAvSpeed(50);
-        transport.setCostKm(10);
+       // transport.setCostKm(10);
         transport.setMaxLength(length);
         transport.setMaxHeight(height);
         transport.setMaxWidth(width);

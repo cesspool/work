@@ -12,12 +12,16 @@ import java.util.List;
 import java.util.Map;
 
 public interface TranspRateDAOService {
-    void insertRate(TransportRate transportRate);
+	public void insertRate(List<Rate> rates);
 
     Pair<Rate, Transport> getByDate(LocalDate date);
     
     public List<Transport> getAllTransports();
-
-    Collection<Transport> getTransports();
+    public void updateTransport(Transport transport);
+    public Collection<Transport> getTransports();
     public List<Rate> getCurrentRate();
+    public List<Rate> getRatesById(Long ID);
+    public List<Rate> getAllRate();
+    public void updateRateById(List<Rate> rates);
+    public void insertTransport(Transport transport);
 }

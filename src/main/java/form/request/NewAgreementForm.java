@@ -18,10 +18,6 @@ public class NewAgreementForm {
     private Date startAction;
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date endAction;
-    private double maxHeight;
-    private double maxWidth;
-    private double maxLength;
-    private double totalWeight;
     private double totalCapacity;
     private double costKmCargo;
     private double costKmAir;
@@ -30,7 +26,9 @@ public class NewAgreementForm {
     private long airID;
     private long cargoID;
     
-    public long getRailID() {
+    
+
+	public long getRailID() {
 		return railID;
 	}
 
@@ -94,37 +92,7 @@ public class NewAgreementForm {
         this.totalCapacity = totalCapacity;
     }
 
-    public double getTotalWeight() {
-        return totalWeight;
-    }
-
-    public void setTotalWeight(double totalWeight) {
-        this.totalWeight = totalWeight;
-    }
-
-    public double getMaxHeight() {
-        return maxHeight;
-    }
-
-    public void setMaxHeight(double maxHeight) {
-        this.maxHeight = maxHeight;
-    }
-
-    public double getMaxLength() {
-        return maxLength;
-    }
-
-    public void setMaxLength(double maxLength) {
-        this.maxLength = maxLength;
-    }
-
-    public double getMaxWidth() {
-        return maxWidth;
-    }
-
-    public void setMaxWidth(double maxWidth) {
-        this.maxWidth = maxWidth;
-    }
+    
 
 	public double getCostShippingCargo() {
 		return costShippingCargo;
