@@ -38,7 +38,7 @@ patronymic varchar(40) NOT NULL,
 address varchar(100) NOT NULL,
 telephone varchar(20) NOT NULL,
 email VARCHAR(50) NOT NULL,
-hashcode CHAR(32) NOT NULL,
+hashcode CHAR(32),
 admin boolean,
 manager boolean
 );
