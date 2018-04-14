@@ -112,5 +112,5 @@ public class Pages {
     
     public static final String ATR_ORDER_READY = "orderReq";
     
-    
+    public static final String ATR_PRINCIPAL = "principal";
 }

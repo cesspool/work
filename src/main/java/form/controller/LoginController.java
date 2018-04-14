@@ -8,16 +8,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import service.CustomerService;
 import web.Message;
 import web.Pages;
+import web.Principal;
 
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
+@SessionAttributes(Pages.ATR_PRINCIPAL)
 public class LoginController extends BaseController {
     private CustomerService customerService;
     private MessageSource messageSource;
@@ -37,6 +40,7 @@ public class LoginController extends BaseController {
             redirectAttributes.addFlashAttribute(Pages.ATR_MESSAGE, msg);
             return "redirect:/loginform";
         } else {
+            uiModel.addAttribute(Pages.ATR_PRINCIPAL, new Principal(cmr));
             uiModel.addAttribute(Pages.ATR_CUSTOMER, cmr);
             return Pages.PERSON;    
         }
