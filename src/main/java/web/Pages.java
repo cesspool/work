@@ -105,7 +105,7 @@ public class Pages {
     /**
      * page for redirecting
      */
-    public static final String ACCESS = "access";
+    public static final String NO_ACCESS = "noaccess";
     
     
     //=============== Page's attributes ====================================================================

@@ -68,16 +68,7 @@ public class StatusController extends BaseController {
 	        }
 	    }
 	   
-	   
-	   
-	   
-	   
-	   
-	   
-	   
-	   
-	   
-	   
+
 	   @RequestMapping(value = "/statusOrder", method = RequestMethod.POST)
 	    public String showOrderForm(@ModelAttribute("statusOrder") StatusForm formData,
 	                               BindingResult bundingResult,
@@ -98,14 +89,6 @@ public class StatusController extends BaseController {
 	        	return Pages.STATUS;	
 	        }
 	    }
-	   
-	   
-	   
-	   
-	   
-	   
-	   
-	   
 	   
 	   
 	    @Autowired
@@ -139,4 +122,13 @@ public class StatusController extends BaseController {
 	        this.messageSource = messageSource;
 	    }
 	    
+	    @Override
+	    public boolean isForAdmin() {
+	        return false;
+	    }
+	    
+	    @Override
+	    public boolean isForManager() {
+	        return true;
+	    }
 }

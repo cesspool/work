@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import web.Pages;
 import web.Principal;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +25,23 @@ public class PrincipalInterceptor extends HandlerInterceptorAdapter {
         HandlerMethod hdrMethod = (HandlerMethod)handler;
         BaseController controller = (BaseController)hdrMethod.getBean();
         Principal principal = controller.getPrincipal();
+        
+        if(controller.isForFree()) {
+            return true;
+        }
+        if (principal == null) {
+            response.sendRedirect(request.getContextPath() + "/loginform");
+            return false;
+        }
+        if (controller.isForAdmin() && !principal.isAdmin()) {
+            response.sendRedirect(request.getContextPath() + "/" + Pages.NO_ACCESS);
+            return false;
+        }
+        if (controller.isForManager() && !principal.isManager() && !principal.isAdmin()) {
+            response.sendRedirect(request.getContextPath() + "/" + Pages.NO_ACCESS);
+            return false;
+        }
+
         return true;
     }
 

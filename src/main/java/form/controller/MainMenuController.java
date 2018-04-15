@@ -21,7 +21,7 @@ public class MainMenuController extends BaseController {
 
     @RequestMapping(value = "/noaccess", method = RequestMethod.GET)
     public String showAccessForm(Model model) {
-        return Pages.ACCESS;
+        return Pages.NO_ACCESS;
     }
 
     @RequestMapping(value = "/newrate", method = RequestMethod.GET)
@@ -32,6 +32,15 @@ public class MainMenuController extends BaseController {
         return Pages.NEWRATE;
     }
     
-   
+    @Override
+    public boolean isForAdmin() {
+        return false;
+    }
+    
+    @Override
+    public boolean isForFree() {
+        return true;
+    }
+
     
 }

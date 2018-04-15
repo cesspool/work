@@ -48,10 +48,26 @@ public class LoginController extends BaseController {
         } else {
             uiModel.addAttribute(Pages.ATR_PRINCIPAL, new Principal(cmr));
             uiModel.addAttribute(Pages.ATR_CUSTOMER, cmr);
+            if (cmr.isAdmin()) {
+                return Pages.BRANCH;
+            }
+            if (cmr.isManager()) {
+                return Pages.STATUS;
+            }
             return Pages.PERSON;    
         }
     }
 
+    @Override
+    public boolean isForFree() {
+        return true;
+    }
+
+    @Override
+    public boolean isForAdmin() {
+        return false;
+    }
+    
     @Autowired
     protected void setCustomerService(CustomerService service) {
         this.customerService = service;
@@ -63,6 +79,4 @@ public class LoginController extends BaseController {
         this.messageSource = messageSource;
     }
 
-    
-    
 }

@@ -119,5 +119,13 @@ public class RegistrationController extends BaseController {
         return null;
     }
 
-
+    @Override
+    public boolean isForFree() {
+        return true;
+    }
+    
+    @Override
+    public boolean isForAdmin() {
+        return false;
+    }
 }

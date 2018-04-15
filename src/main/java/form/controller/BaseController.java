@@ -19,9 +19,26 @@ public class BaseController {
         return getPrincipal() != null;
     }
     
+    public boolean isForAdmin() {
+        return true;
+    }
+    
+    public boolean isForManager() {
+        return false;
+    }
+    
+    public boolean isForCustomer() {
+        return false;
+    }
+    
+    public boolean isForFree() {
+        return false;
+    }
+    
     
     @Autowired
     private void setHttpSession(HttpSession session) {
         this.session = session;
     }
+    
 }

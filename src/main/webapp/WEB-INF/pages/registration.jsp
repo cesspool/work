@@ -10,11 +10,11 @@
 
 <spring:message code="contact.tableB.trA.tdA" var="lbTableBAA"/>
 <spring:message code="contact.tableB.trA.tdB" var="lbTableBAB"/>
-<spring:message code="contact.tableB.trA.tdC" var="lbTableBAC"/>
 <spring:message code="contact.tableB.trB.tdA" var="lbTableBBA"/>
 <spring:message code="contact.tableB.trB.tdB" var="lbTableBBB"/>
 <spring:message code="contact.tableB.trB.tdC" var="lbTableBBC"/>
 <spring:message code="contact.tableB.trC.tdA" var="lbTableBCA"/>
+<spring:message code="contact.tableB.trA.tdC" var="lbTableBAC"/>
 <spring:message code="contact.tableB.trC.tdB" var="lbTableBCB"/>
 
 <spring:message code="contact.save" var="lbSave"/>
@@ -85,13 +85,15 @@
                 <label for="pswRepeat"><b>${lbTableBCB}</b></label>
                 <input type="password" placeholder="${lbPlacePswRepeat}" name="pswRepeat" id="pswRepeat" required
                 oninvalid="this.setCustomValidity('')" />
-                
-				<label for="privilege"><b>${lbPrivilege }</b></label>
-                <select id="privilege" name="privilege" class="form-select">
-					<option name = "ordinary" id = "ordinary" value = "0">${lbPrivilegeOrdinary}</option>
-                    <option name = "manager" id = "manager" value = "1">${lbPrivilegeManager }</option>
-                    <option name = "admin" id = "admin" value = "2">${lbPrivilegeAdmin }</option>
-                </select>
+
+                <c:if test="${not empty sessionScope.principal and sessionScope.principal.admin}">                
+					<label for="privilege"><b>${lbPrivilege }</b></label>
+	                <select id="privilege" name="privilege" class="form-select">
+						<option name = "ordinary" id = "ordinary" value = "0">${lbPrivilegeOrdinary}</option>
+	                    <option name = "manager" id = "manager" value = "1">${lbPrivilegeManager }</option>
+	                    <option name = "admin" id = "admin" value = "2">${lbPrivilegeAdmin }</option>
+	                </select>
+                </c:if>
              </td>
             
 

@@ -6,13 +6,15 @@
             <li><a href="${contextPath}/index">${lbNavMain}</a></li>
 			<li><a href="${contextPath}/rateform">${lbNavRates}</a></li>
 			<li><a href="${contextPath}/loginform">${lbNavAuth}</a></li>
-            <li>
-                <div>
-                    <div style="color: brown" class="icon-menu">
-                        <img class="contact" src="<c:url value="/resources/images/contact.png"/>"/>${lbLiDiv}
-                    </div>
-                </div>
-            </li>
+			<c:if test="${not empty sessionScope.principal}">
+	            <li>
+	                <div>
+	                    <div style="color: brown" class="icon-menu">
+	                        <img class="contact" src="<c:url value="/resources/images/contact.png"/>"/>${lbLiDiv}
+	                    </div>
+	                </div>
+	            </li>
+            </c:if>
         </ul>
     </nav>
 </header>
