@@ -32,15 +32,17 @@
 
 	<%@ include file = "menuGeneral.jsp" %>
 	
-	<c:if test="${not empty sessionScope.principal and sessionScope.principal.admin}"> 
-		<%@ include file = "menuAdmin.jsp" %>
-	</c:if>
-	<c:if test="${not empty sessionScope.principal and sessionScope.principal.manager}"> 
-		<%@ include file = "menuManager.jsp" %>
-	</c:if>
-	<c:if test="${not empty sessionScope.principal}"> 
-		<%@ include file = "menuCustomer.jsp" %>
-	</c:if>
+    <c:choose>
+        <c:when test="${not empty sessionScope.principal and sessionScope.principal.admin}">
+            <%@ include file = "menuAdmin.jsp" %>
+        </c:when>
+        <c:when test="${not empty sessionScope.principal and sessionScope.principal.manager}">
+            <%@ include file = "menuManager.jsp" %>
+        </c:when>
+        <c:when test="${not empty sessionScope.principal}">
+            <%@ include file = "menuCustomer.jsp" %>
+        </c:when>
+    </c:choose>
 
 		<!-- Banner -->
 			<section id="banner">
