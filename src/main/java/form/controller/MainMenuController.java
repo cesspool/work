@@ -19,13 +19,6 @@ public class MainMenuController extends BaseController {
     }
 
 
-    @RequestMapping(value = "/loginform", method = RequestMethod.GET)
-    public String showLoginForm(Model model) {
-        return Pages.LOGIN;
-    }
-
-
-
 //    @RequestMapping(value = "/cost", method = RequestMethod.GET)
 //    public String showPersonCostForm(Model model) {
 //        return Pages.COST;

@@ -8,8 +8,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
+import org.springframework.web.servlet.view.RedirectView;
 import beans.NodeDistance;
 import form.request.NewNodeForm;
 import service.NodeDistanceService;
@@ -29,17 +31,17 @@ public class AdminController extends BaseController{
     
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String showAdminForm(Model model) {
+        if(getPrincipal() == null) {
+            return "redirect:/loginform";
+        }
+        
+        
         Map<Long, String> res = nodeService.getAllCities();
         model.addAttribute("allCities", res);
         //model.addAttribute("chosenCities", nodeService.getCities(nodeID));
         return Pages.ADMIN;
     }
 
-    @Autowired
-    private void setNodeDistanceService(NodeDistanceService service) {
-        this.nodeService = service;
-    } 
-    
     @RequestMapping(value = "/admin", method = RequestMethod.POST)
     public String boxing(@ModelAttribute("admin") NewNodeForm formData,
                                BindingResult bundingResult,
@@ -66,6 +68,12 @@ public class AdminController extends BaseController{
 
     }
     
+    @Autowired
+    private void setNodeDistanceService(NodeDistanceService service) {
+        this.nodeService = service;
+    } 
+    
+
     
 //    @RequestMapping(value = "/delete", method = RequestMethod.POST)
 //    public String delete(Model uiModel,

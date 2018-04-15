@@ -25,6 +25,12 @@ public class LoginController extends BaseController {
     private CustomerService customerService;
     private MessageSource messageSource;
 
+    @RequestMapping(value = "/loginform", method = RequestMethod.GET)
+    public String showLoginForm(Model model) {
+        return Pages.LOGIN;
+    }
+
+   
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String doLogin(@RequestParam(value = "email") String email,
                           @RequestParam(value = "pass") String pass,

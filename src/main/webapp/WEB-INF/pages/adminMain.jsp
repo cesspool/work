@@ -50,12 +50,6 @@
     <link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet"/>
     
     <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-    <c:if test="${empty sessionScope.principal}">
-      <jsp:forward page="/loginform"/>
-    </c:if>
-    <c:if test="${not principal.admin}">
-        <jsp:forward page="${contextPath}/loginform"/>
-    </c:if>
 </head>
 <body>
 
