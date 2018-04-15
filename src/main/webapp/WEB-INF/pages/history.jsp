@@ -17,7 +17,7 @@
 <spring:message code="contact.div.ul.liD" var="lbUlLiD"/>
 <spring:message code="contact.div.ul.liE" var="lbUlLiE"/>
 
-
+<spring:message code="adminMain.place.address" var="lbPlaceAddress"/>
 <spring:message code="history.section.h" var="lbSectionHeaderA"/>
 <spring:message code="history.section.p" var="lbSectionHeaderB"/>
 <spring:message code="history.table.trA.tdA" var="lbTableAA"/>
@@ -83,7 +83,7 @@
                             ${lbTableBB} ${order.box.variety}
                         </td>
                         <td colspan="2" width="200" valign="top">
-                            address: ${order.nodeEnd.address }
+                            ${lbPlaceAddress }: ${order.nodeEnd.address }
                         </td>
                     </tr>
                     <tr>

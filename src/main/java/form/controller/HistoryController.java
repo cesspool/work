@@ -49,6 +49,7 @@ public class HistoryController extends BaseController {
         	for (OrderingReq ordReq : orderReq) {
         		ordReq.setTypeDelivery(messageSource.getMessage(ordReq.getTypeDelivery(), null, locale));
         		ordReq.setTypeCargo(messageSource.getMessage(ordReq.getTypeCargo(), null, locale));
+        		ordReq.getOrder().setCost(Math.ceil(ordReq.getOrder().getCost()));
         	}
             model.addAttribute(Pages.ATR_ORDER_READY, orderReq);
         });

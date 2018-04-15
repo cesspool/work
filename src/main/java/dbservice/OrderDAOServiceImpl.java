@@ -21,6 +21,7 @@ import beans.CharacteristicsPath;
 import beans.Package;
 import beans.Route;
 import beans.CoordinatesPrep;
+import beans.Customer;
 import beans.Node;
 import beans.Order;
 import beans.OrderShow;
@@ -66,17 +67,138 @@ public class OrderDAOServiceImpl extends DataService  implements OrderDAOService
 	
 	private final static String SQL_INSERT_ROUTE="INSERT INTO logistics.route (order_id, node_id, number_node) VALUES (?,?,?)";
 	
+	private final static String SQL_ORDERS_REAL_EQUAL_PLAN = "select cost from logistics.order " +
+			" where ready = true and plan_date = real_date " +
+			" and (age(now(), real_date) <  INTERVAL '%d day')" +
+			" and (age(now(), real_date) >  INTERVAL '%d day')";
+	
+	private final static String SQL_ORDERS_REAL_LESS_PLAN = "select cost from logistics.order " +
+			" where ready = true and plan_date > real_date " +
+			" and (age(now(), real_date) <  INTERVAL '%d day')" +
+			" and (age(now(), real_date) >  INTERVAL '%d day')";
+	
+	private final static String SQL_ORDERS_REAL_MORE_PLAN = "select cost from logistics.order " +
+			" where ready = true and plan_date < real_date " +
+			" and (age(now(), real_date) <  INTERVAL '%d day')" +
+			" and (age(now(), real_date) >  INTERVAL '%d day')";
+	
+	private final static String SQL_ORDERS_URGENCY = " select cost from logistics.order " +
+			 " where urgency = ? and	(age(now(), shipment_date) <  INTERVAL '1 day');";
+	
+	private final static String SQL_SEL_ORDERS_BY_RECIPIENT_NAME = "select Ord.id, Ord.name," +
+			" Ord.urgency, Ord.plan_date, Ord.cost, Ord.contact_information, Ord.shipment_date, Ord.real_date, Pk.envelop," +
+			" Pk.height, Pk.width, Pk.length, Pk.weight, Pk.quantity, Bx.variety, Nds.city, Ndt.city, Ndt.address" + 
+			" from logistics.order Ord" + 
+			" inner join logistics.package Pk on Pk.id = Ord.package_id" + 
+			" inner join logistics.boxing Bx on Bx.id = Ord.boxing_id" + 
+			" inner join logistics.rate Rt on Rt.id = Ord.rate_id" + 
+			" inner join logistics.node Nds on Nds.id = Ord.node_start_id" + 
+			" inner join logistics.node Ndt on Ndt.id = Ord.node_target_id" +
+			 " WHERE contact_information LIKE '%%s%' and ready = false; ";
+	
+	private final static String SQL_UPDATE_READY = "update logistics.order" +
+			 " set ready = true, real_date=now() where id = %s";
 	
 	
 	
-    @Override
+	@Override
+    @Transactional
+    public void updateOrderByID(String ID) {
+        getJdbcTemplate().update(String.format(SQL_UPDATE_READY, ID), (ps) -> {
+//            int idx = 1;
+//            ps.setString(idx++, ID);
+        });
+    }
+	
+	
+	@Override
+    @Transactional(readOnly = true)
+    public Optional<List<OrderShow>> getOrdersByRecipient(String recipient) {
+        List<OrderShow> orders = getJdbcTemplate().query(SQL_SEL_ORDERS_BY_RECIPIENT_NAME.replace("%s", recipient), (rs, num) -> {
+            OrderShow o = new OrderShow();
+//            n.setId(ID);
+            int idx = 1;
+            o.getOrder().setId(rs.getLong(idx++));
+            o.getOrder().setName(rs.getString(idx++));
+            o.getOrder().isUrgency(rs.getBoolean(idx++));
+            o.getOrder().setPlanDate(rs.getDate(idx++));
+            o.getOrder().setCost(rs.getDouble(idx++));
+            o.getOrder().setContact_information(rs.getString(idx++));
+            o.getOrder().setShipmentDate(rs.getDate(idx++));
+            o.getOrder().setRealDate(rs.getDate(idx++));
+            o.getCargo().isEnvelope(rs.getBoolean(idx++));
+            o.getCargo().setHeight(rs.getDouble(idx++));
+            o.getCargo().setWidth(rs.getDouble(idx++));
+            o.getCargo().setLength(rs.getDouble(idx++));
+            o.getCargo().setWeight(rs.getDouble(idx++));
+            o.getCargo().setQuantity(rs.getInt(idx++));
+            o.getBox().setVariety(rs.getString(idx++));
+            o.getNodeStart().setCity(rs.getString(idx++));
+            o.getNodeEnd().setCity(rs.getString(idx++));
+            o.getNodeEnd().setAddress(rs.getString(idx++));
+            return o;
+        });
+        return Optional.ofNullable(orders);
+    }
+	
+	
+	
+	 @Override
+	    @Transactional(readOnly = true)
+	    public List<Order> getOrdersRealLessPlan(Integer days) {
+	        List<Order> orders = getJdbcTemplate().query(String.format(SQL_ORDERS_REAL_LESS_PLAN,days, (days-1)), (rs, num) -> {
+	            Order o = new Order();
+	            int idx = 1;
+	            o.setCost(rs.getDouble(idx++));
+	            return o;
+	        });
+	        return orders;
+	    }
+	
+	 @Override
+	    @Transactional(readOnly = true)
+	    public List<Order> getOrdersRealEqualPlan(Integer days) {
+	        List<Order> orders = getJdbcTemplate().query(String.format(SQL_ORDERS_REAL_EQUAL_PLAN, days, (days-1)), (rs, num) -> {
+	            Order o = new Order();
+	            int idx = 1;
+	            o.setCost(rs.getDouble(idx++));
+	            return o;
+	        });
+	        return orders;
+	    }
+	
+	 @Override
+	    @Transactional(readOnly = true)
+	    public List<Order> getOrdersRealMorePlan(Integer days) {
+	        List<Order> orders = getJdbcTemplate().query(String.format(SQL_ORDERS_REAL_MORE_PLAN, days, (days-1)), (rs, num) -> {
+	            Order o = new Order();
+	            int idx = 1;
+	            o.setCost(rs.getDouble(idx++));
+	            return o;
+	        });
+	        return orders;
+	    }
+
+	@Override
+	    @Transactional(readOnly = true)
+	    public List<Order> getUrgencyOrders(boolean urg) {
+	        List<Order> orders = getJdbcTemplate().query(SQL_ORDERS_URGENCY,
+	        						new Object[] {urg}, (rs, num) -> {
+	            Order o = new Order();
+	            int idx = 1;
+	            o.setCost(rs.getDouble(idx++));
+	            return o;
+	        });
+	        return orders;
+	    }
+	
+	
+	
+	@Override
     @Transactional(readOnly = true)
     public Optional<List<OrderShow>> getOrders(Long ID, boolean ready) {
         List<OrderShow> orders = getJdbcTemplate().query(SQL_SEL_ORDERS_BY_READY_AND_RECIPIENT,
         						new Object[] {ID, ready}, (rs, num) -> {
-//            if (!rs.next()) {
-//                return null;
-//            }
             OrderShow o = new OrderShow();
 //            n.setId(ID);
             int idx = 1;

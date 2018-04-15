@@ -150,5 +150,8 @@
 <script src="<c:url value="/resources/assets/js/util.js"/>"></script>
 <script src="<c:url value="/resources/assets/js/main.js"/>"></script>
 
+<script src="<c:url value="/resources/js/jquery.js"/>"></script>
+<script src="<c:url value="/resources/js/menu.js"/>"></script>
+
 </body>
 </html>

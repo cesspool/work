@@ -102,6 +102,12 @@ public class Pages {
      */
     public static final String TRANSFORM_TRANSPORT = "transformTransport";
     
+    /**
+     * page for redirecting
+     */
+    public static final String ACCESS = "access";
+    
+    
     //=============== Page's attributes ====================================================================
     /** Customer instance */
     public static final String ATR_CUSTOMER = "customer";

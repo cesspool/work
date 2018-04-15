@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+ <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <spring:message code="newRate.li.div" var="lbLiDiv"/>
 <spring:message code="index.section.main" var="lbSectMain"/>
@@ -22,7 +23,6 @@
 <spring:message code="contact.cancel" var="lbCancel"/>
 <spring:message code="statusOrder.searching" var="lbSearch"/>
 <spring:message code="statusOrder.place.recipient" var="lbPlaceRecipient"/>
-
 
 <spring:message code="history.table.trA.tdA" var="lbTableAA"/>
 <spring:message code="history.table.trA.tdB" var="lbTableAB"/>
@@ -44,6 +44,25 @@
 <spring:message code="statusOrder.ready" var="lbReady"/>
 <spring:message code="adminManager.head.title" var="lbManagerTitle"/>
 
+<spring:message code="report.pieChart.urgency" var="lbPieUrgency"/>
+<spring:message code="report.pieChart.economy" var="lbPieEconomy"/>
+<spring:message code="report.pieChart.typeOrder" var="lbPieTypeOrder"/>
+<spring:message code="report.pieChart.quantity" var="lbPieQuantity"/>
+<spring:message code="report.pieChart.title" var="lbPieTitle"/>
+<spring:message code="report.comboChart.day" var="lbComboDay"/>
+<spring:message code="report.comboChart.inTime" var="lbComboInTime"/>
+<spring:message code="report.comboChart.later" var="lbComboLater"/>
+<spring:message code="report.comboChart.earlier" var="lbComboEarlier"/>
+<spring:message code="report.comboChart.average" var="lbComboAverage"/>
+<spring:message code="report.comboChart.deliveryOrders" var="lbComboDeliveryOrders"/>
+<spring:message code="report.comboChart.orders" var="lbComboOrders"/>
+<spring:message code="report.comboChart.days" var="lbComboDays"/>
+
+<spring:message code="report.information.title" var="lbPieInformationTitle"/>
+<spring:message code="report.information.text" var="lbPieInformationText"/>
+<spring:message code="report.information.combo.title" var="lbComboInformationTitle"/>
+<spring:message code="report.information.combo.text" var="lbComboInformationText"/>
+
 
 <html>
 <head>
@@ -61,20 +80,26 @@
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
+      
+      var day = new Date();
+      var d1 = day.getDate()-1;
+      var d2 = day.getDate()-2;
+      var d3 = day.getDate()-3;
+      var d4 = day.getDate()-4;
+      var d5 = day.getDate()-5;
 
       function drawChart() {
-    	  
+    	  //(${fn:length(readyEqual[0])} + ${fn:length(readyMore[0])} + ${fn:length(readyLess[0])})/3
     	  var info = [
-              ['Task', 'Hours per Day'],
-              ['Work',     ${ord1}],
-              ['Eat',      ${ord2}],
-              ['not',      ${ord2}]
+              ['${lbPieTypeOrder}', '${lbPieQuantity}'],
+              ['${lbPieEconomy}',     ${fn:length(ecOrd)}],
+              ['${lbPieUrgency}',      ${fn:length(urgOrd)}]
             ]
 
         var data = google.visualization.arrayToDataTable(info);
 
         var options = {
-          title: 'express and econom orders'
+          title: '${lbPieTitle}'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -90,18 +115,18 @@
       function drawVisualization() {
         // Some raw data (not necessarily accurate)
         var data = google.visualization.arrayToDataTable([
-         ['day', 'in time',    'later',    'earlier',   'Average'],
-         ['2004/05',  165,      938,         522,          541.6],
-         ['2005/06',  135,      1120,        599,          618],
-         ['2006/07',  157,      1167,        587,          637],
-         ['2007/08',  139,      1110,        615,          621.6],
-         ['2008/09',  136,      691,         629,          485.3]
+         ['${lbComboDay}', '${lbComboInTime}',    '${lbComboLater}',    '${lbComboEarlier}',   '${lbComboAverage}'],
+         [d1,  ${fn:length(readyEqual[0])},      ${fn:length(readyMore[0])},        ${fn:length(readyLess[0])},          ${average[0]}],
+         [d2,  ${fn:length(readyEqual[1])},      ${fn:length(readyMore[1])},        ${fn:length(readyLess[1])},          ${average[1]}],
+         [d3,  ${fn:length(readyEqual[2])},      ${fn:length(readyMore[2])},        ${fn:length(readyLess[2])},          ${average[2]}],
+         [d4,   ${fn:length(readyEqual[3])},      ${fn:length(readyMore[3])},        ${fn:length(readyLess[3])},          ${average[3]}],
+         [d5,   ${fn:length(readyEqual[4])},      ${fn:length(readyMore[4])},        ${fn:length(readyLess[4])},          ${average[4]}]
       ]);
 
     var options = {
-      title : 'Delivery orders',
-      vAxis: {title: 'orders'},
-      hAxis: {title: 'days'},
+      title : '${lbComboDeliveryOrders}',
+      vAxis: {title: '${lbComboOrders}'},
+      hAxis: {title: '${lbComboDays}'},
       seriesType: 'bars',
       series: {3: {type: 'line'}}
     };
@@ -120,12 +145,47 @@
 <section id="main" class="wrapper">
     <div class="container">
         <header class="major special">
-            <h2>${lbUlLiA}</h2>
+            <h2>${lbReportTitleName }</h2>
         </header>
     </div>
 </section>
-<div id="piechart" style="width: 900px; height: 500px;"></div>
-<div id="chart_div" style="width: 900px; height: 500px;"></div>
+<form method = "get" action="${contextPath}/report" name="report" id="report">
+<section id="one" class="wrapper style1">
+	<div class="container 75%">
+		<div class="row 200%">
+			<div class="6u 12u$(medium)">
+				<header class="major">
+					<h2>${lbPieInformationTitle}</h2>
+				</header>
+			</div>
+			<div class="6u$ 12u$(medium)">
+				<p>${lbPieInformationText} ${pieCost }</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+	<div id="piechart" style="width: 900px; height: 500px;"></div>
+	
+<section id="one" class="wrapper style1">
+	<div class="container 75%">
+		<div class="row 200%">
+			<div class="6u 12u$(medium)">
+				<header class="major">
+					<h2>${lbComboInformationTitle}</h2>
+				</header>
+			</div>
+			<div class="6u$ 12u$(medium)">
+				<p>${lbComboInformationText} ${comboCost }</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+	<div id="chart_div" style="width: 900px; height: 500px;"></div>
+</form>
+
+
 
 <script src="<c:url value="/resources/assets/js/jquery.min.js"/>"></script>
 <script src="<c:url value="/resources/assets/js/skel.min.js"/>"></script>

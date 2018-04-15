@@ -65,87 +65,86 @@
 <section id="main" class="wrapper">
     <div class="container">
 
-        <header class="major special">
-            <h2>${lbStatusOrder}</h2>
-            <input type="text" placeholder = "${lbPlaceRecipient}" id="name" name="name">
-            <br>
-            <button type="submit" class="signupbtn">${lbSearch}</button>
-        </header>
-        <form class="registration">
+		<form method="post" action="${contextPath}/status" id="statusForm" name="statusForm">
+	        <header class="major special">
+	            <h2>${lbStatusOrder}</h2>
+	            <input type="text" placeholder = "${lbPlaceRecipient}" id="nameRecip" name="nameRecip">
+	            <br>
+	            <button type="submit" class="signupbtn">${lbSearch}</button>
+	        </header>
+        </form>
+        <form method="post" action="${contextPath}/statusOrder" id="statusOrderForm" name="statusOrderForm">
             <div class="container limiter">
-
+			   <c:forEach var="order" items="${orderReq}">		
                 <table width="100%" cellspacing="0" cellpadding="5">
-                    <tr ><td class="someTable" width="200" valign="top">
-                            ${lbTableAA} <data>14251</data>
+                     <tr ><td class="someTable" colspan="2" width="200" valign="top">
+                            ${lbTableAA} ${order.order.name }
                         </td>
                         <td class="someTable" colspan="2" width="200" valign="top">
-                            ${lbTableAB} <data>1561 руб</data>
+                            ${lbTableAB} ${order.order.cost }
+                        </td>
+                       
+                        <td width="200" valign="top">
+							 <input type="checkbox" id="id_${order.order.id}" name="id_${order.order.id}" value = "${order.order.id}"/>
+                            <label for="id_${order.order.id}">${lbReady}</label>
+                        </td>
+                    </tr>
+                   <tr>
+                        <td width="200" valign="top">
+                            ${lbTableBA} ${order.typeDelivery}
                         </td>
                         <td width="200" valign="top">
-							 <input type="checkbox" id="ready" name="ready" value="air">
-                            <label for="ready">${lbReady}</label>
+                            ${lbTableBB} ${order.box.variety}
+                        </td>
+                        <td colspan="2" width="200" valign="top">
+                            address: ${order.nodeEnd.address }
                         </td>
                     </tr>
                     <tr>
                         <td width="200" valign="top">
-                            ${lbTableBA} <data>express</data>
+                            ${lbTableCA} ${order.nodeStart.city }
                         </td>
                         <td width="200" valign="top">
-                            ${lbTableBB} <data>standart</data>
+                            ${lbTableCB} ${order.nodeEnd.city }
                         </td>
                         <td width="200" valign="top">
-                            ${lbTableBC} <data>name</data>
+                            ${lbTableCC} ${order.typeCargo}
                         </td>
                         <td width="200" valign="top">
-                            ${lbTableBD} <data>1.5</data>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td width="200" valign="top">
-                            ${lbTableCA} <data>Moscow</data>
-                        </td>
-                        <td width="200" valign="top">
-                            ${lbTableCB} <data>Ufa</data>
-                        </td>
-                        <td width="200" valign="top">
-                            ${lbTableCC} <data>Envelop </data>
-                        </td>
-                        <td width="200" valign="top">
-                            ${lbTableCD} <data>1</data>
+                            ${lbTableCD} ${order.cargo.quantity }
                         </td>
                     </tr>
                     <tr>
                         <td width="200" valign="top">
-                            ${lbTableDA} <data>10.10.2017</data>
+                            ${lbTableDA} ${order.order.shipmentDate }
                         </td>
                         <td width="200" valign="top">
-                            ${lbTableDB} <data>12.12.2017</data>
+                            ${lbTableDB} ${order.order.realDate }
                         </td>
                         <td width="200" valign="top">
-                            ${lbTableDC} <data>1</data>
+                            ${lbTableDC} ${order.cargo.height }
                         </td>
                         <td width="200" valign="top">
-                            ${lbTableDD} <data>1</data>
+                            ${lbTableDD} ${order.cargo.width }
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2" width="200" valign="top">
-                            ${lbTableEA} <data>Ivanov Ivan Ivanovich</data>
+                            ${lbTableEA} ${order.order.contact_information }
                         </td>
 
                         <td width="200" valign="top">
-                            ${lbTableEB} <data>1</data>
+                            ${lbTableEB} ${order.cargo.length }
                         </td>
                         <td width="200" valign="top">
-                            ${lbTableEC} <data>1</data>
+                            ${lbTableEC} ${order.cargo.weight }
                         </td>
                     </tr>
-                </table>
-                <div class="clearfix">
-                	<button type="button" class="cancelbtn">${lbCancel }</button>
+                  </table>
+                </c:forEach>
+                  <div class="clearfix">
                 	<button type="submit" class="signupbtn">${lbSave }</button>
-            	</div>
-
+            	  </div>
             </div>
         </form>
     </div>

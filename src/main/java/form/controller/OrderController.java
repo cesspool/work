@@ -86,7 +86,7 @@ public class OrderController extends BaseController {
 
 
 	    @Autowired
-	    private void setBoxingService(OrderService service) {
+	    private void setOrderService(OrderService service) {
 	        this.orderService = service;
 	    }
 

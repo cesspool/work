@@ -57,6 +57,48 @@ public class OrderServiceImpl implements OrderService {
 	
     
     @Override
+    public void updateById (List<String> IDs) {
+//    	String selOrders = IDs;
+//    	if (selOrders.trim().length() > 0) {
+//    		String[] orderIDs = selOrders.split(",");
+//    		int ln = orderIDs.length;
+        for (int i=0; i< IDs.size(); i++) {
+        	orderDAOService.updateOrderByID(IDs.get(i));
+        }
+    }
+    
+    @Override
+    public Optional<List<OrderShow>> getOrderByRecipientName(String recipient) {
+    	Optional<List<OrderShow>> orders = orderDAOService.getOrdersByRecipient(recipient);
+    	return orders;
+    }
+    
+    @Override
+    public List<Order> getUrgencyOrder(boolean urg) {
+    	List<Order> orders = orderDAOService.getUrgencyOrders(urg);
+    	return orders;
+    }
+    
+    @Override
+    public List<Order> getOrderReadyEqualPlan(Integer days) {
+    	List<Order> orders = orderDAOService.getOrdersRealEqualPlan(days);
+    	return orders;
+    }
+    
+    @Override
+    public List<Order> getOrderReadyMorePlan(Integer days) {
+    	List<Order> orders = orderDAOService.getOrdersRealMorePlan(days);
+    	return orders;
+    }
+    
+    @Override
+    public List<Order> getOrderReadyLessPlan(Integer days) {
+    	List<Order> orders = orderDAOService.getOrdersRealLessPlan(days);
+    	return orders;
+    }
+    
+    
+    @Override
     public Optional<List<OrderShow>> getOrderByParam(Long ID, boolean ready) {
     	Optional<List<OrderShow>> orders = orderDAOService.getOrders(ID, ready);
     	return orders;
@@ -75,6 +117,7 @@ public class OrderServiceImpl implements OrderService {
     
     @Override
 	public CalculateReq prepareOrder(CalculateForm form) throws PathNotFoundException {
+    	//check size of package
     	Boxing box = boxingDAOService.getCostByID(form.getBoxesList());
     	double costOfBoxing = box.getCost();
     	List<Transport> transports = transpRateDAOService.getAllTransports();
@@ -82,7 +125,7 @@ public class OrderServiceImpl implements OrderService {
 		CharacteristicsPath charPath = pathCalculate(form, transports);
 		calcInfo=charPath;
 		calculateReq.setFullPath(getNodesTransport(charPath, transports));
-		calculateReq.setTotalCost(conversionCost(charPath, costOfBoxing));
+		calculateReq.setTotalCost(Math.ceil(conversionCost(charPath, costOfBoxing)));
 		calculateReq.setQuatityHours(Math.round(charPath.getTime()));
 		calculateReq.setDateDelivery(conversionDate(charPath));
 		calculateReq.setTypeDelivery(getTypeDelivery(charPath.getTransport()));
@@ -180,5 +223,8 @@ public class OrderServiceImpl implements OrderService {
 		this.calculate = calculate;
 	}
 	
+//    private boolean checkSize(CalculateForm form, List<Transport> transports) {
+//    	if()
+//    }
     
 }

@@ -23,6 +23,11 @@ public class MainMenuController extends BaseController {
     public String showLoginForm(Model model) {
         return Pages.LOGIN;
     }
+    
+    @RequestMapping(value = "/noaccess", method = RequestMethod.GET)
+    public String showAccessForm(Model model) {
+        return Pages.ACCESS;
+    }
 
 
 
@@ -41,16 +46,6 @@ public class MainMenuController extends BaseController {
         return Pages.NEWRATE;
     }
     
-    @RequestMapping(value = "/status", method = RequestMethod.GET)
-    public String showAdminForm(Model model) {
-        return Pages.STATUS;
-    }
-    
-    @RequestMapping(value = "/report", method = RequestMethod.GET)
-    public String showReportForm(Model model) {
-    	model.addAttribute("ord1", 1);
-    	model.addAttribute("ord2", 2);
-        return Pages.REPORT;
-    }
+   
     
 }
