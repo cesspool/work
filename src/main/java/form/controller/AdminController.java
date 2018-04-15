@@ -31,9 +31,9 @@ public class AdminController extends BaseController{
     
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String showAdminForm(Model model) {
-        if(getPrincipal() == null) {
-            return "redirect:/loginform";
-        }
+//        if(getPrincipal() == null) {
+//            return "redirect:/loginform";
+//        }
         
         
         Map<Long, String> res = nodeService.getAllCities();

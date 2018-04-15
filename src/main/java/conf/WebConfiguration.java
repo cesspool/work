@@ -1,5 +1,6 @@
 package conf;
 
+import interceptor.PrincipalInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -70,6 +71,12 @@ public class WebConfiguration implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry){
         registry.addInterceptor(localeChangeInterceptor());
+        registry.addInterceptor(principalInterceptor());
+    }
+    
+    @Bean
+    public PrincipalInterceptor principalInterceptor() {
+        return new PrincipalInterceptor();
     }
     
     @Bean
