@@ -118,4 +118,14 @@ public class AdminController extends BaseController{
         return null;
     }
     
+    @Override
+    public boolean isForFree() {
+        return false;
+    }
+    
+    @Override
+    public boolean isForAdmin() {
+        return true;
+    }
+    
 }

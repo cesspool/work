@@ -45,33 +45,35 @@ public class Test {
         int from;
     	int to;
     	int idx = 0;
-    	double V = cargo.getHeight() * cargo.getLength() * cargo.getWidth()*cargo.getQuantity();
-    	double KCargo;
-    	double KRail;
-    	double KAir;
-    	double coef = getCoef(cargo);
+    	//check envelop
+    	double KCargo =0;
+    	double KRail =0;
+    	double KAir =0;
+    	if(cargo.isEnvelope()==true) {
+    		KAir = 0.006;
+    		KCargo = 0.006;
+    		KRail = 0.006;
+    	} else {
+    		double coef = getCoef(cargo);
+    		double V = cargo.getHeight() * cargo.getLength() * cargo.getWidth()*cargo.getQuantity();
+    		
+        	if(coef >= 250) {
+        		KCargo = cargo.getWeight()*cargo.getQuantity()*rates.get(0).getAdditionalCost();
+        	} else if((coef < 250)&&(coef>0)) {
+        		KCargo = V*rates.get(0).getAdditionalCost();
+        	} 
+        	if(coef >= 500) {
+        		KAir = cargo.getWeight()*cargo.getQuantity()*rates.get(1).getAdditionalCost();
+        	} else if((coef < 500)&&(coef>0)) {
+        		KAir = V*rates.get(1).getAdditionalCost();
+        	} 
+        	if(coef >= 300) {
+        		KRail = cargo.getWeight()*cargo.getQuantity()*rates.get(2).getAdditionalCost();
+        	} else if((coef < 300)&&(coef>0)) {
+        		KRail = V*rates.get(2).getAdditionalCost();
+        	}
+    	}
     	
-    	if(coef >= 250) {
-    		KCargo = cargo.getWeight()*cargo.getQuantity()*rates.get(0).getAdditionalCost();
-    	} else if((coef < 250)&&(coef>0)) {
-    		KCargo = V*rates.get(0).getAdditionalCost();
-    	} else {
-    		KCargo = 0.00001*cargo.getQuantity();
-    	}
-    	if(coef >= 500) {
-    		KAir = cargo.getWeight()*cargo.getQuantity()*rates.get(1).getAdditionalCost();
-    	} else if((coef < 500)&&(coef>0)) {
-    		KAir = V*rates.get(1).getAdditionalCost();
-    	} else {
-    		KAir = 0.00001*cargo.getQuantity();
-    		}
-    	if(coef >= 300) {
-    		KRail = cargo.getWeight()*cargo.getQuantity()*rates.get(2).getAdditionalCost();
-    	} else if((coef < 300)&&(coef>0)) {
-    		KRail = V*rates.get(2).getAdditionalCost();
-    	} else {
-    		KRail = 0.00001*cargo.getQuantity();
-    	}
     	
     	double timeAir = Double.MAX_VALUE;
     	double costAir = Double.MAX_VALUE;
@@ -85,17 +87,15 @@ public class Test {
     		//								(nodeTransport.get(dist.getNodeFrom()).longValue() == 2L)) {
     		if (isHaveEqualTransport(nodeTransport, dist, 2L)) {
             	timeAir = dist.getLength() / transports.get(1).getAvSpeed();
-            	costAir = dist.getLength() * rates.get(1).getCostKm() + 
-            			(dist.getLength() * rates.get(1).getCostKm())*KAir + 
-            			(dist.getLength() * rates.get(1).getCostKm())*rates.get(1).getCostShipping();
+            	costAir = (dist.getLength() * rates.get(1).getCostKm())*KAir + 
+            			(dist.getLength() * rates.get(1).getCostKm())*rates.get(1).getCostShipping()*0;
             	
     		}
    		
     		if (isHaveEqualTransport(nodeTransport, dist, 3L)) {
             	timeRail = dist.getLength() / transports.get(2).getAvSpeed();
-            	costRail = dist.getLength() * rates.get(2).getCostKm() +
-            			(dist.getLength() * rates.get(2).getCostKm())*KRail + 
-            			(dist.getLength() * rates.get(2).getCostKm())*rates.get(2).getCostShipping();
+            	costRail = (dist.getLength() * rates.get(2).getCostKm())*KRail + 
+            			(dist.getLength() * rates.get(2).getCostKm())*rates.get(2).getCostShipping()*0;
             	
     		}
     		
@@ -103,9 +103,8 @@ public class Test {
     		to = getIndexById(dist.getNodeTo(), nodes);
     		
     		timeCargo = dist.getLength() / transports.get(0).getAvSpeed();
-        	costCargo = (dist.getLength() * rates.get(0).getCostKm()) + 
-        			(dist.getLength() * rates.get(0).getCostKm())*KCargo + 
-        			(dist.getLength() * rates.get(0).getCostKm())*rates.get(0).getCostShipping();
+        	costCargo = (dist.getLength() * rates.get(0).getCostKm())*KCargo + 
+        			(dist.getLength() * rates.get(0).getCostKm())*rates.get(0).getCostShipping()*0;
         	
         	
         	//double timeAir = Double.MAX_VALUE;

@@ -82,6 +82,16 @@ public class ResultController extends BaseController {
         this.messageSource = messageSource;
     }
     
+    @Override
+    public boolean isForCustomer() {
+        return true;
+    }
+    
+    @Override
+    public boolean isForAdmin() {
+        return false;
+    }
+    
 }
 	
 

@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import beans.NodeDistance;
 import beans.OrderCalculate;
 import beans.OrderWriter;
+import exception.LogisticsException;
 import exception.PathNotFoundException;
 import form.request.CalculateForm;
 import form.request.NewNodeForm;
@@ -68,13 +69,14 @@ public class CostController extends BaseController {
         	try {
         		OrderWriter orderWriter = new OrderWriter();
 	        	calculateReq = orderService.prepareOrder(formData);
+	        	
 	        	calculateReq.setTypeDelivery(messageSource.getMessage(calculateReq.getTypeDelivery(), null, locale));
         		orderWriter.setForm(formData);
         		orderWriter.setCalculateReq(calculateReq);
         		uiModel.addAttribute("orderWriter", orderWriter);
 	        	uiModel.addAttribute(Pages.ATR_COST_CALC_RESULT, calculateReq);
 	            return "resultCost";
-        	} catch(PathNotFoundException ex) {
+        	} catch(LogisticsException ex) {
         		Message errMsg = ex.getMsg();
         		errMsg.setMsg(messageSource.getMessage(errMsg.getKey(), null, locale));
         		uiModel.addAttribute(Pages.ATR_MESSAGE, errMsg);
@@ -132,6 +134,17 @@ public class CostController extends BaseController {
     protected void setMessageSource(MessageSource messageSource) {
         this.messageSource = messageSource;
     }
+    
+    @Override
+    public boolean isForCustomer() {
+        return true;
+    }
+    
+    @Override
+    public boolean isForAdmin() {
+        return false;
+    }
+    
     
     
 }

@@ -1,10 +1,12 @@
 package form.controller;
 
 import beans.Boxing;
+import beans.Customer;
 import beans.OrderWriter;
 import form.request.CalculateForm;
 import form.request.NewBoxingForm;
 import form.request.OrderingForm;
+import form.request.RegistrationForm;
 import form.response.CalculateReq;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import service.BoxingService;
+import service.CustomerService;
 import service.OrderService;
 import utils.Tools;
 import web.Message;
@@ -34,9 +37,9 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @SessionAttributes("orderWriter")
 public class OrderController extends BaseController {
-
-	 private OrderService orderService;
-	    private MessageSource messageSource;
+    private CustomerService customerService;
+	private OrderService orderService;
+	private MessageSource messageSource;
 
 	    @RequestMapping(value = "/order", method = RequestMethod.GET)
 	    public String showOrder(Model model) {
@@ -68,23 +71,6 @@ public class OrderController extends BaseController {
 
 	    }
 
-//	    @RequestMapping(value = "/registrationform", method = RequestMethod.GET)
-//	    public String showRegistrationForm(Model model) {
-//	        RegistrationForm formData = new RegistrationForm();
-//	        model.addAttribute(Pages.ATR_CUSTOMER, formData);
-//	        return Pages.REGISTRATION;
-//	    }
-//
-//	    @RequestMapping(value = "/registrationform/{id}", method = RequestMethod.GET)
-//	    public String showCustomerForm(@PathVariable("id") Long id, Model model) {
-//	        customerService.getByID(id).ifPresent(cmr -> {
-//	            RegistrationForm formData = Tools.customerToRegistrationForm(cmr);
-//	            model.addAttribute(Pages.ATR_CUSTOMER, formData);
-//	        });
-//	        return Pages.REGISTRATION;
-//	    }
-
-
 	    @Autowired
 	    private void setOrderService(OrderService service) {
 	        this.orderService = service;
@@ -111,5 +97,74 @@ public class OrderController extends BaseController {
 //	            return msg;
 //	        }
 	        return null;
+	    }
+	    
+	    
+	    @RequestMapping(value = "/contact", method = RequestMethod.POST)
+	    public String updateCustomer(@ModelAttribute("customer") RegistrationForm formData,
+	                               BindingResult bundingResult,
+	                               Model uiModel,
+	                               HttpServletRequest httpServletRequest,
+	                               RedirectAttributes redirectAttributes,
+	                               Locale locale) {
+	        Message message = validateForm(formData);
+	        if (message != null) {
+	            message.setMsg(messageSource.getMessage(message.getKey(), null, locale));
+	            redirectAttributes.addFlashAttribute(Pages.ATR_MESSAGE, message);
+	            return "redirect:registrationform";
+	        } else {
+	            Customer cmr = customerService.updateCustomer(formData);
+	            redirectAttributes.addFlashAttribute(Pages.ATR_CUSTOMER, formData);
+	            return "redirect:contact/"+cmr.getId();
+	        }
+	    }
+	    
+	    @RequestMapping(value = "/contact/{id}", method = RequestMethod.GET)
+	    public String showPersonContactForm(@PathVariable("id") Long id, Model model, Locale locale) {   
+	    		customerService.getByID(id).ifPresent(cmr -> {
+	            RegistrationForm formData = Tools.customerToRegistrationForm(cmr);
+	            formData.setPerk(messageSource.getMessage(formData.getPerk(), null, locale));
+	            model.addAttribute(Pages.ATR_CUSTOMER, formData);
+	        });
+	        return Pages.CONTACT;
+	    }
+	    
+	    
+	    private Message validateForm(RegistrationForm formData) {
+	    	if (Tools.isBlank(formData.getPsw())) {
+	            Message msg = new Message(Type.ERROR, "registration.no-pass");
+	            return msg;
+	        }
+	        if (!formData.getPsw().equals(formData.getPswRepeat())) {
+	            Message msg = new Message(Type.ERROR, "registration.wrong-repeat");
+	            return msg;
+	        }
+
+	        if (Tools.isBlank(formData.getFirstName()) ||
+	            Tools.isBlank(formData.getLastName()) ||
+	            Tools.isBlank(formData.getEmail()) ||
+	            Tools.isBlank(formData.getTelephone()) ||
+	            Tools.isBlank(formData.getPatronymic()) ||
+	            Tools.isBlank(formData.getCity())) {
+	            Message msg = new Message(Type.ERROR, "registration.missed-field");
+	            return msg;
+	        }
+	        return null;
+	    }
+	    
+	    @Autowired
+	    private void setCustomerService(CustomerService service) {
+	        this.customerService = service;
+	    }
+	    
+	    
+	    @Override
+	    public boolean isForCustomer() {
+	        return true;
+	    }
+	    
+	    @Override
+	    public boolean isForAdmin() {
+	        return false;
 	    }
 }

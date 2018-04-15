@@ -47,9 +47,6 @@ public class TransportController {
 	    }
 	 
 	 
-	 
-	 
-	 
 	 @Autowired
 	    private void setAgreementService(TranspRateService service) {
 	        this.transpRateService = service;

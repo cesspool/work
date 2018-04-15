@@ -84,7 +84,7 @@ public class CustomerServiceImpl implements CustomerService {
             return null;
         }
         try{
-            if (MessageDigest.isEqual(passMD5.getBytes("UTF-8"), cmr.getMd5().getBytes("UTF-8"))) {
+            if (!MessageDigest.isEqual(passMD5.getBytes("UTF-8"), cmr.getMd5().getBytes("UTF-8"))) {
                 msg.setType(Type.ERROR);
                 msg.setKey("login.wrong_pass");
                 return null;

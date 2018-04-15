@@ -73,39 +73,6 @@ public class ChangingBranchController extends BaseController {
         return Pages.ADMIN;
     }
     
-   
-    
-	    
-	    
-
-//	    @RequestMapping(value = "/registrationform", method = RequestMethod.GET)
-//	    public String showRegistrationForm(Model model) {
-//	        RegistrationForm formData = new RegistrationForm();
-//	        model.addAttribute(Pages.ATR_CUSTOMER, formData);
-//	        return Pages.REGISTRATION;
-//	    }
-//
-//	    @RequestMapping(value = "/registrationform/{id}", method = RequestMethod.GET)
-//	    public String showCustomerForm(@PathVariable("id") Long id, Model model) {
-//	        customerService.getByID(id).ifPresent(cmr -> {
-//	            RegistrationForm formData = Tools.customerToRegistrationForm(cmr);
-//	            model.addAttribute(Pages.ATR_CUSTOMER, formData);
-//	        });
-//	        return Pages.REGISTRATION;
-//	    }
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
 	    @Autowired
 	    private void setNodeDistanceService(NodeDistanceService service) {
@@ -134,5 +101,6 @@ public class ChangingBranchController extends BaseController {
 //	        }
 	        return null;
 	    }
+	    
 	
 }

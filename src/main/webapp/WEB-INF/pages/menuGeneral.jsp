@@ -5,7 +5,9 @@
         <ul>
             <li><a href="${contextPath}/index">${lbNavMain}</a></li>
 			<li><a href="${contextPath}/rateform">${lbNavRates}</a></li>
-			<li><a href="${contextPath}/loginform">${lbNavAuth}</a></li>
+			<c:if test="${empty sessionScope.principal}">
+				<li><a href="${contextPath}/loginform">${lbNavAuth}</a></li>
+			</c:if>
 			<c:if test="${not empty sessionScope.principal}">
 	            <li>
 	                <div>

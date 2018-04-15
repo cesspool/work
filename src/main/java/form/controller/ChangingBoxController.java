@@ -36,6 +36,7 @@ public class ChangingBoxController extends BaseController {
         //model.addAttribute("chosenCities", nodeService.getCities(nodeID));
         return Pages.BOX;
     }
+    
  
     
 }

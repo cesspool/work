@@ -37,6 +37,7 @@
 <spring:message code="personCost.option.envelop" var="lbOptEnvelop"/>
 <spring:message code="personCost.option.economy" var="lbOptEconomy"/>
 <spring:message code="personCost.option.express" var="lbOptExpress"/>
+<spring:message code="personCost.show.error" var="ShowError"/>
 
 <html>
 <head>
@@ -68,8 +69,11 @@
             <p> 
             	<c:if test="${not empty message}">
            	      <div>
+           	      <!--script> return confirm('${message.msg}');</script-->
                      <div> <!-- ERROR MESSAGE BOX -->
-                      <h2>Error</h2>
+                      <!-- h2>${ShowError }</h2-->
+                      <br/>
+                      <br/>
                       <p>${message.msg}</p>
 				  	</div>
 				  </div>

@@ -58,7 +58,7 @@ public class HistoryController extends BaseController {
 	
 	
 	
-	 @Autowired
+		@Autowired
 	    private void setOrderService(OrderService service) {
 	        this.orderService = service;
 	    }
@@ -66,6 +66,16 @@ public class HistoryController extends BaseController {
 	    @Autowired
 	    protected void setMessageSource(MessageSource messageSource) {
 	        this.messageSource = messageSource;
+	    }
+	    
+	    @Override
+	    public boolean isForCustomer() {
+	        return true;
+	    }
+	    
+	    @Override
+	    public boolean isForAdmin() {
+	        return false;
 	    }
 
 }

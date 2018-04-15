@@ -25,11 +25,22 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="<c:url value="/resources/assets/css/main.css"/>"/>
 		<link rel="stylesheet" href="<c:url value="/resources/css/personal.css"/>"/>
+		<link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet"/>
 		<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 	</head>
-	<body class="landing">
+	<body >
 
 	<%@ include file = "menuGeneral.jsp" %>
+	
+	<c:if test="${not empty sessionScope.principal and sessionScope.principal.admin}"> 
+		<%@ include file = "menuAdmin.jsp" %>
+	</c:if>
+	<c:if test="${not empty sessionScope.principal and sessionScope.principal.manager}"> 
+		<%@ include file = "menuManager.jsp" %>
+	</c:if>
+	<c:if test="${not empty sessionScope.principal}"> 
+		<%@ include file = "menuCustomer.jsp" %>
+	</c:if>
 
 		<!-- Banner -->
 			<section id="banner">
@@ -62,6 +73,9 @@
 			<script src="<c:url value="/resources/assets/js/skel.min.js"/>"></script>
 			<script src="<c:url value="/resources/assets/js/util.js"/>"></script>
 			<script src="<c:url value="/resources/assets/js/main.js"/>"></script>
+			
+			<script src="<c:url value="/resources/js/jquery.js"/>"></script>
+			<script src="<c:url value="/resources/js/menu.js"/>"></script>
 
 	</body>
 </html>

@@ -56,36 +56,6 @@ public class RegistrationController extends BaseController {
     }
     
     
-    
-    @RequestMapping(value = "/contact/{id}", method = RequestMethod.GET)
-    public String showPersonContactForm(@PathVariable("id") Long id, Model model, Locale locale) {   
-    		customerService.getByID(id).ifPresent(cmr -> {
-            RegistrationForm formData = Tools.customerToRegistrationForm(cmr);
-            formData.setPerk(messageSource.getMessage(formData.getPerk(), null, locale));
-            model.addAttribute(Pages.ATR_CUSTOMER, formData);
-        });
-        return Pages.CONTACT;
-    }
-
-    @RequestMapping(value = "/contact", method = RequestMethod.POST)
-    public String updateCustomer(@ModelAttribute("customer") RegistrationForm formData,
-                               BindingResult bundingResult,
-                               Model uiModel,
-                               HttpServletRequest httpServletRequest,
-                               RedirectAttributes redirectAttributes,
-                               Locale locale) {
-        Message message = validateForm(formData);
-        if (message != null) {
-            message.setMsg(messageSource.getMessage(message.getKey(), null, locale));
-            redirectAttributes.addFlashAttribute(Pages.ATR_MESSAGE, message);
-            return "redirect:registrationform";
-        } else {
-            Customer cmr = customerService.updateCustomer(formData);
-            redirectAttributes.addFlashAttribute(Pages.ATR_CUSTOMER, formData);
-            return "redirect:contact/"+cmr.getId();
-        }
-    }
-
 
     @Autowired
     private void setCustomerService(CustomerService service) {

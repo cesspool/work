@@ -38,8 +38,7 @@ public class AgreementController extends BaseController {
     private TranspRateService transpRateService;
     private MessageSource messageSource;
     
-    @Autowired
-    private TranspRateDAOService transpRateDAOService;
+
 
     @RequestMapping(value = "/newrate", method = RequestMethod.POST)
     public String agreement(@ModelAttribute("newrate") NewAgreementForm formData,
@@ -65,33 +64,16 @@ public class AgreementController extends BaseController {
         	}
         }
     }
-    
+    @RequestMapping(value = "/newrate", method = RequestMethod.GET)
+    public String showNewRateForm(Model model) {
+    	model.addAttribute("railID", 3);
+    	model.addAttribute("airID", 2);
+    	model.addAttribute("cargoID", 1);
+        return Pages.NEWRATE;
+    }
     
    
-    
-    @RequestMapping(value = "/rateform", method = RequestMethod.GET)	
-    public String showRateForm(Model model) {
-    	List<Transport> transports = transpRateDAOService.getAllTransports();
-    	List<Rate> rates = transpRateDAOService.getCurrentRate();
-    	model.addAttribute("name", rates.get(0).getName());
-    	model.addAttribute("dateStart", rates.get(0).getStartAction());
-    	model.addAttribute("dateEnd", rates.get(0).getEndAction());
-    	model.addAttribute("weight", transports.get(0).getTotalWeight());
-    	model.addAttribute("length", transports.get(0).getMaxLength());
-    	model.addAttribute("width", transports.get(0).getMaxWidth());
-    	model.addAttribute("height", transports.get(0).getMaxHeight());
-    	model.addAttribute("costShippingCargo", rates.get(0).getCostShipping());
-    	model.addAttribute("costShippingAir", rates.get(1).getCostShipping());
-    	model.addAttribute("costShippingRail", rates.get(2).getCostShipping());
-    	model.addAttribute("addCostShippingCargo", rates.get(0).getAdditionalCost());
-    	model.addAttribute("addCostShippingAir", rates.get(1).getAdditionalCost());
-    	model.addAttribute("addCostShippingRail", rates.get(2).getAdditionalCost());
-    	model.addAttribute("costKmCargo", rates.get(0).getCostKm());
-    	model.addAttribute("costKmAir", rates.get(1).getCostKm());
-    	model.addAttribute("costKmRail", rates.get(2).getCostKm());
 
-        return Pages.RATE;
-    }
 
 //    @RequestMapping(value = "/registrationform", method = RequestMethod.GET)
 //    public String showRegistrationForm(Model model) {
@@ -141,6 +123,7 @@ public class AgreementController extends BaseController {
 //        }
         return null;
     }
+    
 
 
 }

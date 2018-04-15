@@ -15,6 +15,11 @@ public class BaseController {
         return (Principal)session.getAttribute(Pages.ATR_PRINCIPAL);
     }
 
+    protected void logout() {
+    	session.removeAttribute(Pages.ATR_PRINCIPAL);
+    	Principal pr = getPrincipal();
+    }
+    
     public boolean hasPrincipal() {
         return getPrincipal() != null;
     }

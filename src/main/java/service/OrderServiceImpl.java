@@ -32,6 +32,8 @@ import dbservice.OrderDAOServiceImpl;
 import dbservice.TranspRateDAOService;
 import dbservice.TranspRateDAOServiceImpl;
 import dijkstra.Test;
+import exception.LogisticsException;
+import exception.OversizeException;
 import exception.PathNotFoundException;
 import form.request.CalculateForm;
 import form.request.OrderingForm;
@@ -116,11 +118,12 @@ public class OrderServiceImpl implements OrderService {
     
     
     @Override
-	public CalculateReq prepareOrder(CalculateForm form) throws PathNotFoundException {
+	public CalculateReq prepareOrder(CalculateForm form) throws LogisticsException {
     	//check size of package
+    	List<Transport> transports = transpRateDAOService.getAllTransports();
+    	checkSize(form, transports);
     	Boxing box = boxingDAOService.getCostByID(form.getBoxesList());
     	double costOfBoxing = box.getCost();
-    	List<Transport> transports = transpRateDAOService.getAllTransports();
     	//CalculateReq calculateReq = new CalculateReq();
 		CharacteristicsPath charPath = pathCalculate(form, transports);
 		calcInfo=charPath;
@@ -135,7 +138,7 @@ public class OrderServiceImpl implements OrderService {
 	
 	
     @Override
-	public CharacteristicsPath pathCalculate(CalculateForm form, List<Transport> transports) throws PathNotFoundException {
+	public CharacteristicsPath pathCalculate(CalculateForm form, List<Transport> transports) throws LogisticsException {
     	Package cargo = new Package();
     	cargo.isEnvelope(form.isEnvelope());
     	cargo.setLength(form.getLength());
@@ -223,8 +226,13 @@ public class OrderServiceImpl implements OrderService {
 		this.calculate = calculate;
 	}
 	
-//    private boolean checkSize(CalculateForm form, List<Transport> transports) {
-//    	if()
-//    }
+    private void checkSize(CalculateForm form, List<Transport> transports) throws OversizeException {
+    	if((form.getHeight()>transports.get(0).getMaxHeight()) || 
+    			(form.getLength()>transports.get(0).getMaxLength()) || 
+    			(form.getWidth()>transports.get(0).getMaxWidth()) || 
+    			form.getWeight()>transports.get(0).getTotalWeight()) {
+    		throw new OversizeException("cost.oversize");
+    	}
+    }
     
 }

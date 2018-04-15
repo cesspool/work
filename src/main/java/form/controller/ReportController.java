@@ -94,4 +94,14 @@ public class ReportController extends BaseController {
 		return costOrder;
     }
     
+    @Override
+    public boolean isForAdmin() {
+        return false;
+    }
+    
+    @Override
+    public boolean isForManager() {
+        return true;
+    }
+    
 }
