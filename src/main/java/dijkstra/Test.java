@@ -50,27 +50,27 @@ public class Test {
     	double KRail =0;
     	double KAir =0;
     	if(cargo.isEnvelope()==true) {
-    		KAir = 0.006;
-    		KCargo = 0.006;
-    		KRail = 0.006;
+    		KAir = 0.002;
+    		KCargo = 0.002;
+    		KRail = 0.002;
     	} else {
     		double coef = getCoef(cargo);
-    		double V = cargo.getHeight() * cargo.getLength() * cargo.getWidth()*cargo.getQuantity();
+    		double V = cargo.getHeight() * cargo.getLength() * cargo.getWidth();
     		
         	if(coef >= 250) {
-        		KCargo = cargo.getWeight()*cargo.getQuantity()*rates.get(0).getAdditionalCost();
+        		KCargo = cargo.getWeight()*rates.get(0).getAdditionalCost()/800;
         	} else if((coef < 250)&&(coef>0)) {
-        		KCargo = V*rates.get(0).getAdditionalCost();
+        		KCargo = V*rates.get(0).getAdditionalCost()/800;
         	} 
         	if(coef >= 500) {
-        		KAir = cargo.getWeight()*cargo.getQuantity()*rates.get(1).getAdditionalCost();
+        		KAir = cargo.getWeight()*rates.get(1).getAdditionalCost()/800;
         	} else if((coef < 500)&&(coef>0)) {
-        		KAir = V*rates.get(1).getAdditionalCost();
+        		KAir = V*rates.get(1).getAdditionalCost()/800;
         	} 
         	if(coef >= 300) {
-        		KRail = cargo.getWeight()*cargo.getQuantity()*rates.get(2).getAdditionalCost();
+        		KRail = cargo.getWeight()*rates.get(2).getAdditionalCost()/800;
         	} else if((coef < 300)&&(coef>0)) {
-        		KRail = V*rates.get(2).getAdditionalCost();
+        		KRail = V*rates.get(2).getAdditionalCost()/800;
         	}
     	}
     	
@@ -87,15 +87,15 @@ public class Test {
     		//								(nodeTransport.get(dist.getNodeFrom()).longValue() == 2L)) {
     		if (isHaveEqualTransport(nodeTransport, dist, 2L)) {
             	timeAir = dist.getLength() / transports.get(1).getAvSpeed();
-            	costAir = (dist.getLength() * rates.get(1).getCostKm())*KAir + 
-            			(dist.getLength() * rates.get(1).getCostKm())*rates.get(1).getCostShipping()*0;
+            	costAir = ((dist.getLength() * rates.get(1).getCostKm())*KAir + 
+            			(dist.getLength() * rates.get(1).getCostKm())*rates.get(1).getCostShipping()/3000)*0.8*cargo.getQuantity();
             	
     		}
    		
     		if (isHaveEqualTransport(nodeTransport, dist, 3L)) {
             	timeRail = dist.getLength() / transports.get(2).getAvSpeed();
-            	costRail = (dist.getLength() * rates.get(2).getCostKm())*KRail + 
-            			(dist.getLength() * rates.get(2).getCostKm())*rates.get(2).getCostShipping()*0;
+            	costRail = ((dist.getLength() * rates.get(2).getCostKm())*KRail + 
+            			(dist.getLength() * rates.get(2).getCostKm())*rates.get(2).getCostShipping()/3000)*0.8*cargo.getQuantity();
             	
     		}
     		
@@ -103,8 +103,8 @@ public class Test {
     		to = getIndexById(dist.getNodeTo(), nodes);
     		
     		timeCargo = dist.getLength() / transports.get(0).getAvSpeed();
-        	costCargo = (dist.getLength() * rates.get(0).getCostKm())*KCargo + 
-        			(dist.getLength() * rates.get(0).getCostKm())*rates.get(0).getCostShipping()*0;
+        	costCargo = ((dist.getLength() * rates.get(0).getCostKm())*KCargo + 
+        			(dist.getLength() * rates.get(0).getCostKm())*rates.get(0).getCostShipping()/3000)*0.8*cargo.getQuantity();
         	
         	
         	//double timeAir = Double.MAX_VALUE;

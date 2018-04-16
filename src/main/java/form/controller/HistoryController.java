@@ -44,6 +44,7 @@ public class HistoryController extends BaseController {
     
 	@RequestMapping(value = "/history/{id}", method = RequestMethod.GET)
     public String showHistorySepForm(@PathVariable("id") Long id, Model model, Locale locale) {
+		
         orderService.getOrderByParam(id, true).ifPresent(ord -> {
         	List<OrderingReq> orderReq = Tools.orderToHistoryForm(ord);
         	for (OrderingReq ordReq : orderReq) {
@@ -56,7 +57,21 @@ public class HistoryController extends BaseController {
         return Pages.HISTORY;
     }
 	
+	//getPrincipal().getId();
 	
+	@RequestMapping(value = "/personal/{id}", method = RequestMethod.GET)
+    public String showPersonalForm(@PathVariable("id") Long id, Model model, Locale locale) {
+        orderService.getOrderByParam(id, false).ifPresent(ord -> {
+        	List<OrderingReq> orderReq = Tools.orderToHistoryForm(ord);
+        	for (OrderingReq ordReq : orderReq) {
+        		ordReq.setTypeDelivery(messageSource.getMessage(ordReq.getTypeDelivery(), null, locale));
+        		ordReq.setTypeCargo(messageSource.getMessage(ordReq.getTypeCargo(), null, locale));
+        		ordReq.getOrder().setCost(Math.ceil(ordReq.getOrder().getCost()));
+        	}
+            model.addAttribute(Pages.ATR_ORDER_READY, orderReq);
+        });
+        return Pages.PERSON;
+    }
 	
 		@Autowired
 	    private void setOrderService(OrderService service) {

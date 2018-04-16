@@ -12,6 +12,6 @@
         <li><a href="${contextPath}/changingBranch">${lbNameTitleBranch}</a></li>
         <li><a href="${contextPath}/changingAgreement">${lbChangAgrHeader}</a></li>
         <li><a href="${contextPath}/changingBox">${lbNameTitleBoxMan}</a></li>
-        <li><a href="${contextPath}/index">${lbUlE}</a></li>
+        <li><a href="${contextPath}/logout">${lbUlLiE}</a></li>
     </ul>
 </div>

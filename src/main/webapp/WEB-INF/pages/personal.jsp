@@ -66,70 +66,70 @@
             <h2>${lbUlLiA}</h2>
             <p>${lbSectionP}</p>
         </header>
-        <form class="registration">
+       <form class="registration">
             <div class="container limiter">
-
+			<c:forEach var="order" items="${orderReq}">		                    
                 <table width="100%" cellspacing="0" cellpadding="5">
                     <tr ><td class="someTable" colspan="2" width="200" valign="top">
-                            ${lbTableAA} <data>14251</data>
+                            ${lbTableAA} ${order.order.name }
                         </td>
                         <td class="someTable" colspan="2" width="200" valign="top">
-                            ${lbTableAB} <data>1561 руб</data>
+                            ${lbTableAB} ${order.order.cost }
                         </td>
                     </tr>
                     <tr>
                         <td width="200" valign="top">
-                            ${lbTableBA} <data>экспресс</data>
+                            ${lbTableBA} ${order.typeDelivery}
                         </td>
                         <td width="200" valign="top">
-                            ${lbTableBB} <data>стандартная</data>
+                            ${lbTableBB} ${order.box.variety}
                         </td>
                         <td colspan="2" width="200" valign="top">
-                            ${lbAddress} <data>ул. Молодежная д.4</data>
+                            ${lbPlaceAddress }: ${order.nodeEnd.address }
                         </td>
                     </tr>
                     <tr>
                         <td width="200" valign="top">
-                            ${lbTableCA} <data>Москва</data>
+                            ${lbTableCA} ${order.nodeStart.city }
                         </td>
                         <td width="200" valign="top">
-                            ${lbTableCB} <data>Уфа</data>
+                            ${lbTableCB} ${order.nodeEnd.city }
                         </td>
                         <td width="200" valign="top">
-                            ${lbTableCC} <data>Конверт </data>
+                            ${lbTableCC} ${order.typeCargo}
                         </td>
                         <td width="200" valign="top">
-                            ${lbTableCD} <data>1</data>
+                            ${lbTableCD} ${order.cargo.quantity }
                         </td>
                     </tr>
                     <tr>
                         <td width="200" valign="top">
-                            ${lbTableDA} <data>10.10.2017</data>
+                            ${lbTableDA} ${order.order.shipmentDate }
                         </td>
                         <td width="200" valign="top">
-                            ${lbTableDB} <data>12.12.2017</data>
+                            ${lbTableDB} ${order.order.realDate }
                         </td>
                         <td width="200" valign="top">
-                            ${lbTableDC} <data>1</data>
+                            ${lbTableDC} ${order.cargo.height }
                         </td>
                         <td width="200" valign="top">
-                            ${lbTableDD} <data>1</data>
+                            ${lbTableDD} ${order.cargo.width }
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2" width="200" valign="top">
-                            ${lbTableEA} <data>Иван Иванов Иванович</data>
+                            ${lbTableEA} ${order.order.contact_information }
                         </td>
 
                         <td width="200" valign="top">
-                            ${lbTableEB} <data>1</data>
+                            ${lbTableEB} ${order.cargo.length }
                         </td>
                         <td width="200" valign="top">
-                            ${lbTableEC} <data>1</data>
+                            ${lbTableEC} ${order.cargo.weight }
                         </td>
                     </tr>
                 </table>
-
+				</c:forEach>
             </div>
         </form>
     </div>

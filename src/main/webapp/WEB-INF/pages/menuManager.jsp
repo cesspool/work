@@ -12,6 +12,6 @@
     <ul>
         <li><a href="${contextPath}/status">${lbStatusOrder}</a></li>
         <li><a href="${contextPath}/report">${lbReportTitleName }</a></li>
-        <li><a href="${contextPath}/index">${lbUlE}</a></li>
+        <li><a href="${contextPath}/logout">${lbUlLiE}</a></li>
     </ul>
 </div>

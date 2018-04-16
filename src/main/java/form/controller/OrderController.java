@@ -62,7 +62,7 @@ public class OrderController extends BaseController {
 	            redirectAttributes.addFlashAttribute(Pages.ATR_MESSAGE, message);
 	            return "redirect:boxing";
 	        } else {
-	        	orderWriter.setRecipientId(1L);
+	        	orderWriter.setRecipientId(getPrincipal().getId());
 	        	orderService.createOrder(orderWriter, formData);
 	            //Order box = orderService.(formData); // mistake is here, don't go to DAO service
 	            redirectAttributes.addFlashAttribute(Pages.COST, formData);

@@ -17,4 +17,8 @@ public class Principal {
         return user.isManager() != null ? user.isManager() : false;
     }
     
+    public Long getId() {
+    	return user != null ? user.getId() : null;
+    }
+    
 }

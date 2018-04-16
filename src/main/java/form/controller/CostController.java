@@ -68,6 +68,7 @@ public class CostController extends BaseController {
         } else {
         	try {
         		OrderWriter orderWriter = new OrderWriter();
+        		//getPrincipal().getId();
 	        	calculateReq = orderService.prepareOrder(formData);
 	        	
 	        	calculateReq.setTypeDelivery(messageSource.getMessage(calculateReq.getTypeDelivery(), null, locale));

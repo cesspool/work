@@ -54,15 +54,16 @@ public class LoginController extends BaseController {
             redirectAttributes.addFlashAttribute(Pages.ATR_MESSAGE, msg);
             return "redirect:/loginform";
         } else {
-            uiModel.addAttribute(Pages.ATR_PRINCIPAL, new Principal(cmr));
+        	Principal principal = new Principal(cmr);
+            uiModel.addAttribute(Pages.ATR_PRINCIPAL, principal);
             uiModel.addAttribute(Pages.ATR_CUSTOMER, cmr);
             if (cmr.isAdmin()) {
-                return Pages.BRANCH;
+                return "redirect:/" + Pages.BRANCH;
             }
             if (cmr.isManager()) {
-                return Pages.STATUS;
+                return "redirect:/" + Pages.STATUS;
             }
-            return Pages.PERSON;    
+            return "redirect:/" + Pages.PERSON + "/" + principal.getId();    
         }
     }
 
