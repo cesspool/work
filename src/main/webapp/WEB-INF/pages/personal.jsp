@@ -17,6 +17,9 @@
 <spring:message code="index.nav.main" var="lbNavMain"/>
 <spring:message code="index.nav.rates" var="lbNavRates"/>
 <spring:message code="index.nav.auth" var="lbNavAuth"/>
+<spring:message code="adminMain.place.address" var="lbPlaceAddress"/>
+<spring:message code="history.full.path" var="lbFullPath"/>
+<spring:message code="history.about.delivery.data" var="lbAboutDataDelivery"/>
 
 <spring:message code="history.table.trA.tdA" var="lbTableAA"/>
 <spring:message code="history.table.trA.tdB" var="lbTableAB"/>
@@ -36,6 +39,8 @@
 <spring:message code="history.table.trE.tdB" var="lbTableEB"/>
 <spring:message code="history.table.trE.tdC" var="lbTableEC"/>
 <spring:message code="personal.address" var="lbAddress"/>
+<spring:message code="history.cargo-package" var="lbCargoPackage"/>
+
 
 
 
@@ -107,26 +112,36 @@
                             ${lbTableDA} ${order.order.shipmentDate }
                         </td>
                         <td width="200" valign="top">
-                            ${lbTableDB} ${order.order.realDate }
+                            ${lbAboutDataDelivery } ${order.order.planDate }
                         </td>
-                        <td width="200" valign="top">
-                            ${lbTableDC} ${order.cargo.height }
-                        </td>
-                        <td width="200" valign="top">
-                            ${lbTableDD} ${order.cargo.width }
-                        </td>
+                        <c:if test="${order.typeCargo==lbCargoPackage}">    
+	                   		<td width="200" valign="top">
+	                            ${lbTableDC} ${order.cargo.height }
+	                        </td>
+	                        <td width="200" valign="top">
+	                            ${lbTableDD} ${order.cargo.width }
+	                        </td>
+                   		</c:if>  
                     </tr>
                     <tr>
                         <td colspan="2" width="200" valign="top">
-                            ${lbTableEA} ${order.order.contact_information }
+                            ${lbTableEA} 
+                            <br/>
+                            ${order.order.contact_information }
                         </td>
-
-                        <td width="200" valign="top">
-                            ${lbTableEB} ${order.cargo.length }
-                        </td>
-                        <td width="200" valign="top">
-                            ${lbTableEC} ${order.cargo.weight }
-                        </td>
+						<c:if test="${order.typeCargo==lbCargoPackage}">
+	                        <td width="200" valign="top">
+	                            ${lbTableEB} ${order.cargo.length }
+	                        </td>
+	                        <td width="200" valign="top">
+	                            ${lbTableEC} ${order.cargo.weight }
+	                        </td>
+	                    </c:if>
+                    </tr>
+                    <tr colspan="5" width="200" valign="top">
+                    	<td>
+                    	${lbFullPath }: ${order.order.fullPath}
+                    	</td>
                     </tr>
                 </table>
 				</c:forEach>

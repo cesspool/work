@@ -47,7 +47,7 @@ public class OrderDAOServiceImpl extends DataService  implements OrderDAOService
 //            " VALUES (?, ?, ?, ?, ?, ?, ?) ";
 	
 	private final static String SQL_SEL_ORDERS_BY_READY_AND_RECIPIENT= "select Ord.name," +
-			" Ord.urgency, Ord.plan_date, Ord.cost, Ord.contact_information, Ord.shipment_date, Ord.real_date, Pk.envelop," +
+			" Ord.urgency, Ord.plan_date, Ord.cost, Ord.contact_information, full_path, Ord.shipment_date, Ord.real_date, Pk.envelop," +
 			" Pk.height, Pk.width, Pk.length, Pk.weight, Pk.quantity, Bx.variety, Nds.city, Ndt.city, Ndt.address" + 
 			" from logistics.order Ord" + 
 			" inner join logistics.package Pk on Pk.id = Ord.package_id" + 
@@ -58,9 +58,9 @@ public class OrderDAOServiceImpl extends DataService  implements OrderDAOService
 			" WHERE recipient_id = ? and ready=?";
 	
 	private final static String SQL_INSERT_ORDER="INSERT INTO logistics.order (name, urgency, ready, plan_date, cost,"
-			+ " shipment_date, contact_information, recipient_id, rate_id, " + 
+			+ " shipment_date, contact_information, full_path, recipient_id, rate_id, " + 
 			" package_id, boxing_id, node_start_id, node_target_id) VALUES " + 
-			" (?,?,'0',?,?,now(),?,?,?,?,?,?,?)";
+			" (?,?,'0',?,?,now(),?,?,?,?,?,?,?,?)";
 	
 	private final static String SQL_INSERT_PACKAGE="INSERT INTO logistics.package (name, envelop, height, width, "
 			+ " length, weight, quantity, size) VALUES (?,?,?,?,?,?,?,?)";
@@ -86,7 +86,7 @@ public class OrderDAOServiceImpl extends DataService  implements OrderDAOService
 			 " where urgency = ? and	(age(now(), shipment_date) <  INTERVAL '1 day');";
 	
 	private final static String SQL_SEL_ORDERS_BY_RECIPIENT_NAME = "select Ord.id, Ord.name," +
-			" Ord.urgency, Ord.plan_date, Ord.cost, Ord.contact_information, Ord.shipment_date, Ord.real_date, Pk.envelop," +
+			" Ord.urgency, Ord.plan_date, Ord.cost, Ord.contact_information, full_path, Ord.shipment_date, Ord.real_date, Pk.envelop," +
 			" Pk.height, Pk.width, Pk.length, Pk.weight, Pk.quantity, Bx.variety, Nds.city, Ndt.city, Ndt.address" + 
 			" from logistics.order Ord" + 
 			" inner join logistics.package Pk on Pk.id = Ord.package_id" + 
@@ -124,6 +124,7 @@ public class OrderDAOServiceImpl extends DataService  implements OrderDAOService
             o.getOrder().setPlanDate(rs.getDate(idx++));
             o.getOrder().setCost(rs.getDouble(idx++));
             o.getOrder().setContact_information(rs.getString(idx++));
+            o.getOrder().setFullPath(rs.getString(idx++));
             o.getOrder().setShipmentDate(rs.getDate(idx++));
             o.getOrder().setRealDate(rs.getDate(idx++));
             o.getCargo().isEnvelope(rs.getBoolean(idx++));
@@ -207,6 +208,7 @@ public class OrderDAOServiceImpl extends DataService  implements OrderDAOService
             o.getOrder().setPlanDate(rs.getDate(idx++));
             o.getOrder().setCost(rs.getDouble(idx++));
             o.getOrder().setContact_information(rs.getString(idx++));
+            o.getOrder().setFullPath(rs.getString(idx++));
             o.getOrder().setShipmentDate(rs.getDate(idx++));
             o.getOrder().setRealDate(rs.getDate(idx++));
             o.getCargo().isEnvelope(rs.getBoolean(idx++));
@@ -264,6 +266,7 @@ public class OrderDAOServiceImpl extends DataService  implements OrderDAOService
             pst.setDate(idx++,  Tools.toSQLDate(order.getPlanDate()));
             pst.setDouble(idx++, order.getCost());
             pst.setString(idx++, order.getContact_information());
+            pst.setString(idx++, order.getFullPath());
             pst.setLong(idx++, order.getRecipientId());
             pst.setLong(idx++, order.getRateId());
             pst.setLong(idx++, order.getPackageId());

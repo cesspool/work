@@ -232,7 +232,8 @@ public class Tools {
     	order.isUrgency(orderWriter.getForm().isUrgency());
     	order.setReady(false);
     	order.setCost(orderWriter.getCalculateReq().getTotalCost());
-    	order.setContact_information(info);   	
+    	order.setContact_information(info);  
+    	order.setFullPath(orderWriter.getCalculateReq().getFullPath());
     	order.setBoxingId(orderWriter.getForm().getBoxesList());
     	order.setNodeStart(orderWriter.getCalculateReq().getPathId().get(0));
     	order.setNodeTarget(orderWriter.getCalculateReq().getPathId()

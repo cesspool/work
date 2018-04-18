@@ -86,7 +86,6 @@
                     <c:if test="${not empty message}">    
                     <div>
 	                      <div> <!-- ERROR MESSAGE BOX -->
-		                      <h2>Error</h2>
 		                      <p>${message.msg}</p>
 						  </div>
 					  </div>

@@ -61,7 +61,7 @@ public class LoginController extends BaseController {
                 return "redirect:/" + Pages.BRANCH;
             }
             if (cmr.isManager()) {
-                return "redirect:/" + Pages.STATUS;
+                return "redirect:/status";
             }
             return "redirect:/" + Pages.PERSON + "/" + principal.getId();    
         }

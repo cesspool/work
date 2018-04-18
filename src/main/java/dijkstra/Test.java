@@ -49,30 +49,34 @@ public class Test {
     	double KCargo =0;
     	double KRail =0;
     	double KAir =0;
-    	if(cargo.isEnvelope()==true) {
-    		KAir = 0.002;
-    		KCargo = 0.002;
-    		KRail = 0.002;
-    	} else {
-    		double coef = getCoef(cargo);
-    		double V = cargo.getHeight() * cargo.getLength() * cargo.getWidth();
-    		
-        	if(coef >= 250) {
-        		KCargo = cargo.getWeight()*rates.get(0).getAdditionalCost()/800;
-        	} else if((coef < 250)&&(coef>0)) {
-        		KCargo = V*rates.get(0).getAdditionalCost()/800;
-        	} 
-        	if(coef >= 500) {
-        		KAir = cargo.getWeight()*rates.get(1).getAdditionalCost()/800;
-        	} else if((coef < 500)&&(coef>0)) {
-        		KAir = V*rates.get(1).getAdditionalCost()/800;
-        	} 
-        	if(coef >= 300) {
-        		KRail = cargo.getWeight()*rates.get(2).getAdditionalCost()/800;
-        	} else if((coef < 300)&&(coef>0)) {
-        		KRail = V*rates.get(2).getAdditionalCost()/800;
-        	}
-    	}
+//    	if(cargo.isEnvelope()==true) {
+//    		KAir = 0.002;
+//    		KCargo = 0.002;
+//    		KRail = 0.002;
+//    	} else {
+//    		double coef = getCoef(cargo);
+//    		double V = cargo.getHeight() * cargo.getLength() * cargo.getWidth();
+//    		
+//        	if(coef >= 250) {
+//        		KCargo = cargo.getWeight()*rates.get(0).getAdditionalCost()/5000;
+//        	} else if((coef < 250)&&(coef>0)) {
+//        		KCargo = V*rates.get(0).getAdditionalCost()/200;
+//        	} 
+//        	if(coef >= 500) {
+//        		KAir = cargo.getWeight()*rates.get(1).getAdditionalCost()/5000;
+//        	} else if((coef < 500)&&(coef>0)) {
+//        		KAir = V*rates.get(1).getAdditionalCost()/200;
+//        	} 
+//        	if(coef >= 300) {
+//        		KRail = cargo.getWeight()*rates.get(2).getAdditionalCost()/5000;
+//        	} else if((coef < 300)&&(coef>0)) {
+//        		KRail = V*rates.get(2).getAdditionalCost()/200;
+//        	}
+//    	}
+    	
+    	
+    	double gab = (cargo.getLength() + cargo.getWidth() + cargo.getLength());
+    	double weight = cargo.getWeight();
     	
     	
     	double timeAir = Double.MAX_VALUE;
@@ -103,9 +107,11 @@ public class Test {
     		to = getIndexById(dist.getNodeTo(), nodes);
     		
     		timeCargo = dist.getLength() / transports.get(0).getAvSpeed();
-        	costCargo = ((dist.getLength() * rates.get(0).getCostKm())*KCargo + 
-        			(dist.getLength() * rates.get(0).getCostKm())*rates.get(0).getCostShipping()/3000)*0.8*cargo.getQuantity();
-        	
+    		double costDel = (dist.getLength() * rates.get(0).getCostKm()) / 300;
+    		costCargo =  costDel + costDel*gab + costDel*0.1*weight + 0.8*(cargo.getQuantity()-1)*(costDel + costDel*gab + costDel*0.1*weight);
+//        	costCargo = ((dist.getLength() * rates.get(0).getCostKm())*KCargo + 
+//        			(dist.getLength() * rates.get(0).getCostKm())*rates.get(0).getCostShipping()/3000)*0.8*cargo.getQuantity();
+//        	
         	
         	//double timeAir = Double.MAX_VALUE;
         	

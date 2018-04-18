@@ -18,11 +18,19 @@ public class Order {
     private Long rateId;
     private Long packageId;
     private Long boxingId;
+    private String fullPath;
     
-    
-    
+        
 
-    public Date getShipmentDate() {
+    public String getFullPath() {
+		return fullPath;
+	}
+
+	public void setFullPath(String fullPath) {
+		this.fullPath = fullPath;
+	}
+
+	public Date getShipmentDate() {
 		return shipmentDate;
 	}
 
