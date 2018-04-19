@@ -37,11 +37,12 @@ lastName varchar(40) NOT NULL,
 patronymic varchar(40) NOT NULL,
 address varchar(100) NOT NULL,
 telephone varchar(20) NOT NULL,
-email VARCHAR(50) NOT NULL,
+email VARCHAR(50)  NOT NULL,
 hashcode VARCHAR(32),
 admin boolean,
 manager boolean
 );
+create unique index email_unique_idx on logistics.customer (email);
 
 CREATE TABLE logistics.node(
 id SERIAL PRIMARY KEY NOT NULL,

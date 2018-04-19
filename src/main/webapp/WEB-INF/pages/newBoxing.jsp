@@ -76,7 +76,7 @@
                         </tr>
                     </table>
                       <div class="clearfix">
-              			  <button type="button" class="cancelbtn">${lbCancel }</button>
+              			  <button onclick="location.href = '${contextPath}/changingBox';" type="button" class="cancelbtn">${lbCancel }</button>
                			  <button type="submit" class="signupbtn">${lbSend}</button>
              		  </div>
 

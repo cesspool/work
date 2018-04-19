@@ -59,6 +59,10 @@ public class StatusController extends BaseController {
 	        orderService.getOrderByRecipientName(formData.getNameRecip()).ifPresent(ord -> {
 	        	List<OrderingReq> orderReq = Tools.orderToHistoryForm(ord);
 	        	for (OrderingReq ordReq : orderReq) {
+	        		ordReq.getCargo().setHeight(Math.round(ordReq.getCargo().getHeight()*10)/10.0);
+	        		ordReq.getCargo().setWeight(Math.round(ordReq.getCargo().getWeight()*10)/10.0);
+	        		ordReq.getCargo().setWidth(Math.round(ordReq.getCargo().getWidth()*10)/10.0);
+	        		ordReq.getCargo().setLength(Math.round(ordReq.getCargo().getLength()*10)/10.0);
 	        		ordReq.setTypeDelivery(messageSource.getMessage(ordReq.getTypeDelivery(), null, locale));
 	        		ordReq.setTypeCargo(messageSource.getMessage(ordReq.getTypeCargo(), null, locale));
 	        	}

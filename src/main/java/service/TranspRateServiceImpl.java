@@ -5,6 +5,7 @@ import beans.Rate;
 import beans.Transport;
 import beans.TransportRate;
 import dbservice.TranspRateDAOService;
+import exception.LogisticsException;
 import form.request.NewAgreementForm;
 import form.request.NewBoxingForm;
 import form.request.TransportForm;
@@ -45,7 +46,7 @@ public class TranspRateServiceImpl implements TranspRateService {
     }
     
     @Override 
-    public void updateRateById(NewAgreementForm formData) {
+    public void updateRateById(NewAgreementForm formData) throws LogisticsException {
     	List<Rate> rates = Tools.newAgreementFormToRate(formData);
     	transpRateDAOService.updateRateById(rates);
     }
@@ -69,14 +70,14 @@ public class TranspRateServiceImpl implements TranspRateService {
     
     
     @Override
-    public List<Rate> createRate(NewAgreementForm rateForm) {
+    public List<Rate> createRate(NewAgreementForm rateForm) throws LogisticsException{
     	List<Rate> rates = Tools.newAgreementFormToRate(rateForm);
     	createRate(rates);
         return rates;
     }
 
     @Override
-    public void createRate(List<Rate> rates){
+    public void createRate(List<Rate> rates) throws LogisticsException{
         if (rates!=null) {
             // validate the bean's fileds
 //        	transportRate.getTransport().setTotalCapacity(transportRate.getTransport().getMaxHeight() *

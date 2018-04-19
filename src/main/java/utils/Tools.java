@@ -29,6 +29,7 @@ import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 
@@ -39,7 +40,7 @@ public class Tools {
         try {
             MessageDigest msgDigst = MessageDigest.getInstance("MD5");
             byte[] md5 = msgDigst.digest(str.getBytes("UTF-8"));
-            return new String(md5);
+            return Base64.getEncoder().encodeToString(md5);
         } catch (NoSuchAlgorithmException algEx) {
             logger.error(algEx.getMessage(), algEx);
             throw new RuntimeException(algEx);
@@ -49,6 +50,10 @@ public class Tools {
         }
     }
 
+    
+    public static byte[] md5ToString(String strHash){
+    	return Base64.getDecoder().decode(strHash);
+    }
     
     public static boolean isBlank(String str) {
         if ((str == null) && (str.trim().length() == 0)) {

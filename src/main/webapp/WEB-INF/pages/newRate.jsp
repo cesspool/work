@@ -61,6 +61,17 @@
         <header class="major special">
             <h2>${lbNameTitle}</h2>
             <p>${lbUlSect}</p>
+             <c:if test="${not empty message}">
+           	      <div>
+           	      <!--script> return confirm('${message.msg}');</script-->
+                     <div> <!-- ERROR MESSAGE BOX -->
+                      <!-- h2>${ShowError }</h2-->
+                      <br/>
+                      <br/>
+                      <p>${message.msg}</p>
+				  	</div>
+				  </div>
+            	</c:if>
         </header>
         <form class="registration" method="post" action="${contextPath}/newrate">
         	<input type = "hidden" value = "${idRateCargo}" name = "cargoID" id = "cargoID">
@@ -139,7 +150,7 @@
                     </tr>
                 </table>
  					<div class="clearfix">
-                    	<button type="button" class="cancelbtn">${lbCancel }</button>
+                    	<button onclick="location.href = '${contextPath}/changingAgreement';" type="button" class="cancelbtn">${lbCancel }</button>
                     	<button type="submit" class="signupbtn">${lbSend}</button>
                 	</div>
             </div>

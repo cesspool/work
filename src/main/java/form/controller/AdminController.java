@@ -58,7 +58,7 @@ public class AdminController extends BaseController{
         	if(formData.getIdNode()==null) {
         		NodeDistance nodeDistance = nodeService.createNode(formData);
                 redirectAttributes.addFlashAttribute(Pages.ADMIN, formData);
-                return "redirect:admin";
+                return "redirect:changingBranch";
         	} else {
         		nodeService.changeNodeById(formData);
         		return "redirect:changingBranch";

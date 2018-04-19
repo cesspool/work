@@ -47,7 +47,7 @@ INSERT INTO logistics.node (name, city, address, coordinatex, coordinatey, code)
                	( 'Томский', 'Томск', 'Тюрина улица, д.13', '56.495116', '84.972128', '15'),
                	( 'Симферопольский', 'Симферополь', 'Ленивка улица, д.8', '44.952116', '34.102411', '16');
 
-insert into logistics.transport_node (node_id, transport_id) VALUES (1, 2),
+insert into logistics.transport_node (node_id, transport_id) VALUES 
 													(1, 2),
 													(1, 3),
 													(2, 3),
@@ -59,7 +59,7 @@ insert into logistics.transport_node (node_id, transport_id) VALUES (1, 2),
 													(13, 2),
 													(13, 3);
 
-insert into logistics.distance (length, node_id_start, node_id_end) VALUES (5, 3, 4),
+insert into logistics.distance (length, node_id_start, node_id_end) VALUES 
 														(467, 1, 10),
 														(6142, 1, 3),
 														(959, 1, 8),
@@ -148,4 +148,4 @@ INSERT INTO logistics.order (name, urgency, ready, plan_date, cost, shipment_dat
 
 COMMIT;
 
-
+select * from logistics.node

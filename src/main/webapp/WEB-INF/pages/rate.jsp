@@ -37,6 +37,9 @@
 <spring:message code="rate.additional" var="lbAdditional"/>
 
 
+
+
+
 <html>
 <head>
     <title>${lbTitle }</title>
@@ -151,6 +154,9 @@
         </form>
     </div>
     <hr>
+    </section>
+    
+
     <!---------------------------------------------------------------------------------------------------------------->
 
 

@@ -138,8 +138,8 @@
 	                        </td>
 	                    </c:if>
                     </tr>
-                    <tr colspan="5" width="200" valign="top">
-                    	<td>
+                    <tr  valign="top">
+                    	<td colspan="5">
                     	${lbFullPath }: ${order.order.fullPath}
                     	</td>
                     </tr>

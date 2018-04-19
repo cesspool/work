@@ -176,7 +176,7 @@
                 </div>
 
                 <div class="clearfix">
-                    <button type="button" class="cancelbtn">${lbCancel }</button>
+                    <button onclick="location.href = '${contextPath}/costCalculation';" type="button" class="cancelbtn">${lbCancel }</button>
                     <button type="submit" class="signupbtn">${lbSend}</button>
                 </div>
 

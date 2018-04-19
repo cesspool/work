@@ -33,6 +33,9 @@
 <spring:message code="registration.type.privilege.manager" var="lbPrivilegeManager"/>
 <spring:message code="registration.type.privilege.admin" var="lbPrivilegeAdmin"/>
 
+<spring:message code="registration.psw.match" var="lbMatch"/>
+<spring:message code="registration.psw.notmatch" var="lbNotMatch"/>
+
 <html>
 <head>
     <title>${lbMain}</title>
@@ -43,6 +46,18 @@
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/main.css"/>"/>
     
     <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+    <script>
+    var check = function() {
+    	  if (document.getElementById('psw').value ==
+    	    document.getElementById('pswRepeat').value) {
+    	    document.getElementById('message').style.color = 'green';
+    	    document.getElementById('message').innerHTML = '${lbMatch}';
+    	  } else {
+    	    document.getElementById('message').style.color = 'red';
+    	    document.getElementById('message').innerHTML = '${lbNotMatch}';
+    	  }
+    	}
+    </script>
 </head>
 
 <body>
@@ -80,11 +95,12 @@
             <td width="200" valign="top">
                 <label for="psw"><b>${lbTableBCA}</b></label>
                 <input type="password" placeholder="${lbPlacePsw}" name="psw" id="psw" required
-                oninvalid="this.setCustomValidity('')" />
+                oninvalid="this.setCustomValidity('')" onkeyup='check();' />
 
                 <label for="pswRepeat"><b>${lbTableBCB}</b></label>
                 <input type="password" placeholder="${lbPlacePswRepeat}" name="pswRepeat" id="pswRepeat" required
-                oninvalid="this.setCustomValidity('')" />
+                oninvalid="this.setCustomValidity('')" onkeyup='check();' />
+                 <span id='message'></span>
 
                 <c:if test="${not empty sessionScope.principal and sessionScope.principal.admin}">                
 					<label for="privilege"><b>${lbPrivilege }</b></label>
@@ -99,7 +115,7 @@
 
     </table>
             <div class="clearfix">
-                <button type="button" class="cancelbtn">${lbCancel }</button>
+                <button onclick="location.href = '${contextPath}/loginform';" type="button" class="cancelbtn">${lbCancel }</button>
                 <button type="submit" class="signupbtn">${lbSave }</button>
             </div>
     </div>

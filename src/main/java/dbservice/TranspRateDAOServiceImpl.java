@@ -5,6 +5,7 @@ import beans.Node;
 import beans.Rate;
 import beans.Transport;
 import beans.TransportRate;
+import exception.RateAlreadyExistException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 import utils.Pair;
 import utils.Tools;
 
-import java.sql.Date;
+import java.util.Date;
+import java.util.HashMap;
 import java.sql.PreparedStatement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -65,6 +67,12 @@ public class TranspRateDAOServiceImpl extends DataService implements TranspRateD
     		 " set name = ?, costshipping=?, additionalcost=?, costkm = ?, " +
     		 " startactiondate = ?, endactiondate=? where id =  ?";
     
+    private final static String SQL_DATA_RATE_CHECK = "select * from logistics.rate R " + 
+    		" where ( :sd >= R.startactiondate and :sd < R.endactiondate) or " + 
+    		"       ( :ed >= R.startactiondate and :ed < R.endactiondate) or " + 
+    		"       ( :sd <= R.startactiondate and :ed > R.endactiondate) or " + 
+    		"       ( :sd >= R.startactiondate and :ed < R.endactiondate) ";
+    
     
     @Override
     @Transactional
@@ -83,7 +91,10 @@ public class TranspRateDAOServiceImpl extends DataService implements TranspRateD
     
     @Override
     @Transactional
-    public void updateRateById(List<Rate> rates) {
+    public void updateRateById(List<Rate> rates)  {
+//    	if (checkDataRate(rates.get(0).getStartAction(), rates.get(0).getEndAction())) {
+//    		throw new RateAlreadyExistException("rate.already.exists");
+//    	}
 	    for (Rate rate : rates) {
 	    	getJdbcTemplate().update(SQL_UPDATE_RATE_BY_NAME, (ps) -> {
 	            int idx = 1;
@@ -180,31 +191,10 @@ public class TranspRateDAOServiceImpl extends DataService implements TranspRateD
     
     @Override
     @Transactional
-    public void insertRate(List<Rate> rates) {
-//    	Rate rateCargo = transportRate.getRate().get(0);
-//    	Rate rateAir = transportRate.getRate().get(1);
-//    	Rate rateRail = transportRate.getRate().get(2);
-//        try {
-//            KeyHolder keyHolder = new GeneratedKeyHolder();
-//            getJdbcTemplate().update((con) ->  {
-//                PreparedStatement pst = con.prepareStatement(SQL_UPDATE_TRANSPORT, new String[] {"id"}); // Statement.RETURN_GENERATED_KEYS
-//                int idx = 1;
-//                pst.setString(idx++,transport.getVariety());
-//                pst.setDouble(idx++, transport.getAvSpeed());
-//                pst.setDouble(idx++, transport.getCostKm());
-//                pst.setDouble(idx++, transport.getMaxHeight());
-//                pst.setDouble(idx++, transport.getMaxWidth());
-//                pst.setDouble(idx++, transport.getMaxLength());
-//                pst.setDouble(idx++, transport.getTotalWeight());
-//                pst.setDouble(idx++, transport.getTotalCapacity());
-//                return pst;
-//            }, keyHolder);
-//            Long ID = keyHolder.getKey().longValue();
-//            transport.setId(ID);
-//        } catch (DataAccessException dEx) {
-//            Throwable ex = dEx.getCause();
-//            ex.toString();
-//        }
+    public void insertRate(List<Rate> rates) throws RateAlreadyExistException {
+    	if (checkDataRate(rates.get(0).getStartAction(), rates.get(0).getEndAction())) {
+    		throw new RateAlreadyExistException("rate.already.exists");
+    	}
     	
     	 try {
          	for(Rate rate : rates) {
@@ -229,6 +219,16 @@ public class TranspRateDAOServiceImpl extends DataService implements TranspRateD
              ex.toString();
          }
     	
+    }
+    
+    private boolean checkDataRate(Date start, Date end){
+    	Map<String, Date> params = new HashMap<>();
+    	params.put("sd", Tools.toSQLDate(start));
+    	params.put("ed", Tools.toSQLDate(end));
+    	Boolean isExist = getNamedParameterJdbcTemplate().query(SQL_DATA_RATE_CHECK, params, (rs) -> {
+    		return  rs.next() ? Boolean.TRUE : Boolean.FALSE; 
+    	});
+    	return isExist;
     }
     
     @Override

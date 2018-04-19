@@ -101,6 +101,7 @@ public class CustomerDAOServiceImpl extends DataService implements CustomerDAOSe
                 pst.setString(idx++, customer.getTelephone());
                 pst.setString(idx++, customer.getEmail());
                 pst.setString(idx++, customer.getMd5());
+                //pst.setBytes(idx++, customer.getMd5().getBytes());
                 pst.setBoolean(idx++, customer.isAdmin());
                 pst.setBoolean(idx++, customer.isManager());
                 return pst;

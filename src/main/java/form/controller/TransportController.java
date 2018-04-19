@@ -24,7 +24,7 @@ import web.Pages;
 
 
 @Controller
-public class TransportController {
+public class TransportController extends BaseController {
 	private TranspRateService transpRateService;
 	private MessageSource messageSource;
 	

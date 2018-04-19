@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -42,15 +43,20 @@ public class CoreConfiguration {
     }
   
     @Bean
-    @Autowired
-    public JdbcTemplate jdbcTemplate(DataSource ds){
+    public JdbcTemplate jdbcTemplate(@Autowired DataSource ds){
         JdbcTemplate jdbcTemplate = new JdbcTemplate(ds);
         return jdbcTemplate;
     }
   
     @Bean
-    @Autowired
-    public  PlatformTransactionManager transactionManager(DataSource ds){
+    public NamedParameterJdbcTemplate namedParameterJdbcTemplate(@Autowired DataSource ds) {
+    	NamedParameterJdbcTemplate npJdbcTemplate = new NamedParameterJdbcTemplate(ds);
+    	return npJdbcTemplate;
+    }
+    
+    
+    @Bean
+    public  PlatformTransactionManager transactionManager(@Autowired DataSource ds){
         DataSourceTransactionManager dsTransactionManager = new DataSourceTransactionManager(ds);
         return dsTransactionManager;
     } 

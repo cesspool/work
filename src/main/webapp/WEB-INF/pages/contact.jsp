@@ -155,7 +155,6 @@
 
                     </table>
                     <div class="clearfix">
-                        <button type="button" class="cancelbtn">${lbCancel}</button>
                         <button type="submit" class="signupbtn">${lbSave}</button>
                     </div>
                 </div>

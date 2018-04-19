@@ -46,7 +46,7 @@ public class BoxingController extends BaseController {
 	        } else {
 	            Boxing box = boxingService.createBoxing(formData); // mistake is here, don't go to DAO service
 	            redirectAttributes.addFlashAttribute(Pages.BOXING, formData);
-	            return "redirect:boxing";
+	            return "redirect:changingBox";
 	        }
 
 	    }

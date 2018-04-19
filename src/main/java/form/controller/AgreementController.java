@@ -17,6 +17,8 @@ import beans.Rate;
 import beans.Transport;
 import beans.TransportRate;
 import dbservice.TranspRateDAOService;
+import exception.LogisticsException;
+import exception.RateAlreadyExistException;
 import form.request.NewAgreementForm;
 import form.request.TransportForm;
 import service.TranspRateService;
@@ -53,15 +55,23 @@ public class AgreementController extends BaseController {
             redirectAttributes.addFlashAttribute(Pages.ATR_MESSAGE, message);
             return "redirect:newrate";
         } else {
-        	if(formData.getCargoID() == 0)
-        	{
-        		List<Rate> transportRate = transpRateService.createRate(formData);// (formData);
-                redirectAttributes.addFlashAttribute(Pages.NEWRATE, formData);
-                return "redirect:newrate";
-        	} else {
-        		transpRateService.updateRateById(formData);
-        		return "redirect:changingAgreement";
+        	try {
+        		if(formData.getCargoID() == 0)
+            	{
+            		List<Rate> transportRate = transpRateService.createRate(formData);// (formData);
+                    redirectAttributes.addFlashAttribute(Pages.NEWRATE, formData);
+                    return "redirect:changingAgreement";
+            	} else {
+            		transpRateService.updateRateById(formData);
+            		return "redirect:changingAgreement";
+            	}
+        	} catch(LogisticsException ex) {
+        		Message errMsg = ex.getMsg();
+        		errMsg.setMsg(messageSource.getMessage(errMsg.getKey(), null, locale));
+        		redirectAttributes.addFlashAttribute(Pages.ATR_MESSAGE, errMsg);
+        		return "redirect:newrate";
         	}
+        	
         }
     }
     @RequestMapping(value = "/newrate", method = RequestMethod.GET)

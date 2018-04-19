@@ -138,7 +138,7 @@
                 </table>
 
                 <div class="clearfix">
-                    <button type="button" class="cancelbtn">${lbCancel }</button>
+                    <button onclick="location.href = '${contextPath}/changingBranch';" type="button" class="cancelbtn"> ${lbCancel }</button>
                     <button type="submit" class="signupbtn">${lbSend}</button>
                 </div>
             </div>

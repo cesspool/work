@@ -37,7 +37,7 @@
 <spring:message code="history.table.trE.tdA" var="lbTableEA"/>
 <spring:message code="history.table.trE.tdB" var="lbTableEB"/>
 <spring:message code="history.table.trE.tdC" var="lbTableEC"/>
-
+<spring:message code="history.full.path" var="lbFullPath"/>
 
 
 <html>
@@ -107,24 +107,33 @@
                         <td width="200" valign="top">
                             ${lbTableDB} ${order.order.realDate }
                         </td>
-                        <td width="200" valign="top">
-                            ${lbTableDC} ${order.cargo.height }
-                        </td>
-                        <td width="200" valign="top">
-                            ${lbTableDD} ${order.cargo.width }
-                        </td>
+                        <c:if test="${order.typeCargo==lbCargoPackage}">    
+	                   		<td width="200" valign="top">
+	                            ${lbTableDC} ${order.cargo.height }
+	                        </td>
+	                        <td width="200" valign="top">
+	                            ${lbTableDD} ${order.cargo.width }
+	                        </td>
+                   		</c:if>  
                     </tr>
                     <tr>
                         <td colspan="2" width="200" valign="top">
                             ${lbTableEA} ${order.order.contact_information }
                         </td>
 
-                        <td width="200" valign="top">
-                            ${lbTableEB} ${order.cargo.length }
-                        </td>
-                        <td width="200" valign="top">
-                            ${lbTableEC} ${order.cargo.weight }
-                        </td>
+                         <c:if test="${order.typeCargo==lbCargoPackage}">
+	                        <td width="200" valign="top">
+	                            ${lbTableEB} ${order.cargo.length }
+	                        </td>
+	                        <td width="200" valign="top">
+	                            ${lbTableEC} ${order.cargo.weight }
+	                        </td>
+	                    </c:if>
+                    </tr>
+					<tr colspan="5" >
+                    	<td>
+                    	${lbFullPath }: ${order.order.fullPath}
+                    	</td>
                     </tr>
                 </table>
 				</c:forEach>

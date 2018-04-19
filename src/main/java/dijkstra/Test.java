@@ -49,13 +49,17 @@ public class Test {
     	double KCargo =0;
     	double KRail =0;
     	double KAir =0;
+    	double V = cargo.getHeight() * cargo.getLength() * cargo.getWidth();
+    	double resCargo;
+    	double resAir;
+    	double resRail;
 //    	if(cargo.isEnvelope()==true) {
 //    		KAir = 0.002;
 //    		KCargo = 0.002;
 //    		KRail = 0.002;
 //    	} else {
 //    		double coef = getCoef(cargo);
-//    		double V = cargo.getHeight() * cargo.getLength() * cargo.getWidth();
+//    		
 //    		
 //        	if(coef >= 250) {
 //        		KCargo = cargo.getWeight()*rates.get(0).getAdditionalCost()/5000;
@@ -86,20 +90,35 @@ public class Test {
     	double timeCargo;
     	double costCargo;
     	for (Distance dist : distances) {
+    		timeAir = Double.MAX_VALUE;
+        	costAir = Double.MAX_VALUE;
+        	timeRail = Double.MAX_VALUE;
+        	costRail = Double.MAX_VALUE;
     		
     		//if ((nodeTransport.get(dist.getNodeFrom()).equals(nodeTransport.get(dist.getNodeTo()))) && 
     		//								(nodeTransport.get(dist.getNodeFrom()).longValue() == 2L)) {
     		if (isHaveEqualTransport(nodeTransport, dist, 2L)) {
             	timeAir = dist.getLength() / transports.get(1).getAvSpeed();
-            	costAir = ((dist.getLength() * rates.get(1).getCostKm())*KAir + 
-            			(dist.getLength() * rates.get(1).getCostKm())*rates.get(1).getCostShipping()/3000)*0.8*cargo.getQuantity();
-            	
+            	double costDelAir = (dist.getLength() * rates.get(1).getCostKm()) / 300;
+           		if((cargo.getWeight()>500)||(V>1.5)||((cargo.getHeight() + cargo.getLength() + cargo.getWidth())>5)) {
+        			resAir = costDelAir + costDelAir*rates.get(1).getAdditionalCost()/100;
+        		} else {
+        			resAir = costDelAir + costDelAir*rates.get(1).getCostShipping()/100;
+        		}
+            	costAir = resAir + resAir*gab + resAir*0.1*weight + 0.8*(cargo.getQuantity()-1) * 
+            			(resAir + resAir*gab + resAir*0.1*weight);    	
     		}
    		
     		if (isHaveEqualTransport(nodeTransport, dist, 3L)) {
             	timeRail = dist.getLength() / transports.get(2).getAvSpeed();
-            	costRail = ((dist.getLength() * rates.get(2).getCostKm())*KRail + 
-            			(dist.getLength() * rates.get(2).getCostKm())*rates.get(2).getCostShipping()/3000)*0.8*cargo.getQuantity();
+            	double costDelRail = (dist.getLength() * rates.get(2).getCostKm()) / 300;
+        		if((cargo.getWeight()>500)||(V>1.5)||((cargo.getHeight() + cargo.getLength() + cargo.getWidth())>5)) {
+        			resRail = costDelRail + costDelRail*rates.get(2).getAdditionalCost()/100;
+        		} else {
+        			resRail = costDelRail + costDelRail*rates.get(2).getCostShipping()/100;
+        		}
+            	costRail =  resRail + resRail*gab + resRail*0.1*weight + 0.8*(cargo.getQuantity()-1) * 
+            			(resRail + resRail*gab + resRail*0.1*weight);
             	
     		}
     		
@@ -108,7 +127,13 @@ public class Test {
     		
     		timeCargo = dist.getLength() / transports.get(0).getAvSpeed();
     		double costDel = (dist.getLength() * rates.get(0).getCostKm()) / 300;
-    		costCargo =  costDel + costDel*gab + costDel*0.1*weight + 0.8*(cargo.getQuantity()-1)*(costDel + costDel*gab + costDel*0.1*weight);
+    		
+    		if((cargo.getWeight()>500)||(V>1.5)||((cargo.getHeight() + cargo.getLength() + cargo.getWidth())>5)) {
+    			resCargo = costDel + costDel*rates.get(0).getAdditionalCost()/100;
+    		} else {
+    			resCargo = costDel + costDel*rates.get(0).getCostShipping()/100;
+    		}
+    		costCargo =  resCargo + resCargo*gab + resCargo*0.1*weight + 0.8*(cargo.getQuantity()-1)*(resCargo + resCargo*gab + resCargo*0.1*weight);
 //        	costCargo = ((dist.getLength() * rates.get(0).getCostKm())*KCargo + 
 //        			(dist.getLength() * rates.get(0).getCostKm())*rates.get(0).getCostShipping()/3000)*0.8*cargo.getQuantity();
 //        	
@@ -159,9 +184,14 @@ public class Test {
 	    			legthDist = transCoordinate.setGeoCoordinate(startNode.getCoordinateX(), startNode.getCoordinateY(),
 	    												endNode.getCoordinateX(), endNode.getCoordinateY());
 	    			timeAir = legthDist / transports.get(1).getAvSpeed();
-	            	costAir = legthDist * rates.get(1).getCostKm() + 
-	            			(legthDist * rates.get(1).getCostKm())*KAir + 
-	            			(legthDist * rates.get(1).getCostKm())*rates.get(1).getCostShipping();
+	    			double costDelAirAdd = (legthDist * rates.get(1).getCostKm()) / 300;
+	           		if((cargo.getWeight()>500)||(V>1.5)||((cargo.getHeight() + cargo.getLength() + cargo.getWidth())>5)) {
+	        			resAir = costDelAirAdd + costDelAirAdd*rates.get(1).getAdditionalCost()/100;
+	        		} else {
+	        			resAir = costDelAirAdd + costDelAirAdd*rates.get(1).getCostShipping()/100;
+	        		}
+	            	costAir = resAir + resAir*gab + resAir*0.1*weight + 0.8*(cargo.getQuantity()-1) * 
+	            			(resAir + resAir*gab + resAir*0.1*weight); 
 	            	
 	            	List<Double> edgeTime = new ArrayList<>(Arrays.asList(timeCargo, timeAir, timeRail));
 	            	List<Double> edgeCost = new ArrayList<>(Arrays.asList(costCargo,costAir,costRail));
@@ -187,9 +217,14 @@ public class Test {
 	    			legthDist = transCoordinate.setGeoCoordinate(startNode.getCoordinateX(), startNode.getCoordinateY(),
 	    												endNode.getCoordinateX(), endNode.getCoordinateY());
 	    			timeRail = legthDist / transports.get(2).getAvSpeed();
-	            	costRail = legthDist * rates.get(2).getCostKm() + 
-	            			(legthDist * rates.get(2).getCostKm())*KRail + 
-	            			(legthDist * rates.get(2).getCostKm())*rates.get(2).getCostShipping();
+	    			double costDelRailAdd = (legthDist * rates.get(2).getCostKm()) / 300;
+	    			if((cargo.getWeight()>500)||(V>1.5)||((cargo.getHeight() + cargo.getLength() + cargo.getWidth())>5)) {
+	        			resRail = costDelRailAdd + costDelRailAdd*rates.get(2).getAdditionalCost()/100;
+	        		} else {
+	        			resRail = costDelRailAdd + costDelRailAdd*rates.get(2).getCostShipping()/100;
+	        		}
+	            	costRail =  resRail + resRail*gab + resRail*0.1*weight + 0.8*(cargo.getQuantity()-1) * 
+	            			(resRail + resRail*gab + resRail*0.1*weight);
 	            	
 	            	List<Double> edgeTime = new ArrayList<>(Arrays.asList(timeCargo, timeAir, timeRail));
 	            	List<Double> edgeCost = new ArrayList<>(Arrays.asList(costCargo,costAir,costRail));
