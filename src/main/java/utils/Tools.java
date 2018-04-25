@@ -112,7 +112,8 @@ public class Tools {
         }
         if(cmr.isManager()) {
         	form.setPerk("contact.perk-manager");
-        } else {
+        } 
+        if(!cmr.isManager()&&(!cmr.isAdmin())){
         	form.setPerk("contact.perk-ordinary");
         }
         return form;

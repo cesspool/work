@@ -25,7 +25,7 @@ public class CustomerDAOServiceImpl extends DataService implements CustomerDAOSe
         " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     private final static String SQL_UPDATE = "UPDATE logistics.customer " +
-        " SET firstName=?, lastName=?, patronymic=?, address=?, telephone=?, email=?, hashcode=?, admin=?, manager=?" +
+        " SET firstName=?, lastName=?, patronymic=?, address=?, telephone=?, email=?, hashcode=?" +
         " WHERE id=?";
 
     private final static String SQL_UPDATE_PASSWORD = "UPDATE logistics.customer SET hashcode=? WHERE id=?";
@@ -127,8 +127,8 @@ public class CustomerDAOServiceImpl extends DataService implements CustomerDAOSe
             ps.setString(idx++, customer.getTelephone());
             ps.setString(idx++, customer.getEmail());
             ps.setString(idx++, customer.getMd5());
-            ps.setBoolean(idx++, customer.isAdmin());
-            ps.setBoolean(idx++, customer.isManager());
+            /// ps.setBoolean(idx++, customer.isAdmin());
+            /// ps.setBoolean(idx++, customer.isManager());
             ps.setLong(idx++, customer.getId());
         });
     }

@@ -37,6 +37,8 @@
 <spring:message code="adminMain.place.address" var="lbPlaceAddress"/>
 <spring:message code="adminMain.button.add" var="lbBtnAdd"/>
 <spring:message code="adminMain.button.remove" var="lbBtnRemove"/>
+<spring:message code="adminMain.alert.city.select" var="lbAlertCity"/>
+
 
 <html>
 <head>
@@ -45,13 +47,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/main.css"/>"/>
     <link rel="stylesheet" href="<c:url value="/resources/css/personal.css"/>"/>
-
+	<link rel="icon" type="image/png" href="<c:url value="/resources/Login_v2/images/icons/favicon.ico"/>"/>
+	
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400;300" rel="stylesheet" type="text/css">
     <link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet"/>
     
     <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 </head>
 <body>
+
+
 
 <%@ include file = "menuGeneral.jsp" %>
 <%@ include file = "menuAdmin.jsp" %>
@@ -148,6 +153,9 @@
 
 
 <!-- Main -->
+<script type="text/javascript">
+var msgs='${lbAlertCity }'
+</script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 

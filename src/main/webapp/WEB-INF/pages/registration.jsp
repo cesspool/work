@@ -42,7 +42,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- link rel="stylesheet" href="<c:url value="/resources/CSS/registration.css"/>"/-->
-
+	<link rel="icon" type="image/png" href="<c:url value="/resources/Login_v2/images/icons/favicon.ico"/>"/>
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/main.css"/>"/>
     
     <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
@@ -61,6 +61,20 @@
 </head>
 
 <body>
+
+	<%@ include file = "menuGeneral.jsp" %>
+	
+    <c:choose>
+        <c:when test="${not empty sessionScope.principal and sessionScope.principal.admin}">
+            <%@ include file = "menuAdmin.jsp" %>
+        </c:when>
+        <c:when test="${not empty sessionScope.principal and sessionScope.principal.manager}">
+            <%@ include file = "menuManager.jsp" %>
+        </c:when>
+        <c:when test="${not empty sessionScope.principal}">
+            <%@ include file = "menuCustomer.jsp" %>
+        </c:when>
+    </c:choose>
 
 <form class="registration" method="post" action="${contextPath}/registration">
     <div class="container limiter">

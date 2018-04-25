@@ -48,6 +48,7 @@
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/main.css"/>"/>
     <link rel="stylesheet" href="<c:url value="/resources/css/personal.css"/>"/>
     <link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet"/>
+    <link rel="icon" type="image/png" href="<c:url value="/resources/Login_v2/images/icons/favicon.ico"/>"/>
     <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 </head>
 <body>

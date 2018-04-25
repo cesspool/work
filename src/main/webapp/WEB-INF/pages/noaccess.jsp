@@ -4,6 +4,8 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
+<spring:message code="noaccess.name" var="lbNoAccess"/>
+
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <html>
 	<head>
@@ -18,7 +20,7 @@
 	
 <!-- Banner -->
 			<section id="banner">
-				<h2>you have not access to this page</h2>
+				<h2>${lbNoAccess }</h2>
 			</section>
 
 		<!-- Scripts -->

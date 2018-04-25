@@ -45,13 +45,25 @@
 
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400;300" rel="stylesheet" type="text/css">
     <link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet"/>
+    <link rel="icon" type="image/png" href="<c:url value="/resources/Login_v2/images/icons/favicon.ico"/>"/>
     <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
     
 </head>
 <body>
 
 <%@ include file = "menuGeneral.jsp" %>
-<%@ include file = "menuCustomer.jsp" %>
+
+<c:choose>
+        <c:when test="${not empty sessionScope.principal and sessionScope.principal.admin}">
+            <%@ include file = "menuAdmin.jsp" %>
+        </c:when>
+        <c:when test="${not empty sessionScope.principal and sessionScope.principal.manager}">
+            <%@ include file = "menuManager.jsp" %>
+        </c:when>
+        <c:when test="${not empty sessionScope.principal}">
+            <%@ include file = "menuCustomer.jsp" %>
+        </c:when>
+    </c:choose>
 
 <section id="main" class="wrapper">
     <div class="container">

@@ -58,13 +58,26 @@
 
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400;300" rel="stylesheet" type="text/css">
     <link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet"/>
+    <link href="<c:url value="/resources/css/styleTables.css"/>" rel="stylesheet"/>
+    <link rel="icon" type="image/png" href="<c:url value="/resources/Login_v2/images/icons/favicon.ico"/>"/>
     <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 </head>
 <body>
 
 
 <%@ include file = "menuGeneral.jsp" %>
-<%@ include file = "menuManager.jsp" %>
+
+<c:choose>
+        <c:when test="${not empty sessionScope.principal and sessionScope.principal.admin}">
+            <%@ include file = "menuAdmin.jsp" %>
+        </c:when>
+        <c:when test="${not empty sessionScope.principal and sessionScope.principal.manager}">
+            <%@ include file = "menuManager.jsp" %>
+        </c:when>
+        <c:when test="${not empty sessionScope.principal}">
+            <%@ include file = "menuCustomer.jsp" %>
+        </c:when>
+    </c:choose>
 
 <section id="main" class="wrapper">
     <div class="container">
@@ -80,11 +93,11 @@
         <form method="post" action="${contextPath}/statusOrder" id="statusOrderForm" name="statusOrderForm">
             <div class="container limiter">
 			   <c:forEach var="order" items="${orderReq}">		
-                <table width="100%" cellspacing="0" cellpadding="5">
-                     <tr ><td class="someTable" colspan="2" width="200" valign="top">
+                <table width="100%" cellspacing="0" cellpadding="5" id="customers">
+                     <tr ><th colspan="2" width="200" valign="top">
                             ${lbTableAA} ${order.order.name }
-                        </td>
-                        <td class="someTable" colspan="2" width="200" valign="top">
+                        </th>
+                        <td colspan="2" width="200" valign="top">
                             ${lbTableAB} ${order.order.cost }
                         </td>
                        
@@ -123,7 +136,7 @@
                             ${lbTableDA} ${order.order.shipmentDate }
                         </td>
                         <td width="200" valign="top">
-                             ${lbAboutDataDelivery } ${order.order.planDate }
+                             ${lbAboutDataDelivery }: ${order.order.planDate }
                         </td>
                         <c:if test="${order.typeCargo==lbCargoPackage}">    
 	                   		<td width="200" valign="top">
@@ -148,8 +161,8 @@
 	                        </td>
 	                    </c:if>
                     </tr>
-                    <tr colspan="5">
-                    	<td>
+                    <tr valign="top">
+                    	<td colspan="5">
                     	${lbFullPath }: ${order.order.fullPath}
                     	</td>
                     </tr>
@@ -164,7 +177,7 @@
     <hr>
 </section>
 
-
+<!--
 <script src="<c:url value="/resources/assets/js/jquery.min.js"/>"></script>
 <script src="<c:url value="/resources/assets/js/skel.min.js"/>"></script>
 <script src="<c:url value="/resources/assets/js/util.js"/>"></script>
@@ -172,5 +185,6 @@
 
 <script src="<c:url value="/resources/js/jquery.js"/>"></script>
 <script src="<c:url value="/resources/js/menu.js"/>"></script>
+-->
 </body>
 </html>

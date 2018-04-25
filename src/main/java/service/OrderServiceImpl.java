@@ -32,6 +32,7 @@ import dbservice.OrderDAOServiceImpl;
 import dbservice.TranspRateDAOService;
 import dbservice.TranspRateDAOServiceImpl;
 import dijkstra.Test;
+import exception.CityTypoException;
 import exception.LogisticsException;
 import exception.OversizeException;
 import exception.PathNotFoundException;
@@ -154,6 +155,7 @@ public class OrderServiceImpl implements OrderService {
 		
 		Node nodeStart = nodeDistanceDAOService.getByName(form.getCityStart());
 		Node nodeTarget = nodeDistanceDAOService.getByName(form.getCityTarget());
+		checkTypo(nodeStart, nodeTarget);
 		order.setNodeStart(nodeStart.getId());
 		order.setNodeTarget(nodeTarget.getId());
 		order.isUrgency(form.isUrgency());
@@ -233,6 +235,13 @@ public class OrderServiceImpl implements OrderService {
     			form.getWeight()>transports.get(0).getTotalWeight()) {
     		throw new OversizeException("cost.oversize");
     	}
+    }
+    
+    private void checkTypo(Node nodeStart, Node nodeTarget) throws CityTypoException {
+    	if((nodeStart == null)||(nodeTarget == null)) {
+    		throw new CityTypoException("cost.type.city");
+    	}
+    	
     }
     
 }

@@ -26,6 +26,7 @@
 		<link rel="stylesheet" href="<c:url value="/resources/assets/css/main.css"/>"/>
 		<link rel="stylesheet" href="<c:url value="/resources/css/personal.css"/>"/>
 		<link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet"/>
+		<link rel="icon" type="image/png" href="<c:url value="/resources/Login_v2/images/icons/favicon.ico"/>"/>
 		<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 	</head>
 	<body >
@@ -49,7 +50,7 @@
 				<h2>${lbSectMain}</h2>
 				<p>${lbSectDescrA}<br />${lbSectDescrB}<br /><br />${lbSectDescrC}</p>
 				<ul class="actions">
-					<li><a href="${contextPath}/loginform" class="button special big">${lbUlLi}</a></li>
+					<li><a href="${contextPath}/costCalculation" class="button special big">${lbUlLi}</a></li>
 				</ul>
 			</section>
 

@@ -80,8 +80,8 @@ public class CostController extends BaseController {
         	} catch(LogisticsException ex) {
         		Message errMsg = ex.getMsg();
         		errMsg.setMsg(messageSource.getMessage(errMsg.getKey(), null, locale));
-        		uiModel.addAttribute(Pages.ATR_MESSAGE, errMsg);
-        		return "personCost";
+        		redirectAttributes.addFlashAttribute(Pages.ATR_MESSAGE, errMsg);
+        		return "redirect:costCalculation";
         	}    
         }
     }

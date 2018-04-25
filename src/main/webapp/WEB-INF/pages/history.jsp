@@ -47,9 +47,11 @@
      <meta name="viewport" content="width=device-width, initial-scale=1" />
   	<link rel="stylesheet" href="<c:url value="/resources/assets/css/main.css"/>"/>
     <link rel="stylesheet" href="<c:url value="/resources/css/personal.css"/>"/>
+    <link rel="icon" type="image/png" href="<c:url value="/resources/Login_v2/images/icons/favicon.ico"/>"/>
 
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400;300" rel="stylesheet" type="text/css">
     <link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet"/>
+    <link href="<c:url value="/resources/css/styleTables.css"/>" rel="stylesheet"/>
     <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 </head>
 <body>
@@ -67,11 +69,11 @@
         <form class="registration">
             <div class="container limiter">
 			<c:forEach var="order" items="${orderReq}">		                    
-                <table width="100%" cellspacing="0" cellpadding="5">
-                    <tr ><td class="someTable" colspan="2" width="200" valign="top">
+                <table width="100%" cellspacing="0" cellpadding="5" id="customers">
+                    <tr ><th colspan="2" width="200" valign="top">
                             ${lbTableAA} ${order.order.name }
-                        </td>
-                        <td class="someTable" colspan="2" width="200" valign="top">
+                        </th>
+                        <td colspan="2" width="200" valign="top">
                             ${lbTableAB} ${order.order.cost }
                         </td>
                     </tr>
@@ -130,8 +132,8 @@
 	                        </td>
 	                    </c:if>
                     </tr>
-					<tr colspan="5" >
-                    	<td>
+					<tr valign="top" >
+                    	<td colspan="5">
                     	${lbFullPath }: ${order.order.fullPath}
                     	</td>
                     </tr>

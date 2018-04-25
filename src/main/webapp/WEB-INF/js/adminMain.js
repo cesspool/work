@@ -34,7 +34,7 @@
 		var hdnFld = document.getElementById('selectedCities');
 		var selr = document.getElementById('chosenCities');
 		if(selr.options.length == 0) {
-			alert("No one city was selected");
+			alert(msgs);
 			return false;
 		}
 		for(i = 0; i < selr.options.length; i++) {
