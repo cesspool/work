@@ -8,7 +8,7 @@ body {
 /* Menu */
 
 .menu {
-  background: #555 url('../images/menu-bg.jpg') repeat left top;
+  background: #555753 url('../images/grayColor.jpg') repeat left top;
   right: -285px;
   height: 100%;
   position: fixed;

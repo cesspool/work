@@ -51,6 +51,18 @@
 
 <%@ include file = "menuGeneral.jsp" %>
 
+    <c:choose>
+        <c:when test="${not empty sessionScope.principal and sessionScope.principal.admin}">
+            <%@ include file = "menuAdmin.jsp" %>
+        </c:when>
+        <c:when test="${not empty sessionScope.principal and sessionScope.principal.manager}">
+            <%@ include file = "menuManager.jsp" %>
+        </c:when>
+        <c:when test="${not empty sessionScope.principal}">
+            <%@ include file = "menuCustomer.jsp" %>
+        </c:when>
+    </c:choose>
+
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
@@ -132,6 +144,10 @@
 	<script src="<c:url value="/resources/assets/js/util.js"/>"></script>
 	<script src="<c:url value="/resources/assets/js/main.js"/>"></script>
 	<!-- src="<c:url value="/resources/js/message.js"/>"></script-->
+	
+	<script src="<c:url value="/resources/js/jquery.js"/>"></script>
+	<script src="<c:url value="/resources/js/menu.js"/>"></script>
+
 
 </body>
 </html>

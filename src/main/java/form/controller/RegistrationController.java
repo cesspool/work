@@ -44,7 +44,11 @@ public class RegistrationController extends BaseController {
         } else {
             Customer cmr = customerService.createCustomer(formData);
             redirectAttributes.addFlashAttribute(Pages.ATR_CUSTOMER, formData);
-            return "redirect:loginform";
+            if((getPrincipal() != null)&&(getPrincipal().isAdmin())) {
+            	return "redirect:changingBranch";
+            } else {
+            	return "redirect:loginform";
+            }
         }
     }
 

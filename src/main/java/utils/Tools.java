@@ -89,7 +89,8 @@ public class Tools {
         if (form.getPrivilege()==2) {
         	cmr.setManager(false);
         	cmr.setAdmin(true);
-        } else {
+        } 
+        if (form.getPrivilege()==0){
         	cmr.setAdmin(false);
         	cmr.setManager(false);
         }

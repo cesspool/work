@@ -36,6 +36,7 @@
 <spring:message code="registration.psw.match" var="lbMatch"/>
 <spring:message code="registration.psw.notmatch" var="lbNotMatch"/>
 
+
 <html>
 <head>
     <title>${lbMain}</title>
@@ -44,6 +45,11 @@
     <!-- link rel="stylesheet" href="<c:url value="/resources/CSS/registration.css"/>"/-->
 	<link rel="icon" type="image/png" href="<c:url value="/resources/Login_v2/images/icons/favicon.ico"/>"/>
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/main.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/resources/css/personal.css"/>"/>
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400;300" rel="stylesheet" type="text/css">
+    <link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet"/>
+    <link href="<c:url value="/resources/css/styleTables.css"/>" rel="stylesheet"/>
     
     <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
     <script>
@@ -129,8 +135,16 @@
 
     </table>
             <div class="clearfix">
-                <button onclick="location.href = '${contextPath}/loginform';" type="button" class="cancelbtn">${lbCancel }</button>
-                <button type="submit" class="signupbtn">${lbSave }</button>
+                <c:choose>
+			        <c:when test="${not empty sessionScope.principal and sessionScope.principal.admin}">
+			            <button onclick="location.href = '${contextPath}/changingBranch';" type="button" class="cancelbtn">${lbCancel }</button>
+                		<button type="submit" class="signupbtn">${lbSave }</button>
+			        </c:when>
+			        <c:when test="${empty sessionScope.principal}">
+			            <button onclick="location.href = '${contextPath}/loginform';" type="button" class="cancelbtn">${lbCancel }</button>
+                		<button type="submit" class="signupbtn">${lbSave }</button>
+			        </c:when>
+    			</c:choose>
             </div>
     </div>
 </form>

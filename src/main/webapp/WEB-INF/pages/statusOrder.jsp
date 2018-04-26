@@ -177,7 +177,7 @@
     <hr>
 </section>
 
-<!--
+
 <script src="<c:url value="/resources/assets/js/jquery.min.js"/>"></script>
 <script src="<c:url value="/resources/assets/js/skel.min.js"/>"></script>
 <script src="<c:url value="/resources/assets/js/util.js"/>"></script>
@@ -185,6 +185,6 @@
 
 <script src="<c:url value="/resources/js/jquery.js"/>"></script>
 <script src="<c:url value="/resources/js/menu.js"/>"></script>
--->
+
 </body>
 </html>
