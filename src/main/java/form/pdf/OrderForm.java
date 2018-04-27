@@ -104,22 +104,22 @@ public class OrderForm extends PdfForm {
       PDRectangle centerRect = new PDRectangle((bodyRect.getWidth() - width)/2 + bodyRect.getLowerLeftX(), bodyRect.getLowerLeftY(), width, height);
       
       startX = centerRect.getLowerLeftX();
-      startY = centerRect.getUpperRightY() - 20;
+      startY = centerRect.getUpperRightY() - 15;
       txt = "Габариты груза (длина,см х ширина, см х высота, см";
       drawText(txt, cos, fnt, fntSize, 
           getHorizonalCenteredX(txt, fnt, fntSize, centerRect), startY);
       txt = bean.getCargoLength() + " x " + bean.getCargoWidth() + " x " + bean.getCargoHeight();
       drawText(txt, cos, fnt, fntSize, 
-          getHorizonalCenteredX(txt, fnt, fntSize, centerRect), startY - 20);
+          getHorizonalCenteredX(txt, fnt, fntSize, centerRect), startY - 15);
       txt = "Используемая упаковка";
       drawText(txt, cos, fnt, fntSize, 
-          getHorizonalCenteredX(txt, fnt, fntSize, centerRect), startY - 40);
+          getHorizonalCenteredX(txt, fnt, fntSize, centerRect), startY - 30);
       txt = bean.getBoxingName();
       drawText(txt, cos, fnt, fntSize, 
-          getHorizonalCenteredX(txt, fnt, fntSize, centerRect), startY - 60);
+          getHorizonalCenteredX(txt, fnt, fntSize, centerRect), startY - 45);
       txt = "Количество " + bean.getBoxingQuantity();
       drawText(txt, cos, fnt, fntSize, 
-          getHorizonalCenteredX(txt, fnt, fntSize, centerRect), startY - 80);
+          getHorizonalCenteredX(txt, fnt, fntSize, centerRect), startY - 60);
       
     }
     
@@ -134,11 +134,14 @@ public class OrderForm extends PdfForm {
       PDFont fnt = getDefaultFonts().getRegularFont();
       int fntSize = 14;
       drawText(txt, cos, fnt, fntSize, 
-          getHorizonalCenteredX(txt, fnt, fntSize, footerRect), footerRect.getUpperRightY() - 20);
+          getHorizonalCenteredX(txt, fnt, fntSize, footerRect), footerRect.getUpperRightY() - 10);
       
-      PDRectangle gridRect = new PDRectangle(footerRect.getLowerLeftX(), footerRect.getLowerLeftY(), footerRect.getWidth(), footerRect.getHeight() - 30);
+      PDRectangle gridRect = new PDRectangle(footerRect.getLowerLeftX(), footerRect.getLowerLeftY(), footerRect.getWidth(), footerRect.getHeight() - 20);
       drawGrid(cos, gridRect);
-
+      txt = "*Маршрут может быть изменен по усмотрению поставщика и предоставляется в качестве наиболее вероятного пути следования отправления";
+      drawText(txt, cos, fnt, 7, gridRect.getLowerLeftX(), gridRect.getLowerLeftY() - 10);
+      txt = "Вес " + bean.getCargoWeight() + " Стоимость " + bean.getCargoCost() + " Подпись_________________________";
+      drawText(txt, cos, fnt, 10, gridRect.getWidth() / 3 * 2, gridRect.getLowerLeftY() - 30);
     }
     
     
@@ -165,18 +168,45 @@ public class OrderForm extends PdfForm {
         cos.lineTo(endX, startY - 40);
         cos.moveTo(startX, startY - 60);
         cos.lineTo(endX, startY - 60);
+        cos.moveTo(startX, startY - 80);
+        cos.lineTo(endX, startY - 80);
         
-        
+        float cityFromColX = gridRect.getLowerLeftX() + 150;
+        cos.moveTo(cityFromColX, gridRect.getUpperRightY());
+        cos.lineTo(cityFromColX, gridRect.getLowerLeftY());
+        float transportColX = cityFromColX + 150;
+        cos.moveTo(transportColX, gridRect.getUpperRightY());
+        cos.lineTo(transportColX, gridRect.getLowerLeftY());
+        float cityToColX = transportColX + 150;
+        cos.moveTo(cityToColX, gridRect.getUpperRightY());
+        cos.lineTo(cityToColX, gridRect.getLowerLeftY());
+
+        PDFont tblHeadFont = getDefaultFonts().getBoldFont();
+        int tblHeadFontSize = 12; 
+        float headY = gridRect.getUpperRightY() - 15;
+        String txt = "Город отправления";
+        drawText(txt, cos, tblHeadFont, tblHeadFontSize, gridRect.getLowerLeftX() + 10, headY);
+        txt = "Транспорт";
+        drawText(txt, cos, tblHeadFont, tblHeadFontSize, cityFromColX + 10, headY);
+        txt = "Город прибытия";
+        drawText(txt, cos, tblHeadFont, tblHeadFontSize, transportColX + 10, headY);
+        txt = "Примечание";
+        drawText(txt, cos, tblHeadFont, tblHeadFontSize, cityToColX + 10, headY);
         cos.closeAndStroke();
 
-        
     }
     
     
     public static void main(String[] args) throws Exception {
         MessageSource messageSource = new GenericApplicationContext();
         OrderForm of = new OrderForm();
-        of.buildForm(new OrderFormBean(), messageSource);
+        OrderFormBean bean = new OrderFormBean();
+        bean.appendRoutePart("Москва", "Автомобиль");
+        bean.appendRoutePart("Краснодар", "Железная дорога");
+        bean.appendRoutePart("Сочи", "Железная дорога");
+        bean.appendRoutePart("Ялта", "Автомобиль");
+        bean.appendRoutePart("Москва", "Falcon Heavy");
+        of.buildForm(bean, messageSource);
     }
 
 

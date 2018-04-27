@@ -1,6 +1,22 @@
 package form.pdf;
 
+import utils.Pair;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 public class OrderFormBean {
+
+    private DeliveryRoute delRoute = new DeliveryRoute();
+    
+    public void appendRoutePart(String city, String transport) {
+        delRoute.addRoutePart(city, transport);
+    }
+    
+    public Iterator<Pair<String, String>> getRouterItr() {
+        return delRoute.getRouteItr();
+    }
     
     public String getUrgency() {
         return "1";
@@ -58,11 +74,30 @@ public class OrderFormBean {
         return "$35999";
     }
     
+    public String getCargoWeight() {
+        return "345 кг";
+    }
+    
     public String getBoxingName() {
         return "Ящик";
     }
     
     public String getBoxingQuantity() {
         return "3";
+    }
+    
+    
+    
+    public static class DeliveryRoute {
+        private List<Pair<String, String>> route = new ArrayList<>();
+        
+        public void addRoutePart(String city, String transport) {
+            route.add(new Pair<>(city, transport));
+        }
+        
+        
+        public Iterator<Pair<String, String>> getRouteItr() {
+            return route.iterator();
+        }
     }
 }

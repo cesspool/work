@@ -29,7 +29,7 @@ public abstract class PdfForm {
                     PDPageContentStream cos = new PDPageContentStream(doc, page);
                     drawPage(cos, page.getMediaBox(), ++pageNum);
                 }
-                doc.save(new File("/home/igor/JProjects/diplom/work/OrderForm.pdf"));
+                doc.save(new File("OrderForm.pdf"));
                 return Optional.of(doc);
             }
         } catch (IOException ioEx) {
