@@ -1,9 +1,6 @@
 package form.pdf;
 
-import utils.Pair;
-
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class OrderFormBean {
@@ -14,8 +11,8 @@ public class OrderFormBean {
         delRoute.addRoutePart(city, transport);
     }
     
-    public Iterator<Pair<String, String>> getRouterItr() {
-        return delRoute.getRouteItr();
+    public List<RoutePart> getRouteParts() {
+        return delRoute.getRouteParts();
     }
     
     public String getUrgency() {
@@ -88,16 +85,51 @@ public class OrderFormBean {
     
     
     
-    public static class DeliveryRoute {
-        private List<Pair<String, String>> route = new ArrayList<>();
+    public class DeliveryRoute {
+        private List<RoutePart> route = new ArrayList<>();
         
         public void addRoutePart(String city, String transport) {
-            route.add(new Pair<>(city, transport));
+            if (route.size() > 0) {
+                route.get(route.size() - 1).setFinishCity(city);
+            }
+            RoutePart rtPart = new RoutePart();
+            rtPart.setStartCity(city);
+            rtPart.setFinishCity(OrderFormBean.this.getRecipientCity());
+            rtPart.setTransport(transport);
+            route.add(rtPart);
         }
         
         
-        public Iterator<Pair<String, String>> getRouteItr() {
-            return route.iterator();
+        public List<RoutePart> getRouteParts() {
+            return route;
         }
+    }
+    
+    
+    public static class RoutePart {
+        private String startCity;
+        private String finishCity;
+        private String transport;
+
+        public String getStartCity() {
+            return startCity;
+        }
+        public void setStartCity(String startCity) {
+            this.startCity = startCity;
+        }
+        public String getFinishCity() {
+            return finishCity;
+        }
+        public void setFinishCity(String finishCity) {
+            
+            this.finishCity = finishCity;
+        }
+        public String getTransport() {
+            return transport;
+        }
+        public void setTransport(String transport) {
+            this.transport = transport;
+        }
+        
     }
 }

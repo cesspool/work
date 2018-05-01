@@ -1,5 +1,6 @@
 package form.pdf;
 
+import form.pdf.OrderFormBean.RoutePart;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
@@ -12,17 +13,19 @@ import org.springframework.context.support.GenericApplicationContext;
 import utils.Pair;
 
 import java.awt.Color;
+import java.io.File;
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
 
 public class OrderForm extends PdfForm {
     private static Logger logger = LoggerFactory.getLogger(OrderForm.class);
     private MessageSource messageSource;
-    private OrderFormBean bean;
     
     public void buildForm(OrderFormBean bean, MessageSource messageSource) {
-        this.bean = bean;
         this.messageSource = messageSource;
-        PDDocument doc = createForm(new PDRectangle(PDRectangle.A4.getHeight(), PDRectangle.A4.getWidth()), 1).orElse(null);
+        File docFile = new File("OrderForm.pdf");
+        PDDocument doc = createForm(bean, messageSource, new PDRectangle(PDRectangle.A4.getHeight(), PDRectangle.A4.getWidth()), 1, docFile).orElse(null);
     }
     
     //docRect-> height:595.27563 width: 841.8898 UpperRightX: 841.8898 UpperRightY: 595.27563 LowerLeftX: 0.0 LowerLeftY: 0.0
@@ -43,21 +46,21 @@ public class OrderForm extends PdfForm {
         String title = "АИС \"Транспортная логистика\"";
         drawText(title, cos, getDefaultFonts().getBoldFont(), 16, 
             getHorizonalCenteredX(title, getDefaultFonts().getBoldFont(), 16, headerRect), 540);
-        String str = "отправление " + bean.getUrgency() + " класса"; 
+        String str = "отправление " + getBean().getUrgency() + " класса"; 
         drawText(str, cos, getDefaultFonts().getRegularFont(), 14, 
             getHorizonalCenteredX(str, getDefaultFonts().getBoldFont(), 14, headerRect), 512);
         
         float scale = 0.02f;
-        str = "Письмо " + bean.getUrgency() + "-го класса";
+        str = "Письмо " + getBean().getUrgency() + "-го класса";
         float x = getHorizonalCenteredX(str, getDefaultFonts().getRegularFont(), 10, headerRect);
         drawText(str, cos, getDefaultFonts().getRegularFont(), 10, x + 10, 495);
-        PDImageXObject checkImg = bean.isEnvelop() ? getImages().getCheckedOnImg() : getImages().getCheckedOffImg(); 
+        PDImageXObject checkImg = getBean().isEnvelop() ? getImages().getCheckedOnImg() : getImages().getCheckedOffImg(); 
         cos.drawImage(checkImg, x, 495, checkImg.getWidth() * scale, checkImg.getHeight() * scale);
 
         
-        str = "Посылка " + bean.getUrgency() + "-го класса";
+        str = "Посылка " + getBean().getUrgency() + "-го класса";
         drawText(str, cos, getDefaultFonts().getRegularFont(), 10, x + 10, 480);
-        checkImg = bean.isEnvelop() ? getImages().getCheckedOffImg() : getImages().getCheckedOnImg();
+        checkImg = getBean().isEnvelop() ? getImages().getCheckedOffImg() : getImages().getCheckedOnImg();
         cos.drawImage(checkImg, x, 480, checkImg.getWidth() * scale, checkImg.getHeight() * scale);
     }
 
@@ -69,34 +72,34 @@ public class OrderForm extends PdfForm {
       drawText(txt, cos, getDefaultFonts().getBoldFont(), 14, bodyRect.getLowerLeftX(), startY);
       PDFont fnt = getDefaultFonts().getRegularFont();
       int fntSize = 12;
-      txt = "ФИО " + bean.getSenderFullName();
+      txt = "ФИО " + getBean().getSenderFullName();
       drawText(txt, cos, fnt, fntSize, bodyRect.getLowerLeftX(), startY - 20);
-      txt = "Откуда г. " + bean.getSenderCity();
+      txt = "Откуда г. " + getBean().getSenderCity();
       drawText(txt, cos, fnt, fntSize, bodyRect.getLowerLeftX(), startY - 40);
-      txt = "Адрес " + bean.getSenderAddress();
+      txt = "Адрес " + getBean().getSenderAddress();
       drawText(txt, cos, fnt, fntSize, bodyRect.getLowerLeftX(), startY - 60);
       txt = "Телефон для SMS-уведомлений о";
       drawText(txt, cos, fnt, fntSize, bodyRect.getLowerLeftX(), startY - 80);
       txt = "вручении отправления ";
       drawText(txt, cos, fnt, fntSize, bodyRect.getLowerLeftX(), startY - 100);
-      txt = bean.getSenderPhone();
+      txt = getBean().getSenderPhone();
       drawText(txt, cos, fnt, fntSize, bodyRect.getLowerLeftX() + 10, startY - 120);
       
       startY = bodyRect.getUpperRightY() - 20;
       float startX = bodyRect.getUpperRightX() - 300; 
       txt = "Получатель";
       drawText(txt, cos, getDefaultFonts().getBoldFont(), 14, startX, startY);
-      txt = "ФИО " + bean.getRecipientFullName();
+      txt = "ФИО " + getBean().getRecipientFullName();
       drawText(txt, cos, fnt, fntSize, startX, startY - 20);
-      txt = "Откуда г. " + bean.getRecipientCity();
+      txt = "Откуда г. " + getBean().getRecipientCity();
       drawText(txt, cos, fnt, fntSize, startX, startY - 40);
-      txt = "Адрес " + bean.getRecipientAddress();
+      txt = "Адрес " + getBean().getRecipientAddress();
       drawText(txt, cos, fnt, fntSize, startX, startY - 60);
       txt = "Телефон для SMS-уведомлений о";
       drawText(txt, cos, fnt, fntSize, startX, startY - 80);
       txt = "вручении отправления ";
       drawText(txt, cos, fnt, fntSize, startX, startY - 100);
-      txt = bean.getRecipientPhone();
+      txt = getBean().getRecipientPhone();
       drawText(txt, cos, fnt, fntSize, startX + 10, startY - 120);
       
       float width = 450f;
@@ -108,16 +111,16 @@ public class OrderForm extends PdfForm {
       txt = "Габариты груза (длина,см х ширина, см х высота, см";
       drawText(txt, cos, fnt, fntSize, 
           getHorizonalCenteredX(txt, fnt, fntSize, centerRect), startY);
-      txt = bean.getCargoLength() + " x " + bean.getCargoWidth() + " x " + bean.getCargoHeight();
+      txt = getBean().getCargoLength() + " x " + getBean().getCargoWidth() + " x " + getBean().getCargoHeight();
       drawText(txt, cos, fnt, fntSize, 
           getHorizonalCenteredX(txt, fnt, fntSize, centerRect), startY - 15);
       txt = "Используемая упаковка";
       drawText(txt, cos, fnt, fntSize, 
           getHorizonalCenteredX(txt, fnt, fntSize, centerRect), startY - 30);
-      txt = bean.getBoxingName();
+      txt = getBean().getBoxingName();
       drawText(txt, cos, fnt, fntSize, 
           getHorizonalCenteredX(txt, fnt, fntSize, centerRect), startY - 45);
-      txt = "Количество " + bean.getBoxingQuantity();
+      txt = "Количество " + getBean().getBoxingQuantity();
       drawText(txt, cos, fnt, fntSize, 
           getHorizonalCenteredX(txt, fnt, fntSize, centerRect), startY - 60);
       
@@ -140,7 +143,7 @@ public class OrderForm extends PdfForm {
       drawGrid(cos, gridRect);
       txt = "*Маршрут может быть изменен по усмотрению поставщика и предоставляется в качестве наиболее вероятного пути следования отправления";
       drawText(txt, cos, fnt, 7, gridRect.getLowerLeftX(), gridRect.getLowerLeftY() - 10);
-      txt = "Вес " + bean.getCargoWeight() + " Стоимость " + bean.getCargoCost() + " Подпись_________________________";
+      txt = "Вес " + getBean().getCargoWeight() + " Стоимость " + getBean().getCargoCost() + " Подпись_________________________";
       drawText(txt, cos, fnt, 10, gridRect.getWidth() / 3 * 2, gridRect.getLowerLeftY() - 30);
     }
     
@@ -192,8 +195,19 @@ public class OrderForm extends PdfForm {
         drawText(txt, cos, tblHeadFont, tblHeadFontSize, transportColX + 10, headY);
         txt = "Примечание";
         drawText(txt, cos, tblHeadFont, tblHeadFontSize, cityToColX + 10, headY);
+        
+        PDFont dtFont = getDefaultFonts().getRegularFont();
+        int ftSize = 11;
+        List<RoutePart> routeParts = getBean().getRouteParts();
+        startX = gridRect.getLowerLeftX() + 5;
+        startY = headY - 30;
+        for(RoutePart part : routeParts) {
+            drawText(part.getStartCity(), cos, dtFont, ftSize, startX, startY);
+            drawText(part.getTransport(), cos, dtFont, ftSize, cityFromColX + 5, startY);
+            drawText(part.getFinishCity(), cos, dtFont, ftSize, transportColX + 5, startY);
+            startY -= 20;
+        }
         cos.closeAndStroke();
-
     }
     
     
