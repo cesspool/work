@@ -40,6 +40,7 @@
 <spring:message code="history.table.trE.tdC" var="lbTableEC"/>
 <spring:message code="personal.address" var="lbAddress"/>
 <spring:message code="history.cargo-package" var="lbCargoPackage"/>
+<spring:message code="personal.receipt.pdf" var="lbOrderReceipt"/>
 
 
 
@@ -146,6 +147,7 @@
                     	</td>
                     </tr>
                 </table>
+                <a href="${contextPath}/orderform/12">${lbOrderReceipt}</a>
 				</c:forEach>
             </div>
         </form>

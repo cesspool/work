@@ -7,10 +7,12 @@ import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.MessageSource;
 import utils.Pair;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Optional;
 
 public abstract class PdfForm {
@@ -18,18 +20,15 @@ public abstract class PdfForm {
 
     private FontBox fonts;
     private ImageBox images;
+    private OrderFormBean bean;
+    private MessageSource messageSource; 
     
-    public Optional<PDDocument> createForm(PDRectangle docRec, int pageAmount) {
+    public Optional<PDDocument> createForm(OrderFormBean bean, MessageSource messageSource, PDRectangle docRec, int pageAmount, File docFile) {
+        this.bean = bean;
+        this.messageSource = messageSource;
         try {
             try (PDDocument doc = createDocument(docRec, pageAmount);) {
-                fonts = new FontBox(doc);
-                images = new ImageBox(doc);
-                int pageNum = 0;
-                for (PDPage page : doc.getPages()) {
-                    PDPageContentStream cos = new PDPageContentStream(doc, page);
-                    drawPage(cos, page.getMediaBox(), ++pageNum);
-                }
-                doc.save(new File("OrderForm.pdf"));
+                doc.save(docFile);
                 return Optional.of(doc);
             }
         } catch (IOException ioEx) {
@@ -38,11 +37,30 @@ public abstract class PdfForm {
         }
     }
 
-    protected PDDocument createDocument(PDRectangle docRec, int pageAmount) {
+    public Optional<PDDocument> createForm(OrderFormBean bean, MessageSource messageSource, PDRectangle docRec, int pageAmount, OutputStream outStream) {
+        this.bean = bean;
+        this.messageSource = messageSource;
+        try {
+            try (PDDocument doc = createDocument(docRec, pageAmount);) {
+                doc.save(outStream);
+                return Optional.of(doc);
+            }
+        } catch (IOException ioEx) {
+            logger.error("Creating pdf document failed", ioEx);
+            return Optional.empty();
+        }
+    }
+
+    
+    protected PDDocument createDocument(PDRectangle docRec, int pageAmount) throws IOException {
         PDDocument doc = new PDDocument();
+        fonts = new FontBox(doc);
+        images = new ImageBox(doc);
         for(int i=0; i < pageAmount; i++) {
             PDPage page = new PDPage(docRec);
             doc.addPage(page);
+            PDPageContentStream cos = new PDPageContentStream(doc, page);
+            drawPage(cos, page.getMediaBox(), i);
         }
         return doc;
     }
@@ -54,6 +72,15 @@ public abstract class PdfForm {
     protected ImageBox getImages() {
         return images;
     }
+    
+    protected OrderFormBean getBean() {
+        return bean;
+    }
+    
+    protected MessageSource getMessageSource() {
+        return messageSource;
+    }
+    
     
     protected void drawText(String text, PDPageContentStream cos, PDFont font, int fontSize, float tx, float ty) throws IOException {
         cos.beginText();
@@ -80,7 +107,7 @@ public abstract class PdfForm {
     }
 
     
-    protected float getHorizonalCenteredX(String text, PDFont font, float fontSize, PDRectangle rect) throws IOException {
+    protected float getHorizonalCenteredX(String text, PDFont font, int fontSize, PDRectangle rect) throws IOException {
         Pair<Float, Float> textSpace = getTextSpace(text, font, fontSize);
         float diffX = rect.getWidth() - textSpace.getRight();
         float shiftX = diffX < 0 ? 0 : diffX / 2;
@@ -88,6 +115,12 @@ public abstract class PdfForm {
         return x;
     }
     
+    protected float getHorizontalRightShiftedX(String text, PDFont font, int fontSize, PDRectangle rect) throws IOException {
+        Pair<Float, Float> textSpace = getTextSpace(text, font, fontSize);
+        float diffX = rect.getWidth() - textSpace.getRight();
+        float x = rect.getLowerLeftX() + diffX;
+        return x;
+    }
     
     protected abstract void drawPage(PDPageContentStream cos, PDRectangle docRect, int pageNum) throws IOException;
 

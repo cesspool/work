@@ -12,7 +12,6 @@
 <spring:message code="index.section.descrB" var="lbSectDescrB"/>
 <spring:message code="index.section.descrC" var="lbSectDescrC"/>
 <spring:message code="index.header.main" var="lbHeader"/>
-<spring:message code="index.divA" var="lbDivA"/>
 <spring:message code="index.divB" var="lbDivB"/>
 <spring:message code="index.ul.li" var="lbUlLi"/>
 <spring:message code="newRate.li.div" var="lbLiDiv"/>
@@ -21,6 +20,7 @@
 <html>
 	<head>
 		<title>${lbTitle}</title>
+<spring:message code="index.divA" var="lbDivA"/>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="<c:url value="/resources/assets/css/main.css"/>"/>
@@ -44,6 +44,14 @@
             <%@ include file = "menuCustomer.jsp" %>
         </c:when>
     </c:choose>
+              
+              <div style="float: right; color: white; background: blue;">  
+                <select id="selLangID">
+                    <option value="ru_RU">РУС</option>
+                    <option value="en_EN">EN</option>
+                </select>
+             </div>
+                
 
 		<!-- Banner -->
 			<section id="banner">
@@ -79,6 +87,6 @@
 			
 			<script src="<c:url value="/resources/js/jquery.js"/>"></script>
 			<script src="<c:url value="/resources/js/menu.js"/>"></script>
-
+            <script src="<c:url value="/resources/js/index.js"/>"></script>
 	</body>
 </html>
