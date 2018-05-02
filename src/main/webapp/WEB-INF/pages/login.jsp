@@ -43,6 +43,8 @@
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/Login_v2/css/util.css"/>">
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/Login_v2/css/main.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/main.css" />"/>
+    <link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet"/>
+    <link href="<c:url value="/resources/css/personCost.css"/>" rel="stylesheet"/>
     <link rel="stylesheet" href="<c:url value="/resources/css/loginMes.css" />"/>
 <!--===============================================================================================-->
     <c:set var="contextPath" value="${pageContext.request.contextPath}"/>

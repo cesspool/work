@@ -35,6 +35,9 @@
 <spring:message code="rate.headerB" var="lbHeaderB"/>
 <spring:message code="rate.table.tr" var="lbTableTR"/>
 <spring:message code="rate.additional" var="lbAdditional"/>
+<spring:message code="rate.date.po" var="lbRatePo"/>
+
+
 
 
 
@@ -55,15 +58,17 @@
 
 <%@ include file = "menuGeneral.jsp" %>
 
-	<c:if test="${not empty sessionScope.principal and sessionScope.principal.admin}"> 
-		<%@ include file = "menuAdmin.jsp" %>
-	</c:if>
-	<c:if test="${not empty sessionScope.principal and sessionScope.principal.manager}"> 
-		<%@ include file = "menuManager.jsp" %>
-	</c:if>
-	<c:if test="${not empty sessionScope.principal}"> 
-		<%@ include file = "menuCustomer.jsp" %>
-	</c:if>
+    <c:choose>
+        <c:when test="${not empty sessionScope.principal and sessionScope.principal.admin}">
+            <%@ include file = "menuAdmin.jsp" %>
+        </c:when>
+        <c:when test="${not empty sessionScope.principal and sessionScope.principal.manager}">
+            <%@ include file = "menuManager.jsp" %>
+        </c:when>
+        <c:when test="${not empty sessionScope.principal}">
+            <%@ include file = "menuCustomer.jsp" %>
+        </c:when>
+    </c:choose>
 
 <!-- Main -->
 <section id="main" class="wrapper">
@@ -71,7 +76,7 @@
         <form class="registration" method="get" action="${contextPath}/rateform">
           <header class="major special">
             <h2>${lbHeaderA} ${name}</h2>
-            <p>${lbHeaderB} ${dateStart } - ${dateEnd}</p>
+            <p>${lbHeaderB} c ${dateStart } ${lbRatePo} ${dateEnd}</p>
         </header>
             <div class="container limiter">
 
