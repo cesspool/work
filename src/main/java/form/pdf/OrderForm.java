@@ -15,6 +15,7 @@ import utils.Pair;
 import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
+import java.io.ObjectInputStream.GetField;
 import java.util.Iterator;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class OrderForm extends PdfForm {
     
     //docRect-> height:595.27563 width: 841.8898 UpperRightX: 841.8898 UpperRightY: 595.27563 LowerLeftX: 0.0 LowerLeftY: 0.0
     protected void drawPage(PDPageContentStream cos, PDRectangle docRect, int pageNum)  throws IOException {
-        PDRectangle headerRect = new PDRectangle(265, 495, 310, 65);
+        PDRectangle headerRect = new PDRectangle(57, 495, 722, 65);
         drawHeader(cos, headerRect);
         PDRectangle bodyRect = new PDRectangle(57, 200, 722, 269);
         drawBody(cos, bodyRect);
@@ -43,14 +44,20 @@ public class OrderForm extends PdfForm {
     private void drawHeader(PDPageContentStream cos, PDRectangle headerRect) throws IOException {
         cos.setNonStrokingColor(Color.BLACK);
         cos.setStrokingColor(Color.WHITE);
-        String title = "АИС \"Транспортная логистика\"";
+        PDImageXObject logoImg = getImages().getLogoImg();
+        float scale = 0.5f;
+        cos.drawImage(logoImg, headerRect.getLowerLeftX() + 40, headerRect.getUpperRightY() - 25, logoImg.getWidth() * scale, logoImg.getHeight() * scale);
+        String logoTxt = "АИС \"Транспортная логистика\"";
+        drawText(logoTxt, cos, getDefaultFonts().getBoldFont(), 11, 60, headerRect.getUpperRightY() - 40);
+        
+        String title = "Квитанция № " + getBean().getId();
         drawText(title, cos, getDefaultFonts().getBoldFont(), 16, 
-            getHorizonalCenteredX(title, getDefaultFonts().getBoldFont(), 16, headerRect), 540);
+            getHorizonalCenteredX(title, getDefaultFonts().getBoldFont(), 16, headerRect), 560);
         String str = "отправление " + getBean().getUrgency() + " класса"; 
         drawText(str, cos, getDefaultFonts().getRegularFont(), 14, 
             getHorizonalCenteredX(str, getDefaultFonts().getBoldFont(), 14, headerRect), 512);
         
-        float scale = 0.02f;
+        scale = 0.02f;
         str = "Письмо " + getBean().getUrgency() + "-го класса";
         float x = getHorizonalCenteredX(str, getDefaultFonts().getRegularFont(), 10, headerRect);
         drawText(str, cos, getDefaultFonts().getRegularFont(), 10, x + 10, 495);
@@ -108,7 +115,7 @@ public class OrderForm extends PdfForm {
       
       startX = centerRect.getLowerLeftX();
       startY = centerRect.getUpperRightY() - 15;
-      txt = "Габариты груза (длина,см х ширина, см х высота, см";
+      txt = "Габариты груза (длина,см х ширина,см х высота,см)";
       drawText(txt, cos, fnt, fntSize, 
           getHorizonalCenteredX(txt, fnt, fntSize, centerRect), startY);
       txt = getBean().getCargoLength() + " x " + getBean().getCargoWidth() + " x " + getBean().getCargoHeight();
@@ -128,10 +135,6 @@ public class OrderForm extends PdfForm {
     
     
     private void drawFooter(PDPageContentStream cos, PDRectangle footerRect) throws IOException {
-      cos.setNonStrokingColor(Color.GRAY);
-      //cos.addRect(footerRect.getLowerLeftX(), footerRect.getLowerLeftY(), footerRect.getWidth(), footerRect.getHeight());
-     // cos.fill();
-        
       cos.setNonStrokingColor(Color.BLACK);
       String txt = "Маршрут доставки*";
       PDFont fnt = getDefaultFonts().getRegularFont();
@@ -144,15 +147,11 @@ public class OrderForm extends PdfForm {
       txt = "*Маршрут может быть изменен по усмотрению поставщика и предоставляется в качестве наиболее вероятного пути следования отправления";
       drawText(txt, cos, fnt, 7, gridRect.getLowerLeftX(), gridRect.getLowerLeftY() - 10);
       txt = "Вес " + getBean().getCargoWeight() + " Стоимость " + getBean().getCargoCost() + " Подпись_________________________";
-      drawText(txt, cos, fnt, 10, gridRect.getWidth() / 3 * 2, gridRect.getLowerLeftY() - 30);
+      drawText(txt, cos, fnt, 10, getHorizontalRightShiftedX(txt, fnt, 10, gridRect), gridRect.getLowerLeftY() - 30);
     }
     
     
     private void drawGrid(PDPageContentStream cos, PDRectangle gridRect) throws IOException {
-//        cos.setNonStrokingColor(Color.CYAN);
-//        cos.addRect(gridRect.getLowerLeftX(), gridRect.getLowerLeftY(), gridRect.getWidth(), gridRect.getHeight());
-//        cos.fill();
-        
         cos.setStrokingColor(Color.BLACK);
         cos.setLineWidth(2);
         cos.setLineJoinStyle(1);

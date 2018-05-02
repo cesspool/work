@@ -13,6 +13,7 @@ public class ImageBox {
     
     private PDImageXObject checkOnImg;
     private PDImageXObject checkOffImg;
+    private PDImageXObject logoImg;
     
     public ImageBox(PDDocument doc) {
         init(doc);
@@ -21,6 +22,7 @@ public class ImageBox {
     private void init(PDDocument doc) {
         checkOffImg = loadImage("checkedOff.png", doc);
         checkOnImg = loadImage("checkedOn.png", doc);
+        logoImg = loadImage("logo.png", doc);
     }
     
     private PDImageXObject loadImage(String imgName, PDDocument doc) {
@@ -43,5 +45,9 @@ public class ImageBox {
     
     public PDImageXObject getCheckedOffImg() {
         return checkOffImg;
+    }
+    
+    public PDImageXObject getLogoImg() {
+        return logoImg;
     }
 }

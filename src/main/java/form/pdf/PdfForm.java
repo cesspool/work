@@ -107,7 +107,7 @@ public abstract class PdfForm {
     }
 
     
-    protected float getHorizonalCenteredX(String text, PDFont font, float fontSize, PDRectangle rect) throws IOException {
+    protected float getHorizonalCenteredX(String text, PDFont font, int fontSize, PDRectangle rect) throws IOException {
         Pair<Float, Float> textSpace = getTextSpace(text, font, fontSize);
         float diffX = rect.getWidth() - textSpace.getRight();
         float shiftX = diffX < 0 ? 0 : diffX / 2;
@@ -115,6 +115,12 @@ public abstract class PdfForm {
         return x;
     }
     
+    protected float getHorizontalRightShiftedX(String text, PDFont font, int fontSize, PDRectangle rect) throws IOException {
+        Pair<Float, Float> textSpace = getTextSpace(text, font, fontSize);
+        float diffX = rect.getWidth() - textSpace.getRight();
+        float x = rect.getLowerLeftX() + diffX;
+        return x;
+    }
     
     protected abstract void drawPage(PDPageContentStream cos, PDRectangle docRect, int pageNum) throws IOException;
 

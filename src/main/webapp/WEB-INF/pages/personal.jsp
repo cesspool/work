@@ -147,7 +147,7 @@
                     	</td>
                     </tr>
                 </table>
-                <a target="_blank" href="${contextPath}/orderform/12">${lbOrderReceipt}</a>
+                <a href="${contextPath}/orderform/12">${lbOrderReceipt}</a>
 				</c:forEach>
             </div>
         </form>

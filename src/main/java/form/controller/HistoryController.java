@@ -12,6 +12,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,6 +20,7 @@ import service.OrderService;
 import utils.Tools;
 import web.Pages;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
@@ -76,12 +78,38 @@ public class HistoryController extends BaseController {
 	@RequestMapping(value="/orderform/{id}", method = RequestMethod.GET)
 	public void readPdfForm(@PathVariable("id") Long orderID, Locale locale,
 	                    HttpServletRequest req, HttpServletResponse resp) {
+
 	    OrderFormBean bean = new OrderFormBean();
+	    bean.setId(String.valueOf(orderID));
+	    bean.setSenderFullName("Сидоров Сидор Степаныч");
+	    bean.setSenderCity("Москва");
+	    bean.setSenderAddress("100456б г. Москваб ул.Мосфильмовскаяб д.13 кв.123");
+	    bean.setSenderPhone("+7(495) 223-322");
+	    bean.setRecipientFullName("Иванов Иван Иваныч");
+	    bean.setRecipientCity("Челябинск");
+	    bean.setRecipientAddress("344006 г.Челябинскб ул.Ленина, д.15. кв.43");
+	    bean.setRecipientPhone("3444-34-34-34");
+	    bean.setCargoCost("234567р. 63коп.");
+	    bean.setCargoHeight("23");
+	    bean.setCargoLength("115");
+	    bean.setCargoWeight("45");
+	    bean.setCargoWidth("34");
+	    bean.setBoxingName("Короб");
+	    bean.setBoxingQuantity("1");
+	    bean.setEnvelop(false);
+	    bean.setUrgency("1");
+	    bean.appendRoutePart("Москва", "Железная дорога");
+	    bean.appendRoutePart("Сочи", "Автотранспорт");
+	    bean.appendRoutePart("NewYork", "Falcon Heavy");
 	    OrderForm form = new OrderForm();
-	    resp.setContentType(MediaType.APPLICATION_PDF_VALUE);
-	    //resp.set
 	    try {
-	        PDDocument pdfDoc = form.createForm(bean, messageSource, new PDRectangle(PDRectangle.A4.getHeight(), PDRectangle.A4.getWidth()), 1, resp.getOutputStream()).orElse(null);
+	        ByteArrayOutputStream outBf = new ByteArrayOutputStream();
+	        PDDocument pdfDoc = form.createForm(bean, messageSource, new PDRectangle(PDRectangle.A4.getHeight(), PDRectangle.A4.getWidth()), 1, outBf).orElse(null);
+	        resp.setContentType(MediaType.APPLICATION_PDF_VALUE);
+	        resp.setHeader("Content-Disposition", "attachment; filename=OrderForm_" + orderID + ".pdf");
+	        resp.setHeader("Content-Length", String.valueOf(outBf.size()));
+	        FileCopyUtils.copy(outBf.toByteArray(), resp.getOutputStream());
+	        
 	    } catch(IOException ioEx) {
 	        logger.error("Creating PDF failed", ioEx);
 	    } 
