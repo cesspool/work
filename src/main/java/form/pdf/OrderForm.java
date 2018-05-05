@@ -115,12 +115,16 @@ public class OrderForm extends PdfForm {
       
       startX = centerRect.getLowerLeftX();
       startY = centerRect.getUpperRightY() - 15;
-      txt = "Габариты груза (длина,см х ширина,см х высота,см)";
-      drawText(txt, cos, fnt, fntSize, 
-          getHorizonalCenteredX(txt, fnt, fntSize, centerRect), startY);
-      txt = getBean().getCargoLength() + " x " + getBean().getCargoWidth() + " x " + getBean().getCargoHeight();
-      drawText(txt, cos, fnt, fntSize, 
-          getHorizonalCenteredX(txt, fnt, fntSize, centerRect), startY - 15);
+      
+      if(!getBean().isEnvelop()) {
+    	  txt = "Габариты груза (длина,см х ширина,см х высота,см)";
+          drawText(txt, cos, fnt, fntSize, 
+              getHorizonalCenteredX(txt, fnt, fntSize, centerRect), startY);
+          txt = getBean().getCargoLength() + " x " + getBean().getCargoWidth() + " x " + getBean().getCargoHeight();
+          drawText(txt, cos, fnt, fntSize, 
+              getHorizonalCenteredX(txt, fnt, fntSize, centerRect), startY - 15);
+          
+      }
       txt = "Используемая упаковка";
       drawText(txt, cos, fnt, fntSize, 
           getHorizonalCenteredX(txt, fnt, fntSize, centerRect), startY - 30);

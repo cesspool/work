@@ -1,6 +1,7 @@
 package form.response;
 
 import beans.Boxing;
+import beans.Customer;
 import beans.Node;
 import beans.Order;
 import beans.Package;
@@ -13,9 +14,16 @@ public class OrderingReq {
     private Node NodeEnd;
     private String typeDelivery;
     private String typeCargo;
+    private Customer sender; //!!!!!!!
     
     
     
+	public Customer getSender() {
+		return sender;
+	}
+	public void setSender(Customer sender) {
+		this.sender = sender;
+	}
 	public Node getNodeStart() {
 		return NodeStart;
 	}

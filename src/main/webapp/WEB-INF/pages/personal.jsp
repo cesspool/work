@@ -147,7 +147,7 @@
                     	</td>
                     </tr>
                 </table>
-                <a href="${contextPath}/orderform/12">${lbOrderReceipt}</a>
+                <a href="${contextPath}/orderform/${order.order.id}">${lbOrderReceipt}</a>
 				</c:forEach>
             </div>
         </form>

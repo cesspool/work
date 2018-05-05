@@ -46,7 +46,7 @@ public class OrderDAOServiceImpl extends DataService  implements OrderDAOService
 //            " (name, urgency, ready, sender_id, rate_id, package_id, boxing_id) " +
 //            " VALUES (?, ?, ?, ?, ?, ?, ?) ";
 	
-	private final static String SQL_SEL_ORDERS_BY_READY_AND_RECIPIENT= "select Ord.name," +
+	private final static String SQL_SEL_ORDERS_BY_READY_AND_RECIPIENT= "select Ord.id, Ord.name," +
 			" Ord.urgency, Ord.plan_date, Ord.cost, Ord.contact_information, full_path, Ord.shipment_date, Ord.real_date, Pk.envelop," +
 			" Pk.height, Pk.width, Pk.length, Pk.weight, Pk.quantity, Bx.variety, Nds.city, Ndt.city, Ndt.address" + 
 			" from logistics.order Ord" + 
@@ -203,6 +203,7 @@ public class OrderDAOServiceImpl extends DataService  implements OrderDAOService
             OrderShow o = new OrderShow();
 //            n.setId(ID);
             int idx = 1;
+            o.getOrder().setId(rs.getLong(idx++));
             o.getOrder().setName(rs.getString(idx++));
             o.getOrder().isUrgency(rs.getBoolean(idx++));
             o.getOrder().setPlanDate(rs.getDate(idx++));

@@ -83,6 +83,9 @@ public abstract class PdfForm {
     
     
     protected void drawText(String text, PDPageContentStream cos, PDFont font, int fontSize, float tx, float ty) throws IOException {
+    	if (text == null) {
+    		text = "";
+    	}
         cos.beginText();
         cos.setFont(font, fontSize);
         cos.newLineAtOffset(tx, ty);

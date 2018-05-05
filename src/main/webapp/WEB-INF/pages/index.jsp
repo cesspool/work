@@ -44,14 +44,14 @@
             <%@ include file = "menuCustomer.jsp" %>
         </c:when>
     </c:choose>
-              
+              <!-- 
               <div style="float: right; color: white; background: blue;">  
                 <select id="selLangID">
                     <option value="ru_RU">РУС</option>
                     <option value="en_EN">EN</option>
                 </select>
              </div>
-                
+                 -->
 
 		<!-- Banner -->
 			<section id="banner">
